@@ -16,5 +16,5 @@ export const buildSitemapXml = (config: IConfig, urls: string[]) => {
     ${urlArr}
     </urlset>`
 
-  return prettyXml(sitemapXml)
+  return prettyXml(sitemapXml, '  ')
 }
