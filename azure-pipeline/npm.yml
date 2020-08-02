@@ -23,6 +23,7 @@ steps:
       yarn build:ywc
       yarn test
       yarn set-version
+      cp README.md packages/next-sitemap/README.md
     displayName: Build & Test
 
   # Test Result
