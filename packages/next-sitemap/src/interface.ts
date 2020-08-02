@@ -1,7 +1,8 @@
 export interface IConfig {
   siteUrl: string
   changefreq: string
-  priority: string
+  priority: any
+  path: string
 }
 
 export interface IBuildManifest {
