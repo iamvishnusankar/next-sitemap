@@ -13,6 +13,8 @@ steps:
     inputs:
       version: '13.x'
 
+
+
   # Install
   - task: Bash@3
     inputs:
@@ -25,7 +27,6 @@ steps:
     inputs:
       targetType: 'inline'
       script: 'yarn test'
-      failOnStderr: true
     displayName: Test
 
   # Publish Test Results
