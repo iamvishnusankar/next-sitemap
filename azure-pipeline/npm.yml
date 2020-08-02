@@ -15,7 +15,7 @@ steps:
     displayName: NPM Auth
     inputs:
       workingFile: .npmrc
-      customEndpoint: 'Vishnu Sankar'
+      customEndpoint: 'NPM(Vishnu Sankar)'
 
   # Build & Test
   - bash: |
