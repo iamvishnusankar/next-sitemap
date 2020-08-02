@@ -19,9 +19,9 @@ export const getStaticProps: GetStaticProps = async () => {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
-    paths: [...Array(10)].map((_, index) => ({
+    paths: [...Array(10000)].map((_, index) => ({
       params: {
-        dynamic: `${index}`
+        dynamic: `page-${index}`
       }
     })),
     fallback: false
