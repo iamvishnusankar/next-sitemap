@@ -5,6 +5,8 @@
     "outDir": "dist",
     "composite": true,
     "noEmit": false,
-    "incremental": true
+    "incremental": true,
+    "module": "CommonJS",
+    "target": "ESNext"
   }
 }
