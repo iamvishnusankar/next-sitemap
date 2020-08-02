@@ -10,6 +10,10 @@ pool:
 
 steps:
 
+  - task: UseNode@1
+    inputs:
+      version: '13.x'
+
   # Install
   - task: Bash@3
     inputs:
