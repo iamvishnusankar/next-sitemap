@@ -1,1 +1,3 @@
-export const generateSitemap = () => {}
+import { generateSitemap } from './generateSitemap'
+
+generateSitemap()
