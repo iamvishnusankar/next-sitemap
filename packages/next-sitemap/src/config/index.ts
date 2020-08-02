@@ -4,7 +4,7 @@ import { IConfig } from '../interface'
 
 export const withDefaultConfig = (config: IConfig) => {
   return {
-    path: '/public/sitemap.xml',
+    path: './public/sitemap.xml',
     priority: 0.7,
     changefreq: 'daily',
     ...(config as any)
