@@ -1,4 +1,4 @@
-import { buildSitemapXml } from '.'
+import { buildSitemapXml } from './index'
 
 describe('generateSitemap', () => {
   test('buildSitemapXml', () => {

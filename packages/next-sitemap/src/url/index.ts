@@ -16,7 +16,7 @@ export const generateUrl = (baseUrl: string, slug: string) => {
 export const createUrlSet = (config: IConfig, manifest: INextManifest) => {
   const allKeys = [
     ...Object.keys(manifest.build.pages),
-    ...(manifest.preRender ? Object.keys(manifest.preRender?.routes) : [])
+    ...(manifest.preRender ? Object.keys(manifest.preRender.routes) : [])
   ]
 
   return new Set(
