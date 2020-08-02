@@ -1,4 +1,4 @@
-import { INextManifest, IConfig } from './interface'
+import { INextManifest, IConfig } from '../interface'
 
 export const cleanPath = (text: string) => {
   return text.replace(/([^:])(\/\/+)/g, '$1/')
