@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="1" failures="0" time="2.739">
-  <testsuite name="next-sitemap" errors="0" failures="0" skipped="0" timestamp="2020-08-02T13:47:21" time="0.672" tests="1">
-    <testcase classname="next-sitemap sample" name="next-sitemap sample" time="0.002">
-    </testcase>
-  </testsuite>
-</testsuites>
