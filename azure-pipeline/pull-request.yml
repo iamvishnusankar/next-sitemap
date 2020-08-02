@@ -9,13 +9,21 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-  # Install, Build & Test
-  - bash: |
-      yarn install
-      yarn build:tsc
-      yarn test
-      yarn set-version
-    displayName: Install, Build & Test
+
+  # Install
+  - task: Bash@3
+    inputs:
+      targetType: 'inline'
+      script: 'yarn install'
+    displayName: Install
+
+  # Test
+  - task: Bash@3
+    inputs:
+      targetType: 'inline'
+      script: 'yarn test'
+      failOnStderr: true
+    displayName: Test
 
   # Publish Test Results
   - task: PublishTestResults@2
