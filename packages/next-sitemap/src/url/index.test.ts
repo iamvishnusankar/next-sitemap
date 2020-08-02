@@ -1,6 +1,6 @@
 import { isURL, cleanPath, generateUrl, isNextInternalUrl } from './index'
 
-describe('@tomato-ui/gatsby-theme-core', () => {
+describe('next-sitemap', () => {
   test('isURL : Valid', () => {
     expect(isURL('https://example.com')).toBeTruthy()
   })
