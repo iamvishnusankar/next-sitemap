@@ -11,6 +11,4 @@ const urlSet = createUrlSet(config, manifest)
 const sitemapPath = config.path
 const sitemapXml = buildSitemapXml(config, [...urlSet])
 
-console.log(sitemapPath)
-
 exportSitemap(sitemapPath, sitemapXml)
