@@ -6,8 +6,7 @@ trigger:
 pr: none
 
 pool:
-  name: Hosted Ubuntu 1604
-  demands: npm
+  vmImage: 'ubuntu-latest'
 
 steps:
   # Authenticate
