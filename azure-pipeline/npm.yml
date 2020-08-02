@@ -1,0 +1,48 @@
+name: 1.0$(rev:.r)
+trigger:
+  branches:
+    include:
+      - master
+pr: none
+
+pool:
+  name: Hosted Ubuntu 1604
+  demands: npm
+
+steps:
+  # Authenticate
+  - task: npmAuthenticate@0
+    displayName: NPM Auth
+    inputs:
+      workingFile: .npmrc
+      customEndpoint: 'Vishnu Sankar'
+
+  # Build & Test
+  - bash: |
+      yarn install
+      yarn build:tsc
+      yarn build:ywc
+      yarn test
+      yarn set-version
+    displayName: Build & Test
+
+  # Test Result
+  - task: PublishTestResults@2
+    displayName: Publish Test Result
+    inputs:
+      testResultsFormat: 'JUnit'
+      testResultsFiles: 'junit.xml'
+      failTaskOnFailedTests: true
+
+  # Coverage Result
+  - task: PublishCodeCoverageResults@1
+    displayName: Publish Coverage Result
+    inputs:
+      codeCoverageTool: 'Cobertura'
+      summaryFileLocation: 'coverage/cobertura-coverage.xml'
+      failIfCoverageEmpty: true
+
+  # Publish Packages
+  - bash: |
+      yarn ywc publish
+    displayName: Publish Packages
