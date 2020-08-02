@@ -20,9 +20,8 @@ steps:
   # Build & Test
   - bash: |
       yarn install
-      yarn build:tsc
-      yarn build:ywc
       yarn test
+      yarn build:ywc
       yarn set-version
       cp README.md packages/next-sitemap/README.md
     displayName: Build & Test
