@@ -62,3 +62,8 @@ typings/
 
 # Custom
 .DS_Store
+coverage
+dist
+junit.xml
+tsconfig.tsbuildinfo
+example/public

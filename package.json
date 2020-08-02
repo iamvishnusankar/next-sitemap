@@ -1,15 +1,15 @@
 {
-  "name": "fullstack-template",
+  "name": "next-sitemap-workspace",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "https://github.com/iamvishnusankar/fullstack-template.git",
+  "repository": "https://github.com/iamvishnusankar/next-sitemap.git",
   "author": "Vishnu Sankar",
   "license": "MIT",
   "private": true,
   "workspaces": {
     "packages": [
       "packages/*",
-      "apps/*"
+      "example"
     ]
   },
   "scripts": {
@@ -19,9 +19,10 @@
     "dev:tsc": "tsc --build --watch",
     "build:ywc": "ywc clean build",
     "build:tsc": "tsc --build",
-    "set-version": "ywc set-version"
+    "set-version": "ywc set-version",
+    "test": "jest --ci --coverage --verbose"
   },
   "devDependencies": {
-    "@corex/workspace": "^2.0.9"
+    "@corex/workspace": "^2.0.10"
   }
 }

@@ -1,0 +1,18 @@
+{
+  "name": "next-sitemap",
+  "version": "1.0.0",
+  "description": "Sitemap generator for next.js",
+  "main": "./dist/index.js",
+  "repository": "https://github.com/iamvishnusankar/next-sitemap.git",
+  "author": "Vishnu Sankar (@iamvishnusankar)",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "bin": {
+    "next-sitemap": "./bin/next-sitemap"
+  },
+  "scripts": {
+    "build": "tsc"
+  }
+}
