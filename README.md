@@ -1,6 +1,6 @@
 # next-sitemap
 
-Sitemap generator for next.js
+Sitemap generator for next.js. `next-sitemap` will generate a sitemap file for all pages (including all pre-rendered/static pages).
 
 ## Install
 
@@ -30,8 +30,14 @@ module.exports = {
 
 ## `next-sitemap.js` Options
 
-| property              | description                          |
-| --------------------- | ------------------------------------ |
-| siteUrl               | Base url of your website             |
-| changefreq (optional) | Change frequency. Default to `daily` |
-| priority (optional)   | Priority. Default to `0.7`           |
+| property              | description                                       |
+| --------------------- | ------------------------------------------------- |
+| siteUrl               | Base url of your website                          |
+| changefreq (optional) | Change frequency. Default to `daily`              |
+| priority (optional)   | Priority. Default to `0.7`                        |
+| path (optional)       | Sitemap export path. Default `public/sitemap.xml` |
+
+## TODO
+
+- Add support for splitting sitemap
+- Add support for `robots.txt`
