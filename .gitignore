@@ -64,3 +64,4 @@ typings/
 .DS_Store
 coverage
 dist
+junit.xml

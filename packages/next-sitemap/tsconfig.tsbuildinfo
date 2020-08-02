@@ -222,13 +222,13 @@
         "affectsGlobalScope": false
       },
       "./src/path.ts": {
-        "version": "37660026bcc2b14c34ccf2bfd712ddc9a55e7335be347ea940ac37cab0e001e1",
-        "signature": "d5efaffe60758a99b93052e0160af6751d034c4daae9db0f11a91792f8e08d95",
+        "version": "7e4d79f9f7010f172d2ce40adfcc950e93fdf1ca0aa61cbb0d4c534064d8e113",
+        "signature": "c8ff6877e9c89fb711605723df12103fad32bd88e6a340c704604045eac5ab01",
         "affectsGlobalScope": false
       },
       "./src/interface.ts": {
-        "version": "f82ea5fb7385a2e9c9ba9dc8946684fe419ec56c22ed52a1e1e694dbee4485cd",
-        "signature": "8adb8e719e1518cc35f83fa6b1204b0cad53ee51fb607cbd86e3d760a1c1777d",
+        "version": "1ce0f7b1340d56a06071644af0da96cec191c0eb65c28f64af599afc7cf9f8ce",
+        "signature": "047d6932579f3d875e4f7466681a1d502175299635577b3e4c5d7e91fe00b9c4",
         "affectsGlobalScope": false
       },
       "./src/loadconfigfile.ts": {
@@ -236,9 +236,19 @@
         "signature": "06ad0f092f1136be3ea2d06591638cdb6480886b8eb693d93982545c52818b97",
         "affectsGlobalScope": false
       },
+      "./src/manifest.ts": {
+        "version": "33f32451487d52a8250164af5459dfb927de66dad91e02a347682c7744e4fcf2",
+        "signature": "854885866b1d338fc88ae9756474a81847b8b5a0a0bd136510c68a4ab1337316",
+        "affectsGlobalScope": false
+      },
+      "./src/url.ts": {
+        "version": "4e682cf97862196eb974a93c07ab3088279cb35d65140da23511f2b48b79bf9f",
+        "signature": "0f2be2ee0d2bd4a1db44225b9e43b5ff3889f4d4b9002f0f52ef497d40950db9",
+        "affectsGlobalScope": false
+      },
       "./src/generatesitemap.ts": {
-        "version": "02092edfd5cf263e504ca802bc7bec3c4ba5468fc3987da965b507a6f24baa93",
-        "signature": "9c6885f75e90a007ca5847d7124c1b440364e67928eb95c35eb283a40c4a05c7",
+        "version": "6fcbad8cfaca1ac253f6b4de074a3b6c67cbd9155b8f1f8d233a2dd2da7e79e6",
+        "signature": "982f3cdf94c348fccedac13f14b5a37f6bb6b87335d65ee82fa66f4f5967a86c",
         "affectsGlobalScope": false
       },
       "./src/index.ts": {
@@ -246,9 +256,9 @@
         "signature": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881",
         "affectsGlobalScope": false
       },
-      "./src/loadbuildmanifest.ts": {
-        "version": "cecd868f3ce23ab8c735be8fcb184d7c8a00fde545ab7c12b161a499451f9b9a",
-        "signature": "7928f9c07df2513ca2f0ef822b242017ad828e2834d438a632592ccb30d317e7",
+      "./src/url.test.ts": {
+        "version": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "signature": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
         "affectsGlobalScope": false
       },
       "../../node_modules/@types/aria-query/index.d.ts": {
@@ -2044,7 +2054,10 @@
         "../../node_modules/@types/node/ts3.2/process.d.ts",
         "../../node_modules/@types/node/ts3.2/util.d.ts",
         "../../node_modules/@types/node/util.d.ts",
-        "./src/loadconfigfile.ts"
+        "./src/interface.ts",
+        "./src/loadconfigfile.ts",
+        "./src/manifest.ts",
+        "./src/url.ts"
       ],
       "./src/index.ts": [
         "../../node_modules/@types/graceful-fs/index.d.ts",
@@ -2065,7 +2078,7 @@
         "../../node_modules/@types/node/ts3.2/util.d.ts",
         "../../node_modules/@types/node/util.d.ts"
       ],
-      "./src/loadbuildmanifest.ts": [
+      "./src/loadconfigfile.ts": [
         "../../node_modules/@types/graceful-fs/index.d.ts",
         "../../node_modules/@types/node/fs.d.ts",
         "../../node_modules/@types/node/process.d.ts",
@@ -2073,9 +2086,10 @@
         "../../node_modules/@types/node/ts3.2/process.d.ts",
         "../../node_modules/@types/node/ts3.2/util.d.ts",
         "../../node_modules/@types/node/util.d.ts",
+        "./src/interface.ts",
         "./src/path.ts"
       ],
-      "./src/loadconfigfile.ts": [
+      "./src/manifest.ts": [
         "../../node_modules/@types/graceful-fs/index.d.ts",
         "../../node_modules/@types/node/fs.d.ts",
         "../../node_modules/@types/node/process.d.ts",
@@ -2095,6 +2109,25 @@
         "../../node_modules/@types/node/ts3.2/process.d.ts",
         "../../node_modules/@types/node/ts3.2/util.d.ts",
         "../../node_modules/@types/node/util.d.ts"
+      ],
+      "./src/url.test.ts": [
+        "../../node_modules/@types/graceful-fs/index.d.ts",
+        "../../node_modules/@types/node/fs.d.ts",
+        "../../node_modules/@types/node/process.d.ts",
+        "../../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../../node_modules/@types/node/ts3.2/process.d.ts",
+        "../../node_modules/@types/node/ts3.2/util.d.ts",
+        "../../node_modules/@types/node/util.d.ts"
+      ],
+      "./src/url.ts": [
+        "../../node_modules/@types/graceful-fs/index.d.ts",
+        "../../node_modules/@types/node/fs.d.ts",
+        "../../node_modules/@types/node/process.d.ts",
+        "../../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../../node_modules/@types/node/ts3.2/process.d.ts",
+        "../../node_modules/@types/node/ts3.2/util.d.ts",
+        "../../node_modules/@types/node/util.d.ts",
+        "./src/interface.ts"
       ]
     },
     "exportedModulesMap": {
@@ -3410,7 +3443,16 @@
         "../../node_modules/@types/node/ts3.2/util.d.ts",
         "../../node_modules/@types/node/util.d.ts"
       ],
+      "./src/generatesitemap.ts": [
+        "./src/interface.ts"
+      ],
       "./src/loadconfigfile.ts": [
+        "./src/interface.ts"
+      ],
+      "./src/manifest.ts": [
+        "./src/interface.ts"
+      ],
+      "./src/url.ts": [
         "./src/interface.ts"
       ]
     },
@@ -3550,9 +3592,11 @@
       "./src/generatesitemap.ts",
       "./src/index.ts",
       "./src/interface.ts",
-      "./src/loadbuildmanifest.ts",
       "./src/loadconfigfile.ts",
-      "./src/path.ts"
+      "./src/manifest.ts",
+      "./src/path.ts",
+      "./src/url.test.ts",
+      "./src/url.ts"
     ]
   },
   "version": "3.9.5"

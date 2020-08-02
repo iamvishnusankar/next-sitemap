@@ -5,7 +5,8 @@ export const getPath = (rel: string) => {
 }
 
 const allPath = {
-  MANIFEST_PATH: getPath('.next/build-manifest.json'),
+  NEXT_MANIFEST: getPath('.next/build-manifest.json'),
+  PRERENDER_MANIFEST: getPath('.next/prerender-manifest.json'),
   CONFIG_FILE: getPath('next.sitemap.js')
 }
 
