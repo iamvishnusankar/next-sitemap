@@ -17,5 +17,5 @@ export const loadConfig = (): IConfig => {
     return withDefaultConfig(config)
   }
 
-  throw new Error("No config file exist. Please create 'next.sitemap.js'")
+  throw new Error("No config file exist. Please create 'next-sitemap.js'")
 }
