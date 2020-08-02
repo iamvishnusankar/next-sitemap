@@ -1,0 +1,34 @@
+name: 1.0$(rev:.r)
+trigger: none
+pr:
+  branches:
+    include:
+      - master
+
+pool:
+  name: Hosted Ubuntu 1604
+
+steps:
+  # Install, Build & Test
+  - bash: |
+      yarn install
+      yarn build:tsc
+      yarn test
+      yarn set-version
+    displayName: Install, Build & Test
+
+  # Publish Test Results
+  - task: PublishTestResults@2
+    displayName: 'Publish Test Results junit.xml'
+    inputs:
+      testResultsFiles: junit.xml
+      failTaskOnFailedTests: true
+
+  # Publish code coverage
+  - task: PublishCodeCoverageResults@1
+    displayName: 'Publish code coverage from $(System.DefaultWorkingDirectory)/coverage/cobertura-coverage.xml'
+    inputs:
+      codeCoverageTool: Cobertura
+      summaryFileLocation: '$(System.DefaultWorkingDirectory)/coverage/cobertura-coverage.xml'
+      reportDirectory: '$(System.DefaultWorkingDirectory)/coverage'
+      failIfCoverageEmpty: true
