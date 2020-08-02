@@ -3,6 +3,7 @@ trigger:
   branches:
     include:
       - master
+      - development
 pr: none
 
 pool:
