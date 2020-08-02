@@ -1,0 +1,27 @@
+{
+  "name": "fullstack-template",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/iamvishnusankar/fullstack-template.git",
+  "author": "Vishnu Sankar",
+  "license": "MIT",
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "packages/*",
+      "apps/*"
+    ]
+  },
+  "scripts": {
+    "clean": "tsc --build --clean",
+    "dev:docker": "docker-compose up -d",
+    "dev:test": "jest --watchAll",
+    "dev:tsc": "tsc --build --watch",
+    "build:ywc": "ywc clean build",
+    "build:tsc": "tsc --build",
+    "set-version": "ywc set-version"
+  },
+  "devDependencies": {
+    "@corex/workspace": "^2.0.9"
+  }
+}
