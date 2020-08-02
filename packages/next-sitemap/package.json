@@ -8,5 +8,11 @@
   "license": "MIT",
   "publishConfig": {
     "access": "public"
+  },
+  "bin": {
+    "next-sitemap": "./bin/next-sitemap"
+  },
+  "scripts": {
+    "build": "tsc"
   }
 }

@@ -63,3 +63,4 @@ typings/
 # Custom
 .DS_Store
 coverage
+dist
