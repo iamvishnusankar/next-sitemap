@@ -6,7 +6,7 @@ pr:
       - master
 
 pool:
-  name: Hosted Ubuntu 1604
+  vmImage: 'ubuntu-latest'
 
 steps:
   # Install, Build & Test
