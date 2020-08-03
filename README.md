@@ -53,5 +53,5 @@ Above is the minimal configuration to split a large sitemap. When the number of 
 
 ## TODO
 
-- Add support for splitting sitemap
+- <s>Add support for splitting sitemap</s>
 - Add support for `robots.txt`
