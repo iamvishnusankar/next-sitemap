@@ -14,8 +14,9 @@ yarn add next-sitemap -D
 
 ```js
 module.exports = {
-  siteUrl: 'https://example.com'
-  // other options
+  siteUrl: 'https://example.com',
+  generateRobotsTxt: true // (optional)
+  // ...other options
 }
 ```
 
@@ -56,7 +57,7 @@ Above is the minimal configuration to split a large sitemap. When the number of 
 
 ## Full configuration
 
-Here's an example configuration with all options
+Here's an example `next-sitemap.js` configuration with all options
 
 ```js
 module.exports = {
