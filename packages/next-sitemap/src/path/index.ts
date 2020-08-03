@@ -6,10 +6,15 @@ export const getPath = (rel: string) => {
 
 export const resolveSitemapChunks = (baseSitemapPath: string, chunks: string[][]) => {
   const folder = path.dirname(baseSitemapPath)
-  return chunks.map((chunk, index) => ({
-    path: `${folder}/sitemap${index > 0 ? `-${index}` : ''}.xml`,
-    urls: chunk
-  }))
+  return chunks.map((chunk, index) => {
+    const filename = `sitemap${index > 0 ? `-${index}` : ''}.xml`
+
+    return {
+      path: `${folder}/${filename}`,
+      urls: chunk,
+      filename
+    }
+  })
 }
 
 const allPath = {

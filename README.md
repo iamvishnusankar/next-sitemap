@@ -14,8 +14,9 @@ yarn add next-sitemap -D
 
 ```js
 module.exports = {
-  siteUrl: 'https://example.com'
-  // other options
+  siteUrl: 'https://example.com',
+  generateRobotsTxt: true // (optional)
+  // ...other options
 }
 ```
 
@@ -35,7 +36,7 @@ Define the `sitemapSize` property in `next-sitemap.js` to split large sitemap in
 ```js
 module.exports = {
   siteUrl: 'https://example.com',
-  sitemapSize: 5000
+  generateRobotsTxt: true
 }
 ```
 
@@ -43,15 +44,52 @@ Above is the minimal configuration to split a large sitemap. When the number of 
 
 ## `next-sitemap.js` Options
 
-| property              | description                                                                   |
-| --------------------- | ----------------------------------------------------------------------------- |
-| siteUrl               | Base url of your website                                                      |
-| changefreq (optional) | Change frequency. Default to `daily`                                          |
-| priority (optional)   | Priority. Default to `0.7`                                                    |
-| path (optional)       | Sitemap export path. Default `public/sitemap.xml`                             |
-| sitemapSize(optional) | Split large sitemap into multiple files by specifying sitemap size (eg: 5000) |
+| property                            | description                                                                        | type     |
+| ----------------------------------- | ---------------------------------------------------------------------------------- | -------- |
+| siteUrl                             | Base url of your website                                                           | string   |
+| changefreq (optional)               | Change frequency. Default `daily`                                                  | string   |
+| priority (optional)                 | Priority. Default `0.7`                                                            | number   |
+| sitemapSize(optional)               | Split large sitemap into multiple files by specifying sitemap size. Default `5000` | number   |
+| generateRobotsTxt                   | Generate a `robots.txt` file and list the generated sitemaps. Default `false`      | boolean  |
+| robotsTxtOptions.policies           | Policies for generating `robots.txt`. Default to `[{ userAgent: '*', allow: '/' }` | []       |
+| robotsTxtOptions.additionalSitemaps | Options to add addition sitemap to `robots.txt` host entry                         | string[] |
+
+## Full configuration
+
+Here's an example `next-sitemap.js` configuration with all options
+
+```js
+module.exports = {
+  siteUrl: 'https://example.com',
+  changefreq: 'daily',
+  priority: 0.7,
+  sitemapSize: 5000,
+  generateRobotsTxt: true,
+  robotsTxtOptions: {
+    policies: [
+      {
+        userAgent: '*',
+        allow: '/'
+      },
+      {
+        userAgent: 'test-bot',
+        allow: ['/path', '/path-2']
+      },
+      {
+        userAgent: 'black-listed-bot',
+        disallow: ['/sub-path-1', '/path-2']
+      }
+    ],
+    additionalSitemaps: [
+      'https://example.com/my-custom-sitemap-1.xml',
+      'https://example.com/my-custom-sitemap-2.xml',
+      'https://example.com/my-custom-sitemap-3.xml'
+    ]
+  }
+}
+```
 
 ## TODO
 
 - <s>Add support for splitting sitemap</s>
-- Add support for `robots.txt`
+- <s>Add support for `robots.txt`</s>
