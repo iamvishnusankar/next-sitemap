@@ -43,13 +43,47 @@ Above is the minimal configuration to split a large sitemap. When the number of 
 
 ## `next-sitemap.js` Options
 
-| property              | description                                                                   |
-| --------------------- | ----------------------------------------------------------------------------- |
-| siteUrl               | Base url of your website                                                      |
-| changefreq (optional) | Change frequency. Default to `daily`                                          |
-| priority (optional)   | Priority. Default to `0.7`                                                    |
-| path (optional)       | Sitemap export path. Default `public/sitemap.xml`                             |
-| sitemapSize(optional) | Split large sitemap into multiple files by specifying sitemap size (eg: 5000) |
+| property                            | description                                                                        |
+| ----------------------------------- | ---------------------------------------------------------------------------------- |
+| siteUrl                             | Base url of your website                                                           |
+| changefreq (optional)               | Change frequency. Default to `daily`                                               |
+| priority (optional)                 | Priority. Default to `0.7`                                                         |
+| path (optional)                     | Sitemap export path. Default `public/sitemap.xml`                                  |
+| sitemapSize(optional)               | Split large sitemap into multiple files by specifying sitemap size (eg: 5000)      |
+| generateRobotsTxt                   | Generate a `robots.txt` file and list the generated sitemaps                       |
+| robotsTxtOptions.policies           | Policies for generating `robots.txt`. Default to `[{ userAgent: '*', allow: '/' }` |
+| robotsTxtOptions.additionalSitemaps | Options to add addition sitemap to `robots.txt` host entry                         |
+
+## Full configuration
+
+Here's an example configuration with all options
+
+```js
+module.exports = {
+  siteUrl: 'https://example.com',
+  changefreq: 'daily',
+  priority: 0.7,
+  sitemapSize: 5000,
+  generateRobotsTxt: true,
+  robotsTxtOptions: {
+    policies: [
+      {
+        userAgent: '*',
+        allow: '/'
+      },
+      {
+        userAgent: 'black-listed-bot',
+        disallow: ['/sub-path-1', '/path-2']
+      }
+    ],
+    additionalSitemaps: [
+      'https://example.com/my-custom-sitemap-1.xml',
+      'https://example.com/my-custom-sitemap-2.xml',
+      'https://example.com/my-custom-sitemap-3.xml'
+    ]
+  }
+}
+```
 
 ## TODO
 
