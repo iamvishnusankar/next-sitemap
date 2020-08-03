@@ -5,7 +5,7 @@ export interface IRobotPolicy {
 }
 
 export interface IRobotsTxt {
-  policies: IRobotPolicy
+  policies: IRobotPolicy[]
   additionalSitemaps: string[]
 }
 
@@ -13,7 +13,7 @@ export interface IConfig {
   siteUrl: string
   changefreq: string
   priority: any
-  path: string
+  rootDir: string
   sitemapSize?: number
   generateRobotsTxt: boolean
   robotsTxtOptions?: IRobotsTxt

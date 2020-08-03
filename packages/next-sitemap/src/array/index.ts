@@ -4,3 +4,11 @@ export const toChunks = <T>(arr: T[], chunkSize: number) => {
     []
   )
 }
+
+/**
+ * simple method to normalize any string to array
+ * @param inp
+ */
+export const toArray = (inp: string | string[]) => {
+  return typeof inp === 'string' ? [inp] : inp
+}
