@@ -11,7 +11,7 @@ export const generateRobotsTxt = (config: IConfig) => {
   }
 
   const { additionalSitemaps, policies } = config.robotsTxtOptions!
-  const normalizedPolices = normalizePolicy(policies)
+  const normalizedPolices = normalizePolicy(policies!)
 
   let content = ''
 
@@ -30,7 +30,7 @@ export const generateRobotsTxt = (config: IConfig) => {
   // Append host
   content += `Host: ${config.siteUrl}\n`
 
-  additionalSitemaps.forEach((x) => {
+  additionalSitemaps!.forEach((x) => {
     content += `Sitemap: ${x}\n`
   })
 
