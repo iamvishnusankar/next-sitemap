@@ -3,6 +3,7 @@ export interface IConfig {
   changefreq: string
   priority: any
   path: string
+  sitemapSize?: number
 }
 
 export interface IBuildManifest {
