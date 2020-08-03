@@ -36,7 +36,7 @@ Define the `sitemapSize` property in `next-sitemap.js` to split large sitemap in
 ```js
 module.exports = {
   siteUrl: 'https://example.com',
-  sitemapSize: 5000
+  generateRobotsTxt: true
 }
 ```
 
@@ -50,7 +50,7 @@ Above is the minimal configuration to split a large sitemap. When the number of 
 | changefreq (optional)               | Change frequency. Default `daily`                                                  | string   |
 | priority (optional)                 | Priority. Default `0.7`                                                            | number   |
 | sitemapSize(optional)               | Split large sitemap into multiple files by specifying sitemap size. Default `5000` | number   |
-| generateRobotsTxt                   | Generate a `robots.txt` file and list the generated sitemaps                       | boolean  |
+| generateRobotsTxt                   | Generate a `robots.txt` file and list the generated sitemaps. Default `false`      | boolean  |
 | robotsTxtOptions.policies           | Policies for generating `robots.txt`. Default to `[{ userAgent: '*', allow: '/' }` | []       |
 | robotsTxtOptions.additionalSitemaps | Options to add addition sitemap to `robots.txt` host entry                         | string[] |
 
