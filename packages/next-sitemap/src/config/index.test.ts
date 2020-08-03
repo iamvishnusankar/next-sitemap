@@ -1,4 +1,4 @@
-import { defaultConfig } from '.'
+import { defaultConfig, withDefaultConfig } from '.'
 
 describe('next-sitemap/config', () => {
   test('defaultConfig', () => {
@@ -15,6 +15,35 @@ describe('next-sitemap/config', () => {
           }
         ],
         additionalSitemaps: []
+      }
+    })
+  })
+
+  test('withDefaultConfig', () => {
+    const myConfig = withDefaultConfig({
+      generateRobotsTxt: true,
+      sitemapSize: 50000,
+      robotsTxtOptions: {
+        policies: [],
+        additionalSitemaps: [
+          'https://example.com/awesome-sitemap.xml',
+          'https://example.com/awesome-sitemap-2.xml'
+        ]
+      }
+    })
+
+    expect(myConfig).toStrictEqual({
+      rootDir: 'public',
+      priority: 0.7,
+      changefreq: 'daily',
+      sitemapSize: 50000,
+      generateRobotsTxt: true,
+      robotsTxtOptions: {
+        policies: [],
+        additionalSitemaps: [
+          'https://example.com/awesome-sitemap.xml',
+          'https://example.com/awesome-sitemap-2.xml'
+        ]
       }
     })
   })

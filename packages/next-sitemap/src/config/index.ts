@@ -19,7 +19,12 @@ export const defaultConfig: Partial<IConfig> = {
   }
 }
 
-export const withDefaultConfig = (config: IConfig) => deepmerge(defaultConfig, config)
+const overwriteMerge = (_: any[], sourceArray: any[], __: any) => sourceArray
+
+export const withDefaultConfig = (config: Partial<IConfig>) =>
+  deepmerge(defaultConfig, config, {
+    arrayMerge: overwriteMerge
+  })
 
 export const loadConfig = (): IConfig => {
   if (fs.existsSync(allPath.CONFIG_FILE)) {
