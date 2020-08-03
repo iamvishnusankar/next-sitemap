@@ -92,4 +92,4 @@ module.exports = {
 ## TODO
 
 - <s>Add support for splitting sitemap</s>
-- Add support for `robots.txt`
+- <s>Add support for `robots.txt`</s>
