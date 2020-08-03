@@ -1,4 +1,4 @@
 module.exports = {
   siteUrl: 'https://example.com',
-  sitemapSize: 3000
+  sitemapSize: 5000 // optional
 }
