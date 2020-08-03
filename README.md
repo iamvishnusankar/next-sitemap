@@ -89,6 +89,25 @@ module.exports = {
 }
 ```
 
+Above configuration will result in `robots.txt` like this.
+
+```txt
+User-agent: *
+Allow: /
+User-agent: black-listed-bot
+Disallow: /sub-path-1
+Disallow: /path-2
+
+....
+<---Generated sitemap list--->
+....
+
+Host: https://example.com
+Sitemap: https://example.com/my-custom-sitemap-1.xml
+Sitemap: https://example.com/my-custom-sitemap-2.xml
+Sitemap: https://example.com/my-custom-sitemap-3.xml
+```
+
 ## TODO
 
 - <s>Add support for splitting sitemap</s>
