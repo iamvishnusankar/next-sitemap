@@ -1,15 +1,30 @@
 import fs from 'fs'
 import allPath from '../path'
 import { IConfig } from '../interface'
+import deepmerge from 'deepmerge'
 
-export const withDefaultConfig = (config: IConfig) => {
-  return {
-    path: './public/sitemap.xml',
-    priority: 0.7,
-    changefreq: 'daily',
-    ...(config as any)
-  } as IConfig
+export const defaultConfig: Partial<IConfig> = {
+  rootDir: 'public',
+  priority: 0.7,
+  changefreq: 'daily',
+  sitemapSize: 5000,
+  robotsTxtOptions: {
+    policies: [
+      {
+        userAgent: '*',
+        allow: '/'
+      }
+    ],
+    additionalSitemaps: []
+  }
 }
+
+const overwriteMerge = (_: any[], sourceArray: any[], __: any) => sourceArray
+
+export const withDefaultConfig = (config: Partial<IConfig>) =>
+  deepmerge(defaultConfig, config, {
+    arrayMerge: overwriteMerge
+  })
 
 export const loadConfig = (): IConfig => {
   if (fs.existsSync(allPath.CONFIG_FILE)) {

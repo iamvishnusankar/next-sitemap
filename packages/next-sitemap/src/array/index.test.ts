@@ -1,4 +1,4 @@
-import { toChunks } from '.'
+import { toChunks, toArray } from './index'
 
 describe('next-sitemap/array', () => {
   test('toChunks', () => {
@@ -9,5 +9,10 @@ describe('next-sitemap/array', () => {
 
     expect(chunks).toMatchSnapshot()
     expect(chunks.length).toBe(Math.ceil(inputArray.length / chunkSize))
+  })
+
+  test('toArray', () => {
+    expect(toArray('hello')).toStrictEqual(['hello'])
+    expect(toArray(['hello', 'world'])).toStrictEqual(['hello', 'world'])
   })
 })

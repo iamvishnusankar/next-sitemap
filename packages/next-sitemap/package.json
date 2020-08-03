@@ -14,5 +14,8 @@
   },
   "scripts": {
     "build": "tsc"
+  },
+  "dependencies": {
+    "deepmerge": "^4.2.2"
   }
 }
