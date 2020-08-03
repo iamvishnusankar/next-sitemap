@@ -5,8 +5,8 @@ export interface IRobotPolicy {
 }
 
 export interface IRobotsTxt {
-  policies: IRobotPolicy[]
-  additionalSitemaps: string[]
+  policies?: IRobotPolicy[]
+  additionalSitemaps?: string[]
 }
 
 export interface IConfig {
