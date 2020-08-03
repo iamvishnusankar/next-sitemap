@@ -36,6 +36,7 @@ if (config.generateRobotsTxt) {
   ]
 
   const robotsTxt = generateRobotsTxt(config)
+
   if (robotsTxt) {
     exportFile(robotsTxtFile, robotsTxt)
   }
