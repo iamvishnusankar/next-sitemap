@@ -8,8 +8,8 @@ describe('generateSitemap', () => {
           siteUrl: 'https://example.com',
           priority: 0.7,
           changefreq: 'daily',
-          path: 'sitemap'
-        },
+          rootDir: 'public'
+        } as any,
         ['/', '/another', '/example']
       )
     ).toMatchSnapshot()

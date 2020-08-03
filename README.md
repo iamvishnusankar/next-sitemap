@@ -44,16 +44,16 @@ Above is the minimal configuration to split a large sitemap. When the number of 
 
 ## `next-sitemap.js` Options
 
-| property                            | description                                                                        |
-| ----------------------------------- | ---------------------------------------------------------------------------------- |
-| siteUrl                             | Base url of your website                                                           |
-| changefreq (optional)               | Change frequency. Default to `daily`                                               |
-| priority (optional)                 | Priority. Default to `0.7`                                                         |
-| path (optional)                     | Sitemap export path. Default `public/sitemap.xml`                                  |
-| sitemapSize(optional)               | Split large sitemap into multiple files by specifying sitemap size (eg: 5000)      |
-| generateRobotsTxt                   | Generate a `robots.txt` file and list the generated sitemaps                       |
-| robotsTxtOptions.policies           | Policies for generating `robots.txt`. Default to `[{ userAgent: '*', allow: '/' }` |
-| robotsTxtOptions.additionalSitemaps | Options to add addition sitemap to `robots.txt` host entry                         |
+| property                            | description                                                                        | type     |
+| ----------------------------------- | ---------------------------------------------------------------------------------- | -------- |
+| siteUrl                             | Base url of your website                                                           | string   |
+| changefreq (optional)               | Change frequency. Default to `daily`                                               | string   |
+| priority (optional)                 | Priority. Default to `0.7`                                                         | number   |
+| path (optional)                     | Sitemap export path. Default `public/sitemap.xml`                                  | string   |
+| sitemapSize(optional)               | Split large sitemap into multiple files by specifying sitemap size (eg: 5000)      | number   |
+| generateRobotsTxt                   | Generate a `robots.txt` file and list the generated sitemaps                       | boolean  |
+| robotsTxtOptions.policies           | Policies for generating `robots.txt`. Default to `[{ userAgent: '*', allow: '/' }` | []       |
+| robotsTxtOptions.additionalSitemaps | Options to add addition sitemap to `robots.txt` host entry                         | string[] |
 
 ## Full configuration
 
@@ -71,6 +71,10 @@ module.exports = {
       {
         userAgent: '*',
         allow: '/'
+      },
+      {
+        userAgent: 'test-bot',
+        allow: ['/path', '/path-2']
       },
       {
         userAgent: 'black-listed-bot',

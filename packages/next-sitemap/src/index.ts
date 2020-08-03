@@ -2,14 +2,14 @@ import { loadConfig } from './config'
 import { loadManifest } from './manifest'
 import { createUrlSet } from './url'
 import { buildSitemapXml } from './buildSitemapXml'
-import { exportSitemap } from './export'
+import { exportFile } from './export'
 import { toChunks } from './array'
 import { resolveSitemapChunks } from './path'
 
 const config = loadConfig()
 const manifest = loadManifest()
 const urlSet = createUrlSet(config, manifest)
-const sitemapPath = config.path
+const sitemapPath = `${config.rootDir}/sitemap.xml`
 
 if (!!!config.sitemapSize && urlSet.length > 5000) {
   console.warn(
@@ -17,18 +17,17 @@ if (!!!config.sitemapSize && urlSet.length > 5000) {
   )
 }
 
-export const generateBasicSitemap = (path: string, urls: string[]) => {
+export const generateSitemap = (path: string, urls: string[]) => {
   const sitemapXml = buildSitemapXml(config, urls)
-  exportSitemap(path, sitemapXml)
+  exportFile(path, sitemapXml)
 }
 
 // Generate Basic sitemap if the chunk size is not specified
 if (!!!config.sitemapSize) {
-  generateBasicSitemap(sitemapPath, urlSet)
+  generateSitemap(sitemapPath, urlSet)
 } else {
   // Spile sitemap into multiple files
   const chunks = toChunks(urlSet, config.sitemapSize)
   const sitemapChunks = resolveSitemapChunks(sitemapPath, chunks)
-
-  sitemapChunks.forEach((chunk) => generateBasicSitemap(chunk.path, chunk.urls))
+  sitemapChunks.forEach((chunk) => generateSitemap(chunk.path, chunk.urls))
 }
