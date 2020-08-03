@@ -8,7 +8,7 @@ export const withDefaultConfig = (config: IConfig) => {
     priority: 0.7,
     changefreq: 'daily',
     ...(config as any)
-  }
+  } as IConfig
 }
 
 export const loadConfig = (): IConfig => {
