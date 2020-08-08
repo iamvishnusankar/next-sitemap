@@ -32,7 +32,7 @@ if (config.generateRobotsTxt) {
   // Push the known sitemaps to the additionalSitemapList
   config.robotsTxtOptions!.additionalSitemaps = [
     ...allSitemaps,
-    ...config.robotsTxtOptions!.additionalSitemaps!
+    ...config.robotsTxtOptions!.additionalSitemaps!,
   ]
 
   const robotsTxt = generateRobotsTxt(config)

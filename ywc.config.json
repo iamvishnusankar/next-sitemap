@@ -1,23 +1,18 @@
 {
+  "lint": {
+    "commands": ["yarn lint"],
+    "excludePrivatePackages": true
+  },
   "build": {
-    "commands": [
-      "yarn build"
-    ]
+    "commands": ["yarn build"]
   },
   "clean": {
-    "commands": [
-      "rm -rf dist",
-      "rm -rf build"
-    ]
+    "commands": ["rm -rf dist", "rm -rf build"]
   },
   "set-version": {
-    "commands": [
-      "npm version --no-git-tag-version ${BUILD_BUILDNUMBER}"
-    ]
+    "commands": ["npm version --no-git-tag-version ${BUILD_BUILDNUMBER}"]
   },
   "test": {
-    "commands": [
-      "yarn test"
-    ]
+    "commands": ["yarn test"]
   }
 }

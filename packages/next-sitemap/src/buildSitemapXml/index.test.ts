@@ -8,7 +8,7 @@ describe('generateSitemap', () => {
           siteUrl: 'https://example.com',
           priority: 0.7,
           changefreq: 'daily',
-          rootDir: 'public'
+          rootDir: 'public',
         } as any,
         ['/', '/another', '/example']
       )
