@@ -7,15 +7,16 @@ describe('next-sitemap/config', () => {
       priority: 0.7,
       changefreq: 'daily',
       sitemapSize: 5000,
+      autoLastmod: true,
       robotsTxtOptions: {
         policies: [
           {
             userAgent: '*',
-            allow: '/'
-          }
+            allow: '/',
+          },
         ],
-        additionalSitemaps: []
-      }
+        additionalSitemaps: [],
+      },
     })
   })
 
@@ -27,9 +28,9 @@ describe('next-sitemap/config', () => {
         policies: [],
         additionalSitemaps: [
           'https://example.com/awesome-sitemap.xml',
-          'https://example.com/awesome-sitemap-2.xml'
-        ]
-      }
+          'https://example.com/awesome-sitemap-2.xml',
+        ],
+      },
     })
 
     expect(myConfig).toStrictEqual({
@@ -37,14 +38,15 @@ describe('next-sitemap/config', () => {
       priority: 0.7,
       changefreq: 'daily',
       sitemapSize: 50000,
+      autoLastmod: true,
       generateRobotsTxt: true,
       robotsTxtOptions: {
         policies: [],
         additionalSitemaps: [
           'https://example.com/awesome-sitemap.xml',
-          'https://example.com/awesome-sitemap-2.xml'
-        ]
-      }
+          'https://example.com/awesome-sitemap-2.xml',
+        ],
+      },
     })
   })
 })

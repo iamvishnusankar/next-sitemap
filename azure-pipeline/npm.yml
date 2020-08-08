@@ -20,6 +20,7 @@ steps:
   # Build & Test
   - bash: |
       yarn install
+      yarn lint
       yarn test
       yarn build:ywc
       yarn set-version

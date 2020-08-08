@@ -13,7 +13,8 @@
     "next-sitemap": "./bin/next-sitemap"
   },
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "lint": "tsc --noEmit --declaration"
   },
   "dependencies": {
     "deepmerge": "^4.2.2"
