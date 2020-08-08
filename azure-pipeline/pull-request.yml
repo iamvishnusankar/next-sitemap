@@ -20,7 +20,9 @@ steps:
   - task: Bash@3
     inputs:
       targetType: 'inline'
-      script: 'yarn test'
+      script: |
+        yarn lint
+        yarn test
     displayName: Test
 
   # Publish Test Results
