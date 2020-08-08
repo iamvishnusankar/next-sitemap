@@ -8,6 +8,7 @@ export const defaultConfig: Partial<IConfig> = {
   priority: 0.7,
   changefreq: 'daily',
   sitemapSize: 5000,
+  autoLastmod: true,
   robotsTxtOptions: {
     policies: [
       {

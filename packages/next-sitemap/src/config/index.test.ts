@@ -7,6 +7,7 @@ describe('next-sitemap/config', () => {
       priority: 0.7,
       changefreq: 'daily',
       sitemapSize: 5000,
+      autoLastmod: true,
       robotsTxtOptions: {
         policies: [
           {
@@ -37,6 +38,7 @@ describe('next-sitemap/config', () => {
       priority: 0.7,
       changefreq: 'daily',
       sitemapSize: 50000,
+      autoLastmod: true,
       generateRobotsTxt: true,
       robotsTxtOptions: {
         policies: [],

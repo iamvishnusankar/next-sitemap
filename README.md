@@ -53,6 +53,7 @@ Above is the minimal configuration to split a large sitemap. When the number of 
 | generateRobotsTxt                   | Generate a `robots.txt` file and list the generated sitemaps. Default `false`      | boolean  |
 | robotsTxtOptions.policies           | Policies for generating `robots.txt`. Default to `[{ userAgent: '*', allow: '/' }` | []       |
 | robotsTxtOptions.additionalSitemaps | Options to add addition sitemap to `robots.txt` host entry                         | string[] |
+| autoLastmod (optional)              | Add `<lastmod/>` property. Default to `true`                                       | true     |  |
 
 ## Full configuration
 
