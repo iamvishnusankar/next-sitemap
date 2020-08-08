@@ -3,9 +3,7 @@
   "compilerOptions": {
     "rootDir": "src",
     "outDir": "dist",
-    "composite": true,
     "noEmit": false,
-    "incremental": true,
     "module": "CommonJS",
     "target": "ESNext"
   }

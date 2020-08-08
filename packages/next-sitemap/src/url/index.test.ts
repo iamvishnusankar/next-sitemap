@@ -25,7 +25,10 @@ describe('next-sitemap', () => {
   })
 
   test('generateUrl: with external slug', () => {
-    const url = generateUrl('https://base.example.com', 'https://cdn.another.site/new//path')
+    const url = generateUrl(
+      'https://base.example.com',
+      'https://cdn.another.site/new//path'
+    )
     expect(url).toBe('https://cdn.another.site/new/path')
   })
 

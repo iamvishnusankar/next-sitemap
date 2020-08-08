@@ -12,18 +12,18 @@ export const defaultConfig: Partial<IConfig> = {
     policies: [
       {
         userAgent: '*',
-        allow: '/'
-      }
+        allow: '/',
+      },
     ],
-    additionalSitemaps: []
-  }
+    additionalSitemaps: [],
+  },
 }
 
 const overwriteMerge = (_: any[], sourceArray: any[], __: any) => sourceArray
 
 export const withDefaultConfig = (config: Partial<IConfig>) =>
   deepmerge(defaultConfig, config, {
-    arrayMerge: overwriteMerge
+    arrayMerge: overwriteMerge,
   })
 
 export const loadConfig = (): IConfig => {
