@@ -4,7 +4,10 @@ export const getPath = (rel: string) => {
   return path.resolve(process.cwd(), rel)
 }
 
-export const resolveSitemapChunks = (baseSitemapPath: string, chunks: string[][]) => {
+export const resolveSitemapChunks = (
+  baseSitemapPath: string,
+  chunks: string[][]
+) => {
   const folder = path.dirname(baseSitemapPath)
   return chunks.map((chunk, index) => {
     const filename = `sitemap${index > 0 ? `-${index}` : ''}.xml`
@@ -12,7 +15,7 @@ export const resolveSitemapChunks = (baseSitemapPath: string, chunks: string[][]
     return {
       path: `${folder}/${filename}`,
       urls: chunk,
-      filename
+      filename,
     }
   })
 }
@@ -20,7 +23,7 @@ export const resolveSitemapChunks = (baseSitemapPath: string, chunks: string[][]
 const allPath = {
   NEXT_MANIFEST: getPath('.next/build-manifest.json'),
   PRERENDER_MANIFEST: getPath('.next/prerender-manifest.json'),
-  CONFIG_FILE: getPath('next-sitemap.js')
+  CONFIG_FILE: getPath('next-sitemap.js'),
 }
 
 export default allPath

@@ -22,6 +22,6 @@ export const loadManifest = (): INextManifest => {
 
   return {
     build,
-    preRender
+    preRender,
   }
 }

@@ -7,7 +7,13 @@ export const withXMLTemplate = (content: string) => {
 export const buildSitemapXml = (config: IConfig, urls: string[]) => {
   const content = urls.reduce(
     (prev, curr) =>
-      `${prev}<url><loc>${curr}</loc><changefreq>${config.changefreq}</changefreq><priority>${config.priority}</priority></url>\n`,
+      `${prev}<url><loc>${curr}</loc><changefreq>${
+        config.changefreq
+      }</changefreq><priority>${config.priority}</priority>${
+        config.autoLastmod
+          ? `<lastmod>${new Date().toISOString()}</lastmod>`
+          : ''
+      }</url>\n`,
     ''
   )
 

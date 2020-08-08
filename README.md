@@ -15,7 +15,7 @@ yarn add next-sitemap -D
 ```js
 module.exports = {
   siteUrl: 'https://example.com',
-  generateRobotsTxt: true // (optional)
+  generateRobotsTxt: true, // (optional)
   // ...other options
 }
 ```
@@ -36,7 +36,7 @@ Define the `sitemapSize` property in `next-sitemap.js` to split large sitemap in
 ```js
 module.exports = {
   siteUrl: 'https://example.com',
-  generateRobotsTxt: true
+  generateRobotsTxt: true,
 }
 ```
 
@@ -53,6 +53,7 @@ Above is the minimal configuration to split a large sitemap. When the number of 
 | generateRobotsTxt                   | Generate a `robots.txt` file and list the generated sitemaps. Default `false`      | boolean  |
 | robotsTxtOptions.policies           | Policies for generating `robots.txt`. Default to `[{ userAgent: '*', allow: '/' }` | []       |
 | robotsTxtOptions.additionalSitemaps | Options to add addition sitemap to `robots.txt` host entry                         | string[] |
+| autoLastmod (optional)              | Add `<lastmod/>` property. Default to `true`                                       | true     |  |
 
 ## Full configuration
 
@@ -69,23 +70,23 @@ module.exports = {
     policies: [
       {
         userAgent: '*',
-        allow: '/'
+        allow: '/',
       },
       {
         userAgent: 'test-bot',
-        allow: ['/path', '/path-2']
+        allow: ['/path', '/path-2'],
       },
       {
         userAgent: 'black-listed-bot',
-        disallow: ['/sub-path-1', '/path-2']
-      }
+        disallow: ['/sub-path-1', '/path-2'],
+      },
     ],
     additionalSitemaps: [
       'https://example.com/my-custom-sitemap-1.xml',
       'https://example.com/my-custom-sitemap-2.xml',
-      'https://example.com/my-custom-sitemap-3.xml'
-    ]
-  }
+      'https://example.com/my-custom-sitemap-3.xml',
+    ],
+  },
 }
 ```
 

@@ -17,6 +17,7 @@ export interface IConfig {
   sitemapSize?: number
   generateRobotsTxt: boolean
   robotsTxtOptions?: IRobotsTxt
+  autoLastmod?: boolean
 }
 
 export interface IBuildManifest {

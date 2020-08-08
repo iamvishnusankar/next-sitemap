@@ -3,5 +3,10 @@ module.exports = {
   verbose: true,
   preset: 'ts-jest',
   projects: ['packages/*'],
-  collectCoverageFrom: ['**/*.{ts,tsx}', '!**/*.d.ts', '!**/node_modules/**', '!**/vendor/**']
+  collectCoverageFrom: [
+    '**/*.{ts,tsx}',
+    '!**/*.d.ts',
+    '!**/node_modules/**',
+    '!**/vendor/**',
+  ],
 }
