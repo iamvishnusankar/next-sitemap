@@ -1,7 +1,7 @@
 import fs from 'fs'
 import allPath from '../path'
 import { IConfig } from '../interface'
-import deepmerge from 'deepmerge'
+import merge from '@corex/deepmerge'
 
 export const defaultConfig: Partial<IConfig> = {
   rootDir: 'public',
@@ -20,12 +20,10 @@ export const defaultConfig: Partial<IConfig> = {
   },
 }
 
-const overwriteMerge = (_: any[], sourceArray: any[], __: any) => sourceArray
-
 export const withDefaultConfig = (config: Partial<IConfig>) =>
-  deepmerge(defaultConfig, config, {
-    arrayMerge: overwriteMerge,
-  })
+  merge([defaultConfig, config], {
+    arrayMergeType: 'overwrite',
+  }) as IConfig
 
 export const loadConfig = (): IConfig => {
   if (fs.existsSync(allPath.CONFIG_FILE)) {
