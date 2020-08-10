@@ -47,3 +47,16 @@ steps:
   - bash: |
       yarn ywc publish
     displayName: Publish Packages
+
+  # Github Release
+  - task: GitHubRelease@1
+    displayName: Github Release
+    inputs:
+      gitHubConnection: 'iamvishnusankar'
+      repositoryName: '$(Build.Repository.Name)'
+      action: 'create'
+      target: '$(Build.SourceVersion)'
+      tagSource: 'userSpecifiedTag'
+      tag: 'v$(Build.BuildNumber)'
+      changeLogCompareToRelease: 'lastFullRelease'
+      changeLogType: 'commitBased'
