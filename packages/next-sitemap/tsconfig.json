@@ -1,10 +1,8 @@
 {
-  "extends": "../../tsconfig.workspace.json",
+  "extends": "@corex/tsconfig",
   "compilerOptions": {
     "rootDir": "src",
-    "outDir": "dist",
-    "noEmit": false,
-    "module": "CommonJS",
-    "target": "ESNext"
-  }
+    "outDir": "dist"
+  },
+  "include": ["src"]
 }
