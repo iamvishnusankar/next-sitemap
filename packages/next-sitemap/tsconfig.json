@@ -1,8 +1,11 @@
 {
-  "extends": "@corex/tsconfig",
   "compilerOptions": {
     "rootDir": "src",
-    "outDir": "dist"
+    "outDir": "dist",
+    "noEmit": false,
+    "module": "CommonJS",
+    "target": "ESNext",
+    "esModuleInterop": true
   },
   "include": ["src"]
 }
