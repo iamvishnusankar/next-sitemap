@@ -1076,6 +1076,11 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
+"@corex/deepmerge@^2.2.7":
+  version "2.2.9"
+  resolved "https://registry.yarnpkg.com/@corex/deepmerge/-/deepmerge-2.2.9.tgz#374a0c5dd3803124c477233e91b54699ab6033e7"
+  integrity sha512-/oab+WEEXPXK3WqcTlAzeRCo9YzGTG4fuqhbOPasPhZQ/IAOa9xqya0A+bnYAt3CPqPPmaV1JOb5OxrBzEdXJQ==
+
 "@corex/jest-require-stub@*":
   version "2.2.7"
   resolved "https://registry.yarnpkg.com/@corex/jest-require-stub/-/jest-require-stub-2.2.7.tgz#4e2cf8a34f40e011bc837bc06fc68a4693885768"
@@ -1115,10 +1120,10 @@
   dependencies:
     typescript "3.9.7"
 
-"@corex/workspace@^2.2.7":
-  version "2.2.7"
-  resolved "https://registry.yarnpkg.com/@corex/workspace/-/workspace-2.2.7.tgz#6af185fca841fec57d5b6b3153e2eb8eb0b36c31"
-  integrity sha512-oDMgrHqyHniUT2r5eiYsMUEHM+fAEh5ljhhYOukCJz3HlUVZYPHHhgrzxNtvFjyYAgNAe6GMlRO5XYhZ2Kt14w==
+"@corex/workspace@^2.2.9":
+  version "2.2.9"
+  resolved "https://registry.yarnpkg.com/@corex/workspace/-/workspace-2.2.9.tgz#81e7258e7521a8e7ad34ab3744a33bcc5e9b9cf2"
+  integrity sha512-jMWmVV5X+NO8GHWvod1gwAtvfEPkwDTv9ULOVwzNE4NCvr213el5oUYMIr9TVhEwOB8M7WPvShXqGWp5fIwtpw==
   dependencies:
     "@corex/jest" "*"
     "@corex/jest-require-stub" "*"
