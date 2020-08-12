@@ -1142,10 +1142,10 @@
     typescript "3.9.7"
     typescript-tslint-plugin "^0.5.5"
 
-"@corex/workspace@^2.2.7":
-  version "2.2.9"
-  resolved "https://registry.yarnpkg.com/@corex/workspace/-/workspace-2.2.9.tgz#81e7258e7521a8e7ad34ab3744a33bcc5e9b9cf2"
-  integrity sha512-jMWmVV5X+NO8GHWvod1gwAtvfEPkwDTv9ULOVwzNE4NCvr213el5oUYMIr9TVhEwOB8M7WPvShXqGWp5fIwtpw==
+"@corex/workspace@^2.2.12":
+  version "2.2.12"
+  resolved "https://registry.yarnpkg.com/@corex/workspace/-/workspace-2.2.12.tgz#898473a121690b7b879e2a6e7f8a9da653170144"
+  integrity sha512-HCBh90EEOPBqPaiN0JlwxOCVNiO5Jt1R5DfQY2GzNCWNBYofjySRSt9zXrD37mhSYPKXUGiGoir7dEow0ECuBQ==
   dependencies:
     "@corex/jest" "*"
     "@corex/jest-require-stub" "*"
