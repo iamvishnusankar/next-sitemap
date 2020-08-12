@@ -18,6 +18,6 @@
     "lint": "tsc --noEmit --declaration"
   },
   "dependencies": {
-    "@corex/deepmerge": "^2.2.7"
+    "@corex/deepmerge": "^2.2.12"
   }
 }

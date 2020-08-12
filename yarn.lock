@@ -1092,10 +1092,10 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@corex/deepmerge@^2.2.7":
-  version "2.2.9"
-  resolved "https://registry.yarnpkg.com/@corex/deepmerge/-/deepmerge-2.2.9.tgz#374a0c5dd3803124c477233e91b54699ab6033e7"
-  integrity sha512-/oab+WEEXPXK3WqcTlAzeRCo9YzGTG4fuqhbOPasPhZQ/IAOa9xqya0A+bnYAt3CPqPPmaV1JOb5OxrBzEdXJQ==
+"@corex/deepmerge@^2.2.12":
+  version "2.2.12"
+  resolved "https://registry.yarnpkg.com/@corex/deepmerge/-/deepmerge-2.2.12.tgz#1fb31b7b0af4d86d8c89cb4b1e20dbf5fea1b05e"
+  integrity sha512-fN5Xu7GF3vLxemj7devxKK8tB9TFEtXyvN5XxoSQ4+sPoj0+p9NRl9rCCuuqk0PjJ1Xvc7PgbJF/WHJWbaJHyQ==
 
 "@corex/jest-require-stub@*":
   version "2.2.9"
