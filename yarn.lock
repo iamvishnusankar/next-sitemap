@@ -1092,10 +1092,10 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@corex/deepmerge@^2.2.7":
-  version "2.2.9"
-  resolved "https://registry.yarnpkg.com/@corex/deepmerge/-/deepmerge-2.2.9.tgz#374a0c5dd3803124c477233e91b54699ab6033e7"
-  integrity sha512-/oab+WEEXPXK3WqcTlAzeRCo9YzGTG4fuqhbOPasPhZQ/IAOa9xqya0A+bnYAt3CPqPPmaV1JOb5OxrBzEdXJQ==
+"@corex/deepmerge@^2.3.1":
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/@corex/deepmerge/-/deepmerge-2.3.1.tgz#c014f93fbcf320ab76cc3bdb42ce02b22ea58029"
+  integrity sha512-byYI5QzG2zNmpYlK97rc74HsvbhJKJRNBM7ZOJGBVz50uxPC0FiUaGtv5YWX9g0OAYi6z93cUj/aEyAmNW5uEA==
 
 "@corex/jest-require-stub@*":
   version "2.2.9"
@@ -1142,16 +1142,29 @@
     typescript "3.9.7"
     typescript-tslint-plugin "^0.5.5"
 
-"@corex/workspace@^2.2.7":
-  version "2.2.9"
-  resolved "https://registry.yarnpkg.com/@corex/workspace/-/workspace-2.2.9.tgz#81e7258e7521a8e7ad34ab3744a33bcc5e9b9cf2"
-  integrity sha512-jMWmVV5X+NO8GHWvod1gwAtvfEPkwDTv9ULOVwzNE4NCvr213el5oUYMIr9TVhEwOB8M7WPvShXqGWp5fIwtpw==
+"@corex/tslint@*":
+  version "2.2.14"
+  resolved "https://registry.yarnpkg.com/@corex/tslint/-/tslint-2.2.14.tgz#4a07c98faca82224744210f49b16bfebb5ff543b"
+  integrity sha512-dZC2jelAAyGE6VEw7MrJOSsSlSUleWQIeAdzxejF8a3i0JyiBzwYYDEBdrFCA2h6QxPxO7kv9AZ+cPKJiTcthA==
+  dependencies:
+    tslint "^6.1.3"
+    tslint-config-prettier "^1.18.0"
+    tslint-eslint-rules "^5.4.0"
+    tslint-plugin-prettier "^2.3.0"
+    tslint-react "^5.0.0"
+    typescript "3.9.7"
+
+"@corex/workspace@^2.3.1":
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/@corex/workspace/-/workspace-2.3.1.tgz#868360aa4d106fe2b83c84ffbdf4a2952679f362"
+  integrity sha512-EPgfA7Lbdjgq7pf0NSCRQ/kOpkihUNqwVjHJul9G5VQkEhX4bpD/MnjrrktTRF8zzZtcR+OCbwzujWHHkaEj3A==
   dependencies:
     "@corex/jest" "*"
     "@corex/jest-require-stub" "*"
     "@corex/prettier" "*"
     "@corex/stylelint" "*"
     "@corex/tsconfig" "*"
+    "@corex/tslint" "*"
     "@corex/ywc" "*"
 
 "@corex/ywc@*":

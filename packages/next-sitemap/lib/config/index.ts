@@ -1,7 +1,7 @@
 import fs from 'fs'
 import allPath from '../path'
 import { IConfig } from '../interface'
-import merge from '@corex/deepmerge'
+import { merge } from '@corex/deepmerge'
 
 export const defaultConfig: Partial<IConfig> = {
   rootDir: 'public',
