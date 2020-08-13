@@ -1092,10 +1092,10 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@corex/deepmerge@^2.2.14":
-  version "2.2.14"
-  resolved "https://registry.yarnpkg.com/@corex/deepmerge/-/deepmerge-2.2.14.tgz#8ebe572ecd55af0028c9f2a607981d8e1ef58da6"
-  integrity sha512-AdUdpVBPk8rDyMobbdLNU3TSCNZwnrz3vPmnwmN0RWAYTaN0F7U6imGJL82lxOK+uisJiJ6vLBWdk8RI2g8d3A==
+"@corex/deepmerge@^2.3.1":
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/@corex/deepmerge/-/deepmerge-2.3.1.tgz#c014f93fbcf320ab76cc3bdb42ce02b22ea58029"
+  integrity sha512-byYI5QzG2zNmpYlK97rc74HsvbhJKJRNBM7ZOJGBVz50uxPC0FiUaGtv5YWX9g0OAYi6z93cUj/aEyAmNW5uEA==
 
 "@corex/jest-require-stub@*":
   version "2.2.9"
@@ -1154,10 +1154,10 @@
     tslint-react "^5.0.0"
     typescript "3.9.7"
 
-"@corex/workspace@^2.2.14":
-  version "2.2.14"
-  resolved "https://registry.yarnpkg.com/@corex/workspace/-/workspace-2.2.14.tgz#203914c7232abe978929275ca7db2dc254259102"
-  integrity sha512-wXJRT7FG5gKq2pRB3IfVwzFULs5exDloVjjfu1h81k8h+RPR+hsuAo+gSF+rqfWZr8il0LmofnreGOO9pvRfaw==
+"@corex/workspace@^2.3.1":
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/@corex/workspace/-/workspace-2.3.1.tgz#868360aa4d106fe2b83c84ffbdf4a2952679f362"
+  integrity sha512-EPgfA7Lbdjgq7pf0NSCRQ/kOpkihUNqwVjHJul9G5VQkEhX4bpD/MnjrrktTRF8zzZtcR+OCbwzujWHHkaEj3A==
   dependencies:
     "@corex/jest" "*"
     "@corex/jest-require-stub" "*"
