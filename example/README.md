@@ -2,6 +2,10 @@
 
 Sitemap generator for next.js. `next-sitemap` will generate a sitemap file for all pages (including all pre-rendered/static pages).
 
+This package allows the generation of sitemaps along with `robots.txt` and provides the feature to split large sitemaps into multiple files.
+
+For detailed use case and example check the [documentation](https://github.com/iamvishnusankar/next-sitemap)
+
 ## Deploy your own
 
 Deploy the example using [Vercel](https://vercel.com/now):
