@@ -20,6 +20,6 @@
     "build:cjs": "tsc --module commonjs --outDir dist/cjs"
   },
   "dependencies": {
-    "@corex/deepmerge": "^2.3.1"
+    "@corex/deepmerge": "^2.3.6"
   }
 }

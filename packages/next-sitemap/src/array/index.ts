@@ -1,4 +1,4 @@
-export const toChunks = <T>(arr: T[], chunkSize: number) => {
+export const toChunks = <T>(arr: T[], chunkSize: number): any => {
   return arr.reduce<Array<T[]>>(
     (prev, _, i) =>
       i % chunkSize ? prev : [...prev, arr.slice(i, i + chunkSize)],
@@ -10,6 +10,6 @@ export const toChunks = <T>(arr: T[], chunkSize: number) => {
  * simple method to normalize any string to array
  * @param inp
  */
-export const toArray = (inp: string | string[]) => {
+export const toArray = (inp: string | string[]): string[] => {
   return typeof inp === 'string' ? [inp] : inp
 }

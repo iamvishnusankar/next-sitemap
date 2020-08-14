@@ -21,11 +21,11 @@
     "build:tsc": "tsc --build",
     "set-version": "ywc set-version",
     "test": "jest --ci --coverage --verbose",
-    "lint": "ywc lint && yarn prettier:check",
+    "lint": "eslint . && yarn prettier:check",
     "prettier:check": "prettier --check \"**/*.{js,mjs,cjs,jsx,json,ts,tsx,md,mdx,css,html,yml,yaml,scss,less,graphql,graphqls,gql}\"",
     "format": "prettier --write \"**/*.{js,mjs,cjs,jsx,json,ts,tsx,md,mdx,css,html,yml,yaml,scss,less,graphql,graphqls,gql}\""
   },
   "devDependencies": {
-    "@corex/workspace": "^2.3.1"
+    "@corex/workspace": "^2.3.6"
   }
 }
