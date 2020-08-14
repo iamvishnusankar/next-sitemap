@@ -2,8 +2,9 @@
   "name": "next-sitemap",
   "version": "1.0.0",
   "description": "Sitemap generator for next.js",
-  "main": "index.js",
-  "types": "@types/index.d.ts",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esnext/index.js",
+  "types": "dist/@types/index.d.ts",
   "repository": "https://github.com/iamvishnusankar/next-sitemap.git",
   "author": "Vishnu Sankar (@iamvishnusankar)",
   "license": "MIT",
@@ -14,10 +15,11 @@
     "next-sitemap": "./bin/next-sitemap"
   },
   "scripts": {
-    "build": "tsc",
-    "lint": "tsc --noEmit --declaration"
+    "lint": "tsc --noEmit --declaration",
+    "build": "tsc && yarn build:cjs",
+    "build:cjs": "tsc --module commonjs --outDir dist/cjs"
   },
   "dependencies": {
-    "@corex/deepmerge": "^2.3.1"
+    "@corex/deepmerge": "^2.3.6"
   }
 }
