@@ -36,3 +36,9 @@ export interface INextManifest {
   build: IBuildManifest
   preRender?: IPreRenderManifest
 }
+
+export interface ISitemapChunk {
+  path: string
+  urls: string[]
+  filename: string
+}

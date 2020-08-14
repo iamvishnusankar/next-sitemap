@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 import fs from 'fs'
 import allPath from '../path'
 import { IConfig } from '../interface'
@@ -20,10 +21,11 @@ export const defaultConfig: Partial<IConfig> = {
   },
 }
 
-export const withDefaultConfig = (config: Partial<IConfig>) =>
-  merge([defaultConfig, config], {
+export const withDefaultConfig = (config: Partial<IConfig>): IConfig => {
+  return merge([defaultConfig, config], {
     arrayMergeType: 'overwrite',
   }) as IConfig
+}
 
 export const loadConfig = (): IConfig => {
   if (fs.existsSync(allPath.CONFIG_FILE)) {

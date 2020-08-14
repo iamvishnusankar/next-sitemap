@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { loadConfig } from './config'
 import { loadManifest } from './manifest'
 import { createUrlSet, generateUrl } from './url'
-import { buildSitemapXml } from './buildSitemapXml'
+import { buildSitemapXml } from './build-sitemap-xml'
 import { exportFile } from './export'
 import { toChunks } from './array'
 import { resolveSitemapChunks } from './path'
@@ -13,7 +14,7 @@ const urlSet = createUrlSet(config, manifest)
 const sitemapPath = `${config.rootDir}/sitemap.xml`
 const robotsTxtFile = `${config.rootDir}/robots.txt`
 
-export const generateSitemap = (path: string, urls: string[]) => {
+export const generateSitemap = (path: string, urls: string[]): void => {
   const sitemapXml = buildSitemapXml(config, urls)
   exportFile(path, sitemapXml)
 }
@@ -28,11 +29,11 @@ sitemapChunks.forEach((chunk) => {
   allSitemaps.push(generateUrl(config.siteUrl, `/${chunk.filename}`))
 })
 
-if (config.generateRobotsTxt) {
+if (config.generateRobotsTxt && config.robotsTxtOptions) {
   // Push the known sitemaps to the additionalSitemapList
-  config.robotsTxtOptions!.additionalSitemaps = [
+  config.robotsTxtOptions.additionalSitemaps = [
     ...allSitemaps,
-    ...config.robotsTxtOptions!.additionalSitemaps!,
+    ...config.robotsTxtOptions.additionalSitemaps!,
   ]
 
   const robotsTxt = generateRobotsTxt(config)
