@@ -1,4 +1,4 @@
-import { toChunks, toArray } from './index'
+import { toChunks, toArray, removeFromArray } from './index'
 
 describe('next-sitemap/array', () => {
   test('toChunks', () => {
@@ -17,5 +17,10 @@ describe('next-sitemap/array', () => {
   test('toArray', () => {
     expect(toArray('hello')).toStrictEqual(['hello'])
     expect(toArray(['hello', 'world'])).toStrictEqual(['hello', 'world'])
+  })
+
+  test('removeFromArray', () => {
+    expect(removeFromArray([1, 2, 3], [2])).toStrictEqual([1, 3])
+    expect(removeFromArray([1, 2, 3], [2, 3, 4])).toStrictEqual([1])
   })
 })
