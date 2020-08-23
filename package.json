@@ -17,7 +17,7 @@
     "dev:docker": "docker-compose up -d",
     "dev:test": "jest --watchAll",
     "dev:tsc": "tsc --build --watch",
-    "build:ywc": "ywc clean build",
+    "build": "ywc clean build",
     "build:tsc": "tsc --build",
     "set-version": "ywc set-version",
     "test": "jest --ci --coverage --verbose",

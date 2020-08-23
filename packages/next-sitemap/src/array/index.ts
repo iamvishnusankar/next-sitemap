@@ -13,3 +13,12 @@ export const toChunks = <T>(arr: T[], chunkSize: number): any => {
 export const toArray = (inp: string | string[]): string[] => {
   return typeof inp === 'string' ? [inp] : inp
 }
+
+/**
+ * Returns the difference between two arrays
+ * @param inputArr input array
+ * @param toRemoveArr array of elements to be removed
+ */
+export const removeFromArray = <T>(inputArr: T[], toRemoveArr: T[]): T[] => {
+  return inputArr.filter((x) => !toRemoveArr.includes(x))
+}

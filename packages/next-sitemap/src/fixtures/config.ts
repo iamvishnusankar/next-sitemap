@@ -1,8 +1,8 @@
-import { generateRobotsTxt } from './index'
+import { IConfig } from '../interface'
 
-const sampleConfig = {
+export const sampleConfig: IConfig = {
   siteUrl: 'https://example.com',
-  rootDir: 'public',
+  sourceDir: 'public',
   changefreq: 'daily',
   priority: 0.7,
   sitemapSize: 5000,
@@ -25,18 +25,3 @@ const sampleConfig = {
     ],
   },
 }
-
-describe('next-sitemap/generateRobotsTxt', () => {
-  test('generateRobotsTxt: generateRobotsTxt false in config', () => {
-    expect(
-      generateRobotsTxt({
-        ...sampleConfig,
-        generateRobotsTxt: false,
-      } as any)
-    ).toBeNull()
-  })
-
-  test('generateRobotsTxt: additionalSitemap', () => {
-    expect(generateRobotsTxt(sampleConfig)).toMatchSnapshot()
-  })
-})

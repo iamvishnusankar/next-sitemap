@@ -1,4 +1,0 @@
-{
-  "extends": "./node_modules/@corex/tsconfig/tsconfig.json",
-  "exclude": ["node_modules", "**/dist", "**/__tests__"]
-}
