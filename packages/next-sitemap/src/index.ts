@@ -5,11 +5,15 @@ import { createUrlSet, generateUrl } from './url'
 import { buildSitemapXml } from './build-sitemap-xml'
 import { exportFile } from './export'
 import { toChunks } from './array'
-import { resolveSitemapChunks } from './path'
+import { resolveSitemapChunks, KNOWN_PATHS } from './path'
 import { generateRobotsTxt } from './robots-txt'
 
-const config = loadConfig()
+// Load next-sitemap.js
+const config = loadConfig(KNOWN_PATHS.CONFIG_FILE)
+
+// Load next.js manifest files
 const manifest = loadManifest()
+
 const urlSet = createUrlSet(config, manifest)
 const sitemapPath = `${config.sourceDir}/sitemap.xml`
 const robotsTxtFile = `${config.sourceDir}/robots.txt`

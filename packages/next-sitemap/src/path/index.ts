@@ -21,10 +21,11 @@ export const resolveSitemapChunks = (
   })
 }
 
-const allPath = {
+export const RUNTIME_PATHS = {
   NEXT_MANIFEST: getPath('.next', 'build-manifest.json'),
   PRERENDER_MANIFEST: getPath('.next', 'prerender-manifest.json'),
-  CONFIG_FILE: getPath('next-sitemap.js'),
 }
 
-export default allPath
+export const KNOWN_PATHS = {
+  CONFIG_FILE: getPath('next-sitemap.js'),
+}

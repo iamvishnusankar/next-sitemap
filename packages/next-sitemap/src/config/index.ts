@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 import fs from 'fs'
-import allPath from '../path'
 import { IConfig } from '../interface'
 import { merge } from '@corex/deepmerge'
 
@@ -11,6 +10,7 @@ export const defaultConfig: Partial<IConfig> = {
   changefreq: 'daily',
   sitemapSize: 5000,
   autoLastmod: true,
+  exclude: [],
   robotsTxtOptions: {
     policies: [
       {
@@ -28,9 +28,9 @@ export const withDefaultConfig = (config: Partial<IConfig>): IConfig => {
   }) as IConfig
 }
 
-export const loadConfig = (): IConfig => {
-  if (fs.existsSync(allPath.CONFIG_FILE)) {
-    const config = require(allPath.CONFIG_FILE)
+export const loadConfig = (path: string): IConfig => {
+  if (fs.existsSync(path)) {
+    const config = require(path)
     return withDefaultConfig(config)
   }
 

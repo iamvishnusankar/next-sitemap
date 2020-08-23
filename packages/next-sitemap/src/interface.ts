@@ -19,7 +19,7 @@ export interface IConfig {
   generateRobotsTxt: boolean
   robotsTxtOptions?: IRobotsTxt
   autoLastmod?: boolean
-  ignore: string[]
+  exclude?: string[]
 }
 
 export interface IBuildManifest {
