@@ -13,11 +13,13 @@ export interface IConfig {
   siteUrl: string
   changefreq: string
   priority: any
-  rootDir: string
+  sourceDir?: string
+  outDir?: string
   sitemapSize?: number
   generateRobotsTxt: boolean
   robotsTxtOptions?: IRobotsTxt
   autoLastmod?: boolean
+  ignore: string[]
 }
 
 export interface IBuildManifest {

@@ -5,7 +5,8 @@ import { IConfig } from '../interface'
 import { merge } from '@corex/deepmerge'
 
 export const defaultConfig: Partial<IConfig> = {
-  rootDir: 'public',
+  sourceDir: '.next',
+  outDir: 'public',
   priority: 0.7,
   changefreq: 'daily',
   sitemapSize: 5000,

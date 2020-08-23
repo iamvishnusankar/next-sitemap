@@ -1,8 +1,8 @@
 import path from 'path'
 import { ISitemapChunk } from '../interface'
 
-export const getPath = (rel: string): string => {
-  return path.resolve(process.cwd(), rel)
+export const getPath = (...pathSegment: string[]): string => {
+  return path.resolve(process.cwd(), ...pathSegment)
 }
 
 export const resolveSitemapChunks = (
@@ -22,8 +22,8 @@ export const resolveSitemapChunks = (
 }
 
 const allPath = {
-  NEXT_MANIFEST: getPath('.next/build-manifest.json'),
-  PRERENDER_MANIFEST: getPath('.next/prerender-manifest.json'),
+  NEXT_MANIFEST: getPath('.next', 'build-manifest.json'),
+  PRERENDER_MANIFEST: getPath('.next', 'prerender-manifest.json'),
   CONFIG_FILE: getPath('next-sitemap.js'),
 }
 

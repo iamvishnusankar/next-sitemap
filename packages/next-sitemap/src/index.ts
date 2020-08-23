@@ -11,8 +11,8 @@ import { generateRobotsTxt } from './robotsTxt'
 const config = loadConfig()
 const manifest = loadManifest()
 const urlSet = createUrlSet(config, manifest)
-const sitemapPath = `${config.rootDir}/sitemap.xml`
-const robotsTxtFile = `${config.rootDir}/robots.txt`
+const sitemapPath = `${config.sourceDir}/sitemap.xml`
+const robotsTxtFile = `${config.sourceDir}/robots.txt`
 
 export const generateSitemap = (path: string, urls: string[]): void => {
   const sitemapXml = buildSitemapXml(config, urls)
