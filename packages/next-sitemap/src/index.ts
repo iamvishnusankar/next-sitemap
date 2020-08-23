@@ -6,7 +6,7 @@ import { buildSitemapXml } from './build-sitemap-xml'
 import { exportFile } from './export'
 import { toChunks } from './array'
 import { resolveSitemapChunks } from './path'
-import { generateRobotsTxt } from './robotsTxt'
+import { generateRobotsTxt } from './robots-txt'
 
 const config = loadConfig()
 const manifest = loadManifest()
