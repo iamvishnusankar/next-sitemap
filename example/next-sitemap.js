@@ -1,6 +1,7 @@
 module.exports = {
   siteUrl: 'https://example.com',
   generateRobotsTxt: true,
+  sourceDir: 'custom-outdir',
   // optional
   robotsTxtOptions: {
     additionalSitemaps: [

@@ -16,8 +16,8 @@
   },
   "scripts": {
     "lint": "tsc --noEmit --declaration",
-    "build": "tsc && yarn build:cjs",
-    "build:cjs": "tsc --module commonjs --outDir dist/cjs"
+    "build": "tsc && yarn build:esnext",
+    "build:esnext": "tsc --module esnext --outDir dist/esnext"
   },
   "dependencies": {
     "@corex/deepmerge": "^2.3.6"

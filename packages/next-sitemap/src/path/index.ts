@@ -1,5 +1,7 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import path from 'path'
-import { ISitemapChunk } from '../interface'
+import { ISitemapChunk, IConfig, IRuntimePaths } from '../interface'
 
 export const getPath = (...pathSegment: string[]): string => {
   return path.resolve(process.cwd(), ...pathSegment)
@@ -21,9 +23,13 @@ export const resolveSitemapChunks = (
   })
 }
 
-export const RUNTIME_PATHS = {
-  NEXT_MANIFEST: getPath('.next', 'build-manifest.json'),
-  PRERENDER_MANIFEST: getPath('.next', 'prerender-manifest.json'),
+export const getRuntimePaths = (config: IConfig): IRuntimePaths => {
+  return {
+    BUILD_MANIFEST: getPath(config.sourceDir!, 'build-manifest.json'),
+    PRERENDER_MANIFEST: getPath(config.sourceDir!, 'prerender-manifest.json'),
+    SITEMAP_FILE: getPath(config.outDir!, 'sitemap.xml'),
+    ROBOTS_TXT_FILE: getPath(config.outDir!, 'robots.txt'),
+  }
 }
 
 export const KNOWN_PATHS = {

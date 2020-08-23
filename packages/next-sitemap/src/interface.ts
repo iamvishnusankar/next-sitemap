@@ -44,3 +44,10 @@ export interface ISitemapChunk {
   urls: string[]
   filename: string
 }
+
+export interface IRuntimePaths {
+  BUILD_MANIFEST: string
+  PRERENDER_MANIFEST: string
+  SITEMAP_FILE: string
+  ROBOTS_TXT_FILE: string
+}

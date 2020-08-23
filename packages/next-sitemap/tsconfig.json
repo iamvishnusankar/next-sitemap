@@ -2,8 +2,9 @@
   "extends": "@corex/tsconfig",
   "compilerOptions": {
     "rootDir": "src",
-    "outDir": "dist/esnext",
-    "declarationDir": "dist/@types"
+    "outDir": "dist/cjs",
+    "declarationDir": "dist/@types",
+    "module": "CommonJS"
   },
   "include": ["src"]
 }

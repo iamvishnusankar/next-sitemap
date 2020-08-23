@@ -1,0 +1,112 @@
+name: 1.1$(rev:.r)
+trigger:
+  branches:
+    include:
+      - master
+pr:
+  branches:
+    include:
+      - master
+
+pool:
+  vmImage: 'ubuntu-latest'
+  demands: npm
+
+steps:
+  # Setup Node
+  - task: UseNode@1
+    displayName: Setup Node
+    inputs:
+      version: '14.x'
+
+  # Authenticate
+  - task: npmAuthenticate@0
+    displayName: NPM Auth
+    inputs:
+      workingFile: .npmrc
+      customEndpoint: 'NPM(Vishnu Sankar)'
+
+  # Install
+  - task: Bash@3
+    displayName: 'Install'
+    inputs:
+      targetType: 'inline'
+      script: 'yarn install'
+
+  # Build
+  - task: Bash@3
+    displayName: 'Build'
+    inputs:
+      targetType: 'inline'
+      script: 'yarn build'
+      failOnStderr: true
+
+  # Lint
+  - task: Bash@3
+    displayName: 'Lint'
+    inputs:
+      targetType: 'inline'
+      script: 'yarn lint'
+      failOnStderr: true
+
+  # Test
+  - task: Bash@3
+    displayName: 'Test'
+    inputs:
+      targetType: 'inline'
+      script: 'yarn test --ci'
+
+  # Set Version
+  - task: Bash@3
+    displayName: 'Set Version'
+    inputs:
+      targetType: 'inline'
+      script: 'yarn set-version'
+      failOnStderr: true
+
+  # Copy README
+  - task: Bash@3
+    displayName: 'Copy README'
+    inputs:
+      targetType: 'inline'
+      script: 'cp README.md packages/next-sitemap/README.md'
+      failOnStderr: true
+
+  # Test Result
+  - task: PublishTestResults@2
+    displayName: Publish Test Result
+    inputs:
+      testResultsFormat: 'JUnit'
+      testResultsFiles: 'junit.xml'
+      failTaskOnFailedTests: true
+
+  # Coverage Result
+  - task: PublishCodeCoverageResults@1
+    displayName: Publish Coverage Result
+    inputs:
+      codeCoverageTool: 'Cobertura'
+      summaryFileLocation: 'coverage/cobertura-coverage.xml'
+      failIfCoverageEmpty: true
+
+  # Publish Packages
+  - task: Bash@3
+    displayName: 'Publish Packages'
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+    inputs:
+      targetType: 'inline'
+      script: 'yarn ywc publish'
+      failOnStderr: true
+
+  # Github Release
+  - task: GitHubRelease@1
+    displayName: Github Release
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+    inputs:
+      gitHubConnection: 'iamvishnusankar'
+      repositoryName: '$(Build.Repository.Name)'
+      action: 'create'
+      target: '$(Build.SourceVersion)'
+      tagSource: 'userSpecifiedTag'
+      tag: 'v$(Build.BuildNumber)'
+      changeLogCompareToRelease: 'lastFullRelease'
+      changeLogType: 'commitBased'
