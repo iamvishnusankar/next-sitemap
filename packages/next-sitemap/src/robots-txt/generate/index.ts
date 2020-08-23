@@ -1,10 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { IConfig } from '../interface'
-import { normalizePolicy } from './policy'
-
-export const addPolicies = (key: string, rules: string[]): string => {
-  return rules.reduce((prev, curr) => `${prev}${key}: ${curr}\n`, '')
-}
+import { IConfig } from '../../interface'
+import { normalizePolicy, addPolicies } from '../policy'
 
 export const generateRobotsTxt = (config: IConfig): string | null => {
   if (!config.generateRobotsTxt) {
