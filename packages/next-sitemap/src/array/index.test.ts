@@ -6,9 +6,12 @@ describe('next-sitemap/array', () => {
     const chunkSize = 3
 
     const chunks = toChunks(inputArray, chunkSize)
-
-    expect(chunks).toMatchSnapshot()
-    expect(chunks.length).toBe(Math.ceil(inputArray.length / chunkSize))
+    expect(chunks).toStrictEqual([
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      [9, 10],
+    ])
   })
 
   test('toArray', () => {
