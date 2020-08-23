@@ -55,6 +55,8 @@ Above is the minimal configuration to split a large sitemap. When the number of 
 | robotsTxtOptions.additionalSitemaps | Options to add addition sitemap to `robots.txt` host entry                                                              | string[] |
 | autoLastmod (optional)              | Add `<lastmod/>` property. Default to `true`                                                                            | true     |  |
 | exclude                             | Array of **relative** paths to exclude from listing on `sitemap.xml` or `sitemap-*.xml`. e.g.: `['/page-0', '/page-4']` | string[] |
+| sourceDir                           | next.js build directory. Default `.next`                                                                                | string   |
+| outDir                              | All the generated files will be exported to this directory. Default `public`                                            | string   |
 
 ## Full configuration
 
