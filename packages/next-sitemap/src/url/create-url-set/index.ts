@@ -1,5 +1,6 @@
 import { IConfig, INextManifest } from '../../interface'
 import { isNextInternalUrl, generateUrl } from '../util'
+import { removeFromArray } from '../../array'
 
 /**
  * Create a unique url set
@@ -10,16 +11,19 @@ export const createUrlSet = (
   config: IConfig,
   manifest: INextManifest
 ): string[] => {
-  const allKeys = [
+  let allKeys = [
     ...Object.keys(manifest.build.pages),
     ...(manifest.preRender ? Object.keys(manifest.preRender.routes) : []),
   ]
 
-  const urlSet = new Set(
-    allKeys.flatMap((x) =>
-      !isNextInternalUrl(x) ? generateUrl(config.siteUrl, x) : []
-    )
+  // Remove the urls based on config.exclude array
+  if (config.exclude) {
+    allKeys = removeFromArray(allKeys, config.exclude)
+  }
+
+  const urlSet = allKeys.flatMap((x) =>
+    !isNextInternalUrl(x) ? generateUrl(config.siteUrl, x) : []
   )
 
-  return [...urlSet]
+  return [...new Set(urlSet)]
 }

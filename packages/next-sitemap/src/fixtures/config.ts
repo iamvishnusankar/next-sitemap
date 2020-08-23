@@ -1,4 +1,6 @@
-export const sampleConfig = {
+import { IConfig } from '../interface'
+
+export const sampleConfig: IConfig = {
   siteUrl: 'https://example.com',
   sourceDir: 'public',
   changefreq: 'daily',

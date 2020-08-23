@@ -10,6 +10,7 @@ describe('next-sitemap/config', () => {
       changefreq: 'daily',
       sitemapSize: 5000,
       autoLastmod: true,
+      exclude: [],
       robotsTxtOptions: {
         policies: [
           {
@@ -27,6 +28,7 @@ describe('next-sitemap/config', () => {
       sourceDir: 'custom-source',
       generateRobotsTxt: true,
       sitemapSize: 50000,
+      exclude: ['1', '2'],
       robotsTxtOptions: {
         policies: [],
         additionalSitemaps: [
@@ -44,6 +46,7 @@ describe('next-sitemap/config', () => {
       sitemapSize: 50000,
       autoLastmod: true,
       generateRobotsTxt: true,
+      exclude: ['1', '2'],
       robotsTxtOptions: {
         policies: [],
         additionalSitemaps: [
