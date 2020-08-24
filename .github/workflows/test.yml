@@ -24,13 +24,16 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
 
-      - name: Install & Build & Test
+      - name: Install
         run: yarn install --ignore-engines
 
-      - name: Build
-        run: yarn lint
+      # - name: Build
+      #   run: yarn lint
 
-      - name: Test
-        run: yarn test
-        env:
-          CI: true
+      # - name: Test
+      #   run: yarn test
+      #   env:
+      #     CI: true
+
+      - name: Build
+        run: yarn build
