@@ -21,9 +21,10 @@ export const createUrlSet = (
     allKeys = removeFromArray(allKeys, config.exclude)
   }
 
-  const urlSet = allKeys.flatMap((x) =>
-    !isNextInternalUrl(x) ? generateUrl(config.siteUrl, x) : []
-  )
+  // Node10 support
+  const urlSet = allKeys
+    .filter((x) => !isNextInternalUrl(x))
+    .map((x) => generateUrl(config.siteUrl, x))
 
   return [...new Set(urlSet)]
 }
