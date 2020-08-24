@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node: ['14', '13', '12', '11', '10', '9']
+        node: ['14', '13', '12', '10', '9']
     steps:
       - name: Github Checkout
         uses: actions/checkout@v2
