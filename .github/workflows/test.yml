@@ -1,5 +1,9 @@
 name: Test
 on:
+  push:
+    branches:
+      - development
+
   pull_request:
     branches:
       - master
@@ -8,14 +12,20 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: ['14', '13', '12', '11', '10', '9']
     steps:
       - name: Github Checkout
         uses: actions/checkout@v2
+
       - name: Install & Build & Test
-        run: |
-          yarn install --production=false
-          yarn lint
-          yarn test
+        run: yarn install
+
+      - name: Build
+        run: yarn lint
+
+      - name: Test
+        run: yarn test
         env:
-          NODE_ENV: test
           CI: true
