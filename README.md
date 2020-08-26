@@ -1,8 +1,8 @@
 # next-sitemap
 
-Sitemap generator for next.js. `next-sitemap` will generate a sitemap file for all pages (including all pre-rendered/static pages).
+Sitemap generator for next.js. Generate sitemap(s) and robots.txt for all static/pre-rendered pages.
 
-## Install
+## Installation
 
 ```shell
 yarn add next-sitemap -D
