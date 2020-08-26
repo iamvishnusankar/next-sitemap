@@ -1,8 +1,8 @@
 # next-sitemap
 
-Sitemap generator for next.js. `next-sitemap` will generate a sitemap file for all pages (including all pre-rendered/static pages).
+Sitemap generator for next.js. Generate sitemap(s) and robots.txt for all static/pre-rendered pages.
 
-## Install
+## Installation
 
 ```shell
 yarn add next-sitemap -D
@@ -37,10 +37,11 @@ Define the `sitemapSize` property in `next-sitemap.js` to split large sitemap in
 module.exports = {
   siteUrl: 'https://example.com',
   generateRobotsTxt: true,
+  sitemapSize: 7000,
 }
 ```
 
-Above is the minimal configuration to split a large sitemap. When the number of URLs in a sitemap is more than 5000, `next-sitemap` will create sitemap (e.g. sitemap-1.xml, sitemap-2.xml) and index (e.g. sitemap.xml) files.
+Above is the minimal configuration to split a large sitemap. When the number of URLs in a sitemap is more than 7000, `next-sitemap` will create sitemap (e.g. sitemap-1.xml, sitemap-2.xml) and index (e.g. sitemap.xml) files.
 
 ## `next-sitemap.js` Options
 
