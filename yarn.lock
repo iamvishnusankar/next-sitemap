@@ -1092,10 +1092,10 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@corex/deepmerge@^2.3.6":
-  version "2.3.6"
-  resolved "https://registry.yarnpkg.com/@corex/deepmerge/-/deepmerge-2.3.6.tgz#1301b0e43cc692e26ccf5d41fc6642446a9b212b"
-  integrity sha512-YziRFUyFj+fKWPkfs6iPFnjf++KYvO+XAQ6yKIzswW5fiudrhMo0mE9eVWYiVDRM95bmVnX3JQbRA8HwqDosPA==
+"@corex/deepmerge@^2.4.6":
+  version "2.4.6"
+  resolved "https://registry.yarnpkg.com/@corex/deepmerge/-/deepmerge-2.4.6.tgz#0dfc3973f41e88862825e8a2f1eb5f84ca5fe564"
+  integrity sha512-iSp8KAgtQBZpUrOnaKkn2oRMsSru50g5saizb4ZwGHccFylH7XrNvzuf86M94O/uqNkk9NxaCbkVC372ms2RPQ==
 
 "@corex/eslint-config@*":
   version "2.3.6"
