@@ -20,6 +20,6 @@
     "build:esnext": "tsc --module esnext --outDir dist/esnext"
   },
   "dependencies": {
-    "@corex/deepmerge": "^2.3.6"
+    "@corex/deepmerge": "^2.4.6"
   }
 }
