@@ -1,7 +1,12 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import path from 'path'
-import { ISitemapChunk, IConfig, IRuntimePaths } from '../interface'
+import {
+  ISitemapChunk,
+  IConfig,
+  IRuntimePaths,
+  ISitemapFiled,
+} from '../interface'
 
 export const getPath = (...pathSegment: string[]): string => {
   return path.resolve(process.cwd(), ...pathSegment)
@@ -9,7 +14,7 @@ export const getPath = (...pathSegment: string[]): string => {
 
 export const resolveSitemapChunks = (
   baseSitemapPath: string,
-  chunks: string[][]
+  chunks: ISitemapFiled[][]
 ): ISitemapChunk[] => {
   const folder = path.dirname(baseSitemapPath)
   return chunks.map((chunk, index) => {
@@ -17,7 +22,7 @@ export const resolveSitemapChunks = (
 
     return {
       path: `${folder}/${filename}`,
-      urls: chunk,
+      fields: chunk,
       filename,
     }
   })

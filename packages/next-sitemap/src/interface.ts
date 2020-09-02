@@ -20,6 +20,7 @@ export interface IConfig {
   robotsTxtOptions?: IRobotsTxt
   autoLastmod?: boolean
   exclude?: string[]
+  transform?: (config: IConfig, url: string) => ISitemapFiled
 }
 
 export interface IBuildManifest {
@@ -41,7 +42,7 @@ export interface INextManifest {
 
 export interface ISitemapChunk {
   path: string
-  urls: string[]
+  fields: ISitemapFiled[]
   filename: string
 }
 
@@ -50,4 +51,11 @@ export interface IRuntimePaths {
   PRERENDER_MANIFEST: string
   SITEMAP_FILE: string
   ROBOTS_TXT_FILE: string
+}
+
+export type ISitemapFiled = {
+  url: string
+  lastmod?: string
+  changefreq?: string
+  priority?: string
 }

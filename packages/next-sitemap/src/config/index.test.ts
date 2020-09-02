@@ -1,5 +1,6 @@
-import { defaultConfig, withDefaultConfig } from '.'
-import { IConfig } from '../interface'
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+import { defaultConfig, withDefaultConfig, transformSitemap } from '.'
+import { IConfig, ISitemapFiled } from '../interface'
 
 describe('next-sitemap/config', () => {
   test('defaultConfig', () => {
@@ -11,6 +12,7 @@ describe('next-sitemap/config', () => {
       sitemapSize: 5000,
       autoLastmod: true,
       exclude: [],
+      transform: transformSitemap,
       robotsTxtOptions: {
         policies: [
           {
@@ -47,6 +49,7 @@ describe('next-sitemap/config', () => {
       autoLastmod: true,
       generateRobotsTxt: true,
       exclude: ['1', '2'],
+      transform: transformSitemap,
       robotsTxtOptions: {
         policies: [],
         additionalSitemaps: [
@@ -54,6 +57,65 @@ describe('next-sitemap/config', () => {
           'https://example.com/awesome-sitemap-2.xml',
         ],
       },
+    })
+  })
+
+  test('withDefaultConfig: default transformation', () => {
+    const myConfig = withDefaultConfig({
+      sourceDir: 'custom-source',
+      generateRobotsTxt: true,
+      sitemapSize: 50000,
+      exclude: ['1', '2'],
+      priority: 0.6,
+      changefreq: 'weekly',
+      robotsTxtOptions: {
+        policies: [],
+        additionalSitemaps: [
+          'https://example.com/awesome-sitemap.xml',
+          'https://example.com/awesome-sitemap-2.xml',
+        ],
+      },
+    })
+
+    const value = myConfig.transform!(myConfig, 'https://example.com')
+
+    expect(value).toStrictEqual({
+      url: 'https://example.com',
+      lastmod: expect.any(String),
+      changefreq: 'weekly',
+      priority: 0.6,
+    })
+  })
+
+  test('withDefaultConfig: custom transformation', () => {
+    const myConfig = withDefaultConfig({
+      sourceDir: 'custom-source',
+      generateRobotsTxt: true,
+      sitemapSize: 50000,
+      exclude: ['1', '2'],
+      priority: 0.6,
+      changefreq: 'weekly',
+      transform: (): ISitemapFiled => {
+        return {
+          url: 'something-else',
+          lastmod: 'lastmod-cutom',
+        }
+      },
+      robotsTxtOptions: {
+        policies: [],
+        additionalSitemaps: [
+          'https://example.com/awesome-sitemap.xml',
+          'https://example.com/awesome-sitemap-2.xml',
+        ],
+      },
+    })
+
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    const value = myConfig.transform!(myConfig, 'https://example.com')
+
+    expect(value).toStrictEqual({
+      url: 'something-else',
+      lastmod: 'lastmod-cutom',
     })
   })
 })
