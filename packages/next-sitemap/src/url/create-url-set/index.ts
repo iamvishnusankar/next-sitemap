@@ -23,16 +23,18 @@ export const createUrlSet = (
   }
 
   // Filter out next.js internal urls and generate urls based on sitemap
-  let urlSet = allKeys
-    .filter((x) => !isNextInternalUrl(x))
-    .map((x) => generateUrl(config.siteUrl, x))
+  let urlSet = allKeys.filter((x) => !isNextInternalUrl(x))
 
   urlSet = [...new Set(urlSet)]
 
   // Create sitemap fields based on transformation
   const sitemapFields = urlSet
-    .map((url) => config.transform!(config, url))
-    .filter((x) => x !== null)
+    .map((url) => config.transform!(config, url)) // transform using relative urls
+    .filter((x) => x !== null) // remove null values
+    .map((x) => ({
+      ...x,
+      url: generateUrl(config.siteUrl, x.url), // create absolute urls based on sitemap fields
+    }))
 
   return sitemapFields
 }
