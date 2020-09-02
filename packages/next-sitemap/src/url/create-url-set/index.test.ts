@@ -10,31 +10,31 @@ describe('next-sitemap/createUrlSet', () => {
         changefreq: 'daily',
         lastmod: expect.any(String),
         priority: 0.7,
-        url: 'https://example.com/',
+        loc: 'https://example.com/',
       },
       {
         changefreq: 'daily',
         lastmod: expect.any(String),
         priority: 0.7,
-        url: 'https://example.com/page-0',
+        loc: 'https://example.com/page-0',
       },
       {
         changefreq: 'daily',
         lastmod: expect.any(String),
         priority: 0.7,
-        url: 'https://example.com/page-1',
+        loc: 'https://example.com/page-1',
       },
       {
         changefreq: 'daily',
         lastmod: expect.any(String),
         priority: 0.7,
-        url: 'https://example.com/page-2',
+        loc: 'https://example.com/page-2',
       },
       {
         changefreq: 'daily',
         lastmod: expect.any(String),
         priority: 0.7,
-        url: 'https://example.com/page-3',
+        loc: 'https://example.com/page-3',
       },
     ])
   })
@@ -53,13 +53,13 @@ describe('next-sitemap/createUrlSet', () => {
         changefreq: 'daily',
         lastmod: expect.any(String),
         priority: 0.7,
-        url: 'https://example.com/page-1',
+        loc: 'https://example.com/page-1',
       },
       {
         changefreq: 'daily',
         lastmod: expect.any(String),
         priority: 0.7,
-        url: 'https://example.com/page-3',
+        loc: 'https://example.com/page-3',
       },
     ])
   })

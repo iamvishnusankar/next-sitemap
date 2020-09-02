@@ -6,6 +6,7 @@ module.exports = {
     return {
       url,
       changefreq: 'yearly',
+      custom: 'prop',
     }
   },
   // optional
