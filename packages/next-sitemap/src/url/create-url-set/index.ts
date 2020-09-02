@@ -33,7 +33,7 @@ export const createUrlSet = (
     .filter((x) => x !== null) // remove null values
     .map((x) => ({
       ...x,
-      url: generateUrl(config.siteUrl, x.url), // create absolute urls based on sitemap fields
+      loc: generateUrl(config.siteUrl, x.loc), // create absolute urls based on sitemap fields
     }))
 
   return sitemapFields

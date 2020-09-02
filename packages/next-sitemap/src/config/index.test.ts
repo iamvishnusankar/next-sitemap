@@ -80,7 +80,7 @@ describe('next-sitemap/config', () => {
     const value = myConfig.transform!(myConfig, 'https://example.com')
 
     expect(value).toStrictEqual({
-      url: 'https://example.com',
+      loc: 'https://example.com',
       lastmod: expect.any(String),
       changefreq: 'weekly',
       priority: 0.6,
@@ -97,7 +97,7 @@ describe('next-sitemap/config', () => {
       changefreq: 'weekly',
       transform: (): ISitemapFiled => {
         return {
-          url: 'something-else',
+          loc: 'something-else',
           lastmod: 'lastmod-cutom',
         }
       },
@@ -114,7 +114,7 @@ describe('next-sitemap/config', () => {
     const value = myConfig.transform!(myConfig, 'https://example.com')
 
     expect(value).toStrictEqual({
-      url: 'something-else',
+      loc: 'something-else',
       lastmod: 'lastmod-cutom',
     })
   })
