@@ -10,33 +10,15 @@ export const buildSitemapXml = (
   config: IConfig,
   fields: ISitemapFiled[]
 ): string => {
-  const content = fields
-    .reduce((prev, curr) => {
-      let field = ''
+  const content = fields.reduce((prev, curr) => {
+    let field = ''
+    for (const key of Object.keys(curr)) {
+      field += `<${key}>${curr[key]}</${key}>`
+    }
 
-      if (curr) {
-        // Add location prop
-        field += curr.url ? `<loc>${curr.url}</loc>` : ''
-
-        // Add change frequency
-        field += curr.changefreq
-          ? `<changefreq>${curr.changefreq}</changefreq>`
-          : ''
-
-        // Add priority
-        field += curr.priority ? `<priority>${curr.priority}</priority>` : ''
-
-        // Add lastmod
-        field += curr.lastmod ? `<lastmod>${curr.lastmod}</lastmod>` : ''
-
-        // Create url field based on field values
-        field = field ? `<url>${field}</url>` : ''
-      }
-
-      // Append previous value and return
-      return `${prev}${field}\n`
-    }, '')
-    .trim()
+    // Append previous value and return
+    return `${prev}<url>${field}</url>\n`
+  }, '')
 
   return withXMLTemplate(content)
 }

@@ -77,7 +77,9 @@ Above is the minimal configuration to split a large sitemap. When the number of 
 
 ## Custom transformation function
 
-A transformation function, which runs **for each** url in the sitemap. Returning `null` value from the transformation function will result in the exclusion of that specific url from the generated sitemap list.
+Custom transformation provides an extension method to add, remove or exclude url or properties from a url-set. Transform function runs **for each** url in the sitemap. And use the `key`: `value` object to add properties in the XML.
+
+Returning `null` value from the transformation function will result in the exclusion of that specific url from the generated sitemap list.
 
 ```jsx
 module.exports = {
@@ -92,13 +94,14 @@ module.exports = {
     if (customLimitedField(url)) {
       // This returns `url` & `changefreq`. Hence it will result in the generation of XML field with `url` and  `changefreq` properties only.
       return {
-        url,
+        loc: url,
         changefreq: 'weekly',
       }
     }
 
+    // Use default transformation for all other cases
     return {
-      url,
+      loc: url,
       changefreq: config.changefreq,
       priority: config.priority,
       lastmod: config.autoLastmod ? new Date().toISOString() : undefined,
@@ -122,7 +125,7 @@ module.exports = {
   // Default transformation function
   transform: (config, url) => {
     return {
-      url,
+      loc: url,
       changefreq: config.changefreq,
       priority: config.priority,
       lastmod: config.autoLastmod ? new Date().toISOString() : undefined,
