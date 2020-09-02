@@ -2,13 +2,25 @@
 
 Sitemap generator for next.js. Generate sitemap(s) and robots.txt for all static/pre-rendered pages.
 
-## Installation
+## Table of contents
+
+- Getting started
+  - [Installation](#installation)
+  - [Create config file](#create-config-file)
+  - [Building sitemaps](#building-sitemaps)
+- [Splitting large sitemap into multiple files](#splitting-large-sitemap-into-multiple-files)
+- [Configuration Options](#next-sitemapjs-options)
+- [Full configuration example](#full-configuration-example)
+
+## Getting started
+
+### Installation
 
 ```shell
 yarn add next-sitemap -D
 ```
 
-## Create config file
+### Create config file
 
 `next-sitemap` requires a basic config file (`next-sitemap.js`) under your project root
 
@@ -20,7 +32,9 @@ module.exports = {
 }
 ```
 
-## Add next-sitemap as your postbuild script
+### Building sitemaps
+
+Add next-sitemap as your postbuild script
 
 ```json
 {
@@ -43,7 +57,7 @@ module.exports = {
 
 Above is the minimal configuration to split a large sitemap. When the number of URLs in a sitemap is more than 7000, `next-sitemap` will create sitemap (e.g. sitemap-1.xml, sitemap-2.xml) and index (e.g. sitemap.xml) files.
 
-## `next-sitemap.js` Options
+## Configuration Options
 
 | property                            | description                                                                                                                                                                                                                                                              | type     |
 | ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------- |
@@ -60,7 +74,7 @@ Above is the minimal configuration to split a large sitemap. When the number of 
 | outDir (optional)                   | All the generated files will be exported to this directory. Default `public`                                                                                                                                                                                             | string   |
 | transform (optional)                | A transformation function, which runs **for each** url in the sitemap. Returning `null` value from the transformation function will result in the exclusion of that specific url from the generated sitemap list.                                                        | function |
 
-## Full configuration
+## Full configuration example
 
 Here's an example `next-sitemap.js` configuration with all options
 
