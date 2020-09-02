@@ -17,7 +17,7 @@ export const buildSitemapXml = (
     }
 
     // Append previous value and return
-    return `${prev}${field}\n`
+    return `${prev}<url>${field}</url>\n`
   }, '')
 
   return withXMLTemplate(content)
