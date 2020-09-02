@@ -17,7 +17,7 @@ export const transformSitemap = (
   url: string
 ): ISitemapFiled => {
   return {
-    url,
+    loc: url,
     changefreq: config.changefreq,
     priority: config.priority,
     lastmod: config.autoLastmod ? new Date().toISOString() : undefined,

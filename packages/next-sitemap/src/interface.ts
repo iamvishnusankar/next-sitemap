@@ -54,7 +54,7 @@ export interface IRuntimePaths {
 }
 
 export type ISitemapFiled = {
-  url: string
+  loc: string
   lastmod?: string
   changefreq?: string
   priority?: string
