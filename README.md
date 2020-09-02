@@ -137,8 +137,3 @@ Sitemap: https://example.com/my-custom-sitemap-1.xml
 Sitemap: https://example.com/my-custom-sitemap-2.xml
 Sitemap: https://example.com/my-custom-sitemap-3.xml
 ```
-
-## TODO
-
-- <s>Add support for splitting sitemap</s>
-- <s>Add support for `robots.txt`</s>
