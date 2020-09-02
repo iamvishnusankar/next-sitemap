@@ -29,7 +29,7 @@ const allSitemaps: string[] = []
 
 // Generate sitemaps from chunks
 sitemapChunks.forEach((chunk) => {
-  generateSitemap(config, chunk.path, chunk.urls)
+  generateSitemap(config, chunk.path, chunk.fields)
   allSitemaps.push(generateUrl(config.siteUrl, `/${chunk.filename}`))
 })
 
