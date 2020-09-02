@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { IConfig } from '../interface'
 import { exportFile } from '../file'
 
@@ -6,17 +7,29 @@ export const withXMLTemplate = (content: string): string => {
 }
 
 export const buildSitemapXml = (config: IConfig, urls: string[]): string => {
-  const content = urls.reduce(
-    (prev, curr) =>
-      `${prev}<url><loc>${curr}</loc><changefreq>${
-        config.changefreq
-      }</changefreq><priority>${config.priority}</priority>${
-        config.autoLastmod
-          ? `<lastmod>${new Date().toISOString()}</lastmod>`
-          : ''
-      }</url>\n`,
-    ''
-  )
+  const content = urls.reduce((prev, curr) => {
+    const value = config.transform!(config, curr)
+
+    // Add location prop
+    let filed = value.url ? `<loc>${value.url}</loc>` : ''
+
+    // Add change frequency
+    filed += value.changefreq
+      ? `<changefreq>${value.changefreq}</changefreq>`
+      : ''
+
+    // Add priority
+    filed += value.priority ? `<priority>${value.priority}</priority>` : ''
+
+    // Add lastmod
+    filed += value.lastmod ? `<lastmod>${value.lastmod}</lastmod>` : ''
+
+    // Create url filed based on field values
+    filed = filed ? `<url>${filed}</url>` : ''
+
+    // Append previous value and return
+    return `${prev}${filed}\n`
+  }, '')
 
   return withXMLTemplate(content)
 }

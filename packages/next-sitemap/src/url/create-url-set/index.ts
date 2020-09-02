@@ -21,7 +21,7 @@ export const createUrlSet = (
     allKeys = removeFromArray(allKeys, config.exclude)
   }
 
-  // Node10 support
+  // Filter out next.js internal urls and generate urls based on sitemap
   const urlSet = allKeys
     .filter((x) => !isNextInternalUrl(x))
     .map((x) => generateUrl(config.siteUrl, x))
