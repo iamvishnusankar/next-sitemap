@@ -59,6 +59,10 @@ Above is the minimal configuration to split a large sitemap. When the number of 
 | sourceDir                           | next.js build directory. Default `.next`                                                                                | string   |
 | outDir                              | All the generated files will be exported to this directory. Default `public`                                            | string   |
 
+- **siteUrl | `<string>` | `required`**: Base url of your website
+-
+- **generateRobotsTxt | `<boolean>` | `(optional)`| `Default: false`**: Generate a robots.txt file and list the generated sitemaps. Default false
+
 ## Full configuration
 
 Here's an example `next-sitemap.js` configuration with all options
