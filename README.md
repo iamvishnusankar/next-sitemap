@@ -10,6 +10,7 @@ Sitemap generator for next.js. Generate sitemap(s) and robots.txt for all static
   - [Building sitemaps](#building-sitemaps)
 - [Splitting large sitemap into multiple files](#splitting-large-sitemap-into-multiple-files)
 - [Configuration Options](#next-sitemapjs-options)
+- [Custom transformation function](#custom-transformation-fuction)
 - [Full configuration example](#full-configuration-example)
 
 ## Getting started
@@ -73,6 +74,38 @@ Above is the minimal configuration to split a large sitemap. When the number of 
 | sourceDir                           | next.js build directory. Default `.next`                                                                                                                                                                                                                                 | string   |
 | outDir (optional)                   | All the generated files will be exported to this directory. Default `public`                                                                                                                                                                                             | string   |
 | transform (optional)                | A transformation function, which runs **for each** url in the sitemap. Returning `null` value from the transformation function will result in the exclusion of that specific url from the generated sitemap list.                                                        | function |
+
+## Custom transformation function
+
+A transformation function, which runs **for each** url in the sitemap. Returning `null` value from the transformation function will result in the exclusion of that specific url from the generated sitemap list.
+
+```jsx
+module.exports = {
+  transform: (config, url) => {
+    // custom function to ignore the url
+    if (customIgnoreFunction(url)) {
+      return null
+    }
+
+    // only create changefreq along with url
+    // returning partial properties will result in generation of XML field with only returned values.
+    if (customLimitedField(url)) {
+      // This returns `url` & `changefreq`. Hence it will result in the generation of XML field with `url` and  `changefreq` properties only.
+      return {
+        url,
+        changefreq: 'weekly',
+      }
+    }
+
+    return {
+      url,
+      changefreq: config.changefreq,
+      priority: config.priority,
+      lastmod: config.autoLastmod ? new Date().toISOString() : undefined,
+    }
+  },
+}
+```
 
 ## Full configuration example
 
