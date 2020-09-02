@@ -30,7 +30,7 @@ export const createUrlSet = (
   // Create sitemap fields based on transformation
   const sitemapFields = urlSet
     .map((url) => config.transform!(config, url)) // transform using relative urls
-    .filter((x) => x !== null) // remove null values
+    .filter((x) => x !== null && Boolean(x.loc)) // remove null values
     .map((x) => ({
       ...x,
       loc: generateUrl(config.siteUrl, x.loc), // create absolute urls based on sitemap fields
