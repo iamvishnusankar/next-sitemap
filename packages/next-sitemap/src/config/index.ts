@@ -15,7 +15,7 @@ export const loadConfig = (path: string): IConfig => {
 export const transformSitemap = (
   config: IConfig,
   url: string
-): Partial<ISitemapFiled> => {
+): ISitemapFiled => {
   return {
     url,
     changefreq: config.changefreq,

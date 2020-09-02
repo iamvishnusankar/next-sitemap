@@ -6,11 +6,36 @@ describe('next-sitemap/createUrlSet', () => {
   test('without exclusion', () => {
     const urlset = createUrlSet(sampleConfig, sampleManifest)
     expect(urlset).toStrictEqual([
-      'https://example.com/',
-      'https://example.com/page-0',
-      'https://example.com/page-1',
-      'https://example.com/page-2',
-      'https://example.com/page-3',
+      {
+        changefreq: 'daily',
+        lastmod: expect.any(String),
+        priority: 0.7,
+        url: 'https://example.com/',
+      },
+      {
+        changefreq: 'daily',
+        lastmod: expect.any(String),
+        priority: 0.7,
+        url: 'https://example.com/page-0',
+      },
+      {
+        changefreq: 'daily',
+        lastmod: expect.any(String),
+        priority: 0.7,
+        url: 'https://example.com/page-1',
+      },
+      {
+        changefreq: 'daily',
+        lastmod: expect.any(String),
+        priority: 0.7,
+        url: 'https://example.com/page-2',
+      },
+      {
+        changefreq: 'daily',
+        lastmod: expect.any(String),
+        priority: 0.7,
+        url: 'https://example.com/page-3',
+      },
     ])
   })
 
@@ -24,8 +49,18 @@ describe('next-sitemap/createUrlSet', () => {
     )
 
     expect(urlset).toStrictEqual([
-      'https://example.com/page-1',
-      'https://example.com/page-3',
+      {
+        changefreq: 'daily',
+        lastmod: expect.any(String),
+        priority: 0.7,
+        url: 'https://example.com/page-1',
+      },
+      {
+        changefreq: 'daily',
+        lastmod: expect.any(String),
+        priority: 0.7,
+        url: 'https://example.com/page-3',
+      },
     ])
   })
 })
