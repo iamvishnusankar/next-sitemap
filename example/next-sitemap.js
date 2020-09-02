@@ -1,8 +1,12 @@
 module.exports = {
   siteUrl: 'https://example.com',
   generateRobotsTxt: true,
-  transform: () => {
-    return null
+  // Optional custom transformation function
+  transform: (_, url) => {
+    return {
+      url,
+      changefreq: 'yearly',
+    }
   },
   // optional
   robotsTxtOptions: {
