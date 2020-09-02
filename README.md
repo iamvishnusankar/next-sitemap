@@ -45,23 +45,20 @@ Above is the minimal configuration to split a large sitemap. When the number of 
 
 ## `next-sitemap.js` Options
 
-| property                            | description                                                                                                             | type     |
-| ----------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | -------- |
-| siteUrl                             | Base url of your website                                                                                                | string   |
-| changefreq (optional)               | Change frequency. Default `daily`                                                                                       | string   |
-| priority (optional)                 | Priority. Default `0.7`                                                                                                 | number   |
-| sitemapSize(optional)               | Split large sitemap into multiple files by specifying sitemap size. Default `5000`                                      | number   |
-| generateRobotsTxt                   | Generate a `robots.txt` file and list the generated sitemaps. Default `false`                                           | boolean  |
-| robotsTxtOptions.policies           | Policies for generating `robots.txt`. Default to `[{ userAgent: '*', allow: '/' }`                                      | []       |
-| robotsTxtOptions.additionalSitemaps | Options to add addition sitemap to `robots.txt` host entry                                                              | string[] |
-| autoLastmod (optional)              | Add `<lastmod/>` property. Default to `true`                                                                            | true     |  |
-| exclude                             | Array of **relative** paths to exclude from listing on `sitemap.xml` or `sitemap-*.xml`. e.g.: `['/page-0', '/page-4']` | string[] |
-| sourceDir                           | next.js build directory. Default `.next`                                                                                | string   |
-| outDir                              | All the generated files will be exported to this directory. Default `public`                                            | string   |
-
-- **siteUrl | `<string>` | `required`**: Base url of your website
--
-- **generateRobotsTxt | `<boolean>` | `(optional)`| `Default: false`**: Generate a robots.txt file and list the generated sitemaps. Default false
+| property                            | description                                                                                                                                                                                                                                                              | type     |
+| ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------- |
+| siteUrl                             | Base url of your website                                                                                                                                                                                                                                                 | string   |
+| changefreq (optional)               | Change frequency. Default `daily`                                                                                                                                                                                                                                        | string   |
+| priority (optional)                 | Priority. Default `0.7`                                                                                                                                                                                                                                                  | number   |
+| sitemapSize(optional)               | Split large sitemap into multiple files by specifying sitemap size. Default `5000`                                                                                                                                                                                       | number   |
+| generateRobotsTxt                   | Generate a `robots.txt` file and list the generated sitemaps. Default `false`                                                                                                                                                                                            | boolean  |
+| robotsTxtOptions.policies           | Policies for generating `robots.txt`. Default to `[{ userAgent: '*', allow: '/' }`                                                                                                                                                                                       | []       |
+| robotsTxtOptions.additionalSitemaps | Options to add addition sitemap to `robots.txt` host entry                                                                                                                                                                                                               | string[] |
+| autoLastmod (optional)              | Add `<lastmod/>` property. Default to `true`                                                                                                                                                                                                                             | true     |  |
+| exclude (optional)                  | Array of **relative** paths to exclude from listing on `sitemap.xml` or `sitemap-*.xml`. e.g.: `['/page-0', '/page-4']`. Apart from this options `next-sitemap` also offers a custom `transform` option which could be used to exclude urls that match specific patterns | string[] |
+| sourceDir                           | next.js build directory. Default `.next`                                                                                                                                                                                                                                 | string   |
+| outDir (optional)                   | All the generated files will be exported to this directory. Default `public`                                                                                                                                                                                             | string   |
+| transform (optional)                | A transformation function, which runs **for each** url in the sitemap. Returning `null` value from the transformation function will result in the exclusion of that specific url from the generated sitemap list.                                                        | function |
 
 ## Full configuration
 
@@ -75,6 +72,15 @@ module.exports = {
   sitemapSize: 5000,
   generateRobotsTxt: true,
   exclude: ['/protected-page', '/awesome/secret-page'],
+  // Default transformation function
+  transform: (config, url) => {
+    return {
+      url,
+      changefreq: config.changefreq,
+      priority: config.priority,
+      lastmod: config.autoLastmod ? new Date().toISOString() : undefined,
+    }
+  },
   robotsTxtOptions: {
     policies: [
       {
