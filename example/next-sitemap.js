@@ -1,6 +1,9 @@
 module.exports = {
   siteUrl: 'https://example.com',
   generateRobotsTxt: true,
+  transform: () => {
+    return null
+  },
   // optional
   robotsTxtOptions: {
     additionalSitemaps: [

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { defaultConfig, withDefaultConfig, transformSitemap } from '.'
 import { IConfig, ISitemapFiled } from '../interface'
 
@@ -76,7 +77,6 @@ describe('next-sitemap/config', () => {
       },
     })
 
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const value = myConfig.transform!(myConfig, 'https://example.com')
 
     expect(value).toStrictEqual({
@@ -95,7 +95,7 @@ describe('next-sitemap/config', () => {
       exclude: ['1', '2'],
       priority: 0.6,
       changefreq: 'weekly',
-      transform: (): Partial<ISitemapFiled> => {
+      transform: (): ISitemapFiled => {
         return {
           url: 'something-else',
           lastmod: 'lastmod-cutom',
