@@ -1,15 +1,17 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable @typescript-eslint/no-var-requires */
-import fs from 'fs'
-import { IConfig, ISitemapFiled } from '../interface'
+import {
+  IConfig,
+  ISitemapFiled,
+  IRuntimePaths,
+  IExportMarker,
+} from '../interface'
 import { merge } from '@corex/deepmerge'
+import { loadFile } from '../file'
 
 export const loadConfig = (path: string): IConfig => {
-  if (fs.existsSync(path)) {
-    const config = require(path)
-    return withDefaultConfig(config)
-  }
-
-  throw new Error("No config file exist. Please create 'next-sitemap.js'")
+  const baseConfig = loadFile<IConfig>(path)
+  return withDefaultConfig(baseConfig!)
 }
 
 export const transformSitemap = (
@@ -31,6 +33,7 @@ export const defaultConfig: Partial<IConfig> = {
   changefreq: 'daily',
   sitemapSize: 5000,
   autoLastmod: true,
+  trailingSlash: false,
   exclude: [],
   transform: transformSitemap,
   robotsTxtOptions: {
@@ -44,8 +47,30 @@ export const defaultConfig: Partial<IConfig> = {
   },
 }
 
-export const withDefaultConfig = (config: Partial<IConfig>): IConfig => {
-  return merge([defaultConfig, config], {
+export const updateConfig = (
+  currConfig: Partial<IConfig>,
+  newConfig: Partial<IConfig>
+): IConfig => {
+  return merge([currConfig, newConfig], {
     arrayMergeType: 'overwrite',
   }) as IConfig
+}
+
+export const withDefaultConfig = (config: Partial<IConfig>): IConfig => {
+  return updateConfig(defaultConfig, config)
+}
+
+export const getRuntimeConfig = (
+  runtimePaths: IRuntimePaths
+): Partial<IConfig> => {
+  const exportMarkerConfig = loadFile<IExportMarker>(
+    runtimePaths.EXPORT_MARKER,
+    false
+  )
+
+  return {
+    trailingSlash: exportMarkerConfig
+      ? exportMarkerConfig.exportTrailingSlash
+      : undefined,
+  }
 }
