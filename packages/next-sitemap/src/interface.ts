@@ -21,6 +21,7 @@ export interface IConfig {
   autoLastmod?: boolean
   exclude?: string[]
   transform?: (config: IConfig, url: string) => ISitemapFiled
+  trailingSlash?: boolean
 }
 
 export interface IBuildManifest {
@@ -33,6 +34,10 @@ export interface IPreRenderManifest {
   routes: {
     [key: string]: any
   }
+}
+
+export interface IExportMarker {
+  exportTrailingSlash: boolean
 }
 
 export interface INextManifest {
@@ -51,6 +56,7 @@ export interface IRuntimePaths {
   PRERENDER_MANIFEST: string
   SITEMAP_FILE: string
   ROBOTS_TXT_FILE: string
+  EXPORT_MARKER: string
 }
 
 export type ISitemapFiled = {
