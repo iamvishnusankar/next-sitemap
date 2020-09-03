@@ -32,6 +32,7 @@ export const getRuntimePaths = (config: IConfig): IRuntimePaths => {
   return {
     BUILD_MANIFEST: getPath(config.sourceDir!, 'build-manifest.json'),
     PRERENDER_MANIFEST: getPath(config.sourceDir!, 'prerender-manifest.json'),
+    EXPORT_MARKER: getPath(config.sourceDir!, 'export-marker.json'),
     SITEMAP_FILE: getPath(config.outDir!, 'sitemap.xml'),
     ROBOTS_TXT_FILE: getPath(config.outDir!, 'robots.txt'),
   }

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { loadConfig } from './config'
+import { loadConfig, getRuntimeConfig, updateConfig } from './config'
 import { loadManifest } from './manifest'
 import { createUrlSet, generateUrl } from './url'
 import { generateSitemap } from './sitemap'
@@ -8,10 +8,16 @@ import { resolveSitemapChunks, KNOWN_PATHS, getRuntimePaths } from './path'
 import { exportRobotsTxt } from './robots-txt'
 
 // Load next-sitemap.js
-const config = loadConfig(KNOWN_PATHS.CONFIG_FILE)
+let config = loadConfig(KNOWN_PATHS.CONFIG_FILE)
 
 // Get runtime paths
 const runtimePaths = getRuntimePaths(config)
+
+// get runtime config
+const runtimeConfig = getRuntimeConfig(runtimePaths)
+
+// Update config with runtime config
+config = updateConfig(config, runtimeConfig)
 
 // Load next.js manifest files
 const manifest = loadManifest(runtimePaths)
