@@ -3,14 +3,19 @@ on:
   push:
     branches:
       - master
+      - development
 
   pull_request:
     branches:
       - master
+      - development
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        platform: [ubuntu-latest, macos-latest, windows-latest]
+    runs-on: ${{ matrix.platform }}
     strategy:
       matrix:
         node: ['14', '13', '12', '11', '10']
