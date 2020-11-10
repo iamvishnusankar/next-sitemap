@@ -15,10 +15,8 @@ jobs:
     strategy:
       matrix:
         platform: [ubuntu-latest, macos-latest, windows-latest]
-    runs-on: ${{ matrix.platform }}
-    strategy:
-      matrix:
         node: ['14', '13', '12', '11', '10']
+    runs-on: ${{ matrix.platform }}
     steps:
       - name: Github Checkout
         uses: actions/checkout@v2
