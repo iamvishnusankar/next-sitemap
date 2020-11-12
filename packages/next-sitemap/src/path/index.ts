@@ -49,7 +49,7 @@ export const KNOWN_PATHS = {
 
 export const getConfigFilePath = () => {
   const args = minimist(process.argv.slice(2))
-  const configPath = getPath(args?.config || 'next-sitemap.js')
+  const configPath = getPath(args.config || 'next-sitemap.js')
 
   if (!fs.existsSync(configPath)) {
     throw new Error(`${configPath} does not exist.`)
