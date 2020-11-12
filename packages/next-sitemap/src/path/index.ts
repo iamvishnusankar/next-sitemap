@@ -7,6 +7,8 @@ import {
   IRuntimePaths,
   ISitemapFiled,
 } from '../interface'
+import minimist from 'minimist'
+import fs from 'fs'
 
 export const getPath = (...pathSegment: string[]): string => {
   return path.resolve(process.cwd(), ...pathSegment)
@@ -38,6 +40,20 @@ export const getRuntimePaths = (config: IConfig): IRuntimePaths => {
   }
 }
 
+/**
+ * @deprecated Use getConfigFilePath instead
+ */
 export const KNOWN_PATHS = {
   CONFIG_FILE: getPath('next-sitemap.js'),
+}
+
+export const getConfigFilePath = () => {
+  const args = minimist(process.argv.slice(2))
+  const configPath = getPath(args?.config || 'next-sitemap.js')
+
+  if (!fs.existsSync(configPath)) {
+    throw new Error(`${configPath} does not exist.`)
+  }
+
+  return configPath
 }
