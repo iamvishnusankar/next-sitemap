@@ -4,11 +4,18 @@ import { loadManifest } from './manifest'
 import { createUrlSet, generateUrl } from './url'
 import { generateSitemap } from './sitemap'
 import { toChunks } from './array'
-import { resolveSitemapChunks, KNOWN_PATHS, getRuntimePaths } from './path'
+import {
+  resolveSitemapChunks,
+  getRuntimePaths,
+  getConfigFilePath,
+} from './path'
 import { exportRobotsTxt } from './robots-txt'
 
+// Get config file path
+const configFilePath = getConfigFilePath()
+
 // Load next-sitemap.js
-let config = loadConfig(KNOWN_PATHS.CONFIG_FILE)
+let config = loadConfig(configFilePath)
 
 // Get runtime paths
 const runtimePaths = getRuntimePaths(config)
