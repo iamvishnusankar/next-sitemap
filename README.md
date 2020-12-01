@@ -182,3 +182,7 @@ Sitemap: https://example.com/my-custom-sitemap-1.xml
 Sitemap: https://example.com/my-custom-sitemap-2.xml
 Sitemap: https://example.com/my-custom-sitemap-3.xml
 ```
+
+## Contribution
+
+All PRs are welcome :)

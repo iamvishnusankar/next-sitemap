@@ -35,9 +35,17 @@ describe('next-sitemap', () => {
   test('isNextInternalUrl', () => {
     expect(isNextInternalUrl('/_app')).toBeTruthy()
     expect(isNextInternalUrl('/_random')).toBeTruthy()
+  })
+
+  test('isNextInternalUrl: url params', () => {
     expect(isNextInternalUrl('/[id]')).toBeTruthy()
     expect(isNextInternalUrl('/blog/[id]')).toBeTruthy()
+  })
 
-    expect(isNextInternalUrl('/about')).toBeFalsy()
+  test('isNextInternalUrl: allow urls with underscore`', () => {
+    expect(isNextInternalUrl('/_some_url')).toBeTruthy()
+    expect(isNextInternalUrl('/some_url/[param]')).toBeTruthy()
+
+    expect(isNextInternalUrl('/some_url')).toBeFalsy()
   })
 })
