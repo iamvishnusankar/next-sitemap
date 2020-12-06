@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { IConfig, INextManifest, ISitemapFiled } from '../../interface'
 import { isNextInternalUrl, generateUrl } from '../util'
-import { removeFromArray } from '../../array'
+import { removeIfMatchPattern } from '../../array'
 
 /**
  * Create a unique url set
@@ -19,7 +19,7 @@ export const createUrlSet = (
 
   // Remove the urls based on config.exclude array
   if (config.exclude) {
-    allKeys = removeFromArray(allKeys, config.exclude)
+    allKeys = removeIfMatchPattern(allKeys, config.exclude)
   }
 
   // Filter out next.js internal urls and generate urls based on sitemap
