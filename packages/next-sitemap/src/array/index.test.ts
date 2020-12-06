@@ -23,4 +23,10 @@ describe('next-sitemap/array', () => {
     expect(removeFromArray([1, 2, 3], [2])).toStrictEqual([1, 3])
     expect(removeFromArray([1, 2, 3], [2, 3, 4])).toStrictEqual([1])
   })
+
+  test('removeIfMatchPattern', () => {
+    expect(
+      removeFromArray(['/hello', '/world', '/something'], ['/hello', '/som*'])
+    ).toStrictEqual(['/world'])
+  })
 })

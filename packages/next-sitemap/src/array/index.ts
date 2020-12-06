@@ -22,3 +22,15 @@ export const toArray = (inp: string | string[]): string[] => {
 export const removeFromArray = <T>(inputArr: T[], toRemoveArr: T[]): T[] => {
   return inputArr.filter((x) => !toRemoveArr.includes(x))
 }
+
+/**
+ * Returns the difference between two arrays
+ * @param inputArr input array
+ * @param toRemoveArr array of elements to be removed
+ */
+export const removeIfMatchPattern = <T>(
+  inputArr: T[],
+  toRemoveArr: T[]
+): T[] => {
+  return inputArr.filter((x) => !toRemoveArr.includes(x))
+}
