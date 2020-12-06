@@ -1,4 +1,10 @@
-import { toChunks, toArray, removeFromArray } from './index'
+import { merge } from '@corex/deepmerge'
+import {
+  toChunks,
+  toArray,
+  removeFromArray,
+  removeIfMatchPattern,
+} from './index'
 
 describe('next-sitemap/array', () => {
   test('toChunks', () => {
@@ -22,5 +28,14 @@ describe('next-sitemap/array', () => {
   test('removeFromArray', () => {
     expect(removeFromArray([1, 2, 3], [2])).toStrictEqual([1, 3])
     expect(removeFromArray([1, 2, 3], [2, 3, 4])).toStrictEqual([1])
+  })
+
+  test('removeIfMatchPattern', () => {
+    expect(
+      removeIfMatchPattern(
+        ['/hello', '/world', '/something'],
+        ['/hello*', '/som*']
+      )
+    ).toStrictEqual(['/world'])
   })
 })
