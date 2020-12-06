@@ -18,7 +18,7 @@ export const createUrlSet = (
   ]
 
   // Remove the urls based on config.exclude array
-  if (config.exclude) {
+  if (config?.exclude && config?.exclude.length > 0) {
     allKeys = removeIfMatchPattern(allKeys, config.exclude)
   }
 
