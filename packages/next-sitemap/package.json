@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "@corex/deepmerge": "^2.4.24",
+    "matcher": "^3.0.0",
     "minimist": "^1.2.5"
   }
 }

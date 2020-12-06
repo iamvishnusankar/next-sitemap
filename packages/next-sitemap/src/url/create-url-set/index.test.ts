@@ -64,6 +64,25 @@ describe('next-sitemap/createUrlSet', () => {
     ])
   })
 
+  test('with wildcard exclusion', () => {
+    const urlset = createUrlSet(
+      {
+        ...sampleConfig,
+        exclude: ['/page*'],
+      },
+      sampleManifest
+    )
+
+    expect(urlset).toStrictEqual([
+      {
+        changefreq: 'daily',
+        lastmod: expect.any(String),
+        priority: 0.7,
+        loc: 'https://example.com/',
+      },
+    ])
+  })
+
   test('with trailing slash', () => {
     const urlset = createUrlSet(
       {
