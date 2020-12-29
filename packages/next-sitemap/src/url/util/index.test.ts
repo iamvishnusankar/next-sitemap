@@ -48,5 +48,6 @@ describe('next-sitemap', () => {
     expect(isNextInternalUrl('/some_url/[param]')).toBeTruthy()
 
     expect(isNextInternalUrl('/some_url')).toBeFalsy()
+    expect(isNextInternalUrl('/some-404')).toBeFalsy()
   })
 })
