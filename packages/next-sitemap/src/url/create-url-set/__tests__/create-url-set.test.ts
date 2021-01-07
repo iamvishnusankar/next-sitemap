@@ -1,8 +1,8 @@
-import { createUrlSet } from '.'
-import { sampleConfig } from '../../fixtures/config'
-import { sampleManifest } from '../../fixtures/manifest'
+import { createUrlSet } from '..'
+import { sampleConfig } from '../../../fixtures/config'
+import { sampleManifest } from '../../../fixtures/manifest'
 
-describe('next-sitemap/createUrlSet', () => {
+describe('createUrlSet', () => {
   test('without exclusion', () => {
     const urlset = createUrlSet(sampleConfig, sampleManifest)
     expect(urlset).toStrictEqual([
@@ -10,7 +10,7 @@ describe('next-sitemap/createUrlSet', () => {
         changefreq: 'daily',
         lastmod: expect.any(String),
         priority: 0.7,
-        loc: 'https://example.com/',
+        loc: 'https://example.com',
       },
       {
         changefreq: 'daily',
@@ -78,7 +78,49 @@ describe('next-sitemap/createUrlSet', () => {
         changefreq: 'daily',
         lastmod: expect.any(String),
         priority: 0.7,
-        loc: 'https://example.com/',
+        loc: 'https://example.com',
+      },
+    ])
+  })
+
+  test('without trailing slash', () => {
+    const urlset = createUrlSet(
+      {
+        ...sampleConfig,
+        trailingSlash: false,
+      },
+      sampleManifest
+    )
+    expect(urlset).toStrictEqual([
+      {
+        changefreq: 'daily',
+        lastmod: expect.any(String),
+        priority: 0.7,
+        loc: 'https://example.com',
+      },
+      {
+        changefreq: 'daily',
+        lastmod: expect.any(String),
+        priority: 0.7,
+        loc: 'https://example.com/page-0',
+      },
+      {
+        changefreq: 'daily',
+        lastmod: expect.any(String),
+        priority: 0.7,
+        loc: 'https://example.com/page-1',
+      },
+      {
+        changefreq: 'daily',
+        lastmod: expect.any(String),
+        priority: 0.7,
+        loc: 'https://example.com/page-2',
+      },
+      {
+        changefreq: 'daily',
+        lastmod: expect.any(String),
+        priority: 0.7,
+        loc: 'https://example.com/page-3',
       },
     ])
   })
