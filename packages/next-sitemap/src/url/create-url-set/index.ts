@@ -3,6 +3,20 @@ import { IConfig, INextManifest, ISitemapFiled } from '../../interface'
 import { isNextInternalUrl, generateUrl } from '../util'
 import { removeIfMatchPattern } from '../../array'
 
+export const absoluteUrl = (
+  siteUrl: string,
+  path: string,
+  trailingSlash?: boolean
+): string => {
+  const url = generateUrl(siteUrl, trailingSlash ? `${path}/` : path)
+
+  if (!trailingSlash && url.endsWith('/')) {
+    return url.slice(0, url.length - 1)
+  }
+
+  return url
+}
+
 /**
  * Create a unique url set
  * @param config
@@ -33,10 +47,7 @@ export const createUrlSet = (
     .filter((x) => Boolean(x) && Boolean(x.loc)) // remove null values
     .map((x) => ({
       ...x,
-      loc: generateUrl(
-        config.siteUrl,
-        config.trailingSlash ? `${x.loc}/` : x.loc
-      ), // create absolute urls based on sitemap fields
+      loc: absoluteUrl(config.siteUrl, x.loc, config.trailingSlash), // create absolute urls based on sitemap fields
     }))
 
   return sitemapFields
