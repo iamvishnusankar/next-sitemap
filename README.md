@@ -1,6 +1,6 @@
 # next-sitemap
 
-Sitemap generator for next.js. Generate sitemap(s) and robots.txt for all static/pre-rendered pages.
+Sitemap generator for next.js. Generate sitemap(s) and robots.txt for all static/pre-rendered/dynamic/server-side pages.
 
 ## Table of contents
 
@@ -12,6 +12,7 @@ Sitemap generator for next.js. Generate sitemap(s) and robots.txt for all static
 - [Configuration Options](#next-sitemapjs-options)
 - [Custom transformation function](#custom-transformation-function)
 - [Full configuration example](#full-configuration-example)
+- [Generating dynamic/server-side sitemaps](#generating-dynamicserver-side-sitemaps)
 
 ## Getting started
 
@@ -191,6 +192,60 @@ Host: https://example.com
 Sitemap: https://example.com/my-custom-sitemap-1.xml
 Sitemap: https://example.com/my-custom-sitemap-2.xml
 Sitemap: https://example.com/my-custom-sitemap-3.xml
+```
+
+## Generating dynamic/server-side sitemaps
+
+`next-sitemap` now provides a simple API to generate server side sitemaps. This will help to dynamically generate sitemaps by sourcing data from CMS or custom source.
+
+Here's a sample script to generate sitemaps on server side. Create `pages/server-sitemap.xml/index.tsx` page and add the following content.
+
+```ts
+// pages/server-sitemap.xml/index.tsx
+
+import { getServerSideSitemap } from 'next-sitemap'
+import { GetServerSideProps } from 'next'
+
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  // Method to source urls from cms
+  // const urls = await fetch('https//example.com/api')
+
+  const fields = [
+    {
+      loc: 'https://example.com', // Absolute url
+      lastmod: new Date().toISOString(),
+      // changefreq
+      // priority
+    },
+    {
+      loc: 'https://example.com/dynamic-path-2', // Absolute url
+      lastmod: new Date().toISOString(),
+      // changefreq
+      // priority
+    },
+  ]
+
+  return getServerSideSitemap(ctx, fields)
+}
+
+// Default export to prevent next.js errors
+export default () => {}
+```
+
+Now, `next.js` is serving the dynamic sitemap from `http://localhost:3000/server-sitemap.xml`. Now list the dynamic sitemap page in `robotTxtOptions.additionalSitemaps` and exclude this path from static sitemap list.
+
+```js
+// next-sitemap.js
+module.exports = {
+  siteUrl: 'https://example.com',
+  generateRobotsTxt: true,
+  exclude: ['/server-sitemap.xml'], // <= exclude here
+  robotsTxtOptions: {
+    additionalSitemaps: [
+      'https://example.com/server-sitemap.xml', // <==== Add here
+    ],
+  },
+}
 ```
 
 ## Contribution
