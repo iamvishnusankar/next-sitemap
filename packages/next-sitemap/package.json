@@ -8,6 +8,7 @@
   "repository": "https://github.com/iamvishnusankar/next-sitemap.git",
   "author": "Vishnu Sankar (@iamvishnusankar)",
   "license": "MIT",
+  "sideEffects": false,
   "publishConfig": {
     "access": "public"
   },
