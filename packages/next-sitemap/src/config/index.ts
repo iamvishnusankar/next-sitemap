@@ -20,9 +20,9 @@ export const transformSitemap = (
 ): ISitemapFiled => {
   return {
     loc: url,
-    changefreq: config.changefreq,
-    priority: config.priority,
-    lastmod: config.autoLastmod ? new Date().toISOString() : undefined,
+    changefreq: config?.changefreq,
+    priority: config?.priority,
+    lastmod: config?.autoLastmod ? new Date().toISOString() : undefined,
   }
 }
 
