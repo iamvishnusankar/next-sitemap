@@ -167,20 +167,27 @@ module.exports = {
 Above configuration will generate sitemaps based on your project and a `robots.txt` like this.
 
 ```txt
+# *
 User-agent: *
 Allow: /
+
+# test-bot
 User-agent: test-bot
 Allow: /path
 Allow: /path-2
+
+# black-listed-bot
 User-agent: black-listed-bot
 Disallow: /sub-path-1
 Disallow: /path-2
+
+# Host
 Host: https://example.com
 
+# Sitemaps
 ....
 <---Generated sitemap list--->
 ....
-
 Sitemap: https://example.com/my-custom-sitemap-1.xml
 Sitemap: https://example.com/my-custom-sitemap-2.xml
 Sitemap: https://example.com/my-custom-sitemap-3.xml
