@@ -11,10 +11,14 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     {
       loc: 'https://example.com',
       lastmod: new Date().toISOString(),
+      // changefreq
+      // priority
     },
     {
       loc: 'https://example.com/dynamic-path-2',
       lastmod: new Date().toISOString(),
+      // changefreq
+      // priority
     },
   ])
 }
