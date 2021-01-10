@@ -3,11 +3,12 @@
   "version": "1.0.0",
   "description": "Sitemap generator for next.js",
   "main": "dist/cjs/index.js",
-  "module": "dist/esnext/index.js",
+  "module": "dist/esm/index.js",
   "types": "dist/@types/index.d.ts",
   "repository": "https://github.com/iamvishnusankar/next-sitemap.git",
   "author": "Vishnu Sankar (@iamvishnusankar)",
   "license": "MIT",
+  "sideEffects": false,
   "publishConfig": {
     "access": "public"
   },
@@ -16,12 +17,15 @@
   },
   "scripts": {
     "lint": "tsc --noEmit --declaration",
-    "build": "tsc && yarn build:esnext",
-    "build:esnext": "tsc --module esnext --outDir dist/esnext"
+    "build": "tsc && yarn build:esm",
+    "build:esm": "tsc --module es2015 --outDir dist/esm"
   },
   "dependencies": {
     "@corex/deepmerge": "^2.5.3",
     "matcher": "^3.0.0",
     "minimist": "^1.2.5"
+  },
+  "peerDependencies": {
+    "next": "*"
   }
 }

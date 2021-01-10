@@ -4,7 +4,9 @@
     "rootDir": "src",
     "outDir": "dist/cjs",
     "declarationDir": "dist/@types",
-    "module": "CommonJS"
+    "module": "CommonJS",
+    "target": "ES2015"
   },
-  "include": ["src"]
+  "include": ["src"],
+  "exclude": ["node_modules"]
 }
