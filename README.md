@@ -232,7 +232,9 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 export default () => {}
 ```
 
-Now, `next.js` is serving the dynamic sitemap from `http://localhost:3000/server-sitemap.xml`. Now list the dynamic sitemap page in `robotTxtOptions.additionalSitemaps` and exclude this path from static sitemap list.
+Now, `next.js` is serving the dynamic sitemap from `http://localhost:3000/server-sitemap.xml`.
+
+List the dynamic sitemap page in `robotTxtOptions.additionalSitemaps` and exclude this path from static sitemap list.
 
 ```js
 // next-sitemap.js
@@ -247,6 +249,8 @@ module.exports = {
   },
 }
 ```
+
+In this way, `next-sitemap` will manage the sitemaps for all your static pages and your dynamic sitemap will be listed on robots.txt.
 
 ## Contribution
 
