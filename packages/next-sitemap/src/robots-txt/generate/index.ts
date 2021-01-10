@@ -13,7 +13,7 @@ export const generateRobotsTxt = (config: IConfig): string | null => {
   let content = ''
 
   normalizedPolices.forEach((x) => {
-    content += `User-agent: ${x.userAgent}\n`
+    content += `# ${x.userAgent}\nUser-agent: ${x.userAgent}\n`
 
     if (x.allow) {
       content += `${addPolicies('Allow', x.allow as string[])}`
@@ -22,14 +22,20 @@ export const generateRobotsTxt = (config: IConfig): string | null => {
     if (x.disallow) {
       content += `${addPolicies('Disallow', x.disallow as string[])}`
     }
+
+    content += '\n'
   })
 
   // Append host
-  content += `Host: ${config.siteUrl}\n`
+  content += `# Host\nHost: ${config.siteUrl}\n`
 
-  additionalSitemaps!.forEach((x) => {
-    content += `Sitemap: ${x}\n`
-  })
+  if (additionalSitemaps && additionalSitemaps.length > 0) {
+    content += `\n# Sitemaps\n`
+
+    additionalSitemaps.forEach((x) => {
+      content += `Sitemap: ${x}\n`
+    })
+  }
 
   return content
 }
