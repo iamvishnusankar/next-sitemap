@@ -82,35 +82,35 @@ Above is the minimal configuration to split a large sitemap. When the number of 
 | exclude (optional)                             | Array of **relative** paths ([wildcard pattern supported](https://www.npmjs.com/package/matcher#usage)) to exclude from listing on `sitemap.xml` or `sitemap-*.xml`. e.g.: `['/page-0', '/page-*', '/private/*']`. Apart from this option `next-sitemap` also offers a custom `transform` option which could be used to exclude urls that match specific patterns | string[] |
 | sourceDir (optional)                           | next.js build directory. Default `.next`                                                                                                                                                                                                                                                                                                                          | string   |
 | outDir (optional)                              | All the generated files will be exported to this directory. Default `public`                                                                                                                                                                                                                                                                                      | string   |
-| transform (optional)                           | A transformation function, which runs **for each** url in the sitemap. Returning `null` value from the transformation function will result in the exclusion of that specific url from the generated sitemap list.                                                                                                                                                 | function |
+| transform (optional)                           | A transformation function, which runs **for each** `relative-path` in the sitemap. Returning `null` value from the transformation function will result in the exclusion of that specific `path` from the generated sitemap list.                                                                                                                                  | function |
 
 ## Custom transformation function
 
-Custom transformation provides an extension method to add, remove or exclude url or properties from a url-set. Transform function runs **for each** url in the sitemap. And use the `key`: `value` object to add properties in the XML.
+Custom transformation provides an extension method to add, remove or exclude `path` or `properties` from a url-set. Transform function runs **for each** `relative path` in the sitemap. And use the `key`: `value` object to add properties in the XML.
 
-Returning `null` value from the transformation function will result in the exclusion of that specific url from the generated sitemap list.
+Returning `null` value from the transformation function will result in the exclusion of that specific `relative-path` from the generated sitemap list.
 
 ```jsx
 module.exports = {
-  transform: (config, url) => {
-    // custom function to ignore the url
-    if (customIgnoreFunction(url)) {
+  transform: (config, path) => {
+    // custom function to ignore the path
+    if (customIgnoreFunction(path)) {
       return null
     }
 
-    // only create changefreq along with url
+    // only create changefreq along with path
     // returning partial properties will result in generation of XML field with only returned values.
-    if (customLimitedField(url)) {
-      // This returns `url` & `changefreq`. Hence it will result in the generation of XML field with `url` and  `changefreq` properties only.
+    if (customLimitedField(path)) {
+      // This returns `path` & `changefreq`. Hence it will result in the generation of XML field with `path` and  `changefreq` properties only.
       return {
-        loc: url,
+        loc: path, // => this will be exported as http(s)://<config.siteUrl>/<path>
         changefreq: 'weekly',
       }
     }
 
     // Use default transformation for all other cases
     return {
-      loc: url,
+      loc: path, // => this will be exported as http(s)://<config.siteUrl>/<path>
       changefreq: config.changefreq,
       priority: config.priority,
       lastmod: config.autoLastmod ? new Date().toISOString() : undefined,
@@ -132,9 +132,9 @@ module.exports = {
   generateRobotsTxt: true,
   exclude: ['/protected-page', '/awesome/secret-page'],
   // Default transformation function
-  transform: (config, url) => {
+  transform: (config, path) => {
     return {
-      loc: url,
+      loc: path, // => this will be exported as http(s)://<config.siteUrl>/<path>
       changefreq: config.changefreq,
       priority: config.priority,
       lastmod: config.autoLastmod ? new Date().toISOString() : undefined,
@@ -169,6 +169,9 @@ Above configuration will generate sitemaps based on your project and a `robots.t
 ```txt
 User-agent: *
 Allow: /
+User-agent: test-bot
+Allow: /path
+Allow: /path-2
 User-agent: black-listed-bot
 Disallow: /sub-path-1
 Disallow: /path-2
