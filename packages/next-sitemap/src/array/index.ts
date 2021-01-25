@@ -38,3 +38,15 @@ export const removeIfMatchPattern = (
 
   return removeFromArray(inputArr, matchedArr)
 }
+
+export const addIfNotMatchPattern = (
+  inputArr: string[],
+  toAddArr: string[]
+): string[] => {
+  const matchedArr = matcher(inputArr, toAddArr)
+  if (matchedArr.length) {
+    const addKeys = toAddArr.filter((k) => matchedArr.includes(k))
+    return inputArr.concat(addKeys)
+  }
+  return inputArr.concat(toAddArr)
+}

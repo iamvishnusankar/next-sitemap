@@ -35,6 +35,7 @@ export const defaultConfig: Partial<IConfig> = {
   autoLastmod: true,
   trailingSlash: false,
   exclude: [],
+  include: [],
   transform: transformSitemap,
   robotsTxtOptions: {
     policies: [

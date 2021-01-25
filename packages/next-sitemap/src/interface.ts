@@ -20,6 +20,7 @@ export interface IConfig {
   robotsTxtOptions?: IRobotsTxt
   autoLastmod?: boolean
   exclude?: string[]
+  include?: string[]
   transform?: (config: IConfig, url: string) => ISitemapFiled
   trailingSlash?: boolean
 }

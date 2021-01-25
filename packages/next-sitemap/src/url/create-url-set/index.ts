@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { IConfig, INextManifest, ISitemapFiled } from '../../interface'
 import { isNextInternalUrl, generateUrl } from '../util'
-import { removeIfMatchPattern } from '../../array'
+import { removeIfMatchPattern, addIfNotMatchPattern } from '../../array'
 
 export const absoluteUrl = (
   siteUrl: string,
@@ -34,6 +34,11 @@ export const createUrlSet = (
   // Remove the urls based on config.exclude array
   if (config.exclude && config.exclude.length > 0) {
     allKeys = removeIfMatchPattern(allKeys, config.exclude)
+  }
+
+  // Add ulrs based on config.include array
+  if (config.include && config.include.length > 0) {
+    allKeys = addIfNotMatchPattern(allKeys, config.include)
   }
 
   // Filter out next.js internal urls and generate urls based on sitemap
