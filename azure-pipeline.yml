@@ -39,7 +39,7 @@ steps:
     inputs:
       targetType: 'inline'
       script: 'yarn build'
-      failOnStderr: true
+      # failOnStderr: true
 
   # Lint
   - task: Bash@3
@@ -47,7 +47,7 @@ steps:
     inputs:
       targetType: 'inline'
       script: 'yarn lint'
-      # failOnStderr: true
+      failOnStderr: true
 
   # Test
   - task: Bash@3
