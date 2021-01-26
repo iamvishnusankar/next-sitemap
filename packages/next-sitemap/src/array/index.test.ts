@@ -1,4 +1,3 @@
-import { merge } from '@corex/deepmerge'
 import {
   toChunks,
   toArray,
