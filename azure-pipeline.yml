@@ -39,7 +39,7 @@ steps:
     inputs:
       targetType: 'inline'
       script: 'yarn build'
-      failOnStderr: true
+      # failOnStderr: true
 
   # Lint
   - task: Bash@3
