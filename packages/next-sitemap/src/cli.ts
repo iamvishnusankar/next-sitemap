@@ -10,43 +10,44 @@ import {
   getConfigFilePath,
 } from './path'
 import { exportRobotsTxt } from './robots-txt'
+;(async () => {
+  // Get config file path
+  const configFilePath = getConfigFilePath()
 
-// Get config file path
-const configFilePath = getConfigFilePath()
+  // Load next-sitemap.js
+  let config = loadConfig(configFilePath)
 
-// Load next-sitemap.js
-let config = loadConfig(configFilePath)
+  // Get runtime paths
+  const runtimePaths = getRuntimePaths(config)
 
-// Get runtime paths
-const runtimePaths = getRuntimePaths(config)
+  // get runtime config
+  const runtimeConfig = getRuntimeConfig(runtimePaths)
 
-// get runtime config
-const runtimeConfig = getRuntimeConfig(runtimePaths)
+  // Update config with runtime config
+  config = updateConfig(config, runtimeConfig)
 
-// Update config with runtime config
-config = updateConfig(config, runtimeConfig)
+  // Load next.js manifest files
+  const manifest = loadManifest(runtimePaths)
 
-// Load next.js manifest files
-const manifest = loadManifest(runtimePaths)
+  // Create url-set based on config and manifest
+  const urlSet = await createUrlSet(config, manifest)
 
-// Create url-set based on config and manifest
-const urlSet = createUrlSet(config, manifest)
+  // Split sitemap into multiple files
+  const chunks = toChunks(urlSet, config.sitemapSize!)
+  const sitemapChunks = resolveSitemapChunks(runtimePaths.SITEMAP_FILE, chunks)
 
-// Split sitemap into multiple files
-const chunks = toChunks(urlSet, config.sitemapSize!)
-const sitemapChunks = resolveSitemapChunks(runtimePaths.SITEMAP_FILE, chunks)
+  // All sitemaps array to keep track of generated sitemap files.
+  // Later to be added on robots.txt
+  const allSitemaps: string[] = []
 
-// All sitemaps array to keep track of generated sitemap files.
-// Later to be added on robots.txt
-const allSitemaps: string[] = []
+  // Generate sitemaps from chunks
+  sitemapChunks.forEach((chunk) => {
+    generateSitemap(chunk)
+    allSitemaps.push(generateUrl(config.siteUrl, `/${chunk.filename}`))
+  })
 
-// Generate sitemaps from chunks
-sitemapChunks.forEach((chunk) => {
-  generateSitemap(chunk)
-  allSitemaps.push(generateUrl(config.siteUrl, `/${chunk.filename}`))
-})
-
-// Generate robots.txt
-if (config.generateRobotsTxt) {
-  exportRobotsTxt(runtimePaths, config, allSitemaps)
-}
+  // Generate robots.txt
+  if (config.generateRobotsTxt) {
+    exportRobotsTxt(runtimePaths, config, allSitemaps)
+  }
+})()
