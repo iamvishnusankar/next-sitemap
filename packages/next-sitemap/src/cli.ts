@@ -10,6 +10,8 @@ import {
   getConfigFilePath,
 } from './path'
 import { exportRobotsTxt } from './robots-txt'
+
+// Async main
 ;(async () => {
   // Get config file path
   const configFilePath = getConfigFilePath()
