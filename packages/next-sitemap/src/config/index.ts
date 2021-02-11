@@ -14,10 +14,10 @@ export const loadConfig = (path: string): IConfig => {
   return withDefaultConfig(baseConfig!)
 }
 
-export const transformSitemap = (
+export const transformSitemap = async (
   config: IConfig,
   url: string
-): ISitemapFiled => {
+): Promise<ISitemapFiled> => {
   return {
     loc: url,
     changefreq: config?.changefreq,

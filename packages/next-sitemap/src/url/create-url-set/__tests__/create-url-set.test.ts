@@ -3,8 +3,8 @@ import { sampleConfig } from '../../../fixtures/config'
 import { sampleManifest } from '../../../fixtures/manifest'
 
 describe('createUrlSet', () => {
-  test('without exclusion', () => {
-    const urlset = createUrlSet(sampleConfig, sampleManifest)
+  test('without exclusion', async () => {
+    const urlset = await createUrlSet(sampleConfig, sampleManifest)
     expect(urlset).toStrictEqual([
       {
         changefreq: 'daily',
@@ -39,8 +39,8 @@ describe('createUrlSet', () => {
     ])
   })
 
-  test('with exclusion', () => {
-    const urlset = createUrlSet(
+  test('with exclusion', async () => {
+    const urlset = await createUrlSet(
       {
         ...sampleConfig,
         exclude: ['/', '/page-0', '/page-2'],
@@ -64,8 +64,8 @@ describe('createUrlSet', () => {
     ])
   })
 
-  test('with wildcard exclusion', () => {
-    const urlset = createUrlSet(
+  test('with wildcard exclusion', async () => {
+    const urlset = await createUrlSet(
       {
         ...sampleConfig,
         exclude: ['/page*'],
@@ -83,8 +83,8 @@ describe('createUrlSet', () => {
     ])
   })
 
-  test('without trailing slash', () => {
-    const urlset = createUrlSet(
+  test('without trailing slash', async () => {
+    const urlset = await createUrlSet(
       {
         ...sampleConfig,
         trailingSlash: false,
@@ -125,8 +125,8 @@ describe('createUrlSet', () => {
     ])
   })
 
-  test('with trailing slash', () => {
-    const urlset = createUrlSet(
+  test('with trailing slash', async () => {
+    const urlset = await createUrlSet(
       {
         ...sampleConfig,
         trailingSlash: true,
@@ -167,8 +167,8 @@ describe('createUrlSet', () => {
     ])
   })
 
-  test('with custom transform', () => {
-    const urlset = createUrlSet(
+  test('with custom transform', async () => {
+    const urlset = await createUrlSet(
       {
         ...sampleConfig,
         trailingSlash: true,
