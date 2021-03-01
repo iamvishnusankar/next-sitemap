@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "@corex/deepmerge": "^2.5.3",
-    "matcher": "^3.0.0",
+    "matcher": "^4.0.0",
     "minimist": "^1.2.5"
   },
   "peerDependencies": {
