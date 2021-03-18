@@ -26,9 +26,11 @@ yarn add next-sitemap -D
 
 `next-sitemap` requires a basic config file (`next-sitemap.js`) under your project root
 
+> ✅ `next-sitemap` now loads environment variables from `.env` files by default.
+
 ```js
 module.exports = {
-  siteUrl: 'https://example.com',
+  siteUrl: process.env.SITE_URL || 'https://example.com',
   generateRobotsTxt: true, // (optional)
   // ...other options
 }
