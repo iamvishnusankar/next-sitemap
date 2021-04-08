@@ -26,9 +26,16 @@ export const createUrlSet = async (
   config: IConfig,
   manifest: INextManifest
 ): Promise<ISitemapFiled[]> => {
+  let preRenderRoutes = manifest.preRender ? Object.keys(manifest.preRender.routes) : [];
+  // Remove the localized url from pre-rendered routes
+  const localizedPathRegex = new RegExp(`^/${config.i18n?.defaultLocale}/`, 'g');
+  if(config.i18n?.defaultLocale) {
+    preRenderRoutes = preRenderRoutes.map((path) => path.replace(localizedPathRegex, '/'));
+  }
+
   let allKeys = [
     ...Object.keys(manifest.build.pages),
-    ...(manifest.preRender ? Object.keys(manifest.preRender.routes) : []),
+    ...preRenderRoutes,
   ]
 
   // Remove the urls based on config.exclude array

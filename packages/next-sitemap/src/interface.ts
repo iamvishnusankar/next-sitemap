@@ -21,7 +21,11 @@ export interface IConfig {
   autoLastmod?: boolean
   exclude?: string[]
   transform?: (config: IConfig, url: string) => Promise<ISitemapFiled>
-  trailingSlash?: boolean
+  trailingSlash?: boolean;
+  i18n?: {
+    defaultLocale?: string;
+    locales?: string[];
+  }
 }
 
 export interface IBuildManifest {
@@ -59,9 +63,19 @@ export interface IRuntimePaths {
   EXPORT_MARKER: string
 }
 
-export type ISitemapFiled = {
-  loc: string
-  lastmod?: string
-  changefreq?: string
-  priority?: string
+export interface ISitemapFiled extends ISitemapFields {
+  loc: string;
+  lastmod?: string;
+  changefreq?: string;
+  priority?: string;
 }
+
+export type ISitemapFields = {
+  [p: string]: ISitemapField;
+}
+
+export type ISitemapField = string | ISitemapFields | [string | null, ISitemapFieldAttributes] | undefined;
+
+export type ISitemapFieldAttributes = {
+  [p: string]: any;
+};

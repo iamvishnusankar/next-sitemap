@@ -8,6 +8,18 @@ describe('buildSitemapXml', () => {
       {
         loc: 'https://example.com',
         lastmod: undefined,
+        'xhtml:link': [null, {
+          href: 'https://example.com/fr',
+          rel: 'alternate',
+          hreflang: 'fr'
+        }],
+        news: {
+          article: {
+            title: ['Hi !', {
+              link: 'https://facebook.fr'
+            }]
+          }
+        }
       },
       {
         loc: 'https://example.com',

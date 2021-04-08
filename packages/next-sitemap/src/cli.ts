@@ -7,12 +7,12 @@ import { toChunks } from './array'
 import {
   resolveSitemapChunks,
   getRuntimePaths,
-  getConfigFilePath,
+  getConfigFilePath
 } from './path'
-import { exportRobotsTxt } from './robots-txt'
+import { exportRobotsTxt } from './robots-txt';
 
 // Async main
-;(async () => {
+(async () => {
   // Get config file path
   const configFilePath = getConfigFilePath()
 
