@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { defaultConfig, withDefaultConfig, transformSitemap } from '.'
 import { IConfig, ISitemapFiled } from '../interface'
+import {formatSitemapWithPrettier} from "../sitemap/formatSitemap";
 
 describe('next-sitemap/config', () => {
   test('defaultConfig', () => {
@@ -14,6 +15,7 @@ describe('next-sitemap/config', () => {
       exclude: [],
       trailingSlash: false,
       transform: transformSitemap,
+      format: formatSitemapWithPrettier,
       robotsTxtOptions: {
         policies: [
           {
@@ -51,6 +53,7 @@ describe('next-sitemap/config', () => {
       generateRobotsTxt: true,
       exclude: ['1', '2'],
       transform: transformSitemap,
+      format: formatSitemapWithPrettier,
       trailingSlash: false,
       robotsTxtOptions: {
         policies: [],

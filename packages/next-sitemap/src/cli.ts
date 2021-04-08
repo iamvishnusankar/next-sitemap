@@ -13,6 +13,7 @@ import { exportRobotsTxt } from './robots-txt';
 
 // Async main
 (async () => {
+
   // Get config file path
   const configFilePath = getConfigFilePath()
 
@@ -44,7 +45,7 @@ import { exportRobotsTxt } from './robots-txt';
 
   // Generate sitemaps from chunks
   sitemapChunks.forEach((chunk) => {
-    generateSitemap(chunk)
+    generateSitemap(chunk, config.format)
     allSitemaps.push(generateUrl(config.siteUrl, `/${chunk.filename}`))
   })
 

@@ -1,4 +1,4 @@
-import {ISitemapFields, ISitemapFiled} from '../interface'
+import {Formatter, ISitemapFields, ISitemapFiled} from '../interface'
 import { withXMLTemplate } from './withXMLTemplate'
 
 export const siteMapFieldToXML = (field: ISitemapFields): string | false => {
@@ -35,12 +35,18 @@ export const siteMapFieldToXML = (field: ISitemapFields): string | false => {
   return res;
 }
 
-export const buildSitemapXml = (fields: ISitemapFiled[]): string => {
+export const buildSitemapXml = (fields: ISitemapFiled[], formatter?: Formatter): string => {
   const content = fields.reduce((prev, curr) => {
 
     // Append previous value and return
-    return `${prev}<url>${siteMapFieldToXML(curr)}</url>\n`
+    return `${prev}<url>${siteMapFieldToXML(curr)}</url>`
   }, '')
 
-  return withXMLTemplate(content)
+  let xml = withXMLTemplate(content);
+
+  if(formatter) {
+    xml = formatter(xml)
+  }
+
+  return xml;
 }

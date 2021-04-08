@@ -21,12 +21,15 @@ export interface IConfig {
   autoLastmod?: boolean
   exclude?: string[]
   transform?: (config: IConfig, url: string) => Promise<ISitemapFiled>
+  format?: Formatter;
   trailingSlash?: boolean;
   i18n?: {
     defaultLocale?: string;
     locales?: string[];
   }
 }
+
+export type Formatter = (sitemap: string) => string
 
 export interface IBuildManifest {
   pages: {

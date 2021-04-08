@@ -1,5 +1,6 @@
 import { ISitemapFiled } from '../../interface'
 import { buildSitemapXml } from '../buildSitemapXml'
+import {sampleConfig} from "../../fixtures/config";
 
 describe('buildSitemapXml', () => {
   test('snapshot test to exclude undefined values from final sitemap', () => {
@@ -28,7 +29,7 @@ describe('buildSitemapXml', () => {
     ]
 
     // Generate sitemap
-    const sitemap = buildSitemapXml(fields)
+    const sitemap = buildSitemapXml(fields, sampleConfig.format)
 
     // Expect the generated sitemap to match snapshot.
     expect(sitemap).toMatchSnapshot()

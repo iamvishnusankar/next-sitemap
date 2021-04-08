@@ -8,6 +8,7 @@ import {
 } from '../interface'
 import { merge } from '@corex/deepmerge'
 import { loadFile } from '../file'
+import {formatSitemapWithPrettier} from "../sitemap/formatSitemap";
 
 export const loadConfig = (path: string): IConfig => {
   const baseConfig = loadFile<IConfig>(path)
@@ -36,6 +37,7 @@ export const defaultConfig: Partial<IConfig> = {
   trailingSlash: false,
   exclude: [],
   transform: transformSitemap,
+  format: formatSitemapWithPrettier,
   robotsTxtOptions: {
     policies: [
       {
