@@ -29,6 +29,9 @@ jobs:
       - name: Install
         run: yarn install --ignore-engines
 
+      - name: Lint
+        run: yarn lint
+
       - name: Test
         run: yarn test
         env:
