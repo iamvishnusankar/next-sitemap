@@ -9,7 +9,7 @@ Sitemap generator for next.js. Generate sitemap(s) and robots.txt for all static
   - [Create config file](#create-config-file)
   - [Building sitemaps](#building-sitemaps)
 - [Splitting large sitemap into multiple files](#splitting-large-sitemap-into-multiple-files)
-- [Configuration Options](#next-sitemapjs-options)
+- [Configuration Options](#configuration-options)
 - [Custom transformation function](#custom-transformation-function)
 - [Full configuration example](#full-configuration-example)
 - [Generating dynamic/server-side sitemaps](#generating-dynamicserver-side-sitemaps)
