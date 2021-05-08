@@ -361,10 +361,10 @@
   dependencies:
     typescript "4.0.3"
 
-"@corex/workspace@^2.5.9":
-  version "2.5.9"
-  resolved "https://registry.yarnpkg.com/@corex/workspace/-/workspace-2.5.9.tgz#414cd0c808664b21f5e18c5a745051df753ffa2f"
-  integrity sha512-HvICo3E5xDmgN5q/saSZcoR6PlqAc5nIrYdElVbdhJNbso1VsGbm5z5tzj9QpI4CEjK62LCpt4/tzCA/TcnCcQ==
+"@corex/workspace@^2.5.11":
+  version "2.5.11"
+  resolved "https://registry.yarnpkg.com/@corex/workspace/-/workspace-2.5.11.tgz#15a991d078903d548f73416db984bf303d40b8f0"
+  integrity sha512-FNSQKC2wgGbS1wmgcK3kBZnmie9/9foiQ56mXvuBsrUZqcrasL9pm6Fbsrph91ZW5o96hmLcR5vmc2O8bi15tA==
   dependencies:
     "@corex/eslint-config" "*"
     "@corex/jest" "*"
@@ -3127,9 +3127,9 @@ hmac-drbg@^1.0.1:
     minimalistic-crypto-utils "^1.0.1"
 
 hosted-git-info@^2.1.4:
-  version "2.8.8"
-  resolved "https://registry.yarnpkg.com/hosted-git-info/-/hosted-git-info-2.8.8.tgz#7539bd4bc1e0e0a895815a2e0262420b12858488"
-  integrity sha512-f/wzC2QaWBs7t9IYqB4T3sR1xviIViXJRJTWBlx2Gf3g0Xi5vI7Yy4koXQ1c9OYDGHN9sBy1DQ2AB8fqZBWhUg==
+  version "2.8.9"
+  resolved "https://registry.yarnpkg.com/hosted-git-info/-/hosted-git-info-2.8.9.tgz#dffc0bf9a21c02209090f2aa69429e1414daf3f9"
+  integrity sha512-mxIDAb9Lsm6DoOJ7xH+5+X4y1LU/4Hi50L9C5sIswK3JzULS4bwk1FvjdBgvYR4bzT4tuUQiC15FE2f5HbLvYw==
 
 hosted-git-info@^3.0.6:
   version "3.0.7"
