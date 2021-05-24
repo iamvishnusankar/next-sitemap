@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { IConfig, INextManifest, ISitemapFiled } from '../../interface'
+import { IConfig, INextManifest, ISitemapField } from '../../interface'
 import { isNextInternalUrl, generateUrl } from '../util'
 import { removeIfMatchPattern } from '../../array'
 
@@ -25,7 +25,7 @@ export const absoluteUrl = (
 export const createUrlSet = async (
   config: IConfig,
   manifest: INextManifest
-): Promise<ISitemapFiled[]> => {
+): Promise<ISitemapField[]> => {
   let allKeys = [
     ...Object.keys(manifest.build.pages),
     ...(manifest.preRender ? Object.keys(manifest.preRender.routes) : []),
@@ -42,7 +42,7 @@ export const createUrlSet = async (
   urlSet = [...new Set(urlSet)]
 
   // Create sitemap fields based on transformation
-  let sitemapFields: ISitemapFiled[] = [] // transform using relative urls
+  let sitemapFields: ISitemapField[] = [] // transform using relative urls
 
   for (const url of urlSet) {
     const sitemapFiled = await config.transform!(config, url)
