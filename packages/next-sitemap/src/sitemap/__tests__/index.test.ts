@@ -14,14 +14,14 @@ describe('buildSitemapXml', () => {
         lastmod: 'some-value',
         alternateRefs: [
           {
-            href: "https://example.com/en",
-            hreflang: "en"
+            href: 'https://example.com/en',
+            hreflang: 'en',
           },
           {
-            href: "https://example.com/fr",
-            hreflang: "fr"
-          }
-        ]
+            href: 'https://example.com/fr',
+            hreflang: 'fr',
+          },
+        ],
       },
     ]
 
