@@ -5,7 +5,7 @@ import {
   ISitemapChunk,
   IConfig,
   IRuntimePaths,
-  ISitemapFiled,
+  ISitemapField,
 } from '../interface'
 import minimist from 'minimist'
 import fs from 'fs'
@@ -16,7 +16,7 @@ export const getPath = (...pathSegment: string[]): string => {
 
 export const resolveSitemapChunks = (
   baseSitemapPath: string,
-  chunks: ISitemapFiled[][]
+  chunks: ISitemapField[][]
 ): ISitemapChunk[] => {
   const folder = path.dirname(baseSitemapPath)
   return chunks.map((chunk, index) => {

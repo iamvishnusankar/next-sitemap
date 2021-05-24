@@ -1,7 +1,7 @@
-import { ISitemapFiled } from '../interface'
+import { ISitemapField } from '../interface'
 import { withXMLTemplate } from './withXMLTemplate'
 
-export const buildSitemapXml = (fields: ISitemapFiled[]): string => {
+export const buildSitemapXml = (fields: ISitemapField[]): string => {
   const content = fields.map(fieldData => {
     const field: Array<string> = [];
 

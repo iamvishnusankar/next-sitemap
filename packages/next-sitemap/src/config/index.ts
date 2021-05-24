@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 import {
   IConfig,
-  ISitemapFiled,
+  ISitemapField,
   IRuntimePaths,
   IExportMarker,
 } from '../interface'
@@ -17,7 +17,7 @@ export const loadConfig = (path: string): IConfig => {
 export const transformSitemap = async (
   config: IConfig,
   url: string
-): Promise<ISitemapFiled> => {
+): Promise<ISitemapField> => {
   return {
     loc: url,
     changefreq: config?.changefreq,
