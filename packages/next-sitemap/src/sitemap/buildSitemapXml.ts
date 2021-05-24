@@ -1,4 +1,4 @@
-import { ISitemapField } from '../interface'
+import { AlternateRef, ISitemapField } from '../interface'
 import { withXMLTemplate } from './withXMLTemplate'
 
 export const buildSitemapXml = (fields: ISitemapField[]): string => {
@@ -8,7 +8,11 @@ export const buildSitemapXml = (fields: ISitemapField[]): string => {
     // Iterate all object keys and key value pair to field-set
     for (const key of Object.keys(fieldData)) {
       if (fieldData[key]) {
-        field.push(`<${key}>${fieldData[key]}</${key}>`);
+        if (key !== "alternateRefs") {
+          field.push(`<${key}>${fieldData[key]}</${key}>`);
+        } else {
+          field.push(buildAlternateRefsXml(fieldData.alternateRefs ?? []))
+        }
       }
     }
 
@@ -17,4 +21,10 @@ export const buildSitemapXml = (fields: ISitemapField[]): string => {
   }).join("");
 
   return withXMLTemplate(content)
+}
+
+export const buildAlternateRefsXml = (alternateRefs: Array<AlternateRef>): string => {
+  return alternateRefs.map(alternateRef => {
+    return `<xhtml:link rel="alternate" hreflang="${alternateRef.hreflang}" href="${alternateRef.href}"/>`
+  }).join("");
 }
