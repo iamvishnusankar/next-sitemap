@@ -59,9 +59,15 @@ export interface IRuntimePaths {
   EXPORT_MARKER: string
 }
 
+export type AlternateRef = {
+  href: string
+  hreflang: string
+}
+
 export type ISitemapField = {
   loc: string
   lastmod?: string
   changefreq?: string
   priority?: string
+  alternateRefs?: Array<AlternateRef>
 }

@@ -12,6 +12,16 @@ describe('buildSitemapXml', () => {
       {
         loc: 'https://example.com',
         lastmod: 'some-value',
+        alternateRefs: [
+          {
+            href: "https://example.com/en",
+            hreflang: "en"
+          },
+          {
+            href: "https://example.com/fr",
+            hreflang: "fr"
+          }
+        ]
       },
     ]
 
