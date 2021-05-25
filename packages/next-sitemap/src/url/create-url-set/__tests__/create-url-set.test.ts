@@ -11,30 +11,35 @@ describe('createUrlSet', () => {
         lastmod: expect.any(String),
         priority: 0.7,
         loc: 'https://example.com',
+        alternateRefs: [],
       },
       {
         changefreq: 'daily',
         lastmod: expect.any(String),
         priority: 0.7,
         loc: 'https://example.com/page-0',
+        alternateRefs: [],
       },
       {
         changefreq: 'daily',
         lastmod: expect.any(String),
         priority: 0.7,
         loc: 'https://example.com/page-1',
+        alternateRefs: [],
       },
       {
         changefreq: 'daily',
         lastmod: expect.any(String),
         priority: 0.7,
         loc: 'https://example.com/page-2',
+        alternateRefs: [],
       },
       {
         changefreq: 'daily',
         lastmod: expect.any(String),
         priority: 0.7,
         loc: 'https://example.com/page-3',
+        alternateRefs: [],
       },
     ])
   })
@@ -54,12 +59,14 @@ describe('createUrlSet', () => {
         lastmod: expect.any(String),
         priority: 0.7,
         loc: 'https://example.com/page-1',
+        alternateRefs: [],
       },
       {
         changefreq: 'daily',
         lastmod: expect.any(String),
         priority: 0.7,
         loc: 'https://example.com/page-3',
+        alternateRefs: [],
       },
     ])
   })
@@ -79,6 +86,7 @@ describe('createUrlSet', () => {
         lastmod: expect.any(String),
         priority: 0.7,
         loc: 'https://example.com',
+        alternateRefs: [],
       },
     ])
   })
@@ -97,30 +105,35 @@ describe('createUrlSet', () => {
         lastmod: expect.any(String),
         priority: 0.7,
         loc: 'https://example.com',
+        alternateRefs: [],
       },
       {
         changefreq: 'daily',
         lastmod: expect.any(String),
         priority: 0.7,
         loc: 'https://example.com/page-0',
+        alternateRefs: [],
       },
       {
         changefreq: 'daily',
         lastmod: expect.any(String),
         priority: 0.7,
         loc: 'https://example.com/page-1',
+        alternateRefs: [],
       },
       {
         changefreq: 'daily',
         lastmod: expect.any(String),
         priority: 0.7,
         loc: 'https://example.com/page-2',
+        alternateRefs: [],
       },
       {
         changefreq: 'daily',
         lastmod: expect.any(String),
         priority: 0.7,
         loc: 'https://example.com/page-3',
+        alternateRefs: [],
       },
     ])
   })
@@ -139,30 +152,35 @@ describe('createUrlSet', () => {
         lastmod: expect.any(String),
         priority: 0.7,
         loc: 'https://example.com/',
+        alternateRefs: [],
       },
       {
         changefreq: 'daily',
         lastmod: expect.any(String),
         priority: 0.7,
         loc: 'https://example.com/page-0/',
+        alternateRefs: [],
       },
       {
         changefreq: 'daily',
         lastmod: expect.any(String),
         priority: 0.7,
         loc: 'https://example.com/page-1/',
+        alternateRefs: [],
       },
       {
         changefreq: 'daily',
         lastmod: expect.any(String),
         priority: 0.7,
         loc: 'https://example.com/page-2/',
+        alternateRefs: [],
       },
       {
         changefreq: 'daily',
         lastmod: expect.any(String),
         priority: 0.7,
         loc: 'https://example.com/page-3/',
+        alternateRefs: [],
       },
     ])
   })
@@ -190,10 +208,79 @@ describe('createUrlSet', () => {
       {
         changefreq: 'yearly',
         loc: 'https://example.com/',
+        alternateRefs: [],
       },
       {
         changefreq: 'yearly',
         loc: 'https://example.com/page-2/',
+        alternateRefs: [],
+      },
+    ])
+  })
+
+  test('with alternateRefs', async () => {
+    const urlset = await createUrlSet(
+      {
+        ...sampleConfig,
+        siteUrl: 'https://example.com/',
+        alternateRefs: [
+          { href: 'https://en.example.com/', hreflang: 'en' },
+          { href: 'https://fr.example.com/', hreflang: 'fr' },
+        ],
+      },
+      sampleManifest
+    )
+
+    expect(urlset).toStrictEqual([
+      {
+        changefreq: 'daily',
+        lastmod: expect.any(String),
+        priority: 0.7,
+        loc: 'https://example.com',
+        alternateRefs: [
+          { href: 'https://en.example.com', hreflang: 'en' },
+          { href: 'https://fr.example.com', hreflang: 'fr' },
+        ],
+      },
+      {
+        changefreq: 'daily',
+        lastmod: expect.any(String),
+        priority: 0.7,
+        loc: 'https://example.com/page-0',
+        alternateRefs: [
+          { href: 'https://en.example.com/page-0', hreflang: 'en' },
+          { href: 'https://fr.example.com/page-0', hreflang: 'fr' },
+        ],
+      },
+      {
+        changefreq: 'daily',
+        lastmod: expect.any(String),
+        priority: 0.7,
+        loc: 'https://example.com/page-1',
+        alternateRefs: [
+          { href: 'https://en.example.com/page-1', hreflang: 'en' },
+          { href: 'https://fr.example.com/page-1', hreflang: 'fr' },
+        ],
+      },
+      {
+        changefreq: 'daily',
+        lastmod: expect.any(String),
+        priority: 0.7,
+        loc: 'https://example.com/page-2',
+        alternateRefs: [
+          { href: 'https://en.example.com/page-2', hreflang: 'en' },
+          { href: 'https://fr.example.com/page-2', hreflang: 'fr' },
+        ],
+      },
+      {
+        changefreq: 'daily',
+        lastmod: expect.any(String),
+        priority: 0.7,
+        loc: 'https://example.com/page-3',
+        alternateRefs: [
+          { href: 'https://en.example.com/page-3', hreflang: 'en' },
+          { href: 'https://fr.example.com/page-3', hreflang: 'fr' },
+        ],
       },
     ])
   })

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { defaultConfig, withDefaultConfig, transformSitemap } from '.'
-import { IConfig, ISitemapFiled } from '../interface'
+import { IConfig, ISitemapField } from '../interface'
 
 describe('next-sitemap/config', () => {
   test('defaultConfig', () => {
@@ -86,6 +86,7 @@ describe('next-sitemap/config', () => {
       lastmod: expect.any(String),
       changefreq: 'weekly',
       priority: 0.6,
+      alternateRefs: [],
     })
   })
 
@@ -97,7 +98,7 @@ describe('next-sitemap/config', () => {
       exclude: ['1', '2'],
       priority: 0.6,
       changefreq: 'weekly',
-      transform: async (): Promise<ISitemapFiled> => {
+      transform: async (): Promise<ISitemapField> => {
         return {
           loc: 'something-else',
           lastmod: 'lastmod-cutom',

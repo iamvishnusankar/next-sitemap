@@ -20,7 +20,8 @@ export interface IConfig {
   robotsTxtOptions?: IRobotsTxt
   autoLastmod?: boolean
   exclude?: string[]
-  transform?: (config: IConfig, url: string) => Promise<ISitemapFiled>
+  alternateRefs?: Array<AlternateRef>
+  transform?: (config: IConfig, url: string) => Promise<ISitemapField>
   trailingSlash?: boolean
 }
 
@@ -47,7 +48,7 @@ export interface INextManifest {
 
 export interface ISitemapChunk {
   path: string
-  fields: ISitemapFiled[]
+  fields: ISitemapField[]
   filename: string
 }
 
@@ -59,9 +60,15 @@ export interface IRuntimePaths {
   EXPORT_MARKER: string
 }
 
-export type ISitemapFiled = {
+export type AlternateRef = {
+  href: string
+  hreflang: string
+}
+
+export type ISitemapField = {
   loc: string
   lastmod?: string
   changefreq?: string
   priority?: string
+  alternateRefs?: Array<AlternateRef>
 }
