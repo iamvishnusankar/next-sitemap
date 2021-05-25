@@ -21,7 +21,9 @@ export const resolveSitemapChunks = (
 ): ISitemapChunk[] => {
   const folder = path.dirname(baseSitemapPath)
   return chunks.map((chunk, index) => {
-    const filename = `${config.sitemapBaseFileName}${index > 0 ? `-${index}` : ''}.xml`
+    const filename = `${config.sitemapBaseFileName}${
+      index > 0 ? `-${index}` : ''
+    }.xml`
 
     return {
       path: `${folder}/${filename}`,

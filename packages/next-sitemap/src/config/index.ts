@@ -31,7 +31,7 @@ export const defaultConfig: Partial<IConfig> = {
   sourceDir: '.next',
   outDir: 'public',
   priority: 0.7,
-  sitemapBaseFileName: "sitemap",
+  sitemapBaseFileName: 'sitemap',
   changefreq: 'daily',
   sitemapSize: 5000,
   autoLastmod: true,
