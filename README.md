@@ -77,6 +77,7 @@ Above is the minimal configuration to split a large sitemap. When the number of 
 | siteUrl                                        | Base url of your website                                                                                                                                                                                                                                                                                                                                          | string         |
 | changefreq (optional)                          | Change frequency. Default `daily`                                                                                                                                                                                                                                                                                                                                 | string         |
 | priority (optional)                            | Priority. Default `0.7`                                                                                                                                                                                                                                                                                                                                           | number         |
+| alternateRefs (optional)                       | Denote multi-language support by unique URL. Default `[]`                                                                                                                                                                                                                                                                                                         | AlternateRef[] |
 | sitemapSize(optional)                          | Split large sitemap into multiple files by specifying sitemap size. Default `5000`                                                                                                                                                                                                                                                                                | number         |
 | generateRobotsTxt (optional)                   | Generate a `robots.txt` file and list the generated sitemaps. Default `false`                                                                                                                                                                                                                                                                                     | boolean        |
 | robotsTxtOptions.policies (optional)           | Policies for generating `robots.txt`. Default `[{ userAgent: '*', allow: '/' }]`                                                                                                                                                                                                                                                                                  | []             |
@@ -117,6 +118,7 @@ module.exports = {
       changefreq: config.changefreq,
       priority: config.priority,
       lastmod: config.autoLastmod ? new Date().toISOString() : undefined,
+      alternateRefs: config.alternateRefs ?? [],
     }
   },
 }
@@ -134,6 +136,16 @@ module.exports = {
   sitemapSize: 5000,
   generateRobotsTxt: true,
   exclude: ['/protected-page', '/awesome/secret-page'],
+  alternateRefs: [
+    {
+      href: 'https://es.example.com',
+      hreflang: 'es',
+    },
+    {
+      href: 'https://fr.example.com',
+      hreflang: 'fr',
+    },
+  ],
   // Default transformation function
   transform: async (config, path) => {
     return {
@@ -141,6 +153,7 @@ module.exports = {
       changefreq: config.changefreq,
       priority: config.priority,
       lastmod: config.autoLastmod ? new Date().toISOString() : undefined,
+      alternateRefs: config.alternateRefs ?? [],
     }
   },
   robotsTxtOptions: {
