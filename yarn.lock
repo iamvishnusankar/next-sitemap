@@ -302,10 +302,10 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@corex/deepmerge@^2.5.11":
-  version "2.5.11"
-  resolved "https://registry.yarnpkg.com/@corex/deepmerge/-/deepmerge-2.5.11.tgz#2f7a14f330f3c036256cf60d0ab2d49fac944248"
-  integrity sha512-lQjrug/WENKZFTPJpl4d0mKYnmFXx9pslOnAp5mjNuoKRz/Xm5kk88f11/mKNXdBzSaeLKgGUABnIKy1W7PtTA==
+"@corex/deepmerge@^2.6.20":
+  version "2.6.20"
+  resolved "https://registry.yarnpkg.com/@corex/deepmerge/-/deepmerge-2.6.20.tgz#a72d1cb5a101fd11160815b96f499a588362ba5b"
+  integrity sha512-oZZxwDtV0bf8VPcSIhZPvdBFUkVIC8zRblUjrrVAsbGRiqUuZJfoXw2M6NDiIXWcUCfOqbkFND6Yf3b9ej9AjA==
 
 "@corex/eslint-config@*":
   version "2.5.3"
@@ -361,10 +361,10 @@
   dependencies:
     typescript "4.0.3"
 
-"@corex/workspace@^2.5.11":
-  version "2.5.11"
-  resolved "https://registry.yarnpkg.com/@corex/workspace/-/workspace-2.5.11.tgz#15a991d078903d548f73416db984bf303d40b8f0"
-  integrity sha512-FNSQKC2wgGbS1wmgcK3kBZnmie9/9foiQ56mXvuBsrUZqcrasL9pm6Fbsrph91ZW5o96hmLcR5vmc2O8bi15tA==
+"@corex/workspace@^2.6.20":
+  version "2.6.20"
+  resolved "https://registry.yarnpkg.com/@corex/workspace/-/workspace-2.6.20.tgz#3596db8643440d96c44a7a2a85690da64c8037d1"
+  integrity sha512-G/QK/7tBGl0wPvWU13YN/FfnG58KJPWkoHhOnL9Z2ClkvbGLsCP68cLv36SH55hoYBKKiEiaG13qBoClZ0GHKQ==
   dependencies:
     "@corex/eslint-config" "*"
     "@corex/jest" "*"
