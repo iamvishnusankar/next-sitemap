@@ -1,5 +1,6 @@
 import { ISitemapFiled } from '../../interface'
 import { buildSitemapXml } from '../buildSitemapXml'
+import {sampleConfig} from "../../fixtures/config";
 
 describe('buildSitemapXml', () => {
   test('snapshot test to exclude undefined values from final sitemap', () => {
@@ -8,6 +9,18 @@ describe('buildSitemapXml', () => {
       {
         loc: 'https://example.com',
         lastmod: undefined,
+        'xhtml:link': [null, {
+          href: 'https://example.com/fr',
+          rel: 'alternate',
+          hreflang: 'fr'
+        }],
+        news: {
+          article: {
+            title: ['Hi !', {
+              link: 'https://facebook.fr'
+            }]
+          }
+        }
       },
       {
         loc: 'https://example.com',
@@ -16,7 +29,7 @@ describe('buildSitemapXml', () => {
     ]
 
     // Generate sitemap
-    const sitemap = buildSitemapXml(fields)
+    const sitemap = buildSitemapXml(fields, sampleConfig.format)
 
     // Expect the generated sitemap to match snapshot.
     expect(sitemap).toMatchSnapshot()

@@ -86,7 +86,8 @@ Above is the minimal configuration to split a large sitemap. When the number of 
 | sourceDir (optional)                           | next.js build directory. Default `.next`                                                                                                                                                                                                                                                                                                                          | string         |
 | outDir (optional)                              | All the generated files will be exported to this directory. Default `public`                                                                                                                                                                                                                                                                                      | string         |
 | transform (optional)                           | A transformation function, which runs **for each** `relative-path` in the sitemap. Returning `null` value from the transformation function will result in the exclusion of that specific `path` from the generated sitemap list.                                                                                                                                  | async function |
-
+| format (optional                               | A formatting function which make your xml files prettier. Speaking of which, if the prettier package is installed, it will be used by default to format the xml files                                                                                                                                                                                             | function       |  
+| i18n (optional)                                | next.js i18n options. It will permit to correctly format international routes                                                                                                                                                                                                                                                                                     | object         | 
 ## Custom transformation function
 
 Custom transformation provides an extension method to add, remove or exclude `path` or `properties` from a url-set. Transform function runs **for each** `relative path` in the sitemap. And use the `key`: `value` object to add properties in the XML.
@@ -117,6 +118,21 @@ module.exports = {
       changefreq: config.changefreq,
       priority: config.priority,
       lastmod: config.autoLastmod ? new Date().toISOString() : undefined,
+
+      // This will recursively generate tags
+      'news:news': {
+        'news:publication': {
+          'new:name': 'My awesome publication',
+        },
+      },
+
+      // This will create a tag with attributes 
+      // If the first argument is null the generated tag will be self-closing
+      'xhtml:link': [null, {
+        rel: 'alternate',
+        hreflang: 'fr',
+        href: `${path}/fr`
+      }]
     }
   },
 }
