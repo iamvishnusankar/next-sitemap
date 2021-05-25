@@ -137,8 +137,14 @@ module.exports = {
   generateRobotsTxt: true,
   exclude: ['/protected-page', '/awesome/secret-page'],
   alternateRefs: [
-    { href: 'https://es.example.com', hreflang: 'es' },
-    { href: 'https://fr.example.com', hreflang: 'fr' }
+    {
+      href: 'https://es.example.com',
+      hreflang: 'es',
+    },
+    {
+      href: 'https://fr.example.com',
+      hreflang: 'fr',
+    },
   ],
   // Default transformation function
   transform: async (config, path) => {

@@ -8,7 +8,6 @@ import {
 } from '../interface'
 import { merge } from '@corex/deepmerge'
 import { loadFile } from '../file'
-import { absoluteUrl } from '../url'
 
 export const loadConfig = (path: string): IConfig => {
   const baseConfig = loadFile<IConfig>(path)
