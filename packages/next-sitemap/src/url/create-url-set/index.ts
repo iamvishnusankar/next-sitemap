@@ -45,8 +45,8 @@ export const createUrlSet = async (
   let sitemapFields: ISitemapField[] = [] // transform using relative urls
 
   for (const url of urlSet) {
-    const sitemapFiled = await config.transform!(config, url)
-    sitemapFields.push(sitemapFiled)
+    const sitemapField = await config.transform!(config, url)
+    sitemapFields.push(sitemapField)
   }
 
   sitemapFields = sitemapFields
@@ -54,6 +54,10 @@ export const createUrlSet = async (
     .map((x) => ({
       ...x,
       loc: absoluteUrl(config.siteUrl, x.loc, config.trailingSlash), // create absolute urls based on sitemap fields
+      alternateRefs: (x.alternateRefs ?? []).map((alternateRef) => ({
+        href: absoluteUrl(alternateRef.href, x.loc, config.trailingSlash),
+        hreflang: alternateRef.hreflang,
+      })),
     }))
 
   return sitemapFields

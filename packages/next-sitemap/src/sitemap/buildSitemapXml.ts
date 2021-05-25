@@ -12,7 +12,7 @@ export const buildSitemapXml = (fields: ISitemapField[]): string => {
           if (key !== 'alternateRefs') {
             field.push(`<${key}>${fieldData[key]}</${key}>`)
           } else {
-            field.push(buildAlternateRefsXml(fieldData.alternateRefs ?? []))
+            field.push(buildAlternateRefsXml(fieldData.alternateRefs))
           }
         }
       }
@@ -26,7 +26,7 @@ export const buildSitemapXml = (fields: ISitemapField[]): string => {
 }
 
 export const buildAlternateRefsXml = (
-  alternateRefs: Array<AlternateRef>
+  alternateRefs: Array<AlternateRef> = []
 ): string => {
   return alternateRefs
     .map((alternateRef) => {
