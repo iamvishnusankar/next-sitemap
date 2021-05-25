@@ -13,7 +13,7 @@ export interface IConfig {
   siteUrl: string
   changefreq: string
   priority: any
-  sitemapBaseFileName?: string;
+  sitemapBaseFileName?: string
   sourceDir?: string
   outDir?: string
   sitemapSize?: number
