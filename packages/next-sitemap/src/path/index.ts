@@ -16,11 +16,12 @@ export const getPath = (...pathSegment: string[]): string => {
 
 export const resolveSitemapChunks = (
   baseSitemapPath: string,
-  chunks: ISitemapField[][]
+  chunks: ISitemapField[][],
+  config: IConfig
 ): ISitemapChunk[] => {
   const folder = path.dirname(baseSitemapPath)
   return chunks.map((chunk, index) => {
-    const filename = `sitemap${index > 0 ? `-${index}` : ''}.xml`
+    const filename = `${config.sitemapBaseFileName}${index > 0 ? `-${index}` : ''}.xml`
 
     return {
       path: `${folder}/${filename}`,
@@ -35,7 +36,7 @@ export const getRuntimePaths = (config: IConfig): IRuntimePaths => {
     BUILD_MANIFEST: getPath(config.sourceDir!, 'build-manifest.json'),
     PRERENDER_MANIFEST: getPath(config.sourceDir!, 'prerender-manifest.json'),
     EXPORT_MARKER: getPath(config.sourceDir!, 'export-marker.json'),
-    SITEMAP_FILE: getPath(config.outDir!, 'sitemap.xml'),
+    SITEMAP_FILE: getPath(config.outDir!, `${config.sitemapBaseFileName}.xml`),
     ROBOTS_TXT_FILE: getPath(config.outDir!, 'robots.txt'),
   }
 }
