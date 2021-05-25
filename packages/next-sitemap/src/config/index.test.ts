@@ -86,6 +86,7 @@ describe('next-sitemap/config', () => {
       lastmod: expect.any(String),
       changefreq: 'weekly',
       priority: 0.6,
+      alternateRefs: [],
     })
   })
 
