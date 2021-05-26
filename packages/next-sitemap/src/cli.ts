@@ -36,7 +36,11 @@ import { exportRobotsTxt } from './robots-txt'
 
   // Split sitemap into multiple files
   const chunks = toChunks(urlSet, config.sitemapSize!)
-  const sitemapChunks = resolveSitemapChunks(runtimePaths.SITEMAP_FILE, chunks)
+  const sitemapChunks = resolveSitemapChunks(
+    runtimePaths.SITEMAP_FILE,
+    chunks,
+    config
+  )
 
   // All sitemaps array to keep track of generated sitemap files.
   // Later to be added on robots.txt

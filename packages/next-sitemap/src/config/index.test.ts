@@ -7,6 +7,7 @@ describe('next-sitemap/config', () => {
     expect(defaultConfig).toStrictEqual<Partial<IConfig>>({
       sourceDir: '.next',
       outDir: 'public',
+      sitemapBaseFileName: 'sitemap',
       priority: 0.7,
       changefreq: 'daily',
       sitemapSize: 5000,
@@ -44,6 +45,7 @@ describe('next-sitemap/config', () => {
     expect(myConfig).toStrictEqual<Partial<IConfig>>({
       sourceDir: 'custom-source',
       outDir: 'public',
+      sitemapBaseFileName: 'sitemap',
       priority: 0.7,
       changefreq: 'daily',
       sitemapSize: 50000,
