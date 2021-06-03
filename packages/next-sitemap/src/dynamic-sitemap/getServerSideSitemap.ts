@@ -2,16 +2,27 @@
 import { ISitemapField } from '../interface'
 import { buildSitemapXml } from '../sitemap/buildSitemapXml'
 
+export type GetServerSideSitemapOptions = {
+  headers?: Record<string, string>
+}
+
 export const getServerSideSitemap = async (
   context: import('next').GetServerSidePropsContext,
-  fields: ISitemapField[]
+  fields: ISitemapField[],
+  opts?: GetServerSideSitemapOptions
 ) => {
   const sitemapContent = buildSitemapXml(fields)
 
   if (context && context.res) {
     const { res } = context
 
-    // Set header
+    if (opts?.headers) {
+      for (const [header, value] of Object.entries(opts.headers)) {
+        res.setHeader(header, value)
+      }
+    }
+
+    // Making sure Content-Type is always xml
     res.setHeader('Content-Type', 'text/xml')
 
     // Write the sitemap context to resonse
