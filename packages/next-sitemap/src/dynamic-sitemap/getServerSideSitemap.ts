@@ -3,7 +3,7 @@ import { ISitemapField } from '../interface'
 import { buildSitemapXml } from '../sitemap/buildSitemapXml'
 
 export type GetServerSideSitemapOptions = {
-  headers?: Record<string, string>
+  headers?: Record<string, string | number | readonly string[]>
 }
 
 export const getServerSideSitemap = async (
