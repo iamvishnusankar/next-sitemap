@@ -72,4 +72,5 @@ export type ISitemapField = {
   changefreq?: string
   priority?: string
   alternateRefs?: Array<AlternateRef>
+  alternateUrls?: Array<AlternateRef>
 }

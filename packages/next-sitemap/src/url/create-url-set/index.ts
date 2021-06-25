@@ -58,6 +58,10 @@ export const createUrlSet = async (
         href: absoluteUrl(alternateRef.href, x.loc, config.trailingSlash),
         hreflang: alternateRef.hreflang,
       })),
+      alternateUrls: (x.alternateUrls ?? []).map((alternateUrl) => ({
+        href: absoluteUrl(alternateUrl.href, '', config.trailingSlash),
+        hreflang: alternateUrl.hreflang,
+      })),
     }))
 
   return sitemapFields
