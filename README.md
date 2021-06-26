@@ -89,6 +89,8 @@ Above is the minimal configuration to split a large sitemap. When the number of 
 | outDir (optional)                              | All the generated files will be exported to this directory. Default `public`                                                                                                                                                                                                                                                                                      | string         |
 | transform (optional)                           | A transformation function, which runs **for each** `relative-path` in the sitemap. Returning `null` value from the transformation function will result in the exclusion of that specific `path` from the generated sitemap list.                                                                                                                                  | async function |
 
+| additionalPaths (optional) | A function that returns a list of additional paths to be added to the general list. | async function |
+
 ## Custom transformation function
 
 Custom transformation provides an extension method to add, remove or exclude `path` or `properties` from a url-set. Transform function runs **for each** `relative path` in the sitemap. And use the `key`: `value` object to add properties in the XML.
@@ -125,6 +127,48 @@ module.exports = {
 }
 ```
 
+## Additional paths function
+
+`additionalPaths` this function can be useful if you have a large list of pages, but you don't want to render them all and use [fallback: true](https://nextjs.org/docs/basic-features/data-fetching#fallback-true). Result of executing this function will be added to the general list of paths and processed with `sitemapSize`. You are free to add dynamic paths, but unlike `additionalSitemap`, you do not need to split the list of paths into different files in case there are a lot of paths for one file.
+
+If your function returns a path that already exists, then it will simply be updated, duplication will not happen.
+
+```js
+module.exports = {
+  additionalPaths: async (config) => {
+    const result = []
+
+    // required value only
+    result.push({ loc: '/additional-page-1' })
+
+    // all possible values
+    result.push({
+      loc: '/additional-page-2',
+      changefreq: 'yearly',
+      priority: 0.7,
+      lastmod: new Date().toISOString(),
+
+      // acts only on '/additional-page-2'
+      alternateRefs: [
+        {
+          href: 'https://es.example.com',
+          hreflang: 'es',
+        },
+        {
+          href: 'https://fr.example.com',
+          hreflang: 'fr',
+        },
+      ],
+    })
+
+    // using transformation from the current configuration
+    result.push(await config.transform(config, '/additional-page-3'))
+
+    return result
+  },
+}
+```
+
 ## Full configuration example
 
 Here's an example `next-sitemap.js` configuration with all options
@@ -157,6 +201,9 @@ module.exports = {
       alternateRefs: config.alternateRefs ?? [],
     }
   },
+  additionalPaths: async (config) => [
+    await config.transform(config, '/additional-page'),
+  ],
   robotsTxtOptions: {
     policies: [
       {
