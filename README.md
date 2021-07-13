@@ -139,6 +139,7 @@ module.exports = {
   exclude: ['/protected-page', '/awesome/secret-page'],
   alternateRefs: [
     {
+      // final alternate url will be https://es.example.com/[path]
       href: 'https://es.example.com',
       hreflang: 'es',
     },
@@ -149,6 +150,14 @@ module.exports = {
   ],
   // Default transformation function
   transform: async (config, path) => {
+    let alternateUrls = []
+    if (path === '/I-am-english') {
+      alternateUrls = [
+        // final alternate url will be https://example.com/soy-espanol, not appending path
+        { href: 'https://example.com/soy-espanol', hreflang: 'es' },
+        { href: 'https://example.com/je-suis-francais', hreflang: 'fr' },
+      ]
+    }
     return {
       loc: path, // => this will be exported as http(s)://<config.siteUrl>/<path>
       changefreq: config.changefreq,

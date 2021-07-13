@@ -1,4 +1,5 @@
 import { createUrlSet } from '..'
+import { transformSitemap } from '../../../config'
 import { sampleConfig } from '../../../fixtures/config'
 import { sampleManifest } from '../../../fixtures/manifest'
 
@@ -12,6 +13,7 @@ describe('createUrlSet', () => {
         priority: 0.7,
         loc: 'https://example.com',
         alternateRefs: [],
+        alternateUrls: [],
       },
       {
         changefreq: 'daily',
@@ -19,6 +21,7 @@ describe('createUrlSet', () => {
         priority: 0.7,
         loc: 'https://example.com/page-0',
         alternateRefs: [],
+        alternateUrls: [],
       },
       {
         changefreq: 'daily',
@@ -26,6 +29,7 @@ describe('createUrlSet', () => {
         priority: 0.7,
         loc: 'https://example.com/page-1',
         alternateRefs: [],
+        alternateUrls: [],
       },
       {
         changefreq: 'daily',
@@ -33,6 +37,7 @@ describe('createUrlSet', () => {
         priority: 0.7,
         loc: 'https://example.com/page-2',
         alternateRefs: [],
+        alternateUrls: [],
       },
       {
         changefreq: 'daily',
@@ -40,6 +45,7 @@ describe('createUrlSet', () => {
         priority: 0.7,
         loc: 'https://example.com/page-3',
         alternateRefs: [],
+        alternateUrls: [],
       },
     ])
   })
@@ -60,6 +66,7 @@ describe('createUrlSet', () => {
         priority: 0.7,
         loc: 'https://example.com/page-1',
         alternateRefs: [],
+        alternateUrls: [],
       },
       {
         changefreq: 'daily',
@@ -67,6 +74,7 @@ describe('createUrlSet', () => {
         priority: 0.7,
         loc: 'https://example.com/page-3',
         alternateRefs: [],
+        alternateUrls: [],
       },
     ])
   })
@@ -87,6 +95,7 @@ describe('createUrlSet', () => {
         priority: 0.7,
         loc: 'https://example.com',
         alternateRefs: [],
+        alternateUrls: [],
       },
     ])
   })
@@ -106,6 +115,7 @@ describe('createUrlSet', () => {
         priority: 0.7,
         loc: 'https://example.com',
         alternateRefs: [],
+        alternateUrls: [],
       },
       {
         changefreq: 'daily',
@@ -113,6 +123,7 @@ describe('createUrlSet', () => {
         priority: 0.7,
         loc: 'https://example.com/page-0',
         alternateRefs: [],
+        alternateUrls: [],
       },
       {
         changefreq: 'daily',
@@ -120,6 +131,7 @@ describe('createUrlSet', () => {
         priority: 0.7,
         loc: 'https://example.com/page-1',
         alternateRefs: [],
+        alternateUrls: [],
       },
       {
         changefreq: 'daily',
@@ -127,6 +139,7 @@ describe('createUrlSet', () => {
         priority: 0.7,
         loc: 'https://example.com/page-2',
         alternateRefs: [],
+        alternateUrls: [],
       },
       {
         changefreq: 'daily',
@@ -134,6 +147,7 @@ describe('createUrlSet', () => {
         priority: 0.7,
         loc: 'https://example.com/page-3',
         alternateRefs: [],
+        alternateUrls: [],
       },
     ])
   })
@@ -153,6 +167,7 @@ describe('createUrlSet', () => {
         priority: 0.7,
         loc: 'https://example.com/',
         alternateRefs: [],
+        alternateUrls: [],
       },
       {
         changefreq: 'daily',
@@ -160,6 +175,7 @@ describe('createUrlSet', () => {
         priority: 0.7,
         loc: 'https://example.com/page-0/',
         alternateRefs: [],
+        alternateUrls: [],
       },
       {
         changefreq: 'daily',
@@ -167,6 +183,7 @@ describe('createUrlSet', () => {
         priority: 0.7,
         loc: 'https://example.com/page-1/',
         alternateRefs: [],
+        alternateUrls: [],
       },
       {
         changefreq: 'daily',
@@ -174,6 +191,7 @@ describe('createUrlSet', () => {
         priority: 0.7,
         loc: 'https://example.com/page-2/',
         alternateRefs: [],
+        alternateUrls: [],
       },
       {
         changefreq: 'daily',
@@ -181,6 +199,7 @@ describe('createUrlSet', () => {
         priority: 0.7,
         loc: 'https://example.com/page-3/',
         alternateRefs: [],
+        alternateUrls: [],
       },
     ])
   })
@@ -209,11 +228,13 @@ describe('createUrlSet', () => {
         changefreq: 'yearly',
         loc: 'https://example.com/',
         alternateRefs: [],
+        alternateUrls: [],
       },
       {
         changefreq: 'yearly',
         loc: 'https://example.com/page-2/',
         alternateRefs: [],
+        alternateUrls: [],
       },
     ])
   })
@@ -241,6 +262,7 @@ describe('createUrlSet', () => {
           { href: 'https://en.example.com', hreflang: 'en' },
           { href: 'https://fr.example.com', hreflang: 'fr' },
         ],
+        alternateUrls: [],
       },
       {
         changefreq: 'daily',
@@ -251,6 +273,7 @@ describe('createUrlSet', () => {
           { href: 'https://en.example.com/page-0', hreflang: 'en' },
           { href: 'https://fr.example.com/page-0', hreflang: 'fr' },
         ],
+        alternateUrls: [],
       },
       {
         changefreq: 'daily',
@@ -261,6 +284,7 @@ describe('createUrlSet', () => {
           { href: 'https://en.example.com/page-1', hreflang: 'en' },
           { href: 'https://fr.example.com/page-1', hreflang: 'fr' },
         ],
+        alternateUrls: [],
       },
       {
         changefreq: 'daily',
@@ -271,6 +295,7 @@ describe('createUrlSet', () => {
           { href: 'https://en.example.com/page-2', hreflang: 'en' },
           { href: 'https://fr.example.com/page-2', hreflang: 'fr' },
         ],
+        alternateUrls: [],
       },
       {
         changefreq: 'daily',
@@ -281,6 +306,75 @@ describe('createUrlSet', () => {
           { href: 'https://en.example.com/page-3', hreflang: 'en' },
           { href: 'https://fr.example.com/page-3', hreflang: 'fr' },
         ],
+        alternateUrls: [],
+      },
+    ])
+  })
+
+  test('with alternateUrls', async () => {
+    const urlset = await createUrlSet(
+      {
+        ...sampleConfig,
+        siteUrl: 'https://example.com',
+        transform: async (config, url) => {
+          if (url.endsWith('page-0')) {
+            return {
+              ...(await transformSitemap(config, url)),
+              alternateUrls: [
+                { href: 'https://example.com/hola', hreflang: 'es' },
+                { href: 'https://example.com/bonjour', hreflang: 'fr' },
+              ],
+            }
+          }
+          return transformSitemap(config, url)
+        },
+      },
+      sampleManifest
+    )
+
+    expect(urlset).toStrictEqual([
+      {
+        changefreq: 'daily',
+        lastmod: expect.any(String),
+        priority: 0.7,
+        loc: 'https://example.com',
+        alternateRefs: [],
+        alternateUrls: [],
+      },
+      {
+        changefreq: 'daily',
+        lastmod: expect.any(String),
+        priority: 0.7,
+        loc: 'https://example.com/page-0',
+        alternateRefs: [],
+        alternateUrls: [
+          { href: 'https://example.com/hola', hreflang: 'es' },
+          { href: 'https://example.com/bonjour', hreflang: 'fr' },
+        ],
+      },
+      {
+        changefreq: 'daily',
+        lastmod: expect.any(String),
+        priority: 0.7,
+        loc: 'https://example.com/page-1',
+        alternateRefs: [],
+        alternateUrls: [],
+      },
+      {
+        changefreq: 'daily',
+        lastmod: expect.any(String),
+        priority: 0.7,
+        loc: 'https://example.com/page-2',
+        alternateRefs: [],
+        alternateUrls: [],
+      },
+      {
+        changefreq: 'daily',
+        lastmod: expect.any(String),
+        priority: 0.7,
+        loc: 'https://example.com/page-3',
+        alternateRefs: [],
+        alternateUrls: [],
       },
     ])
   })

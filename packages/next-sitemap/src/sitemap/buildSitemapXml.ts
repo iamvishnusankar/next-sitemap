@@ -9,10 +9,12 @@ export const buildSitemapXml = (fields: ISitemapField[]): string => {
       // Iterate all object keys and key value pair to field-set
       for (const key of Object.keys(fieldData)) {
         if (fieldData[key]) {
-          if (key !== 'alternateRefs') {
-            field.push(`<${key}>${fieldData[key]}</${key}>`)
-          } else {
+          if (key === 'alternateRefs') {
             field.push(buildAlternateRefsXml(fieldData.alternateRefs))
+          } else if (key === 'alternateUrls') {
+            field.push(buildAlternateUrlsXml(fieldData.alternateUrls))
+          } else {
+            field.push(`<${key}>${fieldData[key]}</${key}>`)
           }
         }
       }
@@ -31,6 +33,16 @@ export const buildAlternateRefsXml = (
   return alternateRefs
     .map((alternateRef) => {
       return `<xhtml:link rel="alternate" hreflang="${alternateRef.hreflang}" href="${alternateRef.href}"/>`
+    })
+    .join('')
+}
+
+export const buildAlternateUrlsXml = (
+  alternateUrls: Array<AlternateRef> = []
+): string => {
+  return alternateUrls
+    .map((alternateUrl) => {
+      return `<xhtml:link rel="alternate" hreflang="${alternateUrl.hreflang}" href="${alternateUrl.href}"/>`
     })
     .join('')
 }
