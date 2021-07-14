@@ -11,13 +11,13 @@ export interface IRobotsTxt {
 
 export interface IConfig {
   siteUrl: string
-  changefreq: string
-  priority: any
+  changefreq?: string
+  priority?: number
   sitemapBaseFileName?: string
   sourceDir?: string
   outDir?: string
   sitemapSize?: number
-  generateRobotsTxt: boolean
+  generateRobotsTxt?: boolean
   robotsTxtOptions?: IRobotsTxt
   autoLastmod?: boolean
   exclude?: string[]
