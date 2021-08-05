@@ -1,3 +1,6 @@
+type MaybeUndefined<T> = T | undefined
+type MaybePromise<T> = T | Promise<T>
+
 export interface IRobotPolicy {
   userAgent: string
   disallow?: string | string[]
@@ -22,9 +25,21 @@ export interface IConfig {
   autoLastmod?: boolean
   exclude?: string[]
   alternateRefs?: Array<AlternateRef>
-  transform?: (config: IConfig, url: string) => Promise<ISitemapField>
+  transform?: (
+    config: IConfig,
+    url: string
+  ) => MaybePromise<MaybeUndefined<ISitemapField>>
+  additionalPaths?: (
+    config: AdditionalPathsConfig
+  ) => MaybePromise<MaybeUndefined<ISitemapField>[]>
   trailingSlash?: boolean
 }
+
+export type AdditionalPathsConfig = Readonly<
+  IConfig & {
+    transform: NonNullable<IConfig['transform']>
+  }
+>
 
 export interface IBuildManifest {
   pages: {
@@ -70,6 +85,6 @@ export type ISitemapField = {
   loc: string
   lastmod?: string
   changefreq?: string
-  priority?: string
+  priority?: number
   alternateRefs?: Array<AlternateRef>
 }
