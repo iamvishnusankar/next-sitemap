@@ -88,8 +88,7 @@ Above is the minimal configuration to split a large sitemap. When the number of 
 | sourceDir (optional)                           | next.js build directory. Default `.next`                                                                                                                                                                                                                                                                                                                          | string         |
 | outDir (optional)                              | All the generated files will be exported to this directory. Default `public`                                                                                                                                                                                                                                                                                      | string         |
 | transform (optional)                           | A transformation function, which runs **for each** `relative-path` in the sitemap. Returning `null` value from the transformation function will result in the exclusion of that specific `path` from the generated sitemap list.                                                                                                                                  | async function |
-
-| additionalPaths (optional) | A function that returns a list of additional paths to be added to the general list. | async function |
+| additionalPaths (optional)                     | A function that returns a list of additional paths to be added to the general list.                                                                                                                                                                                                                                                                               | async function |
 
 ## Custom transformation function
 
