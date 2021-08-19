@@ -26,7 +26,7 @@
     "format": "prettier --write \"**/*.{js,mjs,cjs,jsx,json,ts,tsx,md,mdx,css,html,yml,yaml,scss,less,graphql,graphqls,gql}\""
   },
   "devDependencies": {
-    "@corex/workspace": "^2.6.20"
+    "@corex/workspace": "^2.6.34"
   },
   "dependencies": {}
 }
