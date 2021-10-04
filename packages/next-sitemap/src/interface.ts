@@ -87,4 +87,16 @@ export type ISitemapField = {
   changefreq?: string
   priority?: number
   alternateRefs?: Array<AlternateRef>
+  news?: News
+}
+
+export interface News {
+  publication: NewsPublication
+  publication_date: string
+  title: string
+}
+
+export interface NewsPublication {
+  name: string
+  language: string
 }
