@@ -1,6 +1,15 @@
 type MaybeUndefined<T> = T | undefined
 type MaybePromise<T> = T | Promise<T>
 
+type Changefreq =
+  | 'always'
+  | 'hourly'
+  | 'daily'
+  | 'weekly'
+  | 'monthly'
+  | 'yearly'
+  | 'never'
+
 export interface IRobotPolicy {
   userAgent: string
   disallow?: string | string[]
@@ -14,7 +23,7 @@ export interface IRobotsTxt {
 
 export interface IConfig {
   siteUrl: string
-  changefreq: string
+  changefreq: Changefreq
   priority: any
   sitemapBaseFileName?: string
   sourceDir?: string
@@ -84,7 +93,7 @@ export type AlternateRef = {
 export type ISitemapField = {
   loc: string
   lastmod?: string
-  changefreq?: string
+  changefreq?: Changefreq
   priority?: number
   alternateRefs?: Array<AlternateRef>
 }
