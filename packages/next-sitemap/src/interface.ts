@@ -1,3 +1,15 @@
+type MaybeUndefined<T> = T | undefined
+type MaybePromise<T> = T | Promise<T>
+
+type Changefreq =
+  | 'always'
+  | 'hourly'
+  | 'daily'
+  | 'weekly'
+  | 'monthly'
+  | 'yearly'
+  | 'never'
+
 export interface IRobotPolicy {
   userAgent: string
   disallow?: string | string[]
@@ -11,7 +23,7 @@ export interface IRobotsTxt {
 
 export interface IConfig {
   siteUrl: string
-  changefreq: string
+  changefreq: Changefreq
   priority: any
   sitemapBaseFileName?: string
   sourceDir?: string
@@ -22,9 +34,21 @@ export interface IConfig {
   autoLastmod?: boolean
   exclude?: string[]
   alternateRefs?: Array<AlternateRef>
-  transform?: (config: IConfig, url: string) => Promise<ISitemapField>
+  transform?: (
+    config: IConfig,
+    url: string
+  ) => MaybePromise<MaybeUndefined<ISitemapField>>
+  additionalPaths?: (
+    config: AdditionalPathsConfig
+  ) => MaybePromise<MaybeUndefined<ISitemapField>[]>
   trailingSlash?: boolean
 }
+
+export type AdditionalPathsConfig = Readonly<
+  IConfig & {
+    transform: NonNullable<IConfig['transform']>
+  }
+>
 
 export interface IBuildManifest {
   pages: {
@@ -69,8 +93,8 @@ export type AlternateRef = {
 export type ISitemapField = {
   loc: string
   lastmod?: string
-  changefreq?: string
-  priority?: string
+  changefreq?: Changefreq
+  priority?: number
   alternateRefs?: Array<AlternateRef>
   alternateUrls?: Array<AlternateRef>
 }

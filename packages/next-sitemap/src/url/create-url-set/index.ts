@@ -2,6 +2,7 @@
 import { IConfig, INextManifest, ISitemapField } from '../../interface'
 import { isNextInternalUrl, generateUrl } from '../util'
 import { removeIfMatchPattern } from '../../array'
+import { transformSitemap } from '../../config'
 
 export const absoluteUrl = (
   siteUrl: string,
@@ -42,27 +43,59 @@ export const createUrlSet = async (
   urlSet = [...new Set(urlSet)]
 
   // Create sitemap fields based on transformation
-  let sitemapFields: ISitemapField[] = [] // transform using relative urls
+  const sitemapFields: ISitemapField[] = [] // transform using relative urls
+
+  // Create a map of fields by loc to quickly find collisions
+  const mapFieldsByLoc: { [key in string]: ISitemapField } = {}
 
   for (const url of urlSet) {
     const sitemapField = await config.transform!(config, url)
+
+    if (!sitemapField?.loc) continue
+
     sitemapFields.push(sitemapField)
+
+    // Add link on field to map by loc
+    if (config.additionalPaths) {
+      mapFieldsByLoc[sitemapField.loc] = sitemapField
+    }
   }
 
-  sitemapFields = sitemapFields
-    .filter((x) => Boolean(x) && Boolean(x.loc)) // remove null values
-    .map((x) => ({
-      ...x,
-      loc: absoluteUrl(config.siteUrl, x.loc, config.trailingSlash), // create absolute urls based on sitemap fields
-      alternateRefs: (x.alternateRefs ?? []).map((alternateRef) => ({
-        href: absoluteUrl(alternateRef.href, x.loc, config.trailingSlash),
-        hreflang: alternateRef.hreflang,
-      })),
-      alternateUrls: (x.alternateUrls ?? []).map((alternateUrl) => ({
-        href: absoluteUrl(alternateUrl.href, '', config.trailingSlash),
-        hreflang: alternateUrl.hreflang,
-      })),
-    }))
+  if (config.additionalPaths) {
+    const additions =
+      (await config.additionalPaths({
+        ...config,
+        transform: config.transform ?? transformSitemap,
+      })) ?? []
 
-  return sitemapFields
+    for (const field of additions) {
+      if (!field?.loc) continue
+
+      const collision = mapFieldsByLoc[field.loc]
+
+      // Update first entry
+      if (collision) {
+        // Mutate common entry between sitemapFields and mapFieldsByLoc (spread operator don't work)
+        Object.entries(field).forEach(
+          ([key, value]) => (collision[key] = value)
+        )
+        continue
+      }
+
+      sitemapFields.push(field)
+    }
+  }
+
+  return sitemapFields.map((x) => ({
+    ...x,
+    loc: absoluteUrl(config.siteUrl, x.loc, config.trailingSlash), // create absolute urls based on sitemap fields
+    alternateRefs: (x.alternateRefs ?? []).map((alternateRef) => ({
+      href: absoluteUrl(alternateRef.href, x.loc, config.trailingSlash),
+      hreflang: alternateRef.hreflang,
+    })),
+    alternateUrls: (x.alternateUrls ?? []).map((alternateUrl) => ({
+      href: absoluteUrl(alternateUrl.href, '', config.trailingSlash),
+      hreflang: alternateUrl.hreflang,
+    })),
+  }))
 }

@@ -2,6 +2,7 @@ import { createUrlSet } from '..'
 import { transformSitemap } from '../../../config'
 import { sampleConfig } from '../../../fixtures/config'
 import { sampleManifest } from '../../../fixtures/manifest'
+import { IConfig } from '../../../interface'
 
 describe('createUrlSet', () => {
   test('without exclusion', async () => {
@@ -375,6 +376,90 @@ describe('createUrlSet', () => {
         loc: 'https://example.com/page-3',
         alternateRefs: [],
         alternateUrls: [],
+      },
+    ])
+  })
+
+  test('with additionalPaths', async () => {
+    const transform: IConfig['transform'] = async (config, url) => {
+      if (['/', '/page-0', '/page-1'].includes(url)) {
+        return
+      }
+
+      if (url === '/additional-page-3') {
+        return {
+          loc: url,
+          changefreq: 'yearly',
+          priority: 0.8,
+        }
+      }
+
+      return transformSitemap(config, url)
+    }
+
+    const mockTransform = jest.fn(transform)
+
+    const config: IConfig = {
+      ...sampleConfig,
+      siteUrl: 'https://example.com/',
+      transform: mockTransform,
+      additionalPaths: async (config) => [
+        { loc: '/page-1', priority: 1, changefreq: 'yearly' },
+        { loc: '/page-3', priority: 0.9, changefreq: 'yearly' },
+        { loc: '/additional-page-1' },
+        { loc: '/additional-page-2', priority: 1, changefreq: 'yearly' },
+        await config.transform(config, '/additional-page-3'),
+      ],
+    }
+
+    const urlset = await createUrlSet(config, sampleManifest)
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    expect(mockTransform.mock.calls.map(([_, url]) => url)).toEqual([
+      '/',
+      '/page-0',
+      '/page-1',
+      '/page-2',
+      '/page-3',
+      '/additional-page-3',
+    ])
+
+    expect(urlset).toStrictEqual([
+      {
+        changefreq: 'daily',
+        lastmod: expect.any(String),
+        priority: 0.7,
+        loc: 'https://example.com/page-2',
+        alternateRefs: [],
+      },
+      {
+        changefreq: 'yearly',
+        lastmod: expect.any(String),
+        priority: 0.9,
+        loc: 'https://example.com/page-3',
+        alternateRefs: [],
+      },
+      {
+        changefreq: 'yearly',
+        priority: 1,
+        loc: 'https://example.com/page-1',
+        alternateRefs: [],
+      },
+      {
+        loc: 'https://example.com/additional-page-1',
+        alternateRefs: [],
+      },
+      {
+        changefreq: 'yearly',
+        priority: 1,
+        loc: 'https://example.com/additional-page-2',
+        alternateRefs: [],
+      },
+      {
+        changefreq: 'yearly',
+        priority: 0.8,
+        loc: 'https://example.com/additional-page-3',
+        alternateRefs: [],
       },
     ])
   })
