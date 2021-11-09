@@ -62,13 +62,21 @@ export interface IPreRenderManifest {
   }
 }
 
+export interface IRoutesManifest {
+  i18n?: {
+    locales: string[]
+    defaultLocale: string
+  }
+}
+
 export interface IExportMarker {
   exportTrailingSlash: boolean
 }
 
 export interface INextManifest {
   build: IBuildManifest
-  preRender?: IPreRenderManifest
+  preRender?: IPreRenderManifest,
+  routes?: IRoutesManifest
 }
 
 export interface ISitemapChunk {
@@ -80,6 +88,7 @@ export interface ISitemapChunk {
 export interface IRuntimePaths {
   BUILD_MANIFEST: string
   PRERENDER_MANIFEST: string
+  ROUTES_MANIFEST: string
   SITEMAP_FILE: string
   ROBOTS_TXT_FILE: string
   EXPORT_MARKER: string
