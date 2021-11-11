@@ -9,8 +9,7 @@ const About: React.FC = () => {
   )
 }
 
-export const getStaticProps: GetStaticProps = async ({locale}) => {
-
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
   if (!['en-US', 'en-NL'].includes(locale)) {
     return {
       notFound: true,
@@ -18,8 +17,7 @@ export const getStaticProps: GetStaticProps = async ({locale}) => {
   }
 
   return {
-    props: {
-    },
+    props: {},
   }
 }
 

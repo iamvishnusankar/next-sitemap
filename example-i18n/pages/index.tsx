@@ -9,8 +9,7 @@ const HelloWorld: React.FC = () => {
   )
 }
 
-export const getStaticProps: GetStaticProps = async ({locale}) => {
-
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
   if (!['en-US', 'fr'].includes(locale)) {
     return {
       notFound: true,
@@ -18,8 +17,7 @@ export const getStaticProps: GetStaticProps = async ({locale}) => {
   }
 
   return {
-    props: {
-    },
+    props: {},
   }
 }
 
