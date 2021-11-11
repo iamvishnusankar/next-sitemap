@@ -5,7 +5,8 @@ export const cleanPath = (text: string): string => {
 }
 
 export const isURL = (text: string): boolean => {
-  const regexp = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/
+  const regexp =
+    /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/
   return regexp.test(text)
 }
 
@@ -40,6 +41,6 @@ export const isNextInternalUrl = (path: string): boolean => {
  * @param defaultLocale defaultLocale as provided by i18n within next config
  */
 export const createDefaultLocaleReplace = (defaultLocale: string): any => {
-  const defaultLocaleRegExp = new RegExp(`^/${defaultLocale}($|/)`);
-  return (path: string): string => path.replace(defaultLocaleRegExp, '/');
+  const defaultLocaleRegExp = new RegExp(`^/${defaultLocale}($|/)`)
+  return (path: string): string => path.replace(defaultLocaleRegExp, '/')
 }

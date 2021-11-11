@@ -1,4 +1,9 @@
-import { IBuildManifest, IPreRenderManifest, IRoutesManifest, INextManifest } from '../interface'
+import {
+  IBuildManifest,
+  IPreRenderManifest,
+  IRoutesManifest,
+  INextManifest,
+} from '../interface'
 
 export const sampleBuildManifest: IBuildManifest = {
   pages: {
@@ -8,7 +13,6 @@ export const sampleBuildManifest: IBuildManifest = {
     '/_error': [],
   },
 }
-
 
 export const samplePreRenderManifest: IPreRenderManifest = {
   routes: {

@@ -9,7 +9,7 @@ const DynamicPage: React.FC = () => {
   )
 }
 
-export const getStaticProps: GetStaticProps = async ({params}) => {
+export const getStaticProps: GetStaticProps = async ({ params }) => {
   return {
     props: {
       dynamic: params.dynamic,
@@ -25,10 +25,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
     { id: 'careers', locale: 'en-US' },
     { id: 'careers', locale: 'fr' },
     { id: 'careers', locale: 'nl-BE' },
-  ];
+  ]
 
   return {
-    paths: pages.map(({id, locale}) => ({
+    paths: pages.map(({ id, locale }) => ({
       params: {
         dynamic: id,
       },

@@ -75,7 +75,7 @@ export interface IExportMarker {
 
 export interface INextManifest {
   build: IBuildManifest
-  preRender?: IPreRenderManifest,
+  preRender?: IPreRenderManifest
   routes?: IRoutesManifest
 }
 

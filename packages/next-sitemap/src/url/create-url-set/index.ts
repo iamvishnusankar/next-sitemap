@@ -1,6 +1,10 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { IConfig, INextManifest, ISitemapField } from '../../interface'
-import { isNextInternalUrl, generateUrl, createDefaultLocaleReplace } from '../util'
+import {
+  isNextInternalUrl,
+  generateUrl,
+  createDefaultLocaleReplace,
+} from '../util'
 import { removeIfMatchPattern } from '../../array'
 import { transformSitemap } from '../../config'
 
@@ -27,7 +31,7 @@ export const createUrlSet = async (
   config: IConfig,
   manifest: INextManifest
 ): Promise<ISitemapField[]> => {
-  const i18n = manifest.routes?.i18n;
+  const i18n = manifest.routes?.i18n
 
   let allKeys = [
     ...Object.keys(manifest.build.pages),
@@ -44,11 +48,9 @@ export const createUrlSet = async (
 
   // Remove default locale if i18n is enabled
   if (i18n) {
-    const {
-      defaultLocale,
-    } = i18n;
-    const replaceDefaultLocale = createDefaultLocaleReplace(defaultLocale);
-    urlSet = urlSet.map(replaceDefaultLocale);
+    const { defaultLocale } = i18n
+    const replaceDefaultLocale = createDefaultLocaleReplace(defaultLocale)
+    urlSet = urlSet.map(replaceDefaultLocale)
   }
 
   urlSet = [...new Set(urlSet)]

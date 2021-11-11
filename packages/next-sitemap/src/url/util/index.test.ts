@@ -1,4 +1,10 @@
-import { isURL, cleanPath, generateUrl, isNextInternalUrl, createDefaultLocaleReplace } from './index'
+import {
+  isURL,
+  cleanPath,
+  generateUrl,
+  isNextInternalUrl,
+  createDefaultLocaleReplace,
+} from './index'
 
 describe('next-sitemap', () => {
   test('isURL : Valid', () => {
@@ -52,7 +58,7 @@ describe('next-sitemap', () => {
   })
 
   test('createDefaultLocaleReplace: replaces default locale within path`', () => {
-    const replaceDefaultLocale = createDefaultLocaleReplace('en-US');
+    const replaceDefaultLocale = createDefaultLocaleReplace('en-US')
 
     expect(replaceDefaultLocale('/')).toBe('/')
     expect(replaceDefaultLocale('/en-US')).toBe('/')
