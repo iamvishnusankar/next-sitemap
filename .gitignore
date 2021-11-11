@@ -67,3 +67,4 @@ dist
 junit.xml
 tsconfig.tsbuildinfo
 example/public
+example-i18n/public
