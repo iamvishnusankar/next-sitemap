@@ -296,7 +296,7 @@ export default () => {}
 
 Now, `next.js` is serving the dynamic sitemap from `http://localhost:3000/server-sitemap.xml`.
 
-List the dynamic sitemap page in `robotTxtOptions.additionalSitemaps` and exclude this path from static sitemap list.
+List the dynamic sitemap page in `robotsTxtOptions.additionalSitemaps` and exclude this path from static sitemap list.
 
 ```js
 // next-sitemap.js
