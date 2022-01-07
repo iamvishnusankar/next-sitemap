@@ -1,4 +1,10 @@
-import { isURL, cleanPath, generateUrl, isNextInternalUrl } from './index'
+import {
+  isURL,
+  cleanPath,
+  generateUrl,
+  isNextInternalUrl,
+  createDefaultLocaleReplace,
+} from './index'
 
 describe('next-sitemap', () => {
   test('isURL : Valid', () => {
@@ -49,5 +55,19 @@ describe('next-sitemap', () => {
 
     expect(isNextInternalUrl('/some_url')).toBeFalsy()
     expect(isNextInternalUrl('/some-404')).toBeFalsy()
+  })
+
+  test('createDefaultLocaleReplace: replaces default locale within path`', () => {
+    const replaceDefaultLocale = createDefaultLocaleReplace('en-US')
+
+    expect(replaceDefaultLocale('/')).toBe('/')
+    expect(replaceDefaultLocale('/en-US')).toBe('/')
+    expect(replaceDefaultLocale('/en-US/')).toBe('/')
+    expect(replaceDefaultLocale('/en-US/home')).toBe('/home')
+    expect(replaceDefaultLocale('/en-US/home/')).toBe('/home/')
+    expect(replaceDefaultLocale('/en-US-home')).toBe('/en-US-home')
+    expect(replaceDefaultLocale('/en-USA/home')).toBe('/en-USA/home')
+    expect(replaceDefaultLocale('/fr')).toBe('/fr')
+    expect(replaceDefaultLocale('/fr/about')).toBe('/fr/about')
   })
 })

@@ -1,7 +1,7 @@
 import { createUrlSet } from '..'
 import { transformSitemap } from '../../../config'
 import { sampleConfig } from '../../../fixtures/config'
-import { sampleManifest } from '../../../fixtures/manifest'
+import { sampleManifest, sampleI18nManifest } from '../../../fixtures/manifest'
 import { IConfig } from '../../../interface'
 
 describe('createUrlSet', () => {
@@ -368,6 +368,39 @@ describe('createUrlSet', () => {
         loc: 'https://example.com/additional-page-3',
         alternateRefs: [],
       },
+    ])
+  })
+
+  test('with next i18n enabled', async () => {
+    const urlset = await createUrlSet(sampleConfig, sampleI18nManifest)
+    expect(urlset).toStrictEqual([
+      expect.objectContaining({
+        loc: 'https://example.com',
+      }),
+      expect.objectContaining({
+        loc: 'https://example.com/about',
+      }),
+      expect.objectContaining({
+        loc: 'https://example.com/fr',
+      }),
+      expect.objectContaining({
+        loc: 'https://example.com/fr/about',
+      }),
+      expect.objectContaining({
+        loc: 'https://example.com/page-0',
+      }),
+      expect.objectContaining({
+        loc: 'https://example.com/page-1',
+      }),
+      expect.objectContaining({
+        loc: 'https://example.com/page-2',
+      }),
+      expect.objectContaining({
+        loc: 'https://example.com/fr/page-2',
+      }),
+      expect.objectContaining({
+        loc: 'https://example.com/page-3',
+      }),
     ])
   })
 })

@@ -9,7 +9,8 @@
   "workspaces": {
     "packages": [
       "packages/*",
-      "example"
+      "example",
+      "example-i18n"
     ]
   },
   "scripts": {
@@ -27,6 +28,5 @@
   },
   "devDependencies": {
     "@corex/workspace": "^2.6.34"
-  },
-  "dependencies": {}
+  }
 }
