@@ -333,9 +333,9 @@
   dependencies:
     typescript "4.0.3"
 
-"@corex/workspace@^2.6.34":
-  version "2.6.34"
-  resolved "https://registry.npmjs.org/@corex/workspace/-/workspace-2.6.34.tgz"
+"@corex/workspace@^2.6.133":
+  version "2.6.133"
+  resolved "https://registry.yarnpkg.com/@corex/workspace/-/workspace-2.6.133.tgz#f9bcc75c9445185b0e86591542c97a8b33f8c0a6"
   dependencies:
     "@corex/eslint-config" "*"
     "@corex/jest" "*"
