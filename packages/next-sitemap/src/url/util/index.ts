@@ -5,9 +5,8 @@ export const cleanPath = (text: string): string => {
 }
 
 export const isURL = (text: string): boolean => {
-  const regexp =
-    /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/
-  return regexp.test(text)
+  // old: /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/
+  return /^https?:\/\//i.test(text)
 }
 
 export const generateUrl = (baseUrl: string, slug: string): string => {
