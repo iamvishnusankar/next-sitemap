@@ -20,4 +20,12 @@ describe('absoluteUrl', () => {
       'https://example.com/hello/'
     )
   })
+
+  test('absoluteUrl: with uri encoding', () => {
+    expect(
+      absoluteUrl(`https://example.com/&/'/"/>/<`, '/', true)
+    ).toMatchInlineSnapshot(
+      `"https://example.com/&amp;/&apos;/&quot;/&gt;/&lt;/"`
+    )
+  })
 })
