@@ -228,9 +228,9 @@
     core-js-pure "^3.0.0"
     regenerator-runtime "^0.13.4"
 
-"@babel/runtime@7.12.5", "@babel/runtime@^7.10.2", "@babel/runtime@^7.12.5", "@babel/runtime@^7.9.2":
-  version "7.12.5"
-  resolved "https://registry.npmjs.org/@babel/runtime/-/runtime-7.12.5.tgz"
+"@babel/runtime@7.15.3", "@babel/runtime@^7.10.2", "@babel/runtime@^7.12.5", "@babel/runtime@^7.9.2":
+  version "7.15.3"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.15.3.tgz#2e1c2880ca118e5b2f9988322bd8a7656a32502b"
   dependencies:
     regenerator-runtime "^0.13.4"
 
@@ -562,17 +562,17 @@
   version "1.0.3"
   resolved "https://registry.npmjs.org/@napi-rs/triples/-/triples-1.0.3.tgz"
 
-"@next/env@11.1.0":
-  version "11.1.0"
-  resolved "https://registry.npmjs.org/@next/env/-/env-11.1.0.tgz"
+"@next/env@11.1.3":
+  version "11.1.3"
+  resolved "https://registry.yarnpkg.com/@next/env/-/env-11.1.3.tgz#dc698e00259242012955e43a40788fcf21ba9e37"
 
-"@next/polyfill-module@11.1.0":
-  version "11.1.0"
-  resolved "https://registry.npmjs.org/@next/polyfill-module/-/polyfill-module-11.1.0.tgz"
+"@next/polyfill-module@11.1.3":
+  version "11.1.3"
+  resolved "https://registry.yarnpkg.com/@next/polyfill-module/-/polyfill-module-11.1.3.tgz#95163973fe19f1827da32703d1fcb8198fb2c79a"
 
-"@next/react-dev-overlay@11.1.0":
-  version "11.1.0"
-  resolved "https://registry.npmjs.org/@next/react-dev-overlay/-/react-dev-overlay-11.1.0.tgz"
+"@next/react-dev-overlay@11.1.3":
+  version "11.1.3"
+  resolved "https://registry.yarnpkg.com/@next/react-dev-overlay/-/react-dev-overlay-11.1.3.tgz#5d08336931e48ebdb07d82b566223d0ee5941d2a"
   dependencies:
     "@babel/code-frame" "7.12.11"
     anser "1.4.9"
@@ -586,9 +586,25 @@
     stacktrace-parser "0.1.10"
     strip-ansi "6.0.0"
 
-"@next/react-refresh-utils@11.1.0":
-  version "11.1.0"
-  resolved "https://registry.npmjs.org/@next/react-refresh-utils/-/react-refresh-utils-11.1.0.tgz"
+"@next/react-refresh-utils@11.1.3":
+  version "11.1.3"
+  resolved "https://registry.yarnpkg.com/@next/react-refresh-utils/-/react-refresh-utils-11.1.3.tgz#fc2c1a4f2403db1a0179d31caa0a4cc811b8ab58"
+
+"@next/swc-darwin-arm64@11.1.3":
+  version "11.1.3"
+  resolved "https://registry.yarnpkg.com/@next/swc-darwin-arm64/-/swc-darwin-arm64-11.1.3.tgz#062eb7871048fdb313304e42ace5f91402dbc39f"
+
+"@next/swc-darwin-x64@11.1.3":
+  version "11.1.3"
+  resolved "https://registry.yarnpkg.com/@next/swc-darwin-x64/-/swc-darwin-x64-11.1.3.tgz#8bd515768d02e4c1e0cd80d33f3f29456ee890ee"
+
+"@next/swc-linux-x64-gnu@11.1.3":
+  version "11.1.3"
+  resolved "https://registry.yarnpkg.com/@next/swc-linux-x64-gnu/-/swc-linux-x64-gnu-11.1.3.tgz#40030577e6ee272afb0080b45468bea73208f46d"
+
+"@next/swc-win32-x64-msvc@11.1.3":
+  version "11.1.3"
+  resolved "https://registry.yarnpkg.com/@next/swc-win32-x64-msvc/-/swc-win32-x64-msvc-11.1.3.tgz#2951cbc127f6ea57032a241fb94439cddb5d2482"
 
 "@node-rs/helper@1.2.1":
   version "1.2.1"
@@ -3978,16 +3994,16 @@ natural-compare@^1.4.0:
   version "1.4.0"
   resolved "https://registry.npmjs.org/natural-compare/-/natural-compare-1.4.0.tgz"
 
-next@^11.1.0:
-  version "11.1.0"
-  resolved "https://registry.npmjs.org/next/-/next-11.1.0.tgz"
+next@^11.1.3:
+  version "11.1.3"
+  resolved "https://registry.yarnpkg.com/next/-/next-11.1.3.tgz#0226b283cb9890e446aea759db8a867de2b279ef"
   dependencies:
-    "@babel/runtime" "7.12.5"
+    "@babel/runtime" "7.15.3"
     "@hapi/accept" "5.0.2"
-    "@next/env" "11.1.0"
-    "@next/polyfill-module" "11.1.0"
-    "@next/react-dev-overlay" "11.1.0"
-    "@next/react-refresh-utils" "11.1.0"
+    "@next/env" "11.1.3"
+    "@next/polyfill-module" "11.1.3"
+    "@next/react-dev-overlay" "11.1.3"
+    "@next/react-refresh-utils" "11.1.3"
     "@node-rs/helper" "1.2.1"
     assert "2.0.0"
     ast-types "0.13.2"
@@ -4025,13 +4041,18 @@ next@^11.1.0:
     stream-browserify "3.0.0"
     stream-http "3.1.1"
     string_decoder "1.3.0"
-    styled-jsx "4.0.0"
+    styled-jsx "4.0.1"
     timers-browserify "2.0.12"
     tty-browserify "0.0.1"
     use-subscription "1.5.1"
-    util "0.12.3"
+    util "0.12.4"
     vm-browserify "1.1.2"
     watchpack "2.1.1"
+  optionalDependencies:
+    "@next/swc-darwin-arm64" "11.1.3"
+    "@next/swc-darwin-x64" "11.1.3"
+    "@next/swc-linux-x64-gnu" "11.1.3"
+    "@next/swc-win32-x64-msvc" "11.1.3"
 
 nice-try@^1.0.4:
   version "1.0.5"
@@ -5299,13 +5320,13 @@ string.prototype.trimstart@^1.0.4:
     call-bind "^1.0.2"
     define-properties "^1.1.3"
 
-string_decoder@1.3.0, string_decoder@^1.1.1:
+string_decoder@1.3.0, string_decoder@^1.0.0, string_decoder@^1.1.1:
   version "1.3.0"
   resolved "https://registry.npmjs.org/string_decoder/-/string_decoder-1.3.0.tgz"
   dependencies:
     safe-buffer "~5.2.0"
 
-string_decoder@^1.0.0, string_decoder@~1.1.1:
+string_decoder@~1.1.1:
   version "1.1.1"
   resolved "https://registry.npmjs.org/string_decoder/-/string_decoder-1.1.1.tgz"
   dependencies:
@@ -5353,9 +5374,9 @@ style-search@^0.1.0:
   version "0.1.0"
   resolved "https://registry.npmjs.org/style-search/-/style-search-0.1.0.tgz"
 
-styled-jsx@4.0.0:
-  version "4.0.0"
-  resolved "https://registry.npmjs.org/styled-jsx/-/styled-jsx-4.0.0.tgz"
+styled-jsx@4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/styled-jsx/-/styled-jsx-4.0.1.tgz#ae3f716eacc0792f7050389de88add6d5245b9e9"
   dependencies:
     "@babel/plugin-syntax-jsx" "7.14.5"
     "@babel/types" "7.15.0"
@@ -5799,9 +5820,9 @@ util@0.10.3:
   dependencies:
     inherits "2.0.1"
 
-util@0.12.3, util@^0.12.0:
-  version "0.12.3"
-  resolved "https://registry.npmjs.org/util/-/util-0.12.3.tgz"
+util@0.12.4, util@^0.12.0:
+  version "0.12.4"
+  resolved "https://registry.yarnpkg.com/util/-/util-0.12.4.tgz#66121a31420df8f01ca0c464be15dfa1d1850253"
   dependencies:
     inherits "^2.0.3"
     is-arguments "^1.0.4"
