@@ -10,7 +10,7 @@
     "postbuild": "next-sitemap"
   },
   "dependencies": {
-    "@types/react-dom": "^17.0.10",
+    "@types/react-dom": "^17.0.11",
     "next": "^11.1.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
