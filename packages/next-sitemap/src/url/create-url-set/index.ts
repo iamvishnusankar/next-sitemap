@@ -1,3 +1,4 @@
+/* eslint-disable no-extra-boolean-cast */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { IConfig, INextManifest, ISitemapField } from '../../interface'
 import {
@@ -7,6 +8,20 @@ import {
 } from '../util'
 import { removeIfMatchPattern } from '../../array'
 import { transformSitemap } from '../../config'
+
+/**
+ * Return UTF-8 encoded urls
+ * @param path
+ * @returns
+ * @link https://developers.google.com/search/docs/advanced/sitemaps/build-sitemap#general-guidelines
+ */
+export const entityEscapedUrl = (path: string): string =>
+  path
+    .replace(/&/g, '&amp;')
+    .replace(/'/g, '&apos;')
+    .replace(/"/g, '&quot;')
+    .replace(/>/g, '&gt;')
+    .replace(/</g, '&lt;')
 
 export const absoluteUrl = (
   siteUrl: string,
@@ -19,7 +34,7 @@ export const absoluteUrl = (
     return url.slice(0, url.length - 1)
   }
 
-  return url
+  return entityEscapedUrl(url)
 }
 
 /**
