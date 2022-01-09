@@ -6,6 +6,9 @@
   "module": "dist/esm/index.js",
   "types": "dist/@types/index.d.ts",
   "repository": "https://github.com/iamvishnusankar/next-sitemap.git",
+  "engines": {
+    "node": ">=12"
+  },
   "keywords": [
     "nextjs",
     "next",
