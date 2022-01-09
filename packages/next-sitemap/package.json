@@ -6,7 +6,23 @@
   "module": "dist/esm/index.js",
   "types": "dist/@types/index.d.ts",
   "repository": "https://github.com/iamvishnusankar/next-sitemap.git",
-  "author": "Vishnu Sankar (@iamvishnusankar)",
+  "engines": {
+    "node": ">=12"
+  },
+  "keywords": [
+    "nextjs",
+    "next",
+    "sitemap",
+    "seo",
+    "react"
+  ],
+  "author": {
+    "name": "Vishnu Sankar",
+    "url": "https://www.iamvishnusankar.com"
+  },
+  "bugs": {
+    "url": "https://github.com/iamvishnusankar/next-sitemap/issues"
+  },
   "license": "MIT",
   "sideEffects": false,
   "publishConfig": {
@@ -22,7 +38,6 @@
   },
   "dependencies": {
     "@corex/deepmerge": "^2.6.148",
-    "matcher": "^4.0.0",
     "minimist": "^1.2.5"
   },
   "peerDependencies": {
