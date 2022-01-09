@@ -1,4 +1,4 @@
-import matcher from 'matcher'
+import { matcher } from '../matcher'
 
 export const toChunks = <T>(arr: T[], chunkSize: number): any => {
   return arr.reduce<Array<T[]>>(
