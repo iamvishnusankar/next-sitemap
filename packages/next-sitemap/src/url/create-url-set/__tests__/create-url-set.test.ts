@@ -73,6 +73,33 @@ describe('createUrlSet', () => {
     ])
   })
 
+  test('with i18n exclusion', async () => {
+    const urlset = await createUrlSet(
+      {
+        ...sampleConfig,
+        exclude: ['/', '/page-0', '/page-2', '/about', '/fr*'],
+      },
+      sampleI18nManifest
+    )
+
+    expect(urlset).toStrictEqual([
+      {
+        changefreq: 'daily',
+        lastmod: expect.any(String),
+        priority: 0.7,
+        loc: 'https://example.com/page-1',
+        alternateRefs: [],
+      },
+      {
+        changefreq: 'daily',
+        lastmod: expect.any(String),
+        priority: 0.7,
+        loc: 'https://example.com/page-3',
+        alternateRefs: [],
+      },
+    ])
+  })
+
   test('with wildcard exclusion', async () => {
     const urlset = await createUrlSet(
       {
