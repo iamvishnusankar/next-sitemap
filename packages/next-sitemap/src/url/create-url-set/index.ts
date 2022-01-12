@@ -48,15 +48,10 @@ export const createUrlSet = async (
 ): Promise<ISitemapField[]> => {
   const i18n = manifest.routes?.i18n
 
-  let allKeys = [
+  const allKeys = [
     ...Object.keys(manifest.build.pages),
     ...(manifest.preRender ? Object.keys(manifest.preRender.routes) : []),
   ]
-
-  // Remove the urls based on config.exclude array
-  if (config.exclude && config.exclude.length > 0) {
-    allKeys = removeIfMatchPattern(allKeys, config.exclude)
-  }
 
   // Filter out next.js internal urls and generate urls based on sitemap
   let urlSet = allKeys.filter((x) => !isNextInternalUrl(x))
@@ -66,6 +61,11 @@ export const createUrlSet = async (
     const { defaultLocale } = i18n
     const replaceDefaultLocale = createDefaultLocaleReplace(defaultLocale)
     urlSet = urlSet.map(replaceDefaultLocale)
+  }
+
+  // Remove the urls based on config.exclude array
+  if (config.exclude && config.exclude.length > 0) {
+    urlSet = removeIfMatchPattern(urlSet, config.exclude)
   }
 
   urlSet = [...new Set(urlSet)]
