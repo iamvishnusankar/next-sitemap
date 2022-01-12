@@ -42,6 +42,9 @@ describe('next-sitemap', () => {
     expect(isNextInternalUrl('/_app')).toBeTruthy()
     expect(isNextInternalUrl('/404')).toBeTruthy()
     expect(isNextInternalUrl('/_random')).toBeTruthy()
+    expect(isNextInternalUrl('/_middleware')).toBeTruthy()
+    expect(isNextInternalUrl('/about/_middleware')).toBeTruthy()
+    expect(isNextInternalUrl('/some_url/about/_middleware')).toBeTruthy()
   })
 
   test('isNextInternalUrl: url params', () => {
