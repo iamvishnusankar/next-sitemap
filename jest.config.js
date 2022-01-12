@@ -1,5 +1,7 @@
-module.exports = {
-  ...require('@corex/jest/reporter'),
+import reporter from '@corex/jest/reporter.js'
+
+export default {
+  ...reporter,
   verbose: true,
   preset: 'ts-jest',
   projects: ['packages/*'],
