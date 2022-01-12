@@ -8,14 +8,13 @@ on:
   pull_request:
     branches:
       - master
-      - development
 
 jobs:
   test:
     strategy:
       matrix:
         platform: [ubuntu-latest, macos-latest, windows-latest]
-        node: ['17', '16', '14', '13', '12']
+        node: ['17', '16', '14']
     runs-on: ${{ matrix.platform }}
     steps:
       - name: Github Checkout
@@ -27,7 +26,7 @@ jobs:
           node-version: ${{ matrix.node }}
 
       - name: Install
-        run: yarn install --ignore-engines
+        run: yarn install --ci
 
       - name: Lint
         run: yarn lint
