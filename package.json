@@ -10,8 +10,7 @@
   "workspaces": {
     "packages": [
       "packages/*",
-      "example",
-      "example-i18n"
+      "examples/*"
     ]
   },
   "scripts": {

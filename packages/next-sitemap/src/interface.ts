@@ -89,9 +89,10 @@ export interface IRuntimePaths {
   BUILD_MANIFEST: string
   PRERENDER_MANIFEST: string
   ROUTES_MANIFEST: string
-  SITEMAP_FILE: string
   ROBOTS_TXT_FILE: string
   EXPORT_MARKER: string
+  SITEMAP_INDEX_FILE: string
+  SITEMAP_INDEX_URL: string
 }
 
 export type AlternateRef = {
