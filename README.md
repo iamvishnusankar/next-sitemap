@@ -8,6 +8,7 @@ Sitemap generator for next.js. Generate sitemap(s) and robots.txt for all static
   - [Installation](#installation)
   - [Create config file](#create-config-file)
   - [Building sitemaps](#building-sitemaps)
+- [Index sitemaps](#index-sitemaps)
 - [Splitting large sitemap into multiple files](#splitting-large-sitemap-into-multiple-files)
 - [Configuration Options](#configuration-options)
 - [Custom transformation function](#custom-transformation-function)
@@ -26,7 +27,7 @@ yarn add next-sitemap -D
 
 `next-sitemap` requires a basic config file (`next-sitemap.js`) under your project root
 
-> ✅ `next-sitemap` now loads environment variables from `.env` files by default.
+> ✅ `next-sitemap` will load environment variables from `.env` files by default.
 
 ```js
 module.exports = {
@@ -51,10 +52,12 @@ Having `next-sitemap` command & `next-sitemap.js` file may result in file openin
 
 As a solution to this, it is now possible to use a custom config file instead of `next-sitemap.js`. Just pass `--config <your-config-file>.js` to build command.
 
-From now onwards:
+> - `next-sitemap` uses configuration from `next-sitemap.js`
+> - `next-sitemap --config <custom-config-file>.js` uses config from `<custom-config-file>.js`
 
-- `next-sitemap` uses configuration from `next-sitemap.js`
-- `next-sitemap --config <custom-config-file>.js` uses config from `<custom-config-file>.js`
+## Index sitemaps
+
+📣 From `next-sitemap` v2.x onwards, `sitemap.xml` will be [Index Sitemap](https://developers.google.com/search/docs/advanced/sitemaps/large-sitemaps). It will contain urls of all other generated sitemap endpoints.
 
 ## Splitting large sitemap into multiple files
 
@@ -68,7 +71,7 @@ module.exports = {
 }
 ```
 
-Above is the minimal configuration to split a large sitemap. When the number of URLs in a sitemap is more than 7000, `next-sitemap` will create sitemap (e.g. sitemap-1.xml, sitemap-2.xml) and index (e.g. sitemap.xml) files.
+Above is the minimal configuration to split a large sitemap. When the number of URLs in a sitemap is more than 7000, `next-sitemap` will create sitemap (e.g. sitemap-0.xml, sitemap-1.xml) and index (e.g. sitemap.xml) files.
 
 ## Configuration Options
 
