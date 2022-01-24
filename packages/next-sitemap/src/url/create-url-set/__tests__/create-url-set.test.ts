@@ -2,7 +2,7 @@ import { createUrlSet } from '..'
 import { transformSitemap } from '../../../config'
 import { sampleConfig } from '../../../fixtures/config'
 import { sampleManifest, sampleI18nManifest } from '../../../fixtures/manifest'
-import { IConfig } from '../../../interface'
+import { IConfig, ISitemapField } from '../../../interface'
 
 describe('createUrlSet', () => {
   test('without exclusion', async () => {
@@ -309,6 +309,120 @@ describe('createUrlSet', () => {
         alternateRefs: [
           { href: 'https://en.example.com/page-3', hreflang: 'en' },
           { href: 'https://fr.example.com/page-3', hreflang: 'fr' },
+        ],
+      },
+    ])
+  })
+
+  test('with absolute alternateRefs', async () => {
+    const urlset = await createUrlSet(
+      {
+        ...sampleConfig,
+        siteUrl: 'https://example.com/',
+        alternateRefs: [
+          { href: 'https://example.com/en', hreflang: 'en' },
+          { href: 'https://example.com/fr', hreflang: 'fr' },
+          { href: 'https://example.com/it', hreflang: 'it' },
+          { href: 'https://example.com/de', hreflang: 'de' },
+        ],
+        transform: (config, url) => {
+          const sitemapField = {
+            loc: url,
+            changefreq: config.changefreq,
+            priority: config.priority,
+            alternateRefs: config.alternateRefs,
+            lastmod: new Date().toISOString(),
+          } as ISitemapField
+          if (url.startsWith('/page')) {
+            sitemapField.alternateRefs = [
+              {
+                href: 'https://example.com/en',
+                hreflang: 'en',
+              },
+              {
+                href: 'https://example.com/fr',
+                hreflang: 'fr',
+              },
+              {
+                href: `https://example.com/it${url.replace(
+                  '/page',
+                  '/pagina'
+                )}`,
+                hreflang: 'it',
+                hrefIsAbsolute: true,
+              },
+              {
+                href: `https://example.com/de${url.replace('/page', '/seite')}`,
+                hreflang: 'de',
+                hrefIsAbsolute: true,
+              },
+            ]
+          }
+          return sitemapField
+        },
+      },
+      sampleManifest
+    )
+
+    expect(urlset).toStrictEqual([
+      {
+        changefreq: 'daily',
+        lastmod: expect.any(String),
+        priority: 0.7,
+        loc: 'https://example.com',
+        alternateRefs: [
+          { href: 'https://example.com/en', hreflang: 'en' },
+          { href: 'https://example.com/fr', hreflang: 'fr' },
+          { href: 'https://example.com/it', hreflang: 'it' },
+          { href: 'https://example.com/de', hreflang: 'de' },
+        ],
+      },
+      {
+        changefreq: 'daily',
+        lastmod: expect.any(String),
+        priority: 0.7,
+        loc: 'https://example.com/page-0',
+        alternateRefs: [
+          { href: 'https://example.com/en/page-0', hreflang: 'en' },
+          { href: 'https://example.com/fr/page-0', hreflang: 'fr' },
+          { href: 'https://example.com/it/pagina-0', hreflang: 'it' },
+          { href: 'https://example.com/de/seite-0', hreflang: 'de' },
+        ],
+      },
+      {
+        changefreq: 'daily',
+        lastmod: expect.any(String),
+        priority: 0.7,
+        loc: 'https://example.com/page-1',
+        alternateRefs: [
+          { href: 'https://example.com/en/page-1', hreflang: 'en' },
+          { href: 'https://example.com/fr/page-1', hreflang: 'fr' },
+          { href: 'https://example.com/it/pagina-1', hreflang: 'it' },
+          { href: 'https://example.com/de/seite-1', hreflang: 'de' },
+        ],
+      },
+      {
+        changefreq: 'daily',
+        lastmod: expect.any(String),
+        priority: 0.7,
+        loc: 'https://example.com/page-2',
+        alternateRefs: [
+          { href: 'https://example.com/en/page-2', hreflang: 'en' },
+          { href: 'https://example.com/fr/page-2', hreflang: 'fr' },
+          { href: 'https://example.com/it/pagina-2', hreflang: 'it' },
+          { href: 'https://example.com/de/seite-2', hreflang: 'de' },
+        ],
+      },
+      {
+        changefreq: 'daily',
+        lastmod: expect.any(String),
+        priority: 0.7,
+        loc: 'https://example.com/page-3',
+        alternateRefs: [
+          { href: 'https://example.com/en/page-3', hreflang: 'en' },
+          { href: 'https://example.com/fr/page-3', hreflang: 'fr' },
+          { href: 'https://example.com/it/pagina-3', hreflang: 'it' },
+          { href: 'https://example.com/de/seite-3', hreflang: 'de' },
         ],
       },
     ])
