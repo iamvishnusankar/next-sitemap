@@ -118,7 +118,9 @@ export const createUrlSet = async (
     ...x,
     loc: absoluteUrl(config.siteUrl, x.loc, config.trailingSlash), // create absolute urls based on sitemap fields
     alternateRefs: (x.alternateRefs ?? []).map((alternateRef) => ({
-      href: absoluteUrl(alternateRef.href, x.loc, config.trailingSlash),
+      href: alternateRef.hrefIsAbsolute
+        ? alternateRef.href
+        : absoluteUrl(alternateRef.href, x.loc, config.trailingSlash),
       hreflang: alternateRef.hreflang,
     })),
   }))
