@@ -9,21 +9,21 @@ import {
 } from '../interface'
 import minimist from 'minimist'
 import fs from 'fs'
+import { generateUrl } from '../url'
 
 export const getPath = (...pathSegment: string[]): string => {
   return path.resolve(process.cwd(), ...pathSegment)
 }
 
 export const resolveSitemapChunks = (
-  baseSitemapPath: string,
+  indexSitemapPath: string,
   chunks: ISitemapField[][],
   config: IConfig
 ): ISitemapChunk[] => {
-  const folder = path.dirname(baseSitemapPath)
+  const folder = path.dirname(indexSitemapPath)
+
   return chunks.map((chunk, index) => {
-    const filename = `${config.sitemapBaseFileName}${
-      index > 0 ? `-${index}` : ''
-    }.xml`
+    const filename = `${config.sitemapBaseFileName}-${index}.xml`
 
     return {
       path: `${folder}/${filename}`,
@@ -39,8 +39,15 @@ export const getRuntimePaths = (config: IConfig): IRuntimePaths => {
     PRERENDER_MANIFEST: getPath(config.sourceDir!, 'prerender-manifest.json'),
     ROUTES_MANIFEST: getPath(config.sourceDir!, 'routes-manifest.json'),
     EXPORT_MARKER: getPath(config.sourceDir!, 'export-marker.json'),
-    SITEMAP_FILE: getPath(config.outDir!, `${config.sitemapBaseFileName}.xml`),
     ROBOTS_TXT_FILE: getPath(config.outDir!, 'robots.txt'),
+    SITEMAP_INDEX_FILE: getPath(
+      config.outDir!,
+      `${config.sitemapBaseFileName}.xml`
+    ),
+    SITEMAP_INDEX_URL: generateUrl(
+      config?.siteUrl,
+      `${config.sitemapBaseFileName}.xml`
+    ),
   }
 }
 

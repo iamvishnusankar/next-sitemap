@@ -1,4 +1,4 @@
-name: 1.9$(rev:.r)
+name: 2.0$(rev:.r)
 trigger:
   branches:
     include:
