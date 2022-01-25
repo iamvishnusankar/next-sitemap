@@ -5,11 +5,11 @@ import { generateSitemapIndexXml } from './generate'
 
 export const exportSitemapIndex = (
   runtimePaths: IRuntimePaths,
-  config: IConfig,
-  allSitemaps: string[]
+  config: IConfig
 ) => {
-  // Remove first entry from allSitemaps (Index sitemap)
-  const [indexEntry, ...restSitemaps] = allSitemaps
+  // Remove first entry from additionalSitemaps (Index sitemap)
+  const [indexEntry, ...restSitemaps] =
+    config?.robotsTxtOptions?.additionalSitemaps ?? []
 
   const content = generateSitemapIndexXml(restSitemaps)
 
