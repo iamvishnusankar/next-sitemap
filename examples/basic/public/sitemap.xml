@@ -3,4 +3,7 @@
 <sitemap><loc>https://example-site-url.com/sitemap-0.xml</loc></sitemap>
 <sitemap><loc>https://example-site-url.com/sitemap-1.xml</loc></sitemap>
 <sitemap><loc>https://example-site-url.com/sitemap-2.xml</loc></sitemap>
+<sitemap><loc>https://example.com/my-custom-sitemap-1.xml</loc></sitemap>
+<sitemap><loc>https://example.com/my-custom-sitemap-2.xml</loc></sitemap>
+<sitemap><loc>https://example.com/my-custom-sitemap-3.xml</loc></sitemap>
 </sitemapindex>
