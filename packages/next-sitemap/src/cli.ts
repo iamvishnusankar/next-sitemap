@@ -10,6 +10,7 @@ import {
   getConfigFilePath,
 } from './path'
 import { exportRobotsTxt } from './robots-txt'
+import { merge } from '@corex/deepmerge'
 
 // Async main
 import { exportSitemapIndex } from './sitemap-index/export'
@@ -54,11 +55,21 @@ import { exportSitemapIndex } from './sitemap-index/export'
     allSitemaps.push(generateUrl(config.siteUrl, `/${chunk.filename}`))
   })
 
+  // combine-merge allSitemaps with user-provided additionalSitemaps
+  const updatedConfig = merge([
+    {
+      robotsTxtOptions: {
+        additionalSitemaps: allSitemaps,
+      },
+    },
+    config,
+  ])
+
   // Export sitemap index file
-  exportSitemapIndex(runtimePaths, config, allSitemaps)
+  exportSitemapIndex(runtimePaths, updatedConfig)
 
   // Generate robots.txt
   if (config.generateRobotsTxt) {
-    exportRobotsTxt(runtimePaths, config, allSitemaps)
+    exportRobotsTxt(runtimePaths, updatedConfig)
   }
 })()
