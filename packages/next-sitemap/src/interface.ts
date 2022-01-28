@@ -14,6 +14,7 @@ export interface IRobotPolicy {
   userAgent: string
   disallow?: string | string[]
   allow?: string | string[]
+  crawlDelay?: number
 }
 
 export interface IRobotsTxt {
