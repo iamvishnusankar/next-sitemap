@@ -39,17 +39,9 @@ export const exportFile = async (
   // Target folder
   const folder = path.dirname(filePath)
 
-  // Get file stat
-  const stat = await fs.stat(folder).catch(() => {
-    return {
-      isDirectory: () => false,
-    }
-  })
+  // Get file stat and create export folder if it doesn't exist
+  await fs.stat(folder).catch(async () => fs.mkdir(folder))
 
-  // Create folder if folder not exist
-  if (!stat.isDirectory()) {
-    await fs.mkdir(folder)
-  }
-
+  // Write file
   return fs.writeFile(filePath, content)
 }
