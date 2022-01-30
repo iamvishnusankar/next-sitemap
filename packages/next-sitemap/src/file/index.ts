@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 import fs from 'node:fs/promises'
 import path from 'node:path'
+import { Logger } from '../logger'
 
 /**
  * Load file
@@ -39,8 +40,20 @@ export const exportFile = async (
   // Target folder
   const folder = path.dirname(filePath)
 
-  // Get file stat and create export folder if it doesn't exist
-  await fs.stat(folder).catch(async () => fs.mkdir(folder))
+  // Get file stat
+  const stat = await fs.stat(folder).catch(() => ({
+    isDirectory: () => false,
+  }))
+
+  // Directory
+  if (!stat.isDirectory()) {
+    await fs.mkdir(folder).catch(() => {
+      return Logger.log(
+        '🛠️ ',
+        'Export folder already exist... (Skipping creation)'
+      )
+    })
+  }
 
   // Write file
   return fs.writeFile(filePath, content)
