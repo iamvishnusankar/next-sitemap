@@ -3,6 +3,33 @@
  */
 export class Logger {
   /**
+   * Missing build
+   */
+  static noExportMarker() {
+    Logger.error(
+      'Unable to find export-maker.\nMake sure to build the project using `next build` command\n'
+    )
+  }
+
+  /**
+   * Log missing config file
+   */
+  static noConfigFile() {
+    Logger.error(
+      'Unable to find next-sitemap.js or custom config file.\nIf you are using custom config file, make sure to invoke `next-sitemap --config <custom-config-file>.js`\n'
+    )
+  }
+
+  /**
+   * Generic error logger
+   * @param text
+   * @returns
+   */
+  static error(...text: string[]) {
+    return console.error(`\x1b[31m`, `❌`, `[next-sitemap]`, ...text)
+  }
+
+  /**
    * Generic log
    * @param arg0
    * @param filePath
