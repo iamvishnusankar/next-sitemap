@@ -19,19 +19,19 @@ const main = async () => {
   const configFilePath = getConfigFilePath()
 
   // Load next-sitemap.js
-  let config = loadConfig(configFilePath)
+  let config = await loadConfig(configFilePath)
 
   // Get runtime paths
   const runtimePaths = getRuntimePaths(config)
 
   // Get runtime config
-  const runtimeConfig = getRuntimeConfig(runtimePaths)
+  const runtimeConfig = await getRuntimeConfig(runtimePaths)
 
   // Update config with runtime config
   config = updateConfig(config, runtimeConfig)
 
   // Load next.js manifest files
-  const manifest = loadManifest(runtimePaths)
+  const manifest = await loadManifest(runtimePaths)
 
   // Create url-set based on config and manifest
   const urlSet = await createUrlSet(config, manifest)
@@ -66,11 +66,11 @@ const main = async () => {
   ])
 
   // Export sitemap index file
-  exportSitemapIndex(runtimePaths, config)
+  await exportSitemapIndex(runtimePaths, config)
 
   // Generate robots.txt
   if (config.generateRobotsTxt) {
-    exportRobotsTxt(runtimePaths, config)
+    await exportRobotsTxt(runtimePaths, config)
   }
 }
 
