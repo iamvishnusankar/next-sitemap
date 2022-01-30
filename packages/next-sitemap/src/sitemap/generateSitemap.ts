@@ -2,7 +2,7 @@ import { ISitemapChunk } from '../interface'
 import { exportFile } from '../file'
 import { buildSitemapXml } from './buildSitemapXml'
 
-export const generateSitemap = (chunk: ISitemapChunk): void => {
+export const generateSitemap = async (chunk: ISitemapChunk): Promise<any> => {
   const sitemapXml = buildSitemapXml(chunk.fields)
-  exportFile(chunk.path, sitemapXml)
+  return exportFile(chunk.path, sitemapXml)
 }

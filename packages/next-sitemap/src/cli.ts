@@ -50,10 +50,18 @@ const main = async () => {
   const allSitemaps: string[] = [runtimePaths.SITEMAP_INDEX_URL]
 
   // Generate sitemaps from chunks
-  sitemapChunks.forEach((chunk) => {
-    generateSitemap(chunk)
-    allSitemaps.push(generateUrl(config.siteUrl, `/${chunk.filename}`))
-  })
+  await Promise.all(
+    sitemapChunks.map(async (chunk) => {
+      // Get sitemap absolute url
+      const sitemapUrl = generateUrl(config.siteUrl, `/${chunk.filename}`)
+
+      // Add generate sitemap to sitemap list
+      allSitemaps.push(sitemapUrl)
+
+      // Generate sitemap
+      return generateSitemap(chunk)
+    })
+  )
 
   // combine-merge allSitemaps with user-provided additionalSitemaps
   config = merge([
