@@ -48,10 +48,7 @@ export const exportFile = async (
   // Directory
   if (!stat.isDirectory()) {
     await fs.mkdir(folder).catch(() => {
-      return Logger.log(
-        '🛠️ ',
-        'Export folder already exist... (Skipping creation)'
-      )
+      return
     })
   }
 
