@@ -24,7 +24,7 @@ const main = async () => {
   // Get runtime paths
   const runtimePaths = getRuntimePaths(config)
 
-  // get runtime config
+  // Get runtime config
   const runtimeConfig = getRuntimeConfig(runtimePaths)
 
   // Update config with runtime config
