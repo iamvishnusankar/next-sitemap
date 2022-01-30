@@ -11,27 +11,28 @@ import {
 } from './path'
 import { exportRobotsTxt } from './robots-txt'
 import { merge } from '@corex/deepmerge'
+import { exportSitemapIndex } from './sitemap-index/export'
+import { Logger } from './logger'
 
 // Async main
-import { exportSitemapIndex } from './sitemap-index/export'
-;(async () => {
+const main = async () => {
   // Get config file path
-  const configFilePath = getConfigFilePath()
+  const configFilePath = await getConfigFilePath()
 
   // Load next-sitemap.js
-  let config = loadConfig(configFilePath)
+  let config = await loadConfig(configFilePath)
 
   // Get runtime paths
   const runtimePaths = getRuntimePaths(config)
 
-  // get runtime config
-  const runtimeConfig = getRuntimeConfig(runtimePaths)
+  // Get runtime config
+  const runtimeConfig = await getRuntimeConfig(runtimePaths)
 
   // Update config with runtime config
   config = updateConfig(config, runtimeConfig)
 
   // Load next.js manifest files
-  const manifest = loadManifest(runtimePaths)
+  const manifest = await loadManifest(runtimePaths)
 
   // Create url-set based on config and manifest
   const urlSet = await createUrlSet(config, manifest)
@@ -50,13 +51,21 @@ import { exportSitemapIndex } from './sitemap-index/export'
   const allSitemaps: string[] = [runtimePaths.SITEMAP_INDEX_URL]
 
   // Generate sitemaps from chunks
-  sitemapChunks.forEach((chunk) => {
-    generateSitemap(chunk)
-    allSitemaps.push(generateUrl(config.siteUrl, `/${chunk.filename}`))
-  })
+  await Promise.all(
+    sitemapChunks.map(async (chunk) => {
+      // Get sitemap absolute url
+      const sitemapUrl = generateUrl(config.siteUrl, `/${chunk.filename}`)
+
+      // Add generate sitemap to sitemap list
+      allSitemaps.push(sitemapUrl)
+
+      // Generate sitemap
+      return generateSitemap(chunk)
+    })
+  )
 
   // combine-merge allSitemaps with user-provided additionalSitemaps
-  const updatedConfig = merge([
+  config = merge([
     {
       robotsTxtOptions: {
         additionalSitemaps: allSitemaps,
@@ -66,10 +75,15 @@ import { exportSitemapIndex } from './sitemap-index/export'
   ])
 
   // Export sitemap index file
-  exportSitemapIndex(runtimePaths, updatedConfig)
+  await exportSitemapIndex(runtimePaths, config)
 
   // Generate robots.txt
   if (config.generateRobotsTxt) {
-    exportRobotsTxt(runtimePaths, updatedConfig)
+    await exportRobotsTxt(runtimePaths, config)
   }
-})()
+
+  return allSitemaps
+}
+
+// Execute
+main().then(Logger.generationCompleted)
