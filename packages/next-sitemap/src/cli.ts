@@ -11,10 +11,10 @@ import {
 } from './path'
 import { exportRobotsTxt } from './robots-txt'
 import { merge } from '@corex/deepmerge'
+import { exportSitemapIndex } from './sitemap-index/export'
 
 // Async main
-import { exportSitemapIndex } from './sitemap-index/export'
-;(async () => {
+const main = async () => {
   // Get config file path
   const configFilePath = getConfigFilePath()
 
@@ -56,7 +56,7 @@ import { exportSitemapIndex } from './sitemap-index/export'
   })
 
   // combine-merge allSitemaps with user-provided additionalSitemaps
-  const updatedConfig = merge([
+  config = merge([
     {
       robotsTxtOptions: {
         additionalSitemaps: allSitemaps,
@@ -66,10 +66,13 @@ import { exportSitemapIndex } from './sitemap-index/export'
   ])
 
   // Export sitemap index file
-  exportSitemapIndex(runtimePaths, updatedConfig)
+  exportSitemapIndex(runtimePaths, config)
 
   // Generate robots.txt
   if (config.generateRobotsTxt) {
-    exportRobotsTxt(runtimePaths, updatedConfig)
+    exportRobotsTxt(runtimePaths, config)
   }
-})()
+}
+
+// Execute
+main()
