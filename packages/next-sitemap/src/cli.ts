@@ -12,11 +12,12 @@ import {
 import { exportRobotsTxt } from './robots-txt'
 import { merge } from '@corex/deepmerge'
 import { exportSitemapIndex } from './sitemap-index/export'
+import { Logger } from './logger'
 
 // Async main
 const main = async () => {
   // Get config file path
-  const configFilePath = getConfigFilePath()
+  const configFilePath = await getConfigFilePath()
 
   // Load next-sitemap.js
   let config = await loadConfig(configFilePath)
@@ -80,7 +81,9 @@ const main = async () => {
   if (config.generateRobotsTxt) {
     await exportRobotsTxt(runtimePaths, config)
   }
+
+  return allSitemaps
 }
 
 // Execute
-main()
+main().then(Logger.generationCompleted)
