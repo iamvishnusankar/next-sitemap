@@ -66,4 +66,5 @@ coverage
 dist
 junit.xml
 tsconfig.tsbuildinfo
-public
+**/public
+**/public
