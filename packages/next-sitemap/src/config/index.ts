@@ -8,6 +8,7 @@ import {
 } from '../interface'
 import { merge } from '@corex/deepmerge'
 import { loadFile } from '../file'
+import { Logger } from '../logger'
 
 export const loadConfig = async (path: string): Promise<IConfig> => {
   const baseConfig = await loadFile<IConfig>(path)
@@ -68,7 +69,11 @@ export const getRuntimeConfig = async (
   const exportMarkerConfig = await loadFile<IExportMarker>(
     runtimePaths.EXPORT_MARKER,
     false
-  )
+  ).catch((err) => {
+    Logger.noExportMarker()
+
+    throw err
+  })
 
   return {
     trailingSlash: exportMarkerConfig

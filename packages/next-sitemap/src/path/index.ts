@@ -10,6 +10,7 @@ import minimist from 'minimist'
 import fs from 'node:fs/promises'
 import path from 'node:path'
 import { generateUrl } from '../url'
+import { Logger } from '../logger'
 
 /**
  * Return absolute path from path segments
@@ -84,7 +85,8 @@ export const getConfigFilePath = async () => {
   return fs
     .stat(configPath)
     .then(() => configPath)
-    .catch(() => {
-      throw new Error(`${configPath} does not exist.`)
+    .catch((err) => {
+      Logger.noConfigFile()
+      throw err
     })
 }
