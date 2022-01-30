@@ -9,8 +9,8 @@ import {
 import { merge } from '@corex/deepmerge'
 import { loadFile } from '../file'
 
-export const loadConfig = (path: string): IConfig => {
-  const baseConfig = loadFile<IConfig>(path)
+export const loadConfig = async (path: string): Promise<IConfig> => {
+  const baseConfig = await loadFile<IConfig>(path)
   return withDefaultConfig(baseConfig!)
 }
 
@@ -62,10 +62,10 @@ export const withDefaultConfig = (config: Partial<IConfig>): IConfig => {
   return updateConfig(defaultConfig, config)
 }
 
-export const getRuntimeConfig = (
+export const getRuntimeConfig = async (
   runtimePaths: IRuntimePaths
-): Partial<IConfig> => {
-  const exportMarkerConfig = loadFile<IExportMarker>(
+): Promise<Partial<IConfig>> => {
+  const exportMarkerConfig = await loadFile<IExportMarker>(
     runtimePaths.EXPORT_MARKER,
     false
   )
