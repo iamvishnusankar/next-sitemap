@@ -17,7 +17,7 @@ export const loadFile = async <T>(
 
   // Import and return if the file exist
   if (stat.isFile()) {
-    return (await import(path)).default
+    return require(path)
   }
 
   // Handle error
@@ -40,7 +40,11 @@ export const exportFile = async (
   const folder = path.dirname(filePath)
 
   // Get file stat
-  const stat = await fs.stat(folder)
+  const stat = await fs.stat(folder).catch(() => {
+    return {
+      isDirectory: () => false,
+    }
+  })
 
   // Create folder if folder not exist
   if (!stat.isDirectory()) {
