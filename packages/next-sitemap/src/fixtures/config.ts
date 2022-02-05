@@ -18,6 +18,11 @@ export const sampleConfig: IConfig = withDefaultConfig({
         userAgent: 'black-listed-bot',
         disallow: ['/sub-path-1', '/path-2'],
       },
+      {
+        userAgent: 'friendly-bot',
+        allow: '/',
+        crawlDelay: 10,
+      },
     ],
     additionalSitemaps: [
       'https://example.com/my-custom-sitemap-1.xml',
