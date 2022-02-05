@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 import fs from 'node:fs/promises'
 import path from 'node:path'
-import { Logger } from '../logger'
 
 /**
  * Load file

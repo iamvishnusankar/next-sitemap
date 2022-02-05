@@ -7,7 +7,7 @@
   "types": "dist/@types/index.d.ts",
   "repository": "https://github.com/iamvishnusankar/next-sitemap.git",
   "engines": {
-    "node": ">=14"
+    "node": ">=14.18.3"
   },
   "keywords": [
     "nextjs",
