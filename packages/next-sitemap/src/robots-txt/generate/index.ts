@@ -27,6 +27,10 @@ export const generateRobotsTxt = (config: IConfig): string | null => {
       content += `Crawl-delay: ${x.crawlDelay}\n`
     }
 
+    if (x.cleanParam) {
+      content += `${addPolicies('Clean-param', x.cleanParam as string[])}`
+    }
+
     content += '\n'
   })
 

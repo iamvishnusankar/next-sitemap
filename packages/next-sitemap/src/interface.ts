@@ -33,6 +33,11 @@ export interface IRobotPolicy {
    * Crawl delay
    */
   crawlDelay?: number
+
+  /**
+   * Crawl delay
+   */
+  cleanParam?: string | string[]
 }
 
 export interface IRobotsTxt {

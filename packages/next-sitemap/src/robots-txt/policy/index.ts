@@ -7,6 +7,7 @@ export const normalizePolicy = (policies: IRobotPolicy[]): IRobotPolicy[] => {
     ...x,
     allow: toArray(x.allow!),
     disallow: toArray(x.disallow!),
+    cleanParam: toArray(x.cleanParam!)
   }))
 }
 
