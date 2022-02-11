@@ -1,5 +1,16 @@
 # next-sitemap
 
+<div align="center">
+
+[![Build Status](https://dev.azure.com/iamvishnusankar/Public/_apis/build/status/iamvishnusankar.next-sitemap?branchName=master)](https://dev.azure.com/iamvishnusankar/Public/_build/latest?definitionId=126&branchName=master)
+[![npm version](https://badge.fury.io/js/next-sitemap.svg)](https://badge.fury.io/js/next-sitemap)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/iamvishnusankar/next-sitemap/pulls)
+<a href="https://twitter.com/intent/follow?screen_name=iamvishnusankar">
+<img src="https://img.shields.io/twitter/follow/iamvishnusankar?style=social&logo=twitter" alt="follow on Twitter">
+</a>
+
+</div>
+
 Sitemap generator for next.js. Generate sitemap(s) and robots.txt for all static/pre-rendered/dynamic/server-side pages.
 
 ## Table of contents
@@ -14,6 +25,7 @@ Sitemap generator for next.js. Generate sitemap(s) and robots.txt for all static
 - [Custom transformation function](#custom-transformation-function)
 - [Full configuration example](#full-configuration-example)
 - [Generating dynamic/server-side sitemaps](#generating-dynamicserver-side-sitemaps)
+- [Typescript JSDoc](#typescript-jsdoc)
 
 ## Getting started
 
@@ -30,6 +42,8 @@ yarn add next-sitemap -D
 > ✅ `next-sitemap` will load environment variables from `.env` files by default.
 
 ```js
+/** @type {import('next-sitemap').IConfig} */
+
 module.exports = {
   siteUrl: process.env.SITE_URL || 'https://example.com',
   generateRobotsTxt: true, // (optional)
@@ -64,6 +78,8 @@ As a solution to this, it is now possible to use a custom config file instead of
 Define the `sitemapSize` property in `next-sitemap.js` to split large sitemap into multiple files.
 
 ```js
+/** @type {import('next-sitemap').IConfig} */
+
 module.exports = {
   siteUrl: 'https://example.com',
   generateRobotsTxt: true,
@@ -100,6 +116,8 @@ Custom transformation provides an extension method to add, remove or exclude `pa
 Returning `null` value from the transformation function will result in the exclusion of that specific `relative-path` from the generated sitemap list.
 
 ```jsx
+/** @type {import('next-sitemap').IConfig} */
+
 module.exports = {
   transform: async (config, path) => {
     // custom function to ignore the path
@@ -136,6 +154,8 @@ module.exports = {
 If your function returns a path that already exists, then it will simply be updated, duplication will not happen.
 
 ```js
+/** @type {import('next-sitemap').IConfig} */
+
 module.exports = {
   additionalPaths: async (config) => {
     const result = []
@@ -176,6 +196,8 @@ module.exports = {
 Here's an example `next-sitemap.js` configuration with all options
 
 ```js
+/** @type {import('next-sitemap').IConfig} */
+
 module.exports = {
   siteUrl: 'https://example.com',
   changefreq: 'daily',
@@ -294,7 +316,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 }
 
 // Default export to prevent next.js errors
-export default () => {}
+export default Sitemap = () => {}
 ```
 
 Now, `next.js` is serving the dynamic sitemap from `http://localhost:3000/server-sitemap.xml`.
@@ -303,6 +325,9 @@ List the dynamic sitemap page in `robotsTxtOptions.additionalSitemaps` and exclu
 
 ```js
 // next-sitemap.js
+
+/** @type {import('next-sitemap').IConfig} */
+
 module.exports = {
   siteUrl: 'https://example.com',
   generateRobotsTxt: true,
@@ -316,6 +341,20 @@ module.exports = {
 ```
 
 In this way, `next-sitemap` will manage the sitemaps for all your static pages and your dynamic sitemap will be listed on robots.txt.
+
+## Typescript JSDoc
+
+Add the following line of code in your `next-sitemap.js` for nice typescript autocomplete! 💖
+
+```js
+/** @type {import('next-sitemap').IConfig} */
+
+module.exports = {
+  // YOUR CONFIG
+}
+```
+
+![TS_JSDOC](./screenshots/ts-jsdoc.png)
 
 ## Contribution
 

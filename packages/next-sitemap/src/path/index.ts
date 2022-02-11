@@ -1,25 +1,39 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-import path from 'path'
-import {
+import type {
   ISitemapChunk,
   IConfig,
   IRuntimePaths,
   ISitemapField,
 } from '../interface'
 import minimist from 'minimist'
-import fs from 'fs'
+import fs from 'node:fs/promises'
+import path from 'node:path'
 import { generateUrl } from '../url'
+import { Logger } from '../logger'
 
+/**
+ * Return absolute path from path segments
+ * @param pathSegment
+ * @returns
+ */
 export const getPath = (...pathSegment: string[]): string => {
   return path.resolve(process.cwd(), ...pathSegment)
 }
 
+/**
+ * Resolve sitemap chunk path
+ * @param indexSitemapPath
+ * @param chunks
+ * @param config
+ * @returns
+ */
 export const resolveSitemapChunks = (
   indexSitemapPath: string,
   chunks: ISitemapField[][],
   config: IConfig
 ): ISitemapChunk[] => {
+  // Base directory of export folder
   const folder = path.dirname(indexSitemapPath)
 
   return chunks.map((chunk, index) => {
@@ -33,6 +47,11 @@ export const resolveSitemapChunks = (
   })
 }
 
+/**
+ * Return all runtime paths
+ * @param config
+ * @returns
+ */
 export const getRuntimePaths = (config: IConfig): IRuntimePaths => {
   return {
     BUILD_MANIFEST: getPath(config.sourceDir!, 'build-manifest.json'),
@@ -52,19 +71,22 @@ export const getRuntimePaths = (config: IConfig): IRuntimePaths => {
 }
 
 /**
- * @deprecated Use getConfigFilePath instead
+ * Get config file path
+ * @returns
  */
-export const KNOWN_PATHS = {
-  CONFIG_FILE: getPath('next-sitemap.js'),
-}
-
-export const getConfigFilePath = () => {
+export const getConfigFilePath = async () => {
+  // Extract args from command
   const args = minimist(process.argv.slice(2))
+
+  // Config file path
   const configPath = getPath(args.config || 'next-sitemap.js')
 
-  if (!fs.existsSync(configPath)) {
-    throw new Error(`${configPath} does not exist.`)
-  }
-
-  return configPath
+  // Check file stat
+  return fs
+    .stat(configPath)
+    .then(() => configPath)
+    .catch((err) => {
+      Logger.noConfigFile()
+      throw err
+    })
 }

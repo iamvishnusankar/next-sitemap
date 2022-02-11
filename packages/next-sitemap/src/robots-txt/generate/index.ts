@@ -23,6 +23,10 @@ export const generateRobotsTxt = (config: IConfig): string | null => {
       content += `${addPolicies('Disallow', x.disallow as string[])}`
     }
 
+    if (x.crawlDelay) {
+      content += `Crawl-delay: ${x.crawlDelay}\n`
+    }
+
     content += '\n'
   })
 

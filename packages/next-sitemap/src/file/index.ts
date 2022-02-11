@@ -1,22 +1,56 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-import fs from 'fs'
-import path from 'path'
+import fs from 'node:fs/promises'
+import path from 'node:path'
 
-export const loadFile = <T>(path: string, throwError = true): T | undefined => {
-  if (fs.existsSync(path)) {
-    return require(path) as T
+/**
+ * Load file
+ * @param path
+ * @param throwError
+ * @returns
+ */
+export const loadFile = async <T>(
+  path: string,
+  throwError = true
+): Promise<T | undefined> => {
+  // Get path stat
+  const stat = await fs.stat(path)
+
+  // Import and return if the file exist
+  if (stat.isFile()) {
+    return require(path)
   }
 
+  // Handle error
   if (throwError) {
-    new Error(`${path} does not exist.`)
+    throw new Error(`${path} does not exist.`)
   }
 }
 
-export const exportFile = (filePath: string, content: string): void => {
+/**
+ * Export file
+ * @param filePath
+ * @param content
+ * @returns
+ */
+export const exportFile = async (
+  filePath: string,
+  content: string
+): Promise<any> => {
+  // Target folder
   const folder = path.dirname(filePath)
-  if (!fs.existsSync(folder)) {
-    fs.mkdirSync(folder)
+
+  // Get file stat
+  const stat = await fs.stat(folder).catch(() => ({
+    isDirectory: () => false,
+  }))
+
+  // Directory
+  if (!stat.isDirectory()) {
+    await fs.mkdir(folder).catch(() => {
+      return
+    })
   }
 
-  fs.writeFileSync(filePath, content)
+  // Write file
+  return fs.writeFile(filePath, content)
 }
