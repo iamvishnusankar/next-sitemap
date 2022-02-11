@@ -181,6 +181,7 @@ export interface IRuntimePaths {
 export type AlternateRef = {
   href: string
   hreflang: string
+  hrefIsAbsolute?: boolean
 }
 
 export type ISitemapField = {
