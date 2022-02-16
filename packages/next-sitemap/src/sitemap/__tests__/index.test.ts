@@ -1,5 +1,5 @@
 import { ISitemapField } from '../../interface'
-import { buildSitemapXml } from '../buildSitemapXml'
+import { buildSitemapXml } from '../build'
 
 describe('buildSitemapXml', () => {
   test('snapshot test to exclude undefined values from final sitemap', () => {
