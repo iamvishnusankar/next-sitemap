@@ -1,3 +1,5 @@
+import { INextSitemapResult } from '..'
+
 /**
  * Generic console logger
  */
@@ -43,15 +45,18 @@ export class Logger {
    * @param allSitemaps
    * @returns
    */
-  static generationCompleted(allSitemaps: string[]) {
+  static generationCompleted(result: INextSitemapResult) {
     // Initial stats
     Logger.log(
       `✅`,
-      `Generated index sitemap and ${allSitemaps?.length - 1} sitemap(s)`
+      `Generated index sitemap and ${result?.generatedSitemaps?.length} sitemap(s)`
     )
 
     // Temp assign
-    let sitemapsList = allSitemaps
+    let sitemapsList = [
+      result?.runtimePaths?.SITEMAP_INDEX_URL,
+      ...(result?.generatedSitemaps ?? []),
+    ]
 
     // Only show 5 entries on console
     if (sitemapsList?.length > 7) {
