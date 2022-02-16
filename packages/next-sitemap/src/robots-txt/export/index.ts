@@ -1,6 +1,27 @@
-import { IConfig, IRuntimePaths } from '../../interface'
+import { INextSitemapResult } from '../../interface'
 import { generateRobotsTxt } from '../generate'
 import { exportFile } from '../../file'
+import { IConfig } from '../..'
+import { merge } from '@corex/deepmerge'
+
+export const getRobotsTxtExportConfig = (
+  config: IConfig,
+  result: INextSitemapResult
+) => {
+  return merge([
+    {
+      robotsTxtOptions: {
+        additionalSitemaps: [
+          result?.runtimePaths?.SITEMAP_INDEX_URL, // URL of index sitemap
+          ...(config?.robotsTxtOptions?.includeNonIndexSitemaps // Optionally include static generated sitemap files
+            ? result?.generatedSitemaps ?? []
+            : []),
+        ],
+      },
+    },
+    config,
+  ])
+}
 
 /**
  * Export robots txt file
@@ -8,14 +29,17 @@ import { exportFile } from '../../file'
  * @param config
  */
 export const exportRobotsTxt = async (
-  runtimePaths: IRuntimePaths,
-  config: IConfig
+  config: IConfig,
+  result: INextSitemapResult
 ): Promise<any> => {
+  // Create a config specific for robots.txt
+  const exportConfig = getRobotsTxtExportConfig(config, result)
+
   // Generate robots text
-  const robotsTxt = generateRobotsTxt(config)
+  const robotsTxt = generateRobotsTxt(exportConfig)
 
   // Create file
   if (robotsTxt) {
-    await exportFile(runtimePaths.ROBOTS_TXT_FILE, robotsTxt)
+    await exportFile(result?.runtimePaths.ROBOTS_TXT_FILE, robotsTxt)
   }
 }

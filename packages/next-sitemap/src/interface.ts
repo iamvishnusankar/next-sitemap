@@ -50,6 +50,11 @@ export interface IRobotsTxt {
   additionalSitemaps?: string[]
 
   /**
+   * Additional sitemap-indices which need to be added to robots.txt
+   */
+  additionalSitemapIndices?: string[]
+
+  /**
    * From v2.4x onwards, generated `robots.txt` will only contain url of `index sitemap` and custom provided endpoints from `robotsTxtOptions.additionalSitemaps`
    *
    * This is to prevent duplicate url submission (once through index-sitemap -> sitemap-url and once through robots.txt -> HOST)
@@ -217,4 +222,9 @@ export type ISitemapField = {
   changefreq?: Changefreq
   priority?: number
   alternateRefs?: Array<AlternateRef>
+}
+
+export interface INextSitemapResult {
+  generatedSitemaps: string[]
+  runtimePaths: IRuntimePaths
 }
