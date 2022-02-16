@@ -304,8 +304,8 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   // const urls = await fetch('https//example.com/api')
 
   return getServerSideSitemapIndex(ctx, [
-    'https://example.com/index-1',
-    'https://example.com/index-2',
+    'https://example.com/path-1.xml',
+    'https://example.com/path-2.xml',
   ])
 }
 
