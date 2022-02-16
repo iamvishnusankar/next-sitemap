@@ -35,9 +35,14 @@ export interface IRobotPolicy {
   crawlDelay?: number
 }
 
+/**
+ * robots.txt Options
+ */
 export interface IRobotsTxt {
+  /**
+   * Crawl policies
+   */
   policies?: IRobotPolicy[]
-  additionalSitemaps?: string[]
 }
 
 /**
@@ -91,7 +96,20 @@ export interface IConfig {
    */
   generateRobotsTxt: boolean
 
+  /**
+   * robots.txt options
+   */
   robotsTxtOptions?: IRobotsTxt
+
+  /**
+   * Additional sitemap indices to be listed on robots.txt
+   */
+  additionalSitemapIndices?: string[]
+
+  /**
+   * Additional sitemaps which need to be added to robots
+   */
+  additionalSitemaps?: string[]
 
   /**
    * Add <lastmod/> property.
