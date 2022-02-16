@@ -2,7 +2,7 @@
 import { loadConfig, getRuntimeConfig, updateConfig } from './config'
 import { loadManifest } from './manifest'
 import { createUrlSet, generateUrl } from './url'
-import { generateSitemap } from './sitemap/generateSitemap'
+import { generateSitemap } from './sitemap/generate'
 import { toChunks } from './array'
 import {
   resolveSitemapChunks,
@@ -57,7 +57,9 @@ const main = async () => {
       const sitemapUrl = generateUrl(config.siteUrl, `/${chunk.filename}`)
 
       // Add generate sitemap to sitemap list
-      allSitemaps.push(sitemapUrl)
+      if (config?.robotsTxtOptions?.includeNonIndexSitemaps) {
+        allSitemaps.push(sitemapUrl)
+      }
 
       // Generate sitemap
       return generateSitemap(chunk)
