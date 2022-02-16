@@ -274,9 +274,7 @@ Disallow: /path-2
 Host: https://example.com
 
 # Sitemaps
-....
-<---Generated sitemap list--->
-....
+Sitemap: https://example.com/sitemap.xml # Index sitemap
 Sitemap: https://example.com/my-custom-sitemap-1.xml
 Sitemap: https://example.com/my-custom-sitemap-2.xml
 Sitemap: https://example.com/my-custom-sitemap-3.xml
