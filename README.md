@@ -91,20 +91,19 @@ Above is the minimal configuration to split a large sitemap. When the number of 
 
 ## Configuration Options
 
-| property                             | description                                                                           | type           |
-| ------------------------------------ | ------------------------------------------------------------------------------------- | -------------- |
-| siteUrl                              | Base url of your website                                                              | string         |
-| changefreq (optional)                | Change frequency. Default `daily`                                                     | string         |
-| priority (optional)                  | Priority. Default `0.7`                                                               | number         |
-| sitemapBaseFileName (optional)       | The name of the generated sitemap file before the file extension. Default `"sitemap"` | string         |
-| alternateRefs (optional)             | Denote multi-language support by unique URL. Default `[]`                             | AlternateRef[] |
-| sitemapSize(optional)                | Split large sitemap into multiple files by specifying sitemap size. Default `5000`    | number         |
-| additionalSitemapIndices (optional)  | Options to add addition sitemap to `robots.txt` host entry                            | string[]       |
-| additionalSitemaps (optional)        | Options to add addition sitemap to `robots.txt` host entry                            | string[]       |
-| generateRobotsTxt (optional)         | Generate a `robots.txt` file and list the generated sitemaps. Default `false`         | boolean        |
-| robotsTxtOptions.policies (optional) | Policies for generating `robots.txt`. Default `[{ userAgent: '*', allow: '/' }]`      | []             |
-
-| autoLastmod (optional) | Add `<lastmod/>` property. Default `true` | true |
+| property                                             | description                                                                           | type           |
+| ---------------------------------------------------- | ------------------------------------------------------------------------------------- | -------------- |
+| siteUrl                                              | Base url of your website                                                              | string         |
+| changefreq (optional)                                | Change frequency. Default `daily`                                                     | string         |
+| priority (optional)                                  | Priority. Default `0.7`                                                               | number         |
+| sitemapBaseFileName (optional)                       | The name of the generated sitemap file before the file extension. Default `"sitemap"` | string         |
+| alternateRefs (optional)                             | Denote multi-language support by unique URL. Default `[]`                             | AlternateRef[] |
+| sitemapSize(optional)                                | Split large sitemap into multiple files by specifying sitemap size. Default `5000`    | number         |
+| generateRobotsTxt (optional)                         | Generate a `robots.txt` file and list the generated sitemaps. Default `false`         | boolean        |
+| robotsTxtOptions.policies (optional)                 | Policies for generating `robots.txt`. Default `[{ userAgent: '*', allow: '/' }]`      | []             |
+| robotsTxtOptions.additionalSitemapIndices (optional) | Options to add addition sitemap to `robots.txt` host entry                            | string[]       |
+| robotsTxtOptions.additionalSitemaps (optional)       | Options to add addition sitemap to `robots.txt` host entry                            | string[]       |
+| autoLastmod (optional)                               | Add `<lastmod/>` property. Default `true`                                             | true           |
 
 | exclude (optional) | Array of **relative** paths ([wildcard pattern supported](https://www.npmjs.com/package/matcher#usage)) to exclude from listing on `sitemap.xml` or `sitemap-*.xml`. e.g.: `['/page-0', '/page-*', '/private/*']`. Apart from this option `next-sitemap` also offers a custom `transform` option which could be used to exclude urls that match specific patterns | string[] |
 
