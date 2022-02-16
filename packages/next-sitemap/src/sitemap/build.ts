@@ -1,5 +1,5 @@
 import { AlternateRef, ISitemapField } from '../interface'
-import { withXMLTemplate } from './withXMLTemplate'
+import { withXMLTemplate } from './template'
 
 export const buildSitemapXml = (fields: ISitemapField[]): string => {
   const content = fields
