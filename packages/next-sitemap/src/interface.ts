@@ -43,6 +43,21 @@ export interface IRobotsTxt {
    * Crawl policies
    */
   policies?: IRobotPolicy[]
+
+  /**
+   * Additional sitemaps which need to be added to robots
+   */
+  additionalSitemaps?: string[]
+
+  /**
+   * From v2.4x onwards, generated `robots.txt` will only contain url of `index sitemap` and custom provided endpoints from `robotsTxtOptions.additionalSitemaps`
+   *
+   * This is to prevent duplicate url submission (once through index-sitemap -> sitemap-url and once through robots.txt -> HOST)
+   *
+   * Set this option `true` to add all generated sitemap endpoints to `robots.txt`
+   * @default false
+   */
+  includeNonIndexSitemaps?: boolean
 }
 
 /**
@@ -102,16 +117,6 @@ export interface IConfig {
   robotsTxtOptions?: IRobotsTxt
 
   /**
-   * Additional sitemap indices to be listed on robots.txt
-   */
-  additionalSitemapIndices?: string[]
-
-  /**
-   * Additional sitemaps which need to be added to robots
-   */
-  additionalSitemaps?: string[]
-
-  /**
    * Add <lastmod/> property.
    * @default true
    */
@@ -136,12 +141,16 @@ export interface IConfig {
   ) => MaybePromise<MaybeUndefined<ISitemapField>>
 
   /**
-   * Async function that returns a list of additional paths to be added to the general list.
+   * A function that returns a list of additional paths to be added to the generated sitemap list.
    * @link https://github.com/iamvishnusankar/next-sitemap#additional-paths-function
    */
   additionalPaths?: (
     config: AdditionalPathsConfig
   ) => MaybePromise<MaybeUndefined<ISitemapField>[]>
+
+  /**
+   * Include trailing slash
+   */
   trailingSlash?: boolean
 }
 
