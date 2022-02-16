@@ -57,7 +57,9 @@ const main = async () => {
       const sitemapUrl = generateUrl(config.siteUrl, `/${chunk.filename}`)
 
       // Add generate sitemap to sitemap list
-      allSitemaps.push(sitemapUrl)
+      if (config?.robotsTxtOptions?.includeNonIndexSitemaps) {
+        allSitemaps.push(sitemapUrl)
+      }
 
       // Generate sitemap
       return generateSitemap(chunk)
