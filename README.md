@@ -284,7 +284,7 @@ Sitemap: https://example.com/my-custom-sitemap-3.xml
 
 ## Generating dynamic/server-side sitemaps
 
-`next-sitemap` now provides two APIs to generate server side sitemaps. This will help to dynamically generate `index-sitemap`(s) and sitemaps by sourcing data from CMS or custom source.
+`next-sitemap` now provides two APIs to generate server side sitemaps. This will help to dynamically generate `index-sitemap`(s) and `sitemap`(s) by sourcing data from CMS or custom source.
 
 - `getServerSideSitemapIndex`: Generates index sitemaps based on urls provided and returns `application/xml` response.
 
