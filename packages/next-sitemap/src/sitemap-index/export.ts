@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { exportFile } from '../file'
 import type { IRuntimePaths, IConfig } from '../interface'
-import { generateSitemapIndexXml } from './generate'
+import { buildSitemapIndexXML } from './build'
 
 /**
  * Export sitemap index file
@@ -18,7 +18,7 @@ export const exportSitemapIndex = async (
     config?.robotsTxtOptions?.additionalSitemaps ?? []
 
   // Generate sitemap index content
-  const content = generateSitemapIndexXml(restSitemaps)
+  const content = buildSitemapIndexXML(restSitemaps)
 
   return exportFile(runtimePaths.SITEMAP_INDEX_FILE, content)
 }
