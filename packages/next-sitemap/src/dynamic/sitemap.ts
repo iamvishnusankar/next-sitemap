@@ -1,9 +1,10 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-import { ISitemapField } from '../interface'
-import { buildSitemapXml } from '../sitemap/buildSitemapXml'
+import type { ISitemapField } from '../interface'
+import { buildSitemapXml } from '../sitemap/build'
+import type { GetServerSidePropsContext } from 'next'
 
 export const getServerSideSitemap = async (
-  context: import('next').GetServerSidePropsContext,
+  context: GetServerSidePropsContext,
   fields: ISitemapField[]
 ) => {
   const sitemapContent = buildSitemapXml(fields)
