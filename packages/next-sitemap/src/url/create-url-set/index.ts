@@ -50,6 +50,7 @@ export const createUrlSet = async (
 
   const allKeys = [
     ...Object.keys(manifest.build.pages),
+    ...(manifest?.build?.ampFirstPages ?? []),
     ...(manifest.preRender ? Object.keys(manifest.preRender.routes) : []),
   ]
 
