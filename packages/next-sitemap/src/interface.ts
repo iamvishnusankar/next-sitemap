@@ -169,6 +169,7 @@ export interface IBuildManifest {
   pages: {
     [key: string]: string[]
   }
+  ampFirstPages?: string[]
 }
 
 export interface IPreRenderManifest {
