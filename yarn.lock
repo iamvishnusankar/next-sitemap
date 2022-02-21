@@ -1044,10 +1044,10 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@corex/deepmerge@^2.6.148":
-  version "2.6.148"
-  resolved "https://registry.yarnpkg.com/@corex/deepmerge/-/deepmerge-2.6.148.tgz#8fa825d53ffd1cbcafce1b6a830eefd3dcc09dd5"
-  integrity sha512-6QMz0/2h5C3ua51iAnXMPWFbb1QOU1UvSM4bKBw5mzdT+WtLgjbETBBIQZ+Sh9WvEcGwlAt/DEdRpIC3XlDBMA==
+"@corex/deepmerge@^3.0.340":
+  version "3.0.340"
+  resolved "https://registry.yarnpkg.com/@corex/deepmerge/-/deepmerge-3.0.340.tgz#d5258cc6fc3abca2f6acf0dc3aa6a1562da1bd33"
+  integrity sha512-Y/Gofgm/MIE2K11vtnk8eaUCGWygH3tPwvTTZ7qCIsRjLRwONGe1pd+ktqhv1g6+/1IIEiBrAxKra5MdIsLCGQ==
 
 "@corex/eslint-config@*":
   version "3.0.176"
