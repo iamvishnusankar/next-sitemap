@@ -14,6 +14,7 @@ describe('createUrlSet', () => {
         priority: 0.7,
         loc: 'https://example.com',
         alternateRefs: [],
+        trailingSlash: false,
       },
       {
         changefreq: 'daily',
@@ -21,6 +22,7 @@ describe('createUrlSet', () => {
         priority: 0.7,
         loc: 'https://example.com/page-0',
         alternateRefs: [],
+        trailingSlash: false,
       },
       {
         changefreq: 'daily',
@@ -28,6 +30,7 @@ describe('createUrlSet', () => {
         priority: 0.7,
         loc: 'https://example.com/page-1',
         alternateRefs: [],
+        trailingSlash: false,
       },
       {
         changefreq: 'daily',
@@ -35,6 +38,7 @@ describe('createUrlSet', () => {
         priority: 0.7,
         loc: 'https://example.com/page-2',
         alternateRefs: [],
+        trailingSlash: false,
       },
       {
         changefreq: 'daily',
@@ -42,6 +46,7 @@ describe('createUrlSet', () => {
         priority: 0.7,
         loc: 'https://example.com/page-3',
         alternateRefs: [],
+        trailingSlash: false,
       },
     ])
   })
@@ -62,6 +67,7 @@ describe('createUrlSet', () => {
         priority: 0.7,
         loc: 'https://example.com/page-1',
         alternateRefs: [],
+        trailingSlash: false,
       },
       {
         changefreq: 'daily',
@@ -69,6 +75,7 @@ describe('createUrlSet', () => {
         priority: 0.7,
         loc: 'https://example.com/page-3',
         alternateRefs: [],
+        trailingSlash: false,
       },
     ])
   })
@@ -89,6 +96,7 @@ describe('createUrlSet', () => {
         priority: 0.7,
         loc: 'https://example.com/page-1',
         alternateRefs: [],
+        trailingSlash: false,
       },
       {
         changefreq: 'daily',
@@ -96,6 +104,7 @@ describe('createUrlSet', () => {
         priority: 0.7,
         loc: 'https://example.com/page-3',
         alternateRefs: [],
+        trailingSlash: false,
       },
     ])
   })
@@ -116,6 +125,7 @@ describe('createUrlSet', () => {
         priority: 0.7,
         loc: 'https://example.com',
         alternateRefs: [],
+        trailingSlash: false,
       },
     ])
   })
@@ -135,6 +145,7 @@ describe('createUrlSet', () => {
         priority: 0.7,
         loc: 'https://example.com',
         alternateRefs: [],
+        trailingSlash: false,
       },
       {
         changefreq: 'daily',
@@ -142,6 +153,7 @@ describe('createUrlSet', () => {
         priority: 0.7,
         loc: 'https://example.com/page-0',
         alternateRefs: [],
+        trailingSlash: false,
       },
       {
         changefreq: 'daily',
@@ -149,6 +161,7 @@ describe('createUrlSet', () => {
         priority: 0.7,
         loc: 'https://example.com/page-1',
         alternateRefs: [],
+        trailingSlash: false,
       },
       {
         changefreq: 'daily',
@@ -156,6 +169,7 @@ describe('createUrlSet', () => {
         priority: 0.7,
         loc: 'https://example.com/page-2',
         alternateRefs: [],
+        trailingSlash: false,
       },
       {
         changefreq: 'daily',
@@ -163,6 +177,7 @@ describe('createUrlSet', () => {
         priority: 0.7,
         loc: 'https://example.com/page-3',
         alternateRefs: [],
+        trailingSlash: false,
       },
     ])
   })
@@ -182,6 +197,7 @@ describe('createUrlSet', () => {
         priority: 0.7,
         loc: 'https://example.com/',
         alternateRefs: [],
+        trailingSlash: true,
       },
       {
         changefreq: 'daily',
@@ -189,6 +205,7 @@ describe('createUrlSet', () => {
         priority: 0.7,
         loc: 'https://example.com/page-0/',
         alternateRefs: [],
+        trailingSlash: true,
       },
       {
         changefreq: 'daily',
@@ -196,6 +213,7 @@ describe('createUrlSet', () => {
         priority: 0.7,
         loc: 'https://example.com/page-1/',
         alternateRefs: [],
+        trailingSlash: true,
       },
       {
         changefreq: 'daily',
@@ -203,6 +221,7 @@ describe('createUrlSet', () => {
         priority: 0.7,
         loc: 'https://example.com/page-2/',
         alternateRefs: [],
+        trailingSlash: true,
       },
       {
         changefreq: 'daily',
@@ -210,6 +229,7 @@ describe('createUrlSet', () => {
         priority: 0.7,
         loc: 'https://example.com/page-3/',
         alternateRefs: [],
+        trailingSlash: true,
       },
     ])
   })
@@ -238,11 +258,13 @@ describe('createUrlSet', () => {
         changefreq: 'yearly',
         loc: 'https://example.com/',
         alternateRefs: [],
+        trailingSlash: true,
       },
       {
         changefreq: 'yearly',
         loc: 'https://example.com/page-2/',
         alternateRefs: [],
+        trailingSlash: true,
       },
     ])
   })
@@ -270,6 +292,7 @@ describe('createUrlSet', () => {
           { href: 'https://en.example.com', hreflang: 'en' },
           { href: 'https://fr.example.com', hreflang: 'fr' },
         ],
+        trailingSlash: false,
       },
       {
         changefreq: 'daily',
@@ -280,6 +303,7 @@ describe('createUrlSet', () => {
           { href: 'https://en.example.com/page-0', hreflang: 'en' },
           { href: 'https://fr.example.com/page-0', hreflang: 'fr' },
         ],
+        trailingSlash: false,
       },
       {
         changefreq: 'daily',
@@ -290,6 +314,7 @@ describe('createUrlSet', () => {
           { href: 'https://en.example.com/page-1', hreflang: 'en' },
           { href: 'https://fr.example.com/page-1', hreflang: 'fr' },
         ],
+        trailingSlash: false,
       },
       {
         changefreq: 'daily',
@@ -300,6 +325,7 @@ describe('createUrlSet', () => {
           { href: 'https://en.example.com/page-2', hreflang: 'en' },
           { href: 'https://fr.example.com/page-2', hreflang: 'fr' },
         ],
+        trailingSlash: false,
       },
       {
         changefreq: 'daily',
@@ -310,6 +336,7 @@ describe('createUrlSet', () => {
           { href: 'https://en.example.com/page-3', hreflang: 'en' },
           { href: 'https://fr.example.com/page-3', hreflang: 'fr' },
         ],
+        trailingSlash: false,
       },
     ])
   })
@@ -376,6 +403,7 @@ describe('createUrlSet', () => {
           { href: 'https://example.com/it', hreflang: 'it' },
           { href: 'https://example.com/de', hreflang: 'de' },
         ],
+        trailingSlash: false,
       },
       {
         changefreq: 'daily',
@@ -388,6 +416,7 @@ describe('createUrlSet', () => {
           { href: 'https://example.com/it/pagina-0', hreflang: 'it' },
           { href: 'https://example.com/de/seite-0', hreflang: 'de' },
         ],
+        trailingSlash: false,
       },
       {
         changefreq: 'daily',
@@ -400,6 +429,7 @@ describe('createUrlSet', () => {
           { href: 'https://example.com/it/pagina-1', hreflang: 'it' },
           { href: 'https://example.com/de/seite-1', hreflang: 'de' },
         ],
+        trailingSlash: false,
       },
       {
         changefreq: 'daily',
@@ -412,6 +442,7 @@ describe('createUrlSet', () => {
           { href: 'https://example.com/it/pagina-2', hreflang: 'it' },
           { href: 'https://example.com/de/seite-2', hreflang: 'de' },
         ],
+        trailingSlash: false,
       },
       {
         changefreq: 'daily',
@@ -424,6 +455,7 @@ describe('createUrlSet', () => {
           { href: 'https://example.com/it/pagina-3', hreflang: 'it' },
           { href: 'https://example.com/de/seite-3', hreflang: 'de' },
         ],
+        trailingSlash: false,
       },
     ])
   })
@@ -479,6 +511,7 @@ describe('createUrlSet', () => {
         priority: 0.7,
         loc: 'https://example.com/page-2',
         alternateRefs: [],
+        trailingSlash: false,
       },
       {
         changefreq: 'yearly',
@@ -486,28 +519,33 @@ describe('createUrlSet', () => {
         priority: 0.9,
         loc: 'https://example.com/page-3',
         alternateRefs: [],
+        trailingSlash: false,
       },
       {
         changefreq: 'yearly',
         priority: 1,
         loc: 'https://example.com/page-1',
         alternateRefs: [],
+        trailingSlash: false,
       },
       {
         loc: 'https://example.com/additional-page-1',
         alternateRefs: [],
+        trailingSlash: false,
       },
       {
         changefreq: 'yearly',
         priority: 1,
         loc: 'https://example.com/additional-page-2',
         alternateRefs: [],
+        trailingSlash: false,
       },
       {
         changefreq: 'yearly',
         priority: 0.8,
         loc: 'https://example.com/additional-page-3',
         alternateRefs: [],
+        trailingSlash: false,
       },
     ])
   })
