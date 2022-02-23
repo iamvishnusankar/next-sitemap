@@ -42,7 +42,7 @@ export const absoluteUrl = (
  * @param config
  * @param field
  */
-const normalizeSitemapField = (
+export const normalizeSitemapField = (
   config: IConfig,
   field: ISitemapField
 ): ISitemapField => {
