@@ -66,6 +66,7 @@ describe('next-sitemap/config', () => {
 
   test('withDefaultConfig: default transformation', async () => {
     const myConfig = withDefaultConfig({
+      trailingSlash: false,
       sourceDir: 'custom-source',
       generateRobotsTxt: true,
       sitemapSize: 50000,
@@ -81,14 +82,34 @@ describe('next-sitemap/config', () => {
       },
     })
 
-    const value = await myConfig.transform!(myConfig, 'https://example.com')
-
-    expect(value).toStrictEqual({
+    // Default transform
+    await expect(
+      myConfig.transform!(myConfig, 'https://example.com')
+    ).resolves.toStrictEqual({
       loc: 'https://example.com',
       lastmod: expect.any(String),
       changefreq: 'weekly',
       priority: 0.6,
       alternateRefs: [],
+      trailingSlash: myConfig.trailingSlash,
+    })
+
+    // Default transform with custom config override
+    await expect(
+      myConfig.transform!(
+        {
+          ...myConfig,
+          trailingSlash: true,
+        },
+        'https://example.com'
+      )
+    ).resolves.toStrictEqual({
+      loc: 'https://example.com',
+      lastmod: expect.any(String),
+      changefreq: 'weekly',
+      priority: 0.6,
+      alternateRefs: [],
+      trailingSlash: true,
     })
   })
 
