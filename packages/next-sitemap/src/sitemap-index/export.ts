@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+import { INextSitemapResult } from '..'
 import { exportFile } from '../file'
 import type { IRuntimePaths, IConfig } from '../interface'
-import { generateSitemapIndexXml } from './generate'
+import { buildSitemapIndexXML } from './build'
 
 /**
  * Export sitemap index file
@@ -9,16 +10,10 @@ import { generateSitemapIndexXml } from './generate'
  * @param config
  * @returns
  */
-export const exportSitemapIndex = async (
-  runtimePaths: IRuntimePaths,
-  config: IConfig
-) => {
-  // Remove first entry from additionalSitemaps (Index sitemap)
-  const [indexEntry, ...restSitemaps] =
-    config?.robotsTxtOptions?.additionalSitemaps ?? []
-
+export const exportSitemapIndex = async (result: INextSitemapResult) => {
   // Generate sitemap index content
-  const content = generateSitemapIndexXml(restSitemaps)
+  const content = buildSitemapIndexXML(result?.generatedSitemaps ?? [])
 
-  return exportFile(runtimePaths.SITEMAP_INDEX_FILE, content)
+  // Export file
+  return exportFile(result?.runtimePaths.SITEMAP_INDEX_FILE, content)
 }

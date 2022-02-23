@@ -50,6 +50,7 @@ export const createUrlSet = async (
 
   const allKeys = [
     ...Object.keys(manifest.build.pages),
+    ...(manifest?.build?.ampFirstPages ?? []),
     ...(manifest.preRender ? Object.keys(manifest.preRender.routes) : []),
   ]
 
@@ -115,7 +116,7 @@ export const createUrlSet = async (
       sitemapFields.push(field)
     }
   }
-
+  
   return sitemapFields.map((x) => {
     // Prioritize trailing slash config value from user provided sitemap field
     // Fallback to global config if value does not exist

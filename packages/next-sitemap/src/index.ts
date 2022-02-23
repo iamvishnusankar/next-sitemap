@@ -1,3 +1,4 @@
-export * from './sitemap/buildSitemapXml'
-export * from './dynamic-sitemap'
+export * from './sitemap/build'
+export * from './sitemap-index/build'
+export * from './dynamic'
 export * from './interface'

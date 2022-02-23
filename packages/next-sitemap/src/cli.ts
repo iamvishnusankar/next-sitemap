@@ -2,7 +2,7 @@
 import { loadConfig, getRuntimeConfig, updateConfig } from './config'
 import { loadManifest } from './manifest'
 import { createUrlSet, generateUrl } from './url'
-import { generateSitemap } from './sitemap/generateSitemap'
+import { generateSitemap } from './sitemap/generate'
 import { toChunks } from './array'
 import {
   resolveSitemapChunks,
@@ -10,8 +10,8 @@ import {
   getConfigFilePath,
 } from './path'
 import { exportRobotsTxt } from './robots-txt'
-import { merge } from '@corex/deepmerge'
 import { exportSitemapIndex } from './sitemap-index/export'
+import { INextSitemapResult } from '.'
 import { Logger } from './logger'
 
 // Async main
@@ -48,7 +48,7 @@ const main = async () => {
   // All sitemaps array to keep track of generated sitemap files.
   // Later to be added on robots.txt
   // Add default index file as first entry of sitemap
-  const allSitemaps: string[] = [runtimePaths.SITEMAP_INDEX_URL]
+  const generatedSitemaps: string[] = []
 
   // Generate sitemaps from chunks
   await Promise.all(
@@ -57,32 +57,28 @@ const main = async () => {
       const sitemapUrl = generateUrl(config.siteUrl, `/${chunk.filename}`)
 
       // Add generate sitemap to sitemap list
-      allSitemaps.push(sitemapUrl)
+      generatedSitemaps.push(sitemapUrl)
 
       // Generate sitemap
       return generateSitemap(chunk)
     })
   )
 
-  // combine-merge allSitemaps with user-provided additionalSitemaps
-  config = merge([
-    {
-      robotsTxtOptions: {
-        additionalSitemaps: allSitemaps,
-      },
-    },
-    config,
-  ])
-
-  // Export sitemap index file
-  await exportSitemapIndex(runtimePaths, config)
-
-  // Generate robots.txt
-  if (config.generateRobotsTxt) {
-    await exportRobotsTxt(runtimePaths, config)
+  // Create result object
+  const result: INextSitemapResult = {
+    runtimePaths,
+    generatedSitemaps,
   }
 
-  return allSitemaps
+  // Export sitemap index file
+  await exportSitemapIndex(result)
+
+  // Generate robots.txt
+  if (config?.generateRobotsTxt) {
+    await exportRobotsTxt(config, result)
+  }
+
+  return result
 }
 
 // Execute
