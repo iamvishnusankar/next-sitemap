@@ -38,6 +38,32 @@ export const absoluteUrl = (
 }
 
 /**
+ * Normalize sitemap fields to include absolute urls
+ * @param config
+ * @param field
+ */
+export const normalizeSitemapField = (
+  config: IConfig,
+  field: ISitemapField
+): ISitemapField => {
+  // Handle trailing Slash
+  const trailingSlash =
+    'trailingSlash' in field ? field.trailingSlash : config.trailingSlash
+
+  return {
+    ...field,
+    trailingSlash,
+    loc: absoluteUrl(config.siteUrl, field?.loc, config.trailingSlash), // create absolute urls based on sitemap fields
+    alternateRefs: (field.alternateRefs ?? []).map((alternateRef) => ({
+      href: alternateRef.hrefIsAbsolute
+        ? alternateRef.href
+        : absoluteUrl(alternateRef.href, field.loc, config.trailingSlash),
+      hreflang: alternateRef.hreflang,
+    })),
+  }
+}
+
+/**
  * Create a unique url set
  * @param config
  * @param manifest
@@ -115,14 +141,5 @@ export const createUrlSet = async (
     }
   }
 
-  return sitemapFields.map((x) => ({
-    ...x,
-    loc: absoluteUrl(config.siteUrl, x.loc, config.trailingSlash), // create absolute urls based on sitemap fields
-    alternateRefs: (x.alternateRefs ?? []).map((alternateRef) => ({
-      href: alternateRef.hrefIsAbsolute
-        ? alternateRef.href
-        : absoluteUrl(alternateRef.href, x.loc, config.trailingSlash),
-      hreflang: alternateRef.hreflang,
-    })),
-  }))
+  return sitemapFields.map((x) => normalizeSitemapField(config, x))
 }
