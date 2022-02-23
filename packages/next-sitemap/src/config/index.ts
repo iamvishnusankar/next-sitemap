@@ -25,6 +25,7 @@ export const transformSitemap = async (
     priority: config?.priority,
     lastmod: config?.autoLastmod ? new Date().toISOString() : undefined,
     alternateRefs: config.alternateRefs ?? [],
+    trailingSlash: config?.trailingSlash,
   }
 }
 

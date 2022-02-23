@@ -14,6 +14,7 @@ describe('createUrlSet', () => {
         priority: 0.7,
         loc: 'https://example.com',
         alternateRefs: [],
+        trailingSlash: false,
       },
       {
         changefreq: 'daily',
@@ -21,6 +22,7 @@ describe('createUrlSet', () => {
         priority: 0.7,
         loc: 'https://example.com/page-0',
         alternateRefs: [],
+        trailingSlash: false,
       },
       {
         changefreq: 'daily',
@@ -28,6 +30,7 @@ describe('createUrlSet', () => {
         priority: 0.7,
         loc: 'https://example.com/page-1',
         alternateRefs: [],
+        trailingSlash: false,
       },
       {
         changefreq: 'daily',
@@ -35,6 +38,7 @@ describe('createUrlSet', () => {
         priority: 0.7,
         loc: 'https://example.com/page-2',
         alternateRefs: [],
+        trailingSlash: false,
       },
       {
         changefreq: 'daily',
@@ -42,6 +46,7 @@ describe('createUrlSet', () => {
         priority: 0.7,
         loc: 'https://example.com/page-3',
         alternateRefs: [],
+        trailingSlash: false,
       },
     ])
   })
@@ -62,6 +67,7 @@ describe('createUrlSet', () => {
         priority: 0.7,
         loc: 'https://example.com/page-1',
         alternateRefs: [],
+        trailingSlash: false,
       },
       {
         changefreq: 'daily',
@@ -69,6 +75,7 @@ describe('createUrlSet', () => {
         priority: 0.7,
         loc: 'https://example.com/page-3',
         alternateRefs: [],
+        trailingSlash: false,
       },
     ])
   })
@@ -89,6 +96,7 @@ describe('createUrlSet', () => {
         priority: 0.7,
         loc: 'https://example.com/page-1',
         alternateRefs: [],
+        trailingSlash: false,
       },
       {
         changefreq: 'daily',
@@ -96,6 +104,7 @@ describe('createUrlSet', () => {
         priority: 0.7,
         loc: 'https://example.com/page-3',
         alternateRefs: [],
+        trailingSlash: false,
       },
     ])
   })
@@ -116,6 +125,7 @@ describe('createUrlSet', () => {
         priority: 0.7,
         loc: 'https://example.com',
         alternateRefs: [],
+        trailingSlash: false,
       },
     ])
   })
@@ -135,6 +145,7 @@ describe('createUrlSet', () => {
         priority: 0.7,
         loc: 'https://example.com',
         alternateRefs: [],
+        trailingSlash: false,
       },
       {
         changefreq: 'daily',
@@ -142,6 +153,7 @@ describe('createUrlSet', () => {
         priority: 0.7,
         loc: 'https://example.com/page-0',
         alternateRefs: [],
+        trailingSlash: false,
       },
       {
         changefreq: 'daily',
@@ -149,6 +161,7 @@ describe('createUrlSet', () => {
         priority: 0.7,
         loc: 'https://example.com/page-1',
         alternateRefs: [],
+        trailingSlash: false,
       },
       {
         changefreq: 'daily',
@@ -156,6 +169,7 @@ describe('createUrlSet', () => {
         priority: 0.7,
         loc: 'https://example.com/page-2',
         alternateRefs: [],
+        trailingSlash: false,
       },
       {
         changefreq: 'daily',
@@ -163,6 +177,7 @@ describe('createUrlSet', () => {
         priority: 0.7,
         loc: 'https://example.com/page-3',
         alternateRefs: [],
+        trailingSlash: false,
       },
     ])
   })
@@ -182,6 +197,7 @@ describe('createUrlSet', () => {
         priority: 0.7,
         loc: 'https://example.com/',
         alternateRefs: [],
+        trailingSlash: true,
       },
       {
         changefreq: 'daily',
@@ -189,6 +205,7 @@ describe('createUrlSet', () => {
         priority: 0.7,
         loc: 'https://example.com/page-0/',
         alternateRefs: [],
+        trailingSlash: true,
       },
       {
         changefreq: 'daily',
@@ -196,6 +213,7 @@ describe('createUrlSet', () => {
         priority: 0.7,
         loc: 'https://example.com/page-1/',
         alternateRefs: [],
+        trailingSlash: true,
       },
       {
         changefreq: 'daily',
@@ -203,6 +221,7 @@ describe('createUrlSet', () => {
         priority: 0.7,
         loc: 'https://example.com/page-2/',
         alternateRefs: [],
+        trailingSlash: true,
       },
       {
         changefreq: 'daily',
@@ -210,6 +229,76 @@ describe('createUrlSet', () => {
         priority: 0.7,
         loc: 'https://example.com/page-3/',
         alternateRefs: [],
+        trailingSlash: true,
+      },
+    ])
+  })
+
+  test('with mixed trailing slash', async () => {
+    const urlset = await createUrlSet(
+      {
+        ...sampleConfig,
+        trailingSlash: true,
+        additionalPaths: async (config) => [
+          await config.transform(
+            {
+              ...config,
+              trailingSlash: false, // Per path override
+            },
+            '/additional-page.html'
+          ),
+        ],
+      },
+      sampleManifest
+    )
+    expect(urlset).toStrictEqual([
+      {
+        changefreq: 'daily',
+        lastmod: expect.any(String),
+        priority: 0.7,
+        loc: 'https://example.com/',
+        alternateRefs: [],
+        trailingSlash: true,
+      },
+      {
+        changefreq: 'daily',
+        lastmod: expect.any(String),
+        priority: 0.7,
+        loc: 'https://example.com/page-0/',
+        alternateRefs: [],
+        trailingSlash: true,
+      },
+      {
+        changefreq: 'daily',
+        lastmod: expect.any(String),
+        priority: 0.7,
+        loc: 'https://example.com/page-1/',
+        alternateRefs: [],
+        trailingSlash: true,
+      },
+      {
+        changefreq: 'daily',
+        lastmod: expect.any(String),
+        priority: 0.7,
+        loc: 'https://example.com/page-2/',
+        alternateRefs: [],
+        trailingSlash: true,
+      },
+      {
+        changefreq: 'daily',
+        lastmod: expect.any(String),
+        priority: 0.7,
+        loc: 'https://example.com/page-3/',
+        alternateRefs: [],
+        trailingSlash: true,
+      },
+      {
+        changefreq: 'daily',
+        lastmod: expect.any(String),
+        priority: 0.7,
+        loc: 'https://example.com/additional-page.html',
+        alternateRefs: [],
+        trailingSlash: false,
       },
     ])
   })
@@ -270,6 +359,7 @@ describe('createUrlSet', () => {
           { href: 'https://en.example.com', hreflang: 'en' },
           { href: 'https://fr.example.com', hreflang: 'fr' },
         ],
+        trailingSlash: false,
       },
       {
         changefreq: 'daily',
@@ -280,6 +370,7 @@ describe('createUrlSet', () => {
           { href: 'https://en.example.com/page-0', hreflang: 'en' },
           { href: 'https://fr.example.com/page-0', hreflang: 'fr' },
         ],
+        trailingSlash: false,
       },
       {
         changefreq: 'daily',
@@ -290,6 +381,7 @@ describe('createUrlSet', () => {
           { href: 'https://en.example.com/page-1', hreflang: 'en' },
           { href: 'https://fr.example.com/page-1', hreflang: 'fr' },
         ],
+        trailingSlash: false,
       },
       {
         changefreq: 'daily',
@@ -300,6 +392,7 @@ describe('createUrlSet', () => {
           { href: 'https://en.example.com/page-2', hreflang: 'en' },
           { href: 'https://fr.example.com/page-2', hreflang: 'fr' },
         ],
+        trailingSlash: false,
       },
       {
         changefreq: 'daily',
@@ -310,6 +403,7 @@ describe('createUrlSet', () => {
           { href: 'https://en.example.com/page-3', hreflang: 'en' },
           { href: 'https://fr.example.com/page-3', hreflang: 'fr' },
         ],
+        trailingSlash: false,
       },
     ])
   })
@@ -338,10 +432,24 @@ describe('createUrlSet', () => {
       siteUrl: 'https://example.com/',
       transform: mockTransform,
       additionalPaths: async (config) => [
-        { loc: '/page-1', priority: 1, changefreq: 'yearly' },
-        { loc: '/page-3', priority: 0.9, changefreq: 'yearly' },
-        { loc: '/additional-page-1' },
-        { loc: '/additional-page-2', priority: 1, changefreq: 'yearly' },
+        {
+          loc: '/page-1',
+          priority: 1,
+          changefreq: 'yearly',
+        },
+        {
+          loc: '/page-3',
+          priority: 0.9,
+          changefreq: 'yearly',
+        },
+        {
+          loc: '/additional-page-1',
+        },
+        {
+          loc: '/additional-page-2',
+          priority: 1,
+          changefreq: 'yearly',
+        },
         await config.transform(config, '/additional-page-3'),
       ],
     }
@@ -365,6 +473,7 @@ describe('createUrlSet', () => {
         priority: 0.7,
         loc: 'https://example.com/page-2',
         alternateRefs: [],
+        trailingSlash: false,
       },
       {
         changefreq: 'yearly',
@@ -372,6 +481,7 @@ describe('createUrlSet', () => {
         priority: 0.9,
         loc: 'https://example.com/page-3',
         alternateRefs: [],
+        trailingSlash: false,
       },
       {
         changefreq: 'yearly',

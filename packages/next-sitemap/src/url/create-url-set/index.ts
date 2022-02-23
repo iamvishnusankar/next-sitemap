@@ -79,7 +79,9 @@ export const createUrlSet = async (
   for (const url of urlSet) {
     const sitemapField = await config.transform!(config, url)
 
-    if (!sitemapField?.loc) continue
+    if (!sitemapField?.loc) {
+      continue
+    }
 
     sitemapFields.push(sitemapField)
 
@@ -114,12 +116,19 @@ export const createUrlSet = async (
     }
   }
 
-  return sitemapFields.map((x) => ({
-    ...x,
-    loc: absoluteUrl(config.siteUrl, x.loc, config.trailingSlash), // create absolute urls based on sitemap fields
-    alternateRefs: (x.alternateRefs ?? []).map((alternateRef) => ({
-      href: absoluteUrl(alternateRef.href, x.loc, config.trailingSlash),
-      hreflang: alternateRef.hreflang,
-    })),
-  }))
+  return sitemapFields.map((x) => {
+    // Prioritize trailing slash config value from user provided sitemap field
+    // Fallback to global config if value does not exist
+    const trailingSlash =
+      'trailingSlash' in x ? x?.trailingSlash : config?.trailingSlash
+
+    return {
+      ...x,
+      loc: absoluteUrl(config.siteUrl, x.loc, trailingSlash), // create absolute urls based on sitemap loc
+      alternateRefs: (x.alternateRefs ?? []).map((alternateRef) => ({
+        href: absoluteUrl(alternateRef.href, x.loc, trailingSlash),
+        hreflang: alternateRef.hreflang,
+      })),
+    }
+  })
 }

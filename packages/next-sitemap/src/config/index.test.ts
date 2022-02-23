@@ -89,6 +89,7 @@ describe('next-sitemap/config', () => {
       changefreq: 'weekly',
       priority: 0.6,
       alternateRefs: [],
+      trailingSlash: false,
     })
   })
 

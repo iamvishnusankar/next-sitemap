@@ -106,4 +106,5 @@ export type ISitemapField = {
   changefreq?: Changefreq
   priority?: number
   alternateRefs?: Array<AlternateRef>
+  trailingSlash?: boolean
 }
