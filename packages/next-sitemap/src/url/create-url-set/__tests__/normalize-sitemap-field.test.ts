@@ -47,7 +47,7 @@ describe('normalizeSitemapField', () => {
       alternateRefs: expect.any(Array),
       changefreq: 'daily',
       lastmod: expect.any(String),
-      loc: 'https://example.com/page-2',
+      loc: 'https://example.com/page-2/',
       priority: 0.7,
       trailingSlash: true,
     })
