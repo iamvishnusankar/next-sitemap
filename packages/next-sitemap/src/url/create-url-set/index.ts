@@ -53,11 +53,11 @@ export const normalizeSitemapField = (
   return {
     ...field,
     trailingSlash,
-    loc: absoluteUrl(config.siteUrl, field?.loc, config.trailingSlash), // create absolute urls based on sitemap fields
+    loc: absoluteUrl(config.siteUrl, field?.loc, trailingSlash), // create absolute urls based on sitemap fields
     alternateRefs: (field.alternateRefs ?? []).map((alternateRef) => ({
       href: alternateRef.hrefIsAbsolute
         ? alternateRef.href
-        : absoluteUrl(alternateRef.href, field.loc, config.trailingSlash),
+        : absoluteUrl(alternateRef.href, field.loc, trailingSlash),
       hreflang: alternateRef.hreflang,
     })),
   }
