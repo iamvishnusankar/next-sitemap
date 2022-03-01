@@ -13,7 +13,6 @@ describe('next-sitemap/config', () => {
       sitemapSize: 5000,
       autoLastmod: true,
       exclude: [],
-      trailingSlash: false,
       transform: transformSitemap,
       robotsTxtOptions: {
         policies: [
@@ -53,7 +52,6 @@ describe('next-sitemap/config', () => {
       generateRobotsTxt: true,
       exclude: ['1', '2'],
       transform: transformSitemap,
-      trailingSlash: false,
       robotsTxtOptions: {
         policies: [],
         additionalSitemaps: [

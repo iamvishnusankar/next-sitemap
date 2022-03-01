@@ -37,7 +37,6 @@ export const defaultConfig: Partial<IConfig> = {
   changefreq: 'daily',
   sitemapSize: 5000,
   autoLastmod: true,
-  trailingSlash: false,
   exclude: [],
   transform: transformSitemap,
   robotsTxtOptions: {
@@ -51,17 +50,14 @@ export const defaultConfig: Partial<IConfig> = {
   },
 }
 
-export const updateConfig = (
-  currConfig: Partial<IConfig>,
-  newConfig: Partial<IConfig>
-): IConfig => {
-  return merge([currConfig, newConfig], {
+export const mergeConfig = (...configs: Array<Partial<IConfig>>): IConfig => {
+  return merge(configs, {
     arrayMergeType: 'overwrite',
   }) as IConfig
 }
 
 export const withDefaultConfig = (config: Partial<IConfig>): IConfig => {
-  return updateConfig(defaultConfig, config)
+  return mergeConfig(defaultConfig, config)
 }
 
 export const getRuntimeConfig = async (
@@ -72,13 +68,28 @@ export const getRuntimeConfig = async (
     false
   ).catch((err) => {
     Logger.noExportMarker()
-
     throw err
   })
 
   return {
-    trailingSlash: exportMarkerConfig
-      ? exportMarkerConfig.exportTrailingSlash
-      : undefined,
+    trailingSlash: exportMarkerConfig?.exportTrailingSlash,
   }
+}
+
+export const updateWithRuntimeConfig = async (
+  config: IConfig,
+  runtimePaths: IRuntimePaths
+): Promise<IConfig> => {
+  // Runtime configs
+  const runtimeConfig = await getRuntimeConfig(runtimePaths)
+
+  // Prioritize `trailingSlash` value from `next-sitemap.js`
+  const trailingSlashConfig =
+    'trailingSlash' in config
+      ? {
+          trailingSlash: config?.trailingSlash,
+        }
+      : {}
+
+  return mergeConfig(config, runtimeConfig, trailingSlashConfig)
 }

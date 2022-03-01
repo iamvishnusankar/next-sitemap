@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { loadConfig, getRuntimeConfig, updateConfig } from './config'
+import { loadConfig, updateWithRuntimeConfig } from './config'
 import { loadManifest } from './manifest'
 import { createUrlSet, generateUrl } from './url'
 import { generateSitemap } from './sitemap/generate'
@@ -25,11 +25,8 @@ const main = async () => {
   // Get runtime paths
   const runtimePaths = getRuntimePaths(config)
 
-  // Get runtime config
-  const runtimeConfig = await getRuntimeConfig(runtimePaths)
-
-  // Update config with runtime config
-  config = updateConfig(config, runtimeConfig)
+  // Update current config with runtime config
+  config = await updateWithRuntimeConfig(config, runtimePaths)
 
   // Load next.js manifest files
   const manifest = await loadManifest(runtimePaths)
