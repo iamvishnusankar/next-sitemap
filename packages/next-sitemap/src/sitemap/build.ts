@@ -8,6 +8,11 @@ export const buildSitemapXml = (fields: ISitemapField[]): string => {
 
       // Iterate all object keys and key value pair to field-set
       for (const key of Object.keys(fieldData)) {
+        // Skip reserved keys
+        if (['trailingSlash'].includes(key)) {
+          continue
+        }
+
         if (fieldData[key]) {
           if (key !== 'alternateRefs') {
             field.push(`<${key}>${fieldData[key]}</${key}>`)
