@@ -1103,10 +1103,10 @@
   dependencies:
     typescript "4.5.4"
 
-"@corex/workspace@^3.0.464":
-  version "3.0.464"
-  resolved "https://registry.yarnpkg.com/@corex/workspace/-/workspace-3.0.464.tgz#1a20457cc57ff73c87a987b0443ef82bdb443321"
-  integrity sha512-WId1hTes4AiDaL+PSODkqDEHxPTCr5MgrzAfukZzxdRh+/fwE43uwBaySG99GJ2zRZ9XPLpdOH8//AiF6rL+eQ==
+"@corex/workspace@^3.0.473":
+  version "3.0.473"
+  resolved "https://registry.yarnpkg.com/@corex/workspace/-/workspace-3.0.473.tgz#86fd794fac80342774611fb4ec45fe400f120362"
+  integrity sha512-LKuyxfGAxYSa/yxOWUuBcJoM1y/8eVfqBeO1tnBZs6HRy0fDavtncHumyr3n3SOO17r/q/uCzK+XC+yTQ7jKoA==
   dependencies:
     "@corex/eslint-config" "*"
     "@corex/jest" "*"
