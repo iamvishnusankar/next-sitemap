@@ -41,6 +41,7 @@ describe('next-sitemap', () => {
   test('isNextInternalUrl', () => {
     expect(isNextInternalUrl('/_app')).toBeTruthy()
     expect(isNextInternalUrl('/404')).toBeTruthy()
+    expect(isNextInternalUrl('/500')).toBeTruthy()
     expect(isNextInternalUrl('/_random')).toBeTruthy()
     expect(isNextInternalUrl('/_middleware')).toBeTruthy()
     expect(isNextInternalUrl('/about/_middleware')).toBeTruthy()
@@ -59,6 +60,7 @@ describe('next-sitemap', () => {
 
     expect(isNextInternalUrl('/some_url')).toBeFalsy()
     expect(isNextInternalUrl('/some-404')).toBeFalsy()
+    expect(isNextInternalUrl('/some-500')).toBeFalsy()
   })
 
   test('createDefaultLocaleReplace: replaces default locale within path`', () => {
