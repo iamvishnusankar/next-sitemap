@@ -37,7 +37,7 @@
     "build:esm": "tsc --module es2015 --outDir dist/esm"
   },
   "dependencies": {
-    "@corex/deepmerge": "^2.6.148",
+    "@corex/deepmerge": "^3.0.539",
     "minimist": "^1.2.5"
   },
   "peerDependencies": {
