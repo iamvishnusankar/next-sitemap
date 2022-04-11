@@ -47,11 +47,14 @@ const main = async () => {
   // Add default index file as first entry of sitemap
   const generatedSitemaps: string[] = []
 
+  const outSubDir = config.outDir!.split('/').splice(1).join('/')
+  const sitemapBaseSlug = `/${outSubDir}${outSubDir.length ? '/' : ''}`
+
   // Generate sitemaps from chunks
   await Promise.all(
     sitemapChunks.map(async (chunk) => {
       // Get sitemap absolute url
-      const sitemapUrl = generateUrl(config.siteUrl, `/${chunk.filename}`)
+      const sitemapUrl = generateUrl(config.siteUrl, `${sitemapBaseSlug}${chunk.filename}`)
 
       // Add generate sitemap to sitemap list
       generatedSitemaps.push(sitemapUrl)
