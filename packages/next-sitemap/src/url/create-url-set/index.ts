@@ -97,6 +97,14 @@ export const createUrlSet = async (
 
   urlSet = [...new Set(urlSet)]
 
+  // Remove routes which don't exist
+  // @ts-expect-error bleh
+  const notFoundRoutes = manifest.preRender?.notFoundRoutes as Array<string>
+  urlSet = urlSet.filter((url) => !notFoundRoutes.includes(url))
+
+  // TODO: HERE
+  console.log({ urlSet })
+
   // Create sitemap fields based on transformation
   const sitemapFields: ISitemapField[] = [] // transform using relative urls
 
