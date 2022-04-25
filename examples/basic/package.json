@@ -16,7 +16,7 @@
     "react-dom": "^18.0.0"
   },
   "devDependencies": {
-    "@types/react": "^17.0.43",
+    "@types/react": "^18.0.6",
     "next-sitemap": "*"
   }
 }
