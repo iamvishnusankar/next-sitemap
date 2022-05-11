@@ -114,7 +114,7 @@ export interface IConfig {
    * Generate a robots.txt file and list the generated sitemaps.
    * @default false
    */
-  generateRobotsTxt: boolean
+  generateRobotsTxt?: boolean
 
   /**
    * robots.txt options
