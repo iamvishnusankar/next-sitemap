@@ -78,13 +78,13 @@ export interface IConfig {
    * Change frequency.
    * @default 'daily'
    */
-  changefreq: Changefreq
+  changefreq?: Changefreq
 
   /**
    * Priority
    * @default 0.7
    */
-  priority: any
+  priority?: any
 
   /**
    * The name of the generated sitemap file before the file extension.
@@ -114,7 +114,7 @@ export interface IConfig {
    * Generate a robots.txt file and list the generated sitemaps.
    * @default false
    */
-  generateRobotsTxt: boolean
+  generateRobotsTxt?: boolean
 
   /**
    * robots.txt options
