@@ -1,4 +1,4 @@
-![VERCEL](./assets/Vercel/logotype/dark/vercel-logotype-dark.png)
+![BANNER](./assets/banner.png)
 
 # next-sitemap
 
