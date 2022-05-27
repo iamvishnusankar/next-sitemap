@@ -1,4 +1,4 @@
-# next-sitemap
+[![BANNER](./assets/banner.svg)](https://vercel.com/?utm_source=next-sitemap&utm_campaign=oss)
 
 <div align="center">
 
@@ -10,8 +10,6 @@
 </a>
 
 </div>
-
-Sitemap generator for next.js. Generate sitemap(s) and robots.txt for all static/pre-rendered/dynamic/server-side pages.
 
 ## Table of contents
 
@@ -405,7 +403,7 @@ module.exports = {
 }
 ```
 
-![TS_JSDOC](./screenshots/ts-jsdoc.png)
+![TS_JSDOC](./assets/ts-jsdoc.png)
 
 ## Contribution
 
