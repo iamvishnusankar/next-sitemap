@@ -1,3 +1,5 @@
+![VERCEL](./assets/Vercel/logotype/dark/vercel-logotype-dark.png)
+
 # next-sitemap
 
 <div align="center">
@@ -405,7 +407,7 @@ module.exports = {
 }
 ```
 
-![TS_JSDOC](./screenshots/ts-jsdoc.png)
+![TS_JSDOC](./assets/ts-jsdoc.png)
 
 ## Contribution
 
