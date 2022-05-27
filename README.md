@@ -1,4 +1,4 @@
-![BANNER](./assets/banner.png)
+![BANNER](./assets/banner.svg)
 
 # next-sitemap
 
