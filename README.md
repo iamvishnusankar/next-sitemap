@@ -1,4 +1,4 @@
-![BANNER](./assets/banner.svg)
+[![BANNER](./assets/banner.svg)](https://vercel.com/?utm_source=next-sitemap&utm_campaign=oss)
 
 # next-sitemap
 
