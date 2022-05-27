@@ -1,7 +1,5 @@
 [![BANNER](./assets/banner.svg)](https://vercel.com/?utm_source=next-sitemap&utm_campaign=oss)
 
-# next-sitemap
-
 <div align="center">
 
 [![Build Status](https://dev.azure.com/iamvishnusankar/Public/_apis/build/status/iamvishnusankar.next-sitemap?branchName=master)](https://dev.azure.com/iamvishnusankar/Public/_build/latest?definitionId=126&branchName=master)
@@ -12,8 +10,6 @@
 </a>
 
 </div>
-
-Sitemap generator for next.js. Generate sitemap(s) and robots.txt for all static/pre-rendered/dynamic/server-side pages.
 
 ## Table of contents
 
