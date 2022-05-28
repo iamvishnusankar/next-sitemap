@@ -98,7 +98,7 @@ export const createUrlSet = async (
   urlSet = [...new Set(urlSet)]
 
   // Remove routes which don't exist
-  const notFoundRoutes = manifest.preRender?.notFoundRoutes as string[]
+  const notFoundRoutes = (manifest.preRender?.notFoundRoutes ?? []) as string[]
   urlSet = urlSet.filter((url) => !notFoundRoutes.includes(url))
 
   // Create sitemap fields based on transformation
