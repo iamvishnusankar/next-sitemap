@@ -21,6 +21,7 @@ export const samplePreRenderManifest: IPreRenderManifest = {
     '/page-2': {},
     '/page-3': {},
   },
+  notFoundRoutes: [],
 }
 
 export const sampleManifest: INextManifest = {
@@ -51,6 +52,7 @@ export const sampleI18nPreRenderManifest: IPreRenderManifest = {
     '/fr/page-2': {},
     '/page-3': {},
   },
+  notFoundRoutes: [],
 }
 
 export const sampleRenderManifest: IRoutesManifest = {
@@ -64,4 +66,53 @@ export const sampleI18nManifest: INextManifest = {
   build: sampleI18nBuildManifest,
   preRender: sampleI18nPreRenderManifest,
   routes: sampleRenderManifest,
+}
+
+export const sampleNotFoundRoutesBuildManifest: IBuildManifest = {
+  pages: {
+    '/': [],
+    '/about': [],
+    '/[dynamic]': [],
+    '/_app': [],
+    '/_error': [],
+  },
+}
+export const sampleNotFoundRoutesPreRenderManifest: IPreRenderManifest = {
+  routes: {
+    '/en-US': {},
+    '/fr': {},
+    '/nl-NL': {},
+
+    '/en-US/about': {},
+    '/fr/about': {},
+    '/nl-NL/about': {},
+
+    '/en-US/page-0': {},
+    '/fr/page-0': {},
+    '/nl-NL/page-0': {},
+
+    '/en-US/page-1': {},
+    '/fr/page-1': {},
+    '/nl-NL/page-1': {},
+  },
+  notFoundRoutes: [
+    '/fr',
+    '/nl-NL/about',
+    '/nl-NL/page-0',
+    '/fr/page-1',
+    '/nl-NL/page-1',
+  ],
+}
+
+export const sampleNotFoundRoutesRenderManifest: IRoutesManifest = {
+  i18n: {
+    locales: ['en-US', 'fr', 'nl-NL'],
+    defaultLocale: 'en-US',
+  },
+}
+
+export const sampleNotFoundRoutesManifest: INextManifest = {
+  build: sampleNotFoundRoutesBuildManifest,
+  preRender: sampleNotFoundRoutesPreRenderManifest,
+  routes: sampleNotFoundRoutesRenderManifest,
 }

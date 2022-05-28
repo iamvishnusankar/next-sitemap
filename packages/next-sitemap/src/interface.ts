@@ -176,6 +176,7 @@ export interface IPreRenderManifest {
   routes: {
     [key: string]: any
   }
+  notFoundRoutes: string[]
 }
 
 export interface IRoutesManifest {
