@@ -1,7 +1,11 @@
 import { createUrlSet } from '..'
 import { transformSitemap } from '../../../config'
 import { sampleConfig } from '../../../fixtures/config'
-import { sampleManifest, sampleI18nManifest } from '../../../fixtures/manifest'
+import {
+  sampleManifest,
+  sampleI18nManifest,
+  sampleNotFoundRoutesManifest,
+} from '../../../fixtures/manifest'
 import { IConfig, ISitemapField } from '../../../interface'
 
 describe('createUrlSet', () => {
@@ -580,6 +584,77 @@ describe('createUrlSet', () => {
       expect.objectContaining({
         loc: 'https://example.com/page-3',
       }),
+    ])
+  })
+
+  test('with i18n, without notFound routes', async () => {
+    const urlset = await createUrlSet(
+      {
+        ...sampleConfig,
+      },
+      sampleNotFoundRoutesManifest
+    )
+
+    expect(urlset).toStrictEqual([
+      {
+        changefreq: 'daily',
+        lastmod: expect.any(String),
+        priority: 0.7,
+        loc: 'https://example.com',
+        alternateRefs: [],
+        trailingSlash: false,
+      },
+      {
+        changefreq: 'daily',
+        lastmod: expect.any(String),
+        priority: 0.7,
+        loc: 'https://example.com/about',
+        alternateRefs: [],
+        trailingSlash: false,
+      },
+      // /about
+      {
+        changefreq: 'daily',
+        lastmod: expect.any(String),
+        priority: 0.7,
+        loc: 'https://example.com/nl-NL',
+        alternateRefs: [],
+        trailingSlash: false,
+      },
+      {
+        changefreq: 'daily',
+        lastmod: expect.any(String),
+        priority: 0.7,
+        loc: 'https://example.com/fr/about',
+        alternateRefs: [],
+        trailingSlash: false,
+      },
+      // page-0
+      {
+        changefreq: 'daily',
+        lastmod: expect.any(String),
+        priority: 0.7,
+        loc: 'https://example.com/page-0',
+        alternateRefs: [],
+        trailingSlash: false,
+      },
+      {
+        changefreq: 'daily',
+        lastmod: expect.any(String),
+        priority: 0.7,
+        loc: 'https://example.com/fr/page-0',
+        alternateRefs: [],
+        trailingSlash: false,
+      },
+      // page-1
+      {
+        changefreq: 'daily',
+        lastmod: expect.any(String),
+        priority: 0.7,
+        loc: 'https://example.com/page-1',
+        alternateRefs: [],
+        trailingSlash: false,
+      },
     ])
   })
 })
