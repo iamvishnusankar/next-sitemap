@@ -1,5 +1,5 @@
 import { normalizeSitemapField } from '..'
-import { sampleConfig } from '../../../fixtures/config'
+import { sampleConfig } from '../../../__fixtures__/config.js'
 
 describe('normalizeSitemapField', () => {
   test('No sitemap field trailingSlash provided => Use config.trailingSlash', async () => {
