@@ -1,5 +1,3 @@
-/* eslint-disable no-useless-escape */
-
 export const cleanPath = (text: string): string => {
   return text.replace(/([^:])(\/\/+)/g, '$1/')
 }

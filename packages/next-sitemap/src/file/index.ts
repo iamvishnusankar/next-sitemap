@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-import fs from 'fs'
+import * as fs from 'node:fs/promises'
 import path from 'node:path'
 
 /**

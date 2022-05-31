@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { loadConfig, updateWithRuntimeConfig } from './config'
 import { loadManifest } from './manifest'
-import { createUrlSet, generateUrl } from './url'
 import { generateSitemap } from './sitemap/generate'
 import { toChunks } from './array'
 import {
@@ -11,8 +10,10 @@ import {
 } from './path'
 import { exportRobotsTxt } from './robots-txt'
 import { exportSitemapIndex } from './sitemap-index/export'
-import { INextSitemapResult } from '.'
-import { Logger } from './logger'
+import { INextSitemapResult } from './interface.js'
+import { Logger } from './logger.js'
+import { createUrlSet } from './utils/url-set.js'
+import { generateUrl } from './utils/url.js'
 
 // Async main
 const main = async () => {
