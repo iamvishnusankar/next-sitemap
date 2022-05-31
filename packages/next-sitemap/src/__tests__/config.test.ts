@@ -1,6 +1,10 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { defaultConfig, withDefaultConfig, transformSitemap } from '.'
-import { IConfig, ISitemapField } from '../interface'
+import {
+  defaultConfig,
+  withDefaultConfig,
+  transformSitemap,
+} from '../config.js'
+import type { IConfig, ISitemapField } from '../interface.js'
 
 describe('next-sitemap/config', () => {
   test('defaultConfig', () => {

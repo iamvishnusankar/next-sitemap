@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { IRobotPolicy } from '../../interface'
-import { toArray } from '../../array'
+import type { IRobotPolicy } from '../../interface.js'
+import { toArray } from '../../utils/array.js'
 
 export const normalizePolicy = (policies: IRobotPolicy[]): IRobotPolicy[] => {
   return policies.map<IRobotPolicy>((x) => ({

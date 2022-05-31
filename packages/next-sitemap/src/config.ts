@@ -1,14 +1,14 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable @typescript-eslint/no-var-requires */
-import {
+import type {
   IConfig,
   ISitemapField,
   IRuntimePaths,
   IExportMarker,
-} from '../interface'
+} from './interface.js'
 import { merge } from '@corex/deepmerge'
-import { loadFile } from '../file'
-import { Logger } from '../logger'
+import { Logger } from './logger.js'
+import { loadFile } from './utils/file.js'
 
 export const loadConfig = async (path: string): Promise<IConfig> => {
   const baseConfig = await loadFile<IConfig>(path)
