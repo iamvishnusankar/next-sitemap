@@ -1,4 +1,4 @@
-import { generateRobotsTxt } from './index'
+import { generateRobotsTxt } from '../generate.js'
 import { sampleConfig } from '../../__fixtures__/config.js'
 
 describe('next-sitemap/generateRobotsTxt', () => {
@@ -12,6 +12,6 @@ describe('next-sitemap/generateRobotsTxt', () => {
   })
 
   test('generateRobotsTxt: additionalSitemap', () => {
-    expect(generateRobotsTxt(sampleConfig as any)).toMatchSnapshot()
+    expect(generateRobotsTxt(sampleConfig as any)).toMatchInlineSnapshot()
   })
 })

@@ -2,18 +2,18 @@
 import { loadConfig, updateWithRuntimeConfig } from './config'
 import { loadManifest } from './manifest'
 import { generateSitemap } from './sitemap/generate'
-import { toChunks } from './array'
-import {
-  resolveSitemapChunks,
-  getRuntimePaths,
-  getConfigFilePath,
-} from './path'
 import { exportRobotsTxt } from './robots-txt'
 import { exportSitemapIndex } from './sitemap-index/export'
 import { INextSitemapResult } from './interface.js'
 import { Logger } from './logger.js'
 import { createUrlSet } from './utils/url-set.js'
 import { generateUrl } from './utils/url.js'
+import {
+  getConfigFilePath,
+  getRuntimePaths,
+  resolveSitemapChunks,
+} from './utils/path.js'
+import { toChunks } from './utils/array.js'
 
 // Async main
 const main = async () => {

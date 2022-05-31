@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { IConfig } from '../../interface'
-import { normalizePolicy, addPolicies } from '../policy'
+import type { IConfig } from './../interface.js'
+import { normalizePolicy, addPolicies } from './policy.js'
 
 export const generateRobotsTxt = (config: IConfig): string | null => {
   if (!config.generateRobotsTxt) {

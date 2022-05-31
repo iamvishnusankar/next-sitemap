@@ -1,5 +1,5 @@
 import type { GetServerSidePropsContext } from 'next'
-import { buildSitemapIndexXML } from '../sitemap-index/build'
+import { buildSitemapIndexXML } from '../builder/sitemap-index.js'
 import { withXMLResponse } from './response'
 
 /**

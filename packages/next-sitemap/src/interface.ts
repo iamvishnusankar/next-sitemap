@@ -134,7 +134,7 @@ export interface IConfig {
    */
   exclude?: string[]
 
-  alternateRefs?: Array<AlternateRef>
+  alternateRefs?: Array<IAlternateRef>
 
   /**
    * A transformation function, which runs for each relative-path in the sitemap. Returning null value from the transformation function will result in the exclusion of that specific path from the generated sitemap list.
@@ -212,7 +212,7 @@ export interface IRuntimePaths {
   SITEMAP_INDEX_URL: string
 }
 
-export type AlternateRef = {
+export type IAlternateRef = {
   href: string
   hreflang: string
   hrefIsAbsolute?: boolean
@@ -223,7 +223,7 @@ export type ISitemapField = {
   lastmod?: string
   changefreq?: Changefreq
   priority?: number
-  alternateRefs?: Array<AlternateRef>
+  alternateRefs?: Array<IAlternateRef>
   trailingSlash?: boolean
 }
 
