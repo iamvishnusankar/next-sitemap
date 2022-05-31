@@ -4,7 +4,7 @@ import {
   generateUrl,
   isNextInternalUrl,
   createDefaultLocaleReplace,
-} from './index'
+} from '../url.js'
 
 describe('next-sitemap', () => {
   test('isURL : Valid', () => {

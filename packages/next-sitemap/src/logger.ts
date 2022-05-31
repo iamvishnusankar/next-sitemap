@@ -1,4 +1,4 @@
-import { INextSitemapResult } from '..'
+import type { INextSitemapResult } from './interface.js'
 
 /**
  * Generic console logger

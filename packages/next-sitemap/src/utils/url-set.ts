@@ -1,13 +1,11 @@
-/* eslint-disable no-extra-boolean-cast */
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { IConfig, INextManifest, ISitemapField } from '../../interface'
+import { transformSitemap } from '../config'
 import {
-  isNextInternalUrl,
-  generateUrl,
   createDefaultLocaleReplace,
-} from '../util'
-import { removeIfMatchPattern } from '../../array'
-import { transformSitemap } from '../../config'
+  generateUrl,
+  isNextInternalUrl,
+} from './url.js'
+import { removeIfMatchPattern } from './array.js'
+import type { IConfig, ISitemapField, INextManifest } from '../interface'
 
 /**
  * Return UTF-8 encoded urls
@@ -108,7 +106,7 @@ export const createUrlSet = async (
   const mapFieldsByLoc: { [key in string]: ISitemapField } = {}
 
   for (const url of urlSet) {
-    const sitemapField = await config.transform!(config, url)
+    const sitemapField = await config.transform?.(config, url)
 
     if (!sitemapField?.loc) continue
 
