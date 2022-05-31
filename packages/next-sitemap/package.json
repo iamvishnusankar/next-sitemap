@@ -2,10 +2,21 @@
   "name": "next-sitemap",
   "version": "1.0.0",
   "description": "Sitemap generator for next.js",
-  "main": "dist/cjs/index.js",
-  "module": "dist/esm/index.js",
-  "types": "dist/@types/index.d.ts",
+  "type": "module",
+  "main": "./dist/cjs/index.js",
+  "types": "./dist/@types/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    }
+  },
   "repository": "https://github.com/iamvishnusankar/next-sitemap.git",
+  "funding": [
+    {
+      "url": "https://github.com/iamvishnusankar/next-sitemap.git"
+    }
+  ],
   "engines": {
     "node": ">=14.18"
   },
@@ -32,9 +43,8 @@
     "next-sitemap": "./bin/next-sitemap"
   },
   "scripts": {
-    "lint": "tsc --noEmit --declaration",
-    "build": "tsc && yarn build:esm",
-    "build:esm": "tsc --module es2015 --outDir dist/esm"
+    "build": "tsc",
+    "postbuild": "tsc --module commonjs --outDir dist/cjs"
   },
   "dependencies": {
     "@corex/deepmerge": "^4.0.14",

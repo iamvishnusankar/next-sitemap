@@ -1,5 +1,5 @@
 import { generateRobotsTxt } from './index'
-import { sampleConfig } from '../../fixtures/config'
+import { sampleConfig } from '../../__fixtures__/config.js'
 
 describe('next-sitemap/generateRobotsTxt', () => {
   test('generateRobotsTxt: generateRobotsTxt false in config', () => {

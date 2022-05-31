@@ -1,11 +1,11 @@
 import { createUrlSet } from '..'
 import { transformSitemap } from '../../../config'
-import { sampleConfig } from '../../../fixtures/config'
+import { sampleConfig } from '../../../__fixtures__/config.js'
 import {
   sampleManifest,
   sampleI18nManifest,
   sampleNotFoundRoutesManifest,
-} from '../../../fixtures/manifest'
+} from '../../../__fixtures__/manifest'
 import { IConfig, ISitemapField } from '../../../interface'
 
 describe('createUrlSet', () => {
