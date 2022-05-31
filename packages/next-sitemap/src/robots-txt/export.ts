@@ -1,9 +1,14 @@
-import { INextSitemapResult } from '../../interface'
-import { generateRobotsTxt } from '../generate'
-import { exportFile } from '../../file'
-import { IConfig } from '../..'
+import type { INextSitemapResult, IConfig } from './../interface.js'
+import { generateRobotsTxt } from './generate'
 import { merge } from '@corex/deepmerge'
+import { exportFile } from './../utils/file.js'
 
+/**
+ * Robots.txt export config
+ * @param config
+ * @param result
+ * @returns
+ */
 export const getRobotsTxtExportConfig = (
   config: IConfig,
   result: INextSitemapResult
@@ -24,9 +29,9 @@ export const getRobotsTxtExportConfig = (
 }
 
 /**
- * Export robots txt file
- * @param runtimePaths
+ * Export robots.txt file
  * @param config
+ * @param result
  */
 export const exportRobotsTxt = async (
   config: IConfig,

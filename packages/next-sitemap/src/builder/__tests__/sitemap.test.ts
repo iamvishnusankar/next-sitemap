@@ -1,5 +1,5 @@
-import { ISitemapField } from '../../interface'
-import { buildSitemapXml } from '../build'
+import type { ISitemapField } from '../../interface.js'
+import { buildSitemapXml } from '../sitemap.js'
 
 describe('buildSitemapXml', () => {
   test('snapshot test to exclude undefined values from final sitemap', () => {
@@ -29,6 +29,6 @@ describe('buildSitemapXml', () => {
     const sitemap = buildSitemapXml(fields)
 
     // Expect the generated sitemap to match snapshot.
-    expect(sitemap).toMatchSnapshot()
+    expect(sitemap).toMatchInlineSnapshot()
   })
 })

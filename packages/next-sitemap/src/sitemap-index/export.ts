@@ -1,13 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { INextSitemapResult } from '..'
-import { exportFile } from '../file'
-import type { IRuntimePaths, IConfig } from '../interface'
-import { buildSitemapIndexXML } from './build'
+import { buildSitemapIndexXML } from '../builder/sitemap-index.js'
+import type { INextSitemapResult } from '../interface.js'
+import { exportFile } from '../utils/file.js'
 
 /**
  * Export sitemap index file
- * @param runtimePaths
- * @param config
+ * @param result
  * @returns
  */
 export const exportSitemapIndex = async (result: INextSitemapResult) => {
