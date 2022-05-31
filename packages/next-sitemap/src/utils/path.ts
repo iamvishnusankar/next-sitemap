@@ -9,8 +9,8 @@ import type {
 import minimist from 'minimist'
 import fs from 'node:fs/promises'
 import path from 'node:path'
-import { generateUrl } from '../url'
-import { Logger } from '../logger'
+import { Logger } from '../logger.js'
+import { generateUrl } from './url.js'
 
 /**
  * Return absolute path from path segments

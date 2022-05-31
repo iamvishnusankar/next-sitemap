@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import {
+import type {
   INextManifest,
   IPreRenderManifest,
   IBuildManifest,
   IRuntimePaths,
   IRoutesManifest,
-} from '../interface'
-import { loadFile } from '../file'
+} from './interface.js'
+import { loadFile } from './utils/file.js'
 
 export const loadManifest = async (
   runtimePaths: IRuntimePaths
