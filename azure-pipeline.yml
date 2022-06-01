@@ -1,4 +1,4 @@
-name: 2.5$(rev:.r)
+name: 3.0$(rev:.r)
 trigger:
   branches:
     include:
@@ -13,7 +13,7 @@ steps:
   - task: UseNode@1
     displayName: Setup Node
     inputs:
-      version: '14.x'
+      version: '16.x'
 
   # Authenticate
   - task: npmAuthenticate@0
@@ -21,6 +21,14 @@ steps:
     inputs:
       workingFile: .npmrc
       customEndpoint: 'NPM(Vishnu Sankar)'
+
+  # Set Version
+  - task: Bash@3
+    displayName: 'Set Version'
+    inputs:
+      targetType: 'inline'
+      script: 'npm version --no-git-tag-version $BUILD_BUILDNUMBER --ws'
+      failOnStderr: true
 
   # Install
   - task: Bash@3
@@ -52,14 +60,6 @@ steps:
       targetType: 'inline'
       script: 'yarn test --ci'
 
-  # Set Version
-  - task: Bash@3
-    displayName: 'Set Version'
-    inputs:
-      targetType: 'inline'
-      script: 'yarn set-version'
-      failOnStderr: true
-
   # Copy README
   - task: Bash@3
     displayName: 'Copy README'
@@ -90,8 +90,8 @@ steps:
     condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
     inputs:
       targetType: 'inline'
-      script: 'yarn ywc publish'
-      failOnStderr: true
+      script: 'npm publish --w=next-sitemap'
+      # failOnStderr: true
 
   # Github Release
   - task: GitHubRelease@1
