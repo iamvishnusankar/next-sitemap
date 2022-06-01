@@ -1,4 +1,5 @@
 import { IConfig, ISitemapField } from '../interface.js'
+import { overwriteMerge } from './merge.js'
 
 export const defaultSitemapTransformer = (
   config: IConfig,
@@ -34,4 +35,8 @@ export const defaultConfig: Partial<IConfig> = {
     ],
     additionalSitemaps: [],
   },
+}
+
+export const withDefaultConfig = (config: Partial<IConfig>): IConfig => {
+  return overwriteMerge(defaultConfig, config)
 }

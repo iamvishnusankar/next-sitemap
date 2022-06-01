@@ -6,6 +6,7 @@ import {
 } from '../../../__fixtures__/manifest.js'
 import type { IConfig, ISitemapField } from '../../../interface.js'
 import { UrlSetBuilder } from '../../url-set-builder.js'
+import { defaultSitemapTransformer } from '../../../utils/defaults.js'
 
 describe('UrlSetBuilder', () => {
   test('createUrlSet: without exclusion', async () => {
@@ -480,7 +481,7 @@ describe('UrlSetBuilder', () => {
         }
       }
 
-      return transformSitemap(config, url)
+      return defaultSitemapTransformer(config, url)
     }
 
     const mockTransform = jest.fn(transform)
@@ -500,17 +501,7 @@ describe('UrlSetBuilder', () => {
 
     const builder = new UrlSetBuilder(config, sampleManifest)
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    expect(mockTransform.mock.calls.map(([_, url]) => url)).toEqual([
-      '/',
-      '/page-0',
-      '/page-1',
-      '/page-2',
-      '/page-3',
-      '/additional-page-3',
-    ])
-
-    await expect(builder.createUrlSet()).toStrictEqual([
+    await expect(builder.createUrlSet()).resolves.toStrictEqual([
       {
         changefreq: 'daily',
         lastmod: expect.any(String),
@@ -553,6 +544,16 @@ describe('UrlSetBuilder', () => {
         alternateRefs: [],
         trailingSlash: false,
       },
+    ])
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    expect(mockTransform.mock.calls.map(([_, url]) => url)).toEqual([
+      '/',
+      '/page-0',
+      '/page-1',
+      '/page-2',
+      '/page-3',
+      '/additional-page-3',
     ])
   })
 
