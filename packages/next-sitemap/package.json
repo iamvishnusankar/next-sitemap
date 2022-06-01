@@ -41,7 +41,7 @@
   },
   "bin": {
     "next-sitemap": "./bin/next-sitemap.mjs",
-    "next-sitemap:cjs": "./bin/next-sitemap.cjs"
+    "next-sitemap-cjs": "./bin/next-sitemap.cjs"
   },
   "scripts": {
     "build": "tsc",
