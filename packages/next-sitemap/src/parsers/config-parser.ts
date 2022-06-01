@@ -4,22 +4,12 @@ import type {
   ISitemapField,
   IRuntimePaths,
   IExportMarker,
-  INextManifest,
-  IBuildManifest,
-  IPreRenderManifest,
-  IRoutesManifest,
-} from './interface.js'
-import { Logger } from './logger'
-import { loadFile } from './utils/file.js'
-import { getConfigFilePath, getRuntimePaths } from './utils/path.js'
+} from '../interface.js'
+import { Logger } from '../logger.js'
+import { loadFile } from '../utils/file.js'
+import { getConfigFilePath } from '../utils/path.js'
 
-export class Loader {
-  config: IConfig
-
-  runtimePaths: IRuntimePaths
-
-  manifest: INextManifest
-
+export class ConfigParser {
   deepMerge(...configs: Array<Partial<IConfig>>): IConfig {
     return merge(configs, {
       arrayMergeType: 'overwrite',
@@ -79,9 +69,12 @@ export class Loader {
     }
   }
 
-  async withRuntimeConfig(config: IConfig): Promise<IConfig> {
+  async withRuntimeConfig(
+    config: IConfig,
+    runtimePaths: IRuntimePaths
+  ): Promise<IConfig> {
     // Runtime configs
-    const runtimeConfig = await this.getRuntimeConfig(this.runtimePaths)
+    const runtimeConfig = await this.getRuntimeConfig(runtimePaths)
 
     // Prioritize `trailingSlash` value from `next-sitemap.js`
     const trailingSlashConfig: Partial<IConfig> = {}
@@ -92,7 +85,10 @@ export class Loader {
     return this.deepMerge(config, runtimeConfig, trailingSlashConfig)
   }
 
-  async getBaseConfig(path: string): Promise<IConfig> {
+  async loadBaseConfig(): Promise<IConfig> {
+    // Get config file path
+    const path = await getConfigFilePath()
+
     // Load base config
     const baseConfig = await loadFile<IConfig>(path)
 
@@ -101,64 +97,5 @@ export class Loader {
     }
 
     return this.withDefaultConfig(baseConfig)
-  }
-
-  async loadConfig() {
-    // Get config file path
-    const configFilePath = await getConfigFilePath()
-
-    // Load next-sitemap.js
-    const tempConfig = await this.getBaseConfig(configFilePath)
-
-    // Init runtime paths
-    this.runtimePaths = getRuntimePaths(tempConfig)
-
-    // Update current config with runtime config
-    return this.withRuntimeConfig(tempConfig)
-  }
-
-  async loadManifest(): Promise<INextManifest> {
-    // Get runtime path vars
-    const { BUILD_MANIFEST, PRERENDER_MANIFEST, ROUTES_MANIFEST } =
-      this.runtimePaths
-
-    // Load build manifest
-    const buildManifest = await loadFile<IBuildManifest>(BUILD_MANIFEST)
-
-    // Throw error if no build manifest exist
-    if (!buildManifest) {
-      throw new Error(
-        'Unable to find build manifest, make sure to build your next project before running next-sitemap command'
-      )
-    }
-
-    // Load pre-render manifest
-    const preRenderManifest = await loadFile<IPreRenderManifest>(
-      PRERENDER_MANIFEST,
-      false
-    )
-
-    // Load routes manifest
-    const routesManifest = await loadFile<IRoutesManifest>(
-      ROUTES_MANIFEST,
-      false
-    )
-
-    return {
-      build: buildManifest,
-      preRender: preRenderManifest,
-      routes: routesManifest,
-    }
-  }
-
-  /**
-   * Initializes the loader instance
-   */
-  async initialize() {
-    // Load config
-    this.config = await this.loadConfig()
-
-    // Load manifest
-    this.manifest = await this.loadManifest()
   }
 }

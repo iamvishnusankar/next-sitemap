@@ -1,6 +1,6 @@
 import type { GetServerSidePropsContext } from 'next'
-import { buildSitemapIndexXML } from '../builder/sitemap-index.js'
-import { withXMLResponse } from './response'
+import { Builder } from '../builder.js'
+import { withXMLResponse } from './response.js'
 
 /**
  * Generate index sitemaps on server side
@@ -13,7 +13,7 @@ export const getServerSideSitemapIndex = async (
   sitemaps: string[]
 ) => {
   // Generate index sitemap xml content
-  const indexContents = buildSitemapIndexXML(sitemaps)
+  const indexContents = new Builder().buildSitemapIndexXML(sitemaps)
 
   // Return response
   return withXMLResponse(ctx, indexContents)

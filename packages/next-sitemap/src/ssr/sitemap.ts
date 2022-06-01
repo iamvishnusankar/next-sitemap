@@ -1,6 +1,6 @@
 import type { GetServerSidePropsContext } from 'next'
 import { withXMLResponse } from './response.js'
-import { buildSitemapXml } from '../builder/sitemap.js'
+import { Builder } from '../builder.js'
 import type { ISitemapField } from '../interface.js'
 
 /**
@@ -14,7 +14,7 @@ export const getServerSideSitemap = async (
   fields: ISitemapField[]
 ) => {
   // Generate sitemap xml
-  const contents = buildSitemapXml(fields)
+  const contents = new Builder().buildSitemapXml(fields)
 
   return withXMLResponse(ctx, contents)
 }

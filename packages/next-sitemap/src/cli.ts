@@ -1,41 +1,36 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { loadConfig, updateWithRuntimeConfig } from './config'
-import { loadManifest } from './manifest'
-import { generateSitemap } from './sitemap/generate'
 import { exportRobotsTxt } from './robots-txt'
 import { exportSitemapIndex } from './sitemap-index/export'
 import { INextSitemapResult } from './interface.js'
 import { Logger } from './logger.js'
 import { createUrlSet } from './utils/url-set.js'
 import { generateUrl } from './utils/url.js'
-import {
-  getConfigFilePath,
-  getRuntimePaths,
-  resolveSitemapChunks,
-} from './utils/path.js'
+import { getRuntimePaths, resolveSitemapChunks } from './utils/path.js'
 import { toChunks } from './utils/array.js'
-import { Loader } from './loader.js'
-import { Exporter } from './exporter'
+import { Exporter } from './exporter.js'
+import { ConfigParser } from './parsers/config-parser.js'
+import { ManifestParser } from './parsers/manifest-parser.js'
 
 // Async main
 const main = async () => {
-  // // Get config file path
-  // const configFilePath = await getConfigFilePath()
+  // Create config parser instance
+  const configParser = new ConfigParser()
 
-  // // Load next-sitemap.js
-  // let config = await loadConfig(configFilePath)
+  // Load base config from `next-sitemap.config.js`
+  let config = await configParser.loadBaseConfig()
 
-  // // Get runtime paths
-  // const runtimePaths = getRuntimePaths(config)
+  // Find the runtime paths using base config
+  const runtimePaths = getRuntimePaths(config)
 
-  // // Update current config with runtime config
-  // config = await updateWithRuntimeConfig(config, runtimePaths)
+  // Update base config with runtime config
+  config = await configParser.withRuntimeConfig(config, runtimePaths)
 
-  // Create loader instance
-  const loader = new Loader()
+  // Create manifest parser instance
+  const manifestParser = new ManifestParser()
 
-  // Async init loader instance
-  await loader.initialize()
+  // Load next.js manifest
+  const manifest = await manifestParser.loadManifest(runtimePaths)
 
   // Create url-set based on config and manifest
   const urlSet = await createUrlSet(config, manifest)

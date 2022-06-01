@@ -1,4 +1,4 @@
-import { IConfig } from '../interface'
+import type { IConfig } from '../interface.js'
 import { withDefaultConfig } from '../config'
 
 export const sampleConfig: IConfig = withDefaultConfig({
