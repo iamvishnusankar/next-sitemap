@@ -15,6 +15,7 @@ import {
 } from './utils/path.js'
 import { toChunks } from './utils/array.js'
 import { Loader } from './loader.js'
+import { Exporter } from './exporter'
 
 // Async main
 const main = async () => {
@@ -35,11 +36,6 @@ const main = async () => {
 
   // Async init loader instance
   await loader.initialize()
-
-  // Load manifest
-
-  // Load next.js manifest files
-  const manifest = await loadManifest(runtimePaths)
 
   // Create url-set based on config and manifest
   const urlSet = await createUrlSet(config, manifest)
@@ -76,8 +72,11 @@ const main = async () => {
     generatedSitemaps,
   }
 
+  // Create exporter instance
+  const exporter = new Exporter(loader)
+
   // Export sitemap index file
-  await exportSitemapIndex(result)
+  await exporter.exportSitemapIndex(generatedSitemaps)
 
   // Generate robots.txt
   if (config?.generateRobotsTxt) {

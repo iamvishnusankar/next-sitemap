@@ -14,16 +14,22 @@ export class Exporter {
 
   /**
    * Export sitemap index file
-   * @param result
+   * @param generatedSitemaps
    * @returns
    */
-  async exportSitemapIndex(result: INextSitemapResult) {
+  async exportSitemapIndex(generatedSitemaps: string[] = []) {
+    // Index file path
+    const sitemapIndexPath = this.loader.runtimePaths.SITEMAP_INDEX_FILE
+
+    // Return if sitemapIndexPath is empty
+    if (!sitemapIndexPath) {
+      return
+    }
+
     // Generate sitemap index content
-    const content = this.builder.buildSitemapIndexXML(
-      result?.generatedSitemaps ?? []
-    )
+    const content = this.builder.buildSitemapIndexXML(generatedSitemaps)
 
     // Export file
-    return exportFile(result?.runtimePaths.SITEMAP_INDEX_FILE, content)
+    return exportFile(sitemapIndexPath, content)
   }
 }

@@ -157,6 +157,13 @@ export interface IConfig {
    * Include trailing slash
    */
   trailingSlash?: boolean
+
+  /**
+   * Boolean to enable/disable index sitemap generation
+   * If enabled next-sitemap will generate sitemap-*.xml and sitemap.xml (index sitemap)
+   * @default true
+   */
+  generateIndexSitemap?: boolean
 }
 
 export type AdditionalPathsConfig = Readonly<
@@ -208,8 +215,8 @@ export interface IRuntimePaths {
   ROUTES_MANIFEST: string
   ROBOTS_TXT_FILE: string
   EXPORT_MARKER: string
-  SITEMAP_INDEX_FILE: string
-  SITEMAP_INDEX_URL: string
+  SITEMAP_INDEX_FILE?: string
+  SITEMAP_INDEX_URL?: string
 }
 
 export type IAlternateRef = {
