@@ -43,3 +43,18 @@ export const createDefaultLocaleReplace = (defaultLocale: string): any => {
   const defaultLocaleRegExp = new RegExp(`^/${defaultLocale}($|/)`)
   return (path: string): string => path.replace(defaultLocaleRegExp, '/')
 }
+
+/**
+ * Return UTF-8 encoded urls
+ * @param path
+ * @returns
+ * @link https://developers.google.com/search/docs/advanced/sitemaps/build-sitemap#general-guidelines
+ */
+export const entityEscapedUrl = (path: string): string => {
+  return path
+    .replace(/&/g, '&amp;')
+    .replace(/'/g, '&apos;')
+    .replace(/"/g, '&quot;')
+    .replace(/>/g, '&gt;')
+    .replace(/</g, '&lt;')
+}

@@ -1,11 +1,11 @@
-import { transformSitemap } from '../config'
 import {
   createDefaultLocaleReplace,
   generateUrl,
   isNextInternalUrl,
 } from './url.js'
 import { removeIfMatchPattern } from './array.js'
-import type { IConfig, ISitemapField, INextManifest } from '../interface'
+import type { IConfig, ISitemapField, INextManifest } from '../interface.js'
+import { defaultSitemapTransformer } from './defaults.js'
 
 /**
  * Return UTF-8 encoded urls
@@ -122,7 +122,7 @@ export const createUrlSet = async (
     const additions =
       (await config.additionalPaths({
         ...config,
-        transform: config.transform ?? transformSitemap,
+        transform: config.transform ?? defaultSitemapTransformer,
       })) ?? []
 
     for (const field of additions) {

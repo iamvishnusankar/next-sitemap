@@ -1,6 +1,12 @@
 import { matcher } from './matcher.js'
 
-export const toChunks = <T>(arr: T[], chunkSize: number): any => {
+/**
+ * Split an array based on size
+ * @param arr
+ * @param chunkSize
+ * @returns
+ */
+export const toChunks = <T>(arr: T[], chunkSize: number): T[][] => {
   return arr.reduce<Array<T[]>>(
     (prev, _, i) =>
       i % chunkSize ? prev : [...prev, arr.slice(i, i + chunkSize)],

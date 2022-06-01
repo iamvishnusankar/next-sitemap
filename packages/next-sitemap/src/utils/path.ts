@@ -1,16 +1,11 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-import type {
-  ISitemapChunk,
-  IConfig,
-  IRuntimePaths,
-  ISitemapField,
-} from '../interface'
 import minimist from 'minimist'
 import fs from 'node:fs/promises'
 import path from 'node:path'
 import { Logger } from '../logger.js'
 import { generateUrl } from './url.js'
+import type { IConfig, IRuntimePaths } from '../interface.js'
 
 /**
  * Return absolute path from path segments
@@ -19,32 +14,6 @@ import { generateUrl } from './url.js'
  */
 export const getPath = (...pathSegment: string[]): string => {
   return path.resolve(process.cwd(), ...pathSegment)
-}
-
-/**
- * Resolve sitemap chunk path
- * @param indexSitemapPath
- * @param chunks
- * @param config
- * @returns
- */
-export const resolveSitemapChunks = (
-  indexSitemapPath: string,
-  chunks: ISitemapField[][],
-  config: IConfig
-): ISitemapChunk[] => {
-  // Base directory of export folder
-  const folder = path.dirname(indexSitemapPath)
-
-  return chunks.map((chunk, index) => {
-    const filename = `${config.sitemapBaseFileName}-${index}.xml`
-
-    return {
-      path: `${folder}/${filename}`,
-      fields: chunk,
-      filename,
-    }
-  })
 }
 
 /**
