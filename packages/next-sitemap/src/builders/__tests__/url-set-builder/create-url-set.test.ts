@@ -9,7 +9,7 @@ import { UrlSetBuilder } from '../../url-set-builder.js'
 import { defaultSitemapTransformer } from '../../../utils/defaults.js'
 
 describe('UrlSetBuilder', () => {
-  test('createUrlSet: without exclusion', async () => {
+  test('createUrlSet: Without exclusion', async () => {
     const builder = new UrlSetBuilder(sampleConfig, sampleManifest)
 
     await expect(builder.createUrlSet()).resolves.toStrictEqual([
@@ -56,7 +56,7 @@ describe('UrlSetBuilder', () => {
     ])
   })
 
-  test('createUrlSet: with exclusion', async () => {
+  test('createUrlSet: With exclusion', async () => {
     const builder = new UrlSetBuilder(
       {
         ...sampleConfig,
@@ -85,7 +85,7 @@ describe('UrlSetBuilder', () => {
     ])
   })
 
-  test('createUrlSet: with i18n exclusion', async () => {
+  test('createUrlSet: With i18n exclusion', async () => {
     const builder = new UrlSetBuilder(
       {
         ...sampleConfig,
@@ -114,7 +114,7 @@ describe('UrlSetBuilder', () => {
     ])
   })
 
-  test('createUrlSet: with wildcard exclusion', async () => {
+  test('createUrlSet: With wildcard exclusion', async () => {
     const builder = new UrlSetBuilder(
       {
         ...sampleConfig,
@@ -135,7 +135,7 @@ describe('UrlSetBuilder', () => {
     ])
   })
 
-  test('createUrlSet: without trailing slash', async () => {
+  test('createUrlSet: Without trailing slash', async () => {
     const builder = new UrlSetBuilder(
       {
         ...sampleConfig,
@@ -188,7 +188,7 @@ describe('UrlSetBuilder', () => {
     ])
   })
 
-  test('createUrlSet: with trailing slash', async () => {
+  test('createUrlSet: With trailing slash', async () => {
     const builder = new UrlSetBuilder(
       {
         ...sampleConfig,
@@ -241,7 +241,7 @@ describe('UrlSetBuilder', () => {
     ])
   })
 
-  test('createUrlSet: with custom transform', async () => {
+  test('createUrlSet: With custom transform', async () => {
     const builder = new UrlSetBuilder(
       {
         ...sampleConfig,
@@ -276,7 +276,7 @@ describe('UrlSetBuilder', () => {
     ])
   })
 
-  test('createUrlSet: with alternateRefs', async () => {
+  test('createUrlSet: With alternateRefs', async () => {
     const builder = new UrlSetBuilder(
       {
         ...sampleConfig,
@@ -348,7 +348,7 @@ describe('UrlSetBuilder', () => {
     ])
   })
 
-  test('createUrlSet: with absolute alternateRefs', async () => {
+  test('createUrlSet: With absolute alternateRefs', async () => {
     const builder = new UrlSetBuilder(
       {
         ...sampleConfig,
@@ -467,7 +467,7 @@ describe('UrlSetBuilder', () => {
     ])
   })
 
-  test('createUrlSet: with additionalPaths', async () => {
+  test('createUrlSet: With additionalPaths', async () => {
     const transform: IConfig['transform'] = async (config, url) => {
       if (['/', '/page-0', '/page-1'].includes(url)) {
         return
@@ -557,7 +557,7 @@ describe('UrlSetBuilder', () => {
     ])
   })
 
-  test('createUrlSet: with next i18n enabled', async () => {
+  test('createUrlSet: With next i18n enabled', async () => {
     const builder = new UrlSetBuilder(sampleConfig, sampleI18nManifest)
 
     await expect(builder.createUrlSet()).resolves.toStrictEqual([
@@ -591,7 +591,7 @@ describe('UrlSetBuilder', () => {
     ])
   })
 
-  test('createUrlSet: with i18n, without notFound routes', async () => {
+  test('createUrlSet: With i18n, without notFound routes', async () => {
     const builder = new UrlSetBuilder(
       {
         ...sampleConfig,

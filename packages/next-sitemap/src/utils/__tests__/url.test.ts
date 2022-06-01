@@ -6,7 +6,7 @@ import {
   createDefaultLocaleReplace,
 } from '../url.js'
 
-describe('next-sitemap', () => {
+describe('next-sitemap/url', () => {
   test('isURL : Valid', () => {
     expect(isURL('https://example.com')).toBeTruthy()
   })

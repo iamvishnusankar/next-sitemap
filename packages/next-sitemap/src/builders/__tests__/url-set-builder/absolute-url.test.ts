@@ -9,7 +9,7 @@ beforeEach(() => {
 })
 
 describe('UrlSetBuilder', () => {
-  test('absoluteUrl: without trailing slash', () => {
+  test('absoluteUrl: Without trailing slash', () => {
     expect(urlSetBuilder.absoluteUrl('https://example.com', '/', false)).toBe(
       'https://example.com'
     )
@@ -19,7 +19,7 @@ describe('UrlSetBuilder', () => {
     ).toBe('https://example.com/hello')
   })
 
-  test('absoluteUrl: with trailing slash', () => {
+  test('absoluteUrl: With trailing slash', () => {
     expect(urlSetBuilder.absoluteUrl('https://example.com', '/', true)).toBe(
       'https://example.com/'
     )
@@ -29,7 +29,7 @@ describe('UrlSetBuilder', () => {
     ).toBe('https://example.com/hello/')
   })
 
-  test('absoluteUrl: with uri encoding', () => {
+  test('absoluteUrl: With uri encoding', () => {
     expect(
       urlSetBuilder.absoluteUrl(`https://example.com/&/'/"/>/<`, '/', true)
     ).toMatchInlineSnapshot(
