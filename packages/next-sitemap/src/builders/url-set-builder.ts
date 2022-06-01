@@ -37,7 +37,6 @@ export class UrlSetBuilder {
 
   /**
    * Normalize sitemap fields to include absolute urls
-   * @param config
    * @param field
    */
   normalizeSitemapField(field: ISitemapField): ISitemapField {
