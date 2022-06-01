@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
 import * as fs from 'node:fs/promises'
 import path from 'node:path'
 
@@ -8,22 +7,26 @@ import path from 'node:path'
  * @param throwError
  * @returns
  */
-export const loadFile = async <T>(
+export const loadJSON = async <T>(
   path: string,
   throwError = true
 ): Promise<T | undefined> => {
   // Get path stat
   const stat = await fs.stat(path)
 
-  // Import and return if the file exist
-  if (stat.isFile()) {
-    return require(path)
+  // Return undefined or throw error
+  if (!stat.isFile()) {
+    // Handle error
+    if (throwError) {
+      throw new Error(`${path} does not exist.`)
+    }
+
+    return
   }
 
-  // Handle error
-  if (throwError) {
-    throw new Error(`${path} does not exist.`)
-  }
+  const jsonString = await fs.readFile(path, { encoding: 'utf-8' })
+
+  return JSON.parse(jsonString)
 }
 
 /**
