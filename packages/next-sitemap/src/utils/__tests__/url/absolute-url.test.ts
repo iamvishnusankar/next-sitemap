@@ -1,4 +1,4 @@
-import { absoluteUrl } from '../../../url/create-url-set'
+import { absoluteUrl } from '../../url-set.js'
 
 describe('absoluteUrl', () => {
   test('absoluteUrl: without trailing slash', () => {

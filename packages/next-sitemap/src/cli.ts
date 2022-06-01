@@ -14,20 +14,29 @@ import {
   resolveSitemapChunks,
 } from './utils/path.js'
 import { toChunks } from './utils/array.js'
+import { Loader } from './loader.js'
 
 // Async main
 const main = async () => {
-  // Get config file path
-  const configFilePath = await getConfigFilePath()
+  // // Get config file path
+  // const configFilePath = await getConfigFilePath()
 
-  // Load next-sitemap.js
-  let config = await loadConfig(configFilePath)
+  // // Load next-sitemap.js
+  // let config = await loadConfig(configFilePath)
 
-  // Get runtime paths
-  const runtimePaths = getRuntimePaths(config)
+  // // Get runtime paths
+  // const runtimePaths = getRuntimePaths(config)
 
-  // Update current config with runtime config
-  config = await updateWithRuntimeConfig(config, runtimePaths)
+  // // Update current config with runtime config
+  // config = await updateWithRuntimeConfig(config, runtimePaths)
+
+  // Create loader instance
+  const loader = new Loader()
+
+  // Async init loader instance
+  await loader.initialize()
+
+  // Load manifest
 
   // Load next.js manifest files
   const manifest = await loadManifest(runtimePaths)
@@ -45,7 +54,6 @@ const main = async () => {
 
   // All sitemaps array to keep track of generated sitemap files.
   // Later to be added on robots.txt
-  // Add default index file as first entry of sitemap
   const generatedSitemaps: string[] = []
 
   // Generate sitemaps from chunks

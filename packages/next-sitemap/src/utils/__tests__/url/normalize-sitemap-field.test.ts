@@ -1,4 +1,4 @@
-import { normalizeSitemapField } from '..'
+import { normalizeSitemapField } from '../../url-set.js'
 import { sampleConfig } from '../../../__fixtures__/config.js'
 
 describe('normalizeSitemapField', () => {
