@@ -1,21 +1,11 @@
-import { merge } from '@corex/deepmerge'
 import { Logger } from '../logger.js'
-import { defaultConfig } from '../utils/defaults.js'
+import { withDefaultConfig } from '../utils/defaults.js'
 import { loadFile } from '../utils/file.js'
 import { getConfigFilePath } from '../utils/path.js'
 import type { IConfig, IRuntimePaths, IExportMarker } from '../interface.js'
+import { overwriteMerge } from '../utils/merge.js'
 
 export class ConfigParser {
-  deepMerge(...configs: Array<Partial<IConfig>>): IConfig {
-    return merge(configs, {
-      arrayMergeType: 'overwrite',
-    }) as IConfig
-  }
-
-  withDefaultConfig(config: Partial<IConfig>): IConfig {
-    return this.deepMerge(defaultConfig, config)
-  }
-
   async getRuntimeConfig(
     runtimePaths: IRuntimePaths
   ): Promise<Partial<IConfig>> {
@@ -45,7 +35,7 @@ export class ConfigParser {
       trailingSlashConfig.trailingSlash = config?.trailingSlash
     }
 
-    return this.deepMerge(config, runtimeConfig, trailingSlashConfig)
+    return overwriteMerge(config, runtimeConfig, trailingSlashConfig)
   }
 
   async loadBaseConfig(): Promise<IConfig> {
@@ -59,6 +49,6 @@ export class ConfigParser {
       throw new Error()
     }
 
-    return this.withDefaultConfig(baseConfig)
+    return withDefaultConfig(baseConfig)
   }
 }

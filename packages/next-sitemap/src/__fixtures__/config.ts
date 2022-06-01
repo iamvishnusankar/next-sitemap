@@ -1,6 +1,7 @@
 import type { IConfig } from '../interface.js'
+import { withDefaultConfig } from '../utils/defaults.js'
 
-export const sampleConfig: IConfig = {
+export const sampleConfig: IConfig = withDefaultConfig({
   siteUrl: 'https://example.com',
   sourceDir: 'public',
   changefreq: 'daily',
@@ -30,4 +31,4 @@ export const sampleConfig: IConfig = {
       'https://example.com/my-custom-sitemap-3.xml',
     ],
   },
-}
+})
