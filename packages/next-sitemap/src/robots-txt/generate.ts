@@ -2,11 +2,7 @@
 import type { IConfig } from './../interface.js'
 import { normalizePolicy, addPolicies } from './policy.js'
 
-export const generateRobotsTxt = (config: IConfig): string | null => {
-  if (!config.generateRobotsTxt) {
-    return null
-  }
-
+export const generateRobotsTxt = (config: IConfig): string => {
   const { additionalSitemaps, policies } = config.robotsTxtOptions!
   const normalizedPolices = normalizePolicy(policies!)
 
