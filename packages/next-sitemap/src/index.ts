@@ -1,5 +1,3 @@
-export * from './sitemap/build'
-
 // Export types
 export * from './interface.js'
 
@@ -9,4 +7,4 @@ export * from './ssr/sitemap-index.js'
 export * from './ssr/sitemap.js'
 
 // Export builders
-export * from './builder/sitemap-index.js'
+export * from './builders/sitemap-builder'

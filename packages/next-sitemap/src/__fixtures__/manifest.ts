@@ -1,9 +1,9 @@
-import {
+import type {
   IBuildManifest,
   IPreRenderManifest,
   IRoutesManifest,
   INextManifest,
-} from '../interface'
+} from '../interface.js'
 
 export const sampleBuildManifest: IBuildManifest = {
   pages: {
