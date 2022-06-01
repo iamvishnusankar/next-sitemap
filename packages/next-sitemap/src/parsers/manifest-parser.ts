@@ -6,12 +6,12 @@ import type {
   IRuntimePaths,
   IRoutesManifest,
 } from '../interface.js'
-import { loadFile } from '../utils/file.js'
+import { loadJSON } from '../utils/file.js'
 
 export class ManifestParser {
   async loadManifest(runtimePaths: IRuntimePaths): Promise<INextManifest> {
     // Load build manifest
-    const buildManifest = await loadFile<IBuildManifest>(
+    const buildManifest = await loadJSON<IBuildManifest>(
       runtimePaths.BUILD_MANIFEST
     )!
 
@@ -23,13 +23,13 @@ export class ManifestParser {
     }
 
     // Load pre-render manifest
-    const preRenderManifest = await loadFile<IPreRenderManifest>(
+    const preRenderManifest = await loadJSON<IPreRenderManifest>(
       runtimePaths.PRERENDER_MANIFEST,
       false
     )
 
     // Load routes manifest
-    const routesManifest = await loadFile<IRoutesManifest>(
+    const routesManifest = await loadJSON<IRoutesManifest>(
       runtimePaths.ROUTES_MANIFEST,
       false
     )
