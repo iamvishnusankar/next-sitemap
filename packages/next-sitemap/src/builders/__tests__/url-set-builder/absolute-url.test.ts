@@ -1,6 +1,6 @@
-import { sampleConfig } from '../../../__fixtures__/config'
-import { sampleManifest } from '../../../__fixtures__/manifest'
-import { UrlSetBuilder } from '../../url-set-builder'
+import { sampleConfig } from '../../../__fixtures__/config.js'
+import { sampleManifest } from '../../../__fixtures__/manifest.js'
+import { UrlSetBuilder } from '../../url-set-builder.js'
 
 let urlSetBuilder: UrlSetBuilder
 
