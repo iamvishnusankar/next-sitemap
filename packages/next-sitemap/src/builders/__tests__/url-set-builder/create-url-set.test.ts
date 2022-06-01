@@ -1,17 +1,17 @@
-import { createUrlSet } from '..'
-import { transformSitemap } from '../../../config'
 import { sampleConfig } from '../../../__fixtures__/config.js'
 import {
   sampleManifest,
   sampleI18nManifest,
   sampleNotFoundRoutesManifest,
-} from '../../../__fixtures__/manifest'
-import { IConfig, ISitemapField } from '../../../interface'
+} from '../../../__fixtures__/manifest.js'
+import type { IConfig, ISitemapField } from '../../../interface.js'
+import { UrlSetBuilder } from '../../url-set-builder.js'
 
-describe('createUrlSet', () => {
-  test('without exclusion', async () => {
-    const urlset = await createUrlSet(sampleConfig, sampleManifest)
-    expect(urlset).toStrictEqual([
+describe('UrlSetBuilder', () => {
+  test('createUrlSet: without exclusion', async () => {
+    const builder = new UrlSetBuilder(sampleConfig, sampleManifest)
+
+    await expect(builder.createUrlSet()).resolves.toStrictEqual([
       {
         changefreq: 'daily',
         lastmod: expect.any(String),
@@ -55,8 +55,8 @@ describe('createUrlSet', () => {
     ])
   })
 
-  test('with exclusion', async () => {
-    const urlset = await createUrlSet(
+  test('createUrlSet: with exclusion', async () => {
+    const builder = new UrlSetBuilder(
       {
         ...sampleConfig,
         exclude: ['/', '/page-0', '/page-2'],
@@ -64,7 +64,7 @@ describe('createUrlSet', () => {
       sampleManifest
     )
 
-    expect(urlset).toStrictEqual([
+    await expect(builder.createUrlSet()).resolves.toStrictEqual([
       {
         changefreq: 'daily',
         lastmod: expect.any(String),
@@ -84,8 +84,8 @@ describe('createUrlSet', () => {
     ])
   })
 
-  test('with i18n exclusion', async () => {
-    const urlset = await createUrlSet(
+  test('createUrlSet: with i18n exclusion', async () => {
+    const builder = new UrlSetBuilder(
       {
         ...sampleConfig,
         exclude: ['/', '/page-0', '/page-2', '/about', '/fr*'],
@@ -93,7 +93,7 @@ describe('createUrlSet', () => {
       sampleI18nManifest
     )
 
-    expect(urlset).toStrictEqual([
+    await expect(builder.createUrlSet()).resolves.toStrictEqual([
       {
         changefreq: 'daily',
         lastmod: expect.any(String),
@@ -113,8 +113,8 @@ describe('createUrlSet', () => {
     ])
   })
 
-  test('with wildcard exclusion', async () => {
-    const urlset = await createUrlSet(
+  test('createUrlSet: with wildcard exclusion', async () => {
+    const builder = new UrlSetBuilder(
       {
         ...sampleConfig,
         exclude: ['/page*'],
@@ -122,7 +122,7 @@ describe('createUrlSet', () => {
       sampleManifest
     )
 
-    expect(urlset).toStrictEqual([
+    await expect(builder.createUrlSet()).resolves.toStrictEqual([
       {
         changefreq: 'daily',
         lastmod: expect.any(String),
@@ -134,15 +134,16 @@ describe('createUrlSet', () => {
     ])
   })
 
-  test('without trailing slash', async () => {
-    const urlset = await createUrlSet(
+  test('createUrlSet: without trailing slash', async () => {
+    const builder = new UrlSetBuilder(
       {
         ...sampleConfig,
         trailingSlash: false,
       },
       sampleManifest
     )
-    expect(urlset).toStrictEqual([
+
+    await expect(builder.createUrlSet()).resolves.toStrictEqual([
       {
         changefreq: 'daily',
         lastmod: expect.any(String),
@@ -186,15 +187,16 @@ describe('createUrlSet', () => {
     ])
   })
 
-  test('with trailing slash', async () => {
-    const urlset = await createUrlSet(
+  test('createUrlSet: with trailing slash', async () => {
+    const builder = new UrlSetBuilder(
       {
         ...sampleConfig,
         trailingSlash: true,
       },
       sampleManifest
     )
-    expect(urlset).toStrictEqual([
+
+    await expect(builder.createUrlSet()).resolves.toStrictEqual([
       {
         changefreq: 'daily',
         lastmod: expect.any(String),
@@ -238,8 +240,8 @@ describe('createUrlSet', () => {
     ])
   })
 
-  test('with custom transform', async () => {
-    const urlset = await createUrlSet(
+  test('createUrlSet: with custom transform', async () => {
+    const builder = new UrlSetBuilder(
       {
         ...sampleConfig,
         trailingSlash: true,
@@ -257,7 +259,7 @@ describe('createUrlSet', () => {
       sampleManifest
     )
 
-    expect(urlset).toStrictEqual([
+    await expect(builder.createUrlSet()).resolves.toStrictEqual([
       {
         changefreq: 'yearly',
         loc: 'https://example.com/',
@@ -273,8 +275,8 @@ describe('createUrlSet', () => {
     ])
   })
 
-  test('with alternateRefs', async () => {
-    const urlset = await createUrlSet(
+  test('createUrlSet: with alternateRefs', async () => {
+    const builder = new UrlSetBuilder(
       {
         ...sampleConfig,
         siteUrl: 'https://example.com/',
@@ -286,7 +288,7 @@ describe('createUrlSet', () => {
       sampleManifest
     )
 
-    expect(urlset).toStrictEqual([
+    await expect(builder.createUrlSet()).resolves.toStrictEqual([
       {
         changefreq: 'daily',
         lastmod: expect.any(String),
@@ -345,8 +347,8 @@ describe('createUrlSet', () => {
     ])
   })
 
-  test('with absolute alternateRefs', async () => {
-    const urlset = await createUrlSet(
+  test('createUrlSet: with absolute alternateRefs', async () => {
+    const builder = new UrlSetBuilder(
       {
         ...sampleConfig,
         siteUrl: 'https://example.com/',
@@ -395,7 +397,7 @@ describe('createUrlSet', () => {
       sampleManifest
     )
 
-    expect(urlset).toStrictEqual([
+    await expect(builder.createUrlSet()).resolves.toStrictEqual([
       {
         changefreq: 'daily',
         lastmod: expect.any(String),
@@ -464,7 +466,7 @@ describe('createUrlSet', () => {
     ])
   })
 
-  test('with additionalPaths', async () => {
+  test('createUrlSet: with additionalPaths', async () => {
     const transform: IConfig['transform'] = async (config, url) => {
       if (['/', '/page-0', '/page-1'].includes(url)) {
         return
@@ -496,7 +498,7 @@ describe('createUrlSet', () => {
       ],
     }
 
-    const urlset = await createUrlSet(config, sampleManifest)
+    const builder = new UrlSetBuilder(config, sampleManifest)
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     expect(mockTransform.mock.calls.map(([_, url]) => url)).toEqual([
@@ -508,7 +510,7 @@ describe('createUrlSet', () => {
       '/additional-page-3',
     ])
 
-    expect(urlset).toStrictEqual([
+    await expect(builder.createUrlSet()).toStrictEqual([
       {
         changefreq: 'daily',
         lastmod: expect.any(String),
@@ -554,9 +556,10 @@ describe('createUrlSet', () => {
     ])
   })
 
-  test('with next i18n enabled', async () => {
-    const urlset = await createUrlSet(sampleConfig, sampleI18nManifest)
-    expect(urlset).toStrictEqual([
+  test('createUrlSet: with next i18n enabled', async () => {
+    const builder = new UrlSetBuilder(sampleConfig, sampleI18nManifest)
+
+    await expect(builder.createUrlSet()).resolves.toStrictEqual([
       expect.objectContaining({
         loc: 'https://example.com',
       }),
@@ -587,15 +590,15 @@ describe('createUrlSet', () => {
     ])
   })
 
-  test('with i18n, without notFound routes', async () => {
-    const urlset = await createUrlSet(
+  test('createUrlSet: with i18n, without notFound routes', async () => {
+    const builder = new UrlSetBuilder(
       {
         ...sampleConfig,
       },
       sampleNotFoundRoutesManifest
     )
 
-    expect(urlset).toStrictEqual([
+    await expect(builder.createUrlSet()).resolves.toStrictEqual([
       {
         changefreq: 'daily',
         lastmod: expect.any(String),
