@@ -203,10 +203,20 @@ export interface INextManifest {
   routes?: IRoutesManifest
 }
 
+/**
+ * Use IExportable instead
+ * @deprecated
+ */
 export interface ISitemapChunk {
   path: string
   fields: ISitemapField[]
   filename: string
+}
+
+export interface IExportable {
+  url: string
+  filename: string
+  content: string
 }
 
 export interface IRuntimePaths {

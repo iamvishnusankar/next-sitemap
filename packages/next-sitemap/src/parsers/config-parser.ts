@@ -1,13 +1,9 @@
 import { merge } from '@corex/deepmerge'
-import type {
-  IConfig,
-  ISitemapField,
-  IRuntimePaths,
-  IExportMarker,
-} from '../interface.js'
 import { Logger } from '../logger.js'
+import { defaultConfig } from '../utils/defaults.js'
 import { loadFile } from '../utils/file.js'
 import { getConfigFilePath } from '../utils/path.js'
+import type { IConfig, IRuntimePaths, IExportMarker } from '../interface.js'
 
 export class ConfigParser {
   deepMerge(...configs: Array<Partial<IConfig>>): IConfig {
@@ -17,40 +13,7 @@ export class ConfigParser {
   }
 
   withDefaultConfig(config: Partial<IConfig>): IConfig {
-    const defaultConfig: Partial<IConfig> = {
-      sourceDir: '.next',
-      outDir: 'public',
-      priority: 0.7,
-      sitemapBaseFileName: 'sitemap',
-      changefreq: 'daily',
-      sitemapSize: 5000,
-      autoLastmod: true,
-      exclude: [],
-      transform: this.transformSitemap,
-      generateIndexSitemap: true,
-      robotsTxtOptions: {
-        policies: [
-          {
-            userAgent: '*',
-            allow: '/',
-          },
-        ],
-        additionalSitemaps: [],
-      },
-    }
-
     return this.deepMerge(defaultConfig, config)
-  }
-
-  transformSitemap(config: IConfig, loc: string): ISitemapField {
-    return {
-      loc,
-      changefreq: config?.changefreq,
-      priority: config?.priority,
-      lastmod: config?.autoLastmod ? new Date().toISOString() : undefined,
-      alternateRefs: config.alternateRefs ?? [],
-      trailingSlash: config?.trailingSlash,
-    }
   }
 
   async getRuntimeConfig(
