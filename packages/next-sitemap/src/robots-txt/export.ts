@@ -1,5 +1,4 @@
 import type { INextSitemapResult, IConfig } from './../interface.js'
-import { generateRobotsTxt } from './generate'
 import { merge } from '@corex/deepmerge'
 import { exportFile } from './../utils/file.js'
 
@@ -41,7 +40,7 @@ export const exportRobotsTxt = async (
   const exportConfig = getRobotsTxtExportConfig(config, result)
 
   // Generate robots text
-  const robotsTxt = generateRobotsTxt(exportConfig)
+  const robotsTxt = '' //generateRobotsTxt(exportConfig)
 
   // Create file
   if (robotsTxt) {

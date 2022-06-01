@@ -40,7 +40,8 @@
     "access": "public"
   },
   "bin": {
-    "next-sitemap": "./bin/next-sitemap"
+    "next-sitemap": "./bin/next-sitemap.mjs",
+    "next-sitemap:cjs": "./bin/next-sitemap.cjs"
   },
   "scripts": {
     "build": "tsc",
@@ -51,6 +52,7 @@
     "minimist": "^1.2.6"
   },
   "peerDependencies": {
-    "next": "*"
+    "next": "*",
+    "@next/env": "*"
   }
 }

@@ -1,10 +1,16 @@
-import { generateRobotsTxt } from '../generate.js'
-import { sampleConfig } from '../../__fixtures__/config.js'
+import { sampleConfig } from '../../../__fixtures__/config.js'
+import { RobotsTxtBuilder } from '../../robots-txt-builder.js'
 
-describe('next-sitemap/generateRobotsTxt', () => {
+let builder: RobotsTxtBuilder
+
+beforeEach(() => {
+  builder = new RobotsTxtBuilder()
+})
+
+describe('RobotsTxtBuilder', () => {
   test('generateRobotsTxt: generateRobotsTxt false in config', () => {
     expect(
-      generateRobotsTxt({
+      builder.generateRobotsTxt({
         ...sampleConfig,
         generateRobotsTxt: false,
       } as any)
@@ -12,7 +18,8 @@ describe('next-sitemap/generateRobotsTxt', () => {
   })
 
   test('generateRobotsTxt: additionalSitemap', () => {
-    expect(generateRobotsTxt(sampleConfig as any)).toMatchInlineSnapshot(`
+    expect(builder.generateRobotsTxt(sampleConfig as any))
+      .toMatchInlineSnapshot(`
       "# *
       User-agent: *
       Allow: /
