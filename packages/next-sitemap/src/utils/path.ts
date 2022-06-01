@@ -53,20 +53,27 @@ export const resolveSitemapChunks = (
  * @returns
  */
 export const getRuntimePaths = (config: IConfig): IRuntimePaths => {
+  // Check whether user enabled index sitemap or not
+  const sitemapIndexEnabled = config?.generateIndexSitemap
+
+  // Set sitemap index file
+  const SITEMAP_INDEX_FILE = sitemapIndexEnabled
+    ? getPath(config.outDir!, `${config.sitemapBaseFileName}.xml`)
+    : undefined
+
+  // Set sitemap index url
+  const SITEMAP_INDEX_URL = sitemapIndexEnabled
+    ? generateUrl(config?.siteUrl, `${config.sitemapBaseFileName}.xml`)
+    : undefined
+
   return {
     BUILD_MANIFEST: getPath(config.sourceDir!, 'build-manifest.json'),
     PRERENDER_MANIFEST: getPath(config.sourceDir!, 'prerender-manifest.json'),
     ROUTES_MANIFEST: getPath(config.sourceDir!, 'routes-manifest.json'),
     EXPORT_MARKER: getPath(config.sourceDir!, 'export-marker.json'),
     ROBOTS_TXT_FILE: getPath(config.outDir!, 'robots.txt'),
-    SITEMAP_INDEX_FILE: getPath(
-      config.outDir!,
-      `${config.sitemapBaseFileName}.xml`
-    ),
-    SITEMAP_INDEX_URL: generateUrl(
-      config?.siteUrl,
-      `${config.sitemapBaseFileName}.xml`
-    ),
+    SITEMAP_INDEX_URL,
+    SITEMAP_INDEX_FILE,
   }
 }
 

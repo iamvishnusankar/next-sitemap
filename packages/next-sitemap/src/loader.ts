@@ -10,13 +10,15 @@ import type {
   IRoutesManifest,
 } from './interface.js'
 import { Logger } from './logger'
-import { loadFile } from './utils/file'
+import { loadFile } from './utils/file.js'
 import { getConfigFilePath, getRuntimePaths } from './utils/path.js'
 
 export class Loader {
   config: IConfig
 
   runtimePaths: IRuntimePaths
+
+  manifest: INextManifest
 
   deepMerge(...configs: Array<Partial<IConfig>>): IConfig {
     return merge(configs, {
@@ -35,6 +37,7 @@ export class Loader {
       autoLastmod: true,
       exclude: [],
       transform: this.transformSitemap,
+      generateIndexSitemap: true,
       robotsTxtOptions: {
         policies: [
           {
@@ -156,6 +159,6 @@ export class Loader {
     this.config = await this.loadConfig()
 
     // Load manifest
-    await this.loadManifest()
+    this.manifest = await this.loadManifest()
   }
 }
