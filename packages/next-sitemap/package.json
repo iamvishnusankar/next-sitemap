@@ -40,8 +40,8 @@
     "access": "public"
   },
   "bin": {
-    "next-sitemap": "./bin/next-sitemap.mjs",
-    "next-sitemap-cjs": "./bin/next-sitemap.cjs"
+    "next-sitemap": "./dist/esm/bin.js",
+    "next-sitemap-cjs": "./dist/cjs/bin.js"
   },
   "scripts": {
     "build": "tsc",
