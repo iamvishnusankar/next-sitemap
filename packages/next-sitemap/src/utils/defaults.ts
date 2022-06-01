@@ -1,10 +1,10 @@
 import { IConfig, ISitemapField } from '../interface.js'
 import { overwriteMerge } from './merge.js'
 
-export const defaultSitemapTransformer = (
+export const defaultSitemapTransformer = async (
   config: IConfig,
   loc: string
-): ISitemapField => {
+): Promise<ISitemapField> => {
   return {
     loc,
     changefreq: config?.changefreq,

@@ -1,23 +1,25 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
+
+import type { IConfig, ISitemapField } from '../../interface.js'
 import {
   defaultConfig,
+  defaultSitemapTransformer,
   withDefaultConfig,
-  transformSitemap,
-} from '../config.js'
-import type { IConfig, ISitemapField } from '../interface.js'
+} from '../defaults.js'
 
-describe('next-sitemap/config', () => {
+describe('next-sitemap/defaults', () => {
   test('defaultConfig', () => {
     expect(defaultConfig).toStrictEqual<Partial<IConfig>>({
       sourceDir: '.next',
       outDir: 'public',
       sitemapBaseFileName: 'sitemap',
+      generateIndexSitemap: true,
       priority: 0.7,
       changefreq: 'daily',
       sitemapSize: 5000,
       autoLastmod: true,
       exclude: [],
-      transform: transformSitemap,
+      transform: defaultSitemapTransformer,
       robotsTxtOptions: {
         policies: [
           {
@@ -34,6 +36,7 @@ describe('next-sitemap/config', () => {
     const myConfig = withDefaultConfig({
       sourceDir: 'custom-source',
       generateRobotsTxt: true,
+      generateIndexSitemap: true,
       sitemapSize: 50000,
       exclude: ['1', '2'],
       robotsTxtOptions: {
@@ -49,13 +52,14 @@ describe('next-sitemap/config', () => {
       sourceDir: 'custom-source',
       outDir: 'public',
       sitemapBaseFileName: 'sitemap',
+      generateIndexSitemap: true,
       priority: 0.7,
       changefreq: 'daily',
       sitemapSize: 50000,
       autoLastmod: true,
       generateRobotsTxt: true,
       exclude: ['1', '2'],
-      transform: transformSitemap,
+      transform: defaultSitemapTransformer,
       robotsTxtOptions: {
         policies: [],
         additionalSitemaps: [
@@ -66,11 +70,12 @@ describe('next-sitemap/config', () => {
     })
   })
 
-  test('withDefaultConfig: default transformation', async () => {
+  test('withDefaultConfig: Default transformation', async () => {
     const myConfig = withDefaultConfig({
       trailingSlash: false,
       sourceDir: 'custom-source',
       generateRobotsTxt: true,
+      generateIndexSitemap: true,
       sitemapSize: 50000,
       exclude: ['1', '2'],
       priority: 0.6,
@@ -115,7 +120,7 @@ describe('next-sitemap/config', () => {
     })
   })
 
-  test('withDefaultConfig: custom transformation', async () => {
+  test('withDefaultConfig: Custom transformation', async () => {
     const myConfig = withDefaultConfig({
       sourceDir: 'custom-source',
       generateRobotsTxt: true,
