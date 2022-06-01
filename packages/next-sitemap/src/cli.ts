@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { exportRobotsTxt } from './robots-txt'
 import { INextSitemapResult } from './interface.js'
 import { Logger } from './logger.js'
 import { getRuntimePaths } from './utils/path.js'
@@ -63,7 +62,7 @@ const main = async () => {
 
   // Generate robots.txt
   if (config?.generateRobotsTxt) {
-    await exportRobotsTxt(config, result)
+    //  await exportRobotsTxt(config, result)
   }
 
   return result

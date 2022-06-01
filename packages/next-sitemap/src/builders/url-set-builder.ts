@@ -6,7 +6,7 @@ import {
   generateUrl,
   isNextInternalUrl,
 } from '../utils/url.js'
-import { IConfig, ISitemapField, INextManifest } from '../interface'
+import type { IConfig, ISitemapField, INextManifest } from '../interface.js'
 
 export class UrlSetBuilder {
   config: IConfig
