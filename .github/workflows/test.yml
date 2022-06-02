@@ -26,7 +26,7 @@ jobs:
           node-version: ${{ matrix.node }}
 
       - name: Install
-        run: yarn install --ci
+        run: yarn install --frozen-lockfile
 
       - name: Lint
         run: yarn lint
