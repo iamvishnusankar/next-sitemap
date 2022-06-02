@@ -1,6 +1,5 @@
 /** @type {import('next-sitemap').IConfig} */
-
-export default {
+const config = {
   siteUrl: 'https://example.com',
   generateRobotsTxt: true,
   trailingSlash: true, // Override next.config.js
@@ -20,3 +19,5 @@ export default {
     ),
   ],
 }
+
+export default config
