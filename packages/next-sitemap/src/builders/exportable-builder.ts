@@ -41,7 +41,11 @@ export class ExportableBuilder {
    */
   registerIndexSitemap() {
     // Get generated sitemap list
-    const sitemaps = this.generatedSitemaps()
+    const sitemaps = [
+      ...this.generatedSitemaps(),
+      // Include additionalSitemaps provided via robots.txt options
+      ...(this.config?.robotsTxtOptions?.additionalSitemaps ?? []),
+    ]
 
     // Generate sitemap-index content
     const content = this.sitemapBuilder.buildSitemapIndexXml(sitemaps)
