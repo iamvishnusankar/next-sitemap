@@ -15,6 +15,9 @@ export const defaultSitemapTransformer = async (
   }
 }
 
+export const defaultRobotsTxtTransformer = async (_: IConfig, text: string) =>
+  text
+
 export const defaultConfig: Partial<IConfig> = {
   sourceDir: '.next',
   outDir: 'public',
@@ -27,6 +30,7 @@ export const defaultConfig: Partial<IConfig> = {
   transform: defaultSitemapTransformer,
   generateIndexSitemap: true,
   robotsTxtOptions: {
+    transformRobotsTxt: defaultRobotsTxtTransformer,
     policies: [
       {
         userAgent: '*',

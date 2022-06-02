@@ -3,6 +3,7 @@
 import type { IConfig, ISitemapField } from '../../interface.js'
 import {
   defaultConfig,
+  defaultRobotsTxtTransformer,
   defaultSitemapTransformer,
   withDefaultConfig,
 } from '../defaults.js'
@@ -21,6 +22,7 @@ describe('next-sitemap/defaults', () => {
       exclude: [],
       transform: defaultSitemapTransformer,
       robotsTxtOptions: {
+        transformRobotsTxt: defaultRobotsTxtTransformer,
         policies: [
           {
             userAgent: '*',
@@ -61,6 +63,7 @@ describe('next-sitemap/defaults', () => {
       exclude: ['1', '2'],
       transform: defaultSitemapTransformer,
       robotsTxtOptions: {
+        transformRobotsTxt: defaultRobotsTxtTransformer,
         policies: [],
         additionalSitemaps: [
           'https://example.com/awesome-sitemap.xml',
@@ -135,6 +138,7 @@ describe('next-sitemap/defaults', () => {
         }
       },
       robotsTxtOptions: {
+        transformRobotsTxt: defaultRobotsTxtTransformer,
         policies: [],
         additionalSitemaps: [
           'https://example.com/awesome-sitemap.xml',

@@ -46,16 +46,16 @@ export class CLI {
     const expoBuilder = new ExportableBuilder(config, runtimePaths)
 
     // Register sitemap exports
-    expoBuilder.registerSitemaps(chunks)
+    await expoBuilder.registerSitemaps(chunks)
 
     // Register index sitemap if user config allows generation
     if (config.generateIndexSitemap) {
-      expoBuilder.registerIndexSitemap()
+      await expoBuilder.registerIndexSitemap()
     }
 
     // Register robots.txt export if user config allows generation
     if (config?.generateRobotsTxt) {
-      expoBuilder.registerRobotsTxt()
+      await expoBuilder.registerRobotsTxt()
     }
 
     // Export all files
