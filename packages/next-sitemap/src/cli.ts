@@ -6,6 +6,8 @@ import { toChunks } from './utils/array.js'
 import { ConfigParser } from './parsers/config-parser.js'
 import { ManifestParser } from './parsers/manifest-parser.js'
 import { UrlSetBuilder } from './builders/url-set-builder.js'
+import { ExportableBuilder } from './builders/exportable-builder.js'
+import { exportFile } from './utils/file.js'
 
 export class CLI {
   /**
@@ -40,33 +42,36 @@ export class CLI {
     // Split sitemap into multiple files
     const chunks = toChunks(urlSet, config.sitemapSize!)
 
-    // All sitemaps array to keep track of generated sitemap files.
-    // Later to be added on robots.txt
-    const generatedSitemaps: string[] = []
+    // Create ExportableBuilder instance
+    const expoBuilder = new ExportableBuilder(config, runtimePaths)
 
-    // Generate sitemaps from chunks
-    // await Promise.all(
-    //   sitemapChunks.map(async (chunk) => {
-    //     // Get sitemap absolute url
-    //     const sitemapUrl = generateUrl(config.siteUrl, `/${chunk.filename}`)
+    // Register sitemap exports
+    expoBuilder.registerSitemaps(chunks)
 
-    //     // Add generate sitemap to sitemap list
-    //     generatedSitemaps.push(sitemapUrl)
+    // Register index sitemap if user config allows generation
+    if (config.generateIndexSitemap) {
+      expoBuilder.registerIndexSitemap()
+    }
 
-    //     // Generate sitemap
-    //     return generateSitemap(chunk)
-    //   })
-    // )
+    // Register robots.txt export if user config allows generation
+    if (config?.generateRobotsTxt) {
+      expoBuilder.registerRobotsTxt()
+    }
+
+    // Export all files
+    await Promise.all(
+      expoBuilder.exportableList?.map(async (item) =>
+        exportFile(item.filename, item.content)
+      )
+    )
+
+    // Get generated sitemap list from ExportableBuilder
+    const generatedSitemaps = expoBuilder.generatedSitemaps()
 
     // Create result object
     const result: INextSitemapResult = {
       runtimePaths,
       generatedSitemaps,
-    }
-
-    // Generate robots.txt
-    if (config?.generateRobotsTxt) {
-      //  await exportRobotsTxt(config, result)
     }
 
     return result

@@ -217,6 +217,7 @@ export interface IExportable {
   url: string
   filename: string
   content: string
+  type: 'robots.txt' | 'sitemap' | 'sitemap-index'
 }
 
 export interface IRuntimePaths {
