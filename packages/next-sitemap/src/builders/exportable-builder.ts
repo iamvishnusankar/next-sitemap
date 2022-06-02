@@ -8,6 +8,8 @@ import type {
 import { SitemapBuilder } from './sitemap-builder.js'
 import path from 'node:path'
 import { generateUrl } from '../utils/url.js'
+import { combineMerge } from '../utils/merge.js'
+import { RobotsTxtBuilder } from './robots-txt-builder.js'
 
 export class ExportableBuilder {
   exportableList: IExportable[] = []
@@ -18,7 +20,9 @@ export class ExportableBuilder {
 
   sitemapBuilder: SitemapBuilder
 
-  exportFolder: string
+  robotsTxtBuilder: RobotsTxtBuilder
+
+  exportDir: string
 
   constructor(config: IConfig, runtimePaths: IRuntimePaths) {
     this.config = config
@@ -27,7 +31,9 @@ export class ExportableBuilder {
 
     this.sitemapBuilder = new SitemapBuilder()
 
-    this.exportFolder = path.resolve(process.cwd(), this.config.outDir!)
+    this.robotsTxtBuilder = new RobotsTxtBuilder()
+
+    this.exportDir = path.resolve(process.cwd(), this.config.outDir!)
   }
 
   /**
@@ -92,7 +98,7 @@ export class ExportableBuilder {
       return {
         type: 'sitemap',
         url: generateUrl(this.config.siteUrl, baseFilename),
-        filename: path.resolve(this.exportFolder, baseFilename),
+        filename: path.resolve(this.exportDir, baseFilename),
         content: this.sitemapBuilder.buildSitemapXml(chunk),
       } as IExportable
     })
@@ -101,8 +107,62 @@ export class ExportableBuilder {
     this.exportableList.push(...items)
   }
 
+  /**
+   * Get robots.txt export config
+   * @returns
+   */
+  robotsTxtExportConfig() {
+    // Endpoints list
+    const endpoints: string[] = []
+
+    // Include non-index sitemaps
+    // Optionally allow user to include non-index sitemaps along with generated sitemap list
+    // Set to true if index-sitemap is not generated
+    const includeNonIndexSitemaps = this.config.generateIndexSitemap
+      ? this.config?.robotsTxtOptions?.includeNonIndexSitemaps
+      : true
+
+    // Add all sitemap indices
+    if (this.config.generateIndexSitemap) {
+      endpoints.push(...this.generatedSitemapIndices())
+    }
+
+    // Add all non-index sitemaps
+    if (includeNonIndexSitemaps) {
+      endpoints.push(...this.generatedSitemaps())
+    }
+
+    // Combine merge with additional sitemaps
+    return combineMerge(
+      {
+        robotsTxtOptions: {
+          additionalSitemaps: endpoints,
+        },
+      } as IConfig,
+      this.config
+    )
+  }
+
+  /**
+   * Register robots.txt export
+   */
   registerRobotsTxt() {
-    return
+    // File name of robots.txt
+    const baseFilename = 'robots.txt'
+
+    // Export config of robots.txt
+    const robotsConfig = this.robotsTxtExportConfig()
+
+    // Generate exportable item
+    const item: IExportable = {
+      type: 'robots.txt',
+      filename: path.resolve(this.exportDir, baseFilename),
+      url: generateUrl(robotsConfig?.siteUrl, baseFilename),
+      content: this.robotsTxtBuilder.generateRobotsTxt(robotsConfig),
+    }
+
+    // Add to exportableList
+    this.exportableList.push(item)
   }
 
   /**
