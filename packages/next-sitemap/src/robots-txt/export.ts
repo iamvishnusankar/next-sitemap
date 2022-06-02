@@ -18,7 +18,7 @@ export const getRobotsTxtExportConfig = (
         additionalSitemaps: [
           result?.runtimePaths?.SITEMAP_INDEX_URL, // URL of index sitemap
           ...(config?.robotsTxtOptions?.includeNonIndexSitemaps // Optionally include static generated sitemap files
-            ? result?.generatedSitemaps ?? []
+            ? result?.sitemaps ?? []
             : []),
         ],
       },

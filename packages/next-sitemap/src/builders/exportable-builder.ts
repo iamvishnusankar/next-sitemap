@@ -6,6 +6,8 @@ import type {
   ISitemapField,
 } from '../interface.js'
 import { SitemapBuilder } from './sitemap-builder.js'
+import path from 'node:path'
+import { generateUrl } from '../utils/url.js'
 
 export class ExportableBuilder {
   exportableList: IExportable[] = []
@@ -16,10 +18,16 @@ export class ExportableBuilder {
 
   sitemapBuilder: SitemapBuilder
 
+  exportFolder: string
+
   constructor(config: IConfig, runtimePaths: IRuntimePaths) {
     this.config = config
+
     this.runtimePaths = runtimePaths
+
     this.sitemapBuilder = new SitemapBuilder()
+
+    this.exportFolder = path.resolve(process.cwd(), this.config.outDir!)
   }
 
   /**
@@ -45,19 +53,52 @@ export class ExportableBuilder {
   }
 
   /**
+   * Resolve filename if index sitemap is generated
+   * @param index
+   * @returns
+   */
+  resolveFilenameWithIndexSitemap(index: number) {
+    return `${this.config.sitemapBaseFileName}-${index}.xml`
+  }
+
+  /**
+   * Resolve filename if index sitemaps is not generated
+   * @param index
+   * @returns
+   */
+  resolveFilenameWithoutIndexSitemap(index: number) {
+    if (index === 0) {
+      return `${this.config.sitemapBaseFileName}.xml`
+    }
+
+    return this.resolveFilenameWithIndexSitemap(index)
+  }
+
+  /**
    * Register sitemaps with exportable builder
    * @param chunks
    */
   registerSitemaps(chunks: ISitemapField[][]) {
+    // Check whether user config allows sitemap generation
+    const hasIndexSitemap = this.config.generateIndexSitemap
+
+    // Create exportable items
     const items = chunks?.map((chunk, index) => {
+      // Get sitemap base filename
+      const baseFilename = hasIndexSitemap
+        ? this.resolveFilenameWithIndexSitemap(index)
+        : this.resolveFilenameWithoutIndexSitemap(index)
+
       return {
-        url: '',
-        filename: 'hello',
-        content: '',
+        type: 'sitemap',
+        url: generateUrl(this.config.siteUrl, baseFilename),
+        filename: path.resolve(this.exportFolder, baseFilename),
+        content: this.sitemapBuilder.buildSitemapXml(chunk),
       } as IExportable
     })
 
-    // this.exportableList.push(...items)
+    // Add to exportable list
+    this.exportableList.push(...items)
   }
 
   registerRobotsTxt() {
