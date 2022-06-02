@@ -7,6 +7,7 @@
   "license": "MIT",
   "private": true,
   "type": "module",
+  "packageManager": "yarn@1.22.19",
   "workspaces": {
     "packages": [
       "packages/*",
@@ -15,18 +16,16 @@
   },
   "scripts": {
     "clean": "tsc --build --clean",
-    "dev:docker": "docker-compose up -d",
     "dev:test": "jest --watchAll",
     "dev:tsc": "tsc --build --watch",
-    "build": "ywc clean build",
-    "build:tsc": "tsc --build",
-    "set-version": "ywc set-version",
+    "build": "turbo run build --force",
     "test": "jest --ci --coverage --verbose",
     "lint": "eslint . && yarn prettier:check",
     "prettier:check": "prettier --check \"**/*.{js,mjs,cjs,jsx,json,ts,tsx,md,mdx,css,html,yml,yaml,scss,less,graphql,graphqls,gql}\"",
     "format": "prettier --write \"**/*.{js,mjs,cjs,jsx,json,ts,tsx,md,mdx,css,html,yml,yaml,scss,less,graphql,graphqls,gql}\""
   },
   "devDependencies": {
-    "@corex/workspace": "^3.0.611"
+    "@corex/workspace": "^4.0.14",
+    "turbo": "^1.2.14"
   }
 }

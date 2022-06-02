@@ -1,14 +1,10 @@
 {
   "extends": "@corex/tsconfig",
   "compilerOptions": {
+    "outDir": "dist/esm",
     "rootDir": "src",
-    "outDir": "dist/cjs",
-    "declarationDir": "dist/@types",
-    "module": "CommonJS",
-    "target": "ES2015",
-    "skipLibCheck": true,
-    "skipDefaultLibCheck": true
+    "declarationDir": "dist/@types"
   },
   "include": ["src"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "bin", "dist"]
 }

@@ -1,82 +1,85 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { loadConfig, updateWithRuntimeConfig } from './config'
-import { loadManifest } from './manifest'
-import { createUrlSet, generateUrl } from './url'
-import { generateSitemap } from './sitemap/generate'
-import { toChunks } from './array'
-import {
-  resolveSitemapChunks,
-  getRuntimePaths,
-  getConfigFilePath,
-} from './path'
-import { exportRobotsTxt } from './robots-txt'
-import { exportSitemapIndex } from './sitemap-index/export'
-import { INextSitemapResult } from '.'
-import { Logger } from './logger'
+import { INextSitemapResult } from './interface.js'
+import { Logger } from './logger.js'
+import { getRuntimePaths } from './utils/path.js'
+import { toChunks } from './utils/array.js'
+import { ConfigParser } from './parsers/config-parser.js'
+import { ManifestParser } from './parsers/manifest-parser.js'
+import { UrlSetBuilder } from './builders/url-set-builder.js'
+import { ExportableBuilder } from './builders/exportable-builder.js'
+import { exportFile } from './utils/file.js'
 
-// Async main
-const main = async () => {
-  // Get config file path
-  const configFilePath = await getConfigFilePath()
+export class CLI {
+  /**
+   * Main method
+   * @returns
+   */
+  async main() {
+    // Create config parser instance
+    const configParser = new ConfigParser()
 
-  // Load next-sitemap.js
-  let config = await loadConfig(configFilePath)
+    // Load base config from `next-sitemap.config.js`
+    let config = await configParser.loadBaseConfig()
 
-  // Get runtime paths
-  const runtimePaths = getRuntimePaths(config)
+    // Find the runtime paths using base config
+    const runtimePaths = getRuntimePaths(config)
 
-  // Update current config with runtime config
-  config = await updateWithRuntimeConfig(config, runtimePaths)
+    // Update base config with runtime config
+    config = await configParser.withRuntimeConfig(config, runtimePaths)
 
-  // Load next.js manifest files
-  const manifest = await loadManifest(runtimePaths)
+    // Create next.js manifest parser instance
+    const manifestParser = new ManifestParser()
 
-  // Create url-set based on config and manifest
-  const urlSet = await createUrlSet(config, manifest)
+    // Load next.js manifest
+    const manifest = await manifestParser.loadManifest(runtimePaths)
 
-  // Split sitemap into multiple files
-  const chunks = toChunks(urlSet, config.sitemapSize!)
-  const sitemapChunks = resolveSitemapChunks(
-    runtimePaths.SITEMAP_INDEX_FILE,
-    chunks,
-    config
-  )
+    // Create UrlSetBuilder instance
+    const urlSetBuilder = new UrlSetBuilder(config, manifest)
 
-  // All sitemaps array to keep track of generated sitemap files.
-  // Later to be added on robots.txt
-  // Add default index file as first entry of sitemap
-  const generatedSitemaps: string[] = []
+    // Generate url set
+    const urlSet = await urlSetBuilder.createUrlSet()
 
-  // Generate sitemaps from chunks
-  await Promise.all(
-    sitemapChunks.map(async (chunk) => {
-      // Get sitemap absolute url
-      const sitemapUrl = generateUrl(config.siteUrl, `/${chunk.filename}`)
+    // Split sitemap into multiple files
+    const chunks = toChunks(urlSet, config.sitemapSize!)
 
-      // Add generate sitemap to sitemap list
-      generatedSitemaps.push(sitemapUrl)
+    // Create ExportableBuilder instance
+    const expoBuilder = new ExportableBuilder(config, runtimePaths)
 
-      // Generate sitemap
-      return generateSitemap(chunk)
-    })
-  )
+    // Register sitemap exports
+    expoBuilder.registerSitemaps(chunks)
 
-  // Create result object
-  const result: INextSitemapResult = {
-    runtimePaths,
-    generatedSitemaps,
+    // Register index sitemap if user config allows generation
+    if (config.generateIndexSitemap) {
+      expoBuilder.registerIndexSitemap()
+    }
+
+    // Register robots.txt export if user config allows generation
+    if (config?.generateRobotsTxt) {
+      expoBuilder.registerRobotsTxt()
+    }
+
+    // Export all files
+    await Promise.all(
+      expoBuilder.exportableList?.map(async (item) =>
+        exportFile(item.filename, item.content)
+      )
+    )
+
+    // Create result object
+    const result: INextSitemapResult = {
+      runtimePaths,
+      sitemaps: expoBuilder.generatedSitemaps(),
+      sitemapIndices: expoBuilder.generatedSitemapIndices(),
+    }
+
+    return result
   }
 
-  // Export sitemap index file
-  await exportSitemapIndex(result)
+  async execute() {
+    // Run main method
+    const result = await this.main()
 
-  // Generate robots.txt
-  if (config?.generateRobotsTxt) {
-    await exportRobotsTxt(config, result)
+    // Log result
+    Logger.generationCompleted(result)
   }
-
-  return result
 }
-
-// Execute
-main().then(Logger.generationCompleted)
