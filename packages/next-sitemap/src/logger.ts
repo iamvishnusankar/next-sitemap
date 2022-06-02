@@ -33,45 +33,58 @@ export class Logger {
 
   /**
    * Generic log
-   * @param arg0
-   * @param filePath
+   * @param emoji
+   * @param text
    */
   static log(emoji: string, ...text: string[]): any {
     return console.log(emoji, `[next-sitemap]`, ...text)
   }
 
+  static logList(title: string, list: string[]) {
+    console.log(
+      `-----------------------------------------------------\n`,
+      title,
+      `\n-----------------------------------------------------\n`
+    )
+
+    // Only show 5 entries on console
+    if (list?.length > 7) {
+      list = [...list.splice(0, 3), '...', ...list.splice(list.length - 2, 2)]
+    }
+
+    // log all sitemap list
+    list?.forEach((x) =>
+      x === '...' ? console.log(`     ${x}`) : console.log(`   ○ ${x}`)
+    )
+
+    console.log(`\n`)
+  }
+
   /**
    * Log stats when the generation is completed
-   * @param allSitemaps
+   * @param result
    * @returns
    */
   static generationCompleted(result: INextSitemapResult) {
     // Initial stats
-    Logger.log(
-      `✅`,
-      `Generated index sitemap and ${result?.sitemaps?.length} sitemap(s)`
-    )
+    Logger.log(`✅`, 'Generation completed')
 
-    // Temp assign
-    let sitemapsList = [
-      result?.runtimePaths?.SITEMAP_INDEX_URL,
-      ...(result?.sitemaps ?? []),
-    ]
+    const indexCount = result.sitemapIndices.length
+    const sitemapCount = result.sitemaps.length
 
-    // Only show 5 entries on console
-    if (sitemapsList?.length > 7) {
-      sitemapsList = [
-        ...sitemapsList.splice(0, 3),
-        '...',
-        ...sitemapsList.splice(sitemapsList.length - 2, 2),
-      ]
+    console.table({
+      indexSitemaps: indexCount,
+      sitemaps: sitemapCount,
+    })
+
+    // Log sitemap index list
+    if (indexCount > 0) {
+      Logger.logList('SITEMAP INDICES', result.sitemapIndices)
     }
 
-    // log all sitemap list
-    return sitemapsList?.forEach((x, index) =>
-      x === '...'
-        ? console.log(`     ${x}`)
-        : console.log(`   ○ ${x}`, index === 0 ? '(index)' : '')
-    )
+    // Log sitemap list
+    if (sitemapCount > 0) {
+      Logger.logList('SITEMAPS', result.sitemaps)
+    }
   }
 }
