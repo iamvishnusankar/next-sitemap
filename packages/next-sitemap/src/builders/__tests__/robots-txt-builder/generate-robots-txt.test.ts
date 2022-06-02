@@ -8,15 +8,6 @@ beforeEach(() => {
 })
 
 describe('RobotsTxtBuilder', () => {
-  test('generateRobotsTxt: generateRobotsTxt false in config', () => {
-    expect(
-      builder.generateRobotsTxt({
-        ...sampleConfig,
-        generateRobotsTxt: false,
-      } as any)
-    ).toBeNull()
-  })
-
   test('generateRobotsTxt: additionalSitemap', () => {
     expect(builder.generateRobotsTxt(sampleConfig as any))
       .toMatchInlineSnapshot(`
