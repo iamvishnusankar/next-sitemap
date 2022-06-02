@@ -14,7 +14,7 @@ export const withXMLResponse = (
     const { res } = ctx
 
     // Set header
-    res.setHeader('Content-Type', 'text/xml')
+    res.setHeader('Content-Type', 'application/xml')
 
     // Write the sitemap context to resonse
     res.write(content)
