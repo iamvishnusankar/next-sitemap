@@ -6,6 +6,7 @@ import path from 'node:path'
 import { Logger } from '../logger.js'
 import { generateUrl } from './url.js'
 import type { IConfig, IRuntimePaths } from '../interface.js'
+import { pathToFileURL } from 'url'
 
 /**
  * Return absolute path from path segments
@@ -60,7 +61,7 @@ export const getConfigFilePath = async () => {
   // Check file stat
   return fs
     .stat(configPath)
-    .then(() => configPath)
+    .then(() => pathToFileURL(configPath).toString())
     .catch((err) => {
       Logger.noConfigFile()
       throw err
