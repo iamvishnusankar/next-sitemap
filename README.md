@@ -78,7 +78,7 @@ Index sitemap generation can be turned off by setting `generateIndexSitemap: fal
 
 ## Splitting large sitemap into multiple files
 
-Define the `sitemapSize` property in `next-sitemap.js` to split large sitemap into multiple files.
+Define the `sitemapSize` property in `next-sitemap.config.js` to split large sitemap into multiple files.
 
 ```js
 /** @type {import('next-sitemap').IConfig} */
@@ -201,7 +201,7 @@ export default config
 
 ## Full configuration example
 
-Here's an example `next-sitemap.js` configuration with all options
+Here's an example `next-sitemap.config.js` configuration with all options
 
 ```js
 /** @type {import('next-sitemap').IConfig} */
@@ -325,7 +325,7 @@ Now, `next.js` is serving the dynamic index-sitemap from `http://localhost:3000/
 List the dynamic sitemap page in `robotsTxtOptions.additionalSitemaps` and exclude this path from static sitemap list.
 
 ```js
-// next-sitemap.js
+// next-sitemap.config.js
 
 /** @type {import('next-sitemap').IConfig} */
 
@@ -384,7 +384,7 @@ Now, `next.js` is serving the dynamic sitemap from `http://localhost:3000/server
 List the dynamic sitemap page in `robotsTxtOptions.additionalSitemaps` and exclude this path from static sitemap list.
 
 ```js
-// next-sitemap.js
+// next-sitemap.config.js
 
 /** @type {import('next-sitemap').IConfig} */
 
@@ -406,7 +406,7 @@ In this way, `next-sitemap` will manage the sitemaps for all your static pages a
 
 ## Typescript JSDoc
 
-Add the following line of code in your `next-sitemap.js` for nice typescript autocomplete! 💖
+Add the following line of code in your `next-sitemap.config.js` for nice typescript autocomplete! 💖
 
 ```js
 /** @type {import('next-sitemap').IConfig} */
