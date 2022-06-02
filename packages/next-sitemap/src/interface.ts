@@ -134,7 +134,7 @@ export interface IConfig {
    */
   exclude?: string[]
 
-  alternateRefs?: Array<AlternateRef>
+  alternateRefs?: Array<IAlternateRef>
 
   /**
    * A transformation function, which runs for each relative-path in the sitemap. Returning null value from the transformation function will result in the exclusion of that specific path from the generated sitemap list.
@@ -157,6 +157,13 @@ export interface IConfig {
    * Include trailing slash
    */
   trailingSlash?: boolean
+
+  /**
+   * Boolean to enable/disable index sitemap generation
+   * If enabled next-sitemap will generate sitemap-*.xml and sitemap.xml (index sitemap)
+   * @default true
+   */
+  generateIndexSitemap?: boolean
 }
 
 export type AdditionalPathsConfig = Readonly<
@@ -196,10 +203,21 @@ export interface INextManifest {
   routes?: IRoutesManifest
 }
 
+/**
+ * Use IExportable instead
+ * @deprecated
+ */
 export interface ISitemapChunk {
   path: string
   fields: ISitemapField[]
   filename: string
+}
+
+export interface IExportable {
+  url: string
+  filename: string
+  content: string
+  type: 'robots.txt' | 'sitemap' | 'sitemap-index'
 }
 
 export interface IRuntimePaths {
@@ -208,11 +226,11 @@ export interface IRuntimePaths {
   ROUTES_MANIFEST: string
   ROBOTS_TXT_FILE: string
   EXPORT_MARKER: string
-  SITEMAP_INDEX_FILE: string
-  SITEMAP_INDEX_URL: string
+  SITEMAP_INDEX_FILE?: string
+  SITEMAP_INDEX_URL?: string
 }
 
-export type AlternateRef = {
+export type IAlternateRef = {
   href: string
   hreflang: string
   hrefIsAbsolute?: boolean
@@ -223,11 +241,12 @@ export type ISitemapField = {
   lastmod?: string
   changefreq?: Changefreq
   priority?: number
-  alternateRefs?: Array<AlternateRef>
+  alternateRefs?: Array<IAlternateRef>
   trailingSlash?: boolean
 }
 
 export interface INextSitemapResult {
-  generatedSitemaps: string[]
+  sitemaps: string[]
+  sitemapIndices: string[]
   runtimePaths: IRuntimePaths
 }

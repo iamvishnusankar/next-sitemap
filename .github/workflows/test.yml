@@ -14,7 +14,7 @@ jobs:
     strategy:
       matrix:
         platform: [ubuntu-latest, macos-latest, windows-latest]
-        node: ['17', '16', '14.18', '14.18.1']
+        node: ['17', '16', '14.18']
     runs-on: ${{ matrix.platform }}
     steps:
       - name: Github Checkout
@@ -26,7 +26,7 @@ jobs:
           node-version: ${{ matrix.node }}
 
       - name: Install
-        run: yarn install --ci
+        run: yarn install --frozen-lockfile
 
       - name: Lint
         run: yarn lint
