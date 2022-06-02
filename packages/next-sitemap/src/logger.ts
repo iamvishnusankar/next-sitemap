@@ -18,7 +18,7 @@ export class Logger {
    */
   static noConfigFile() {
     Logger.error(
-      'Unable to find next-sitemap.config.js or custom config file.\nIf you are using custom config file, make sure to invoke `next-sitemap --config <custom-config-file>.js`\n'
+      'Unable to find next-sitemap.config.js or custom config file.\n\nIMPORTANT: Default config file has been renamed to `next-sitemap.config.js`\n\nIf you are using custom config file, make sure to invoke `next-sitemap --config <custom-config-file>.js`\n'
     )
   }
 
