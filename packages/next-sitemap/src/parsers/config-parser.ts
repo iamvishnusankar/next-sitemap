@@ -57,6 +57,9 @@ export class ConfigParser {
     // Get config file path
     const path = await getConfigFilePath()
 
+    // Config loading message
+    Logger.log('✨', `Loading next-sitemap config:`, path)
+
     // Load base config
     const baseConfig = await import(path)
 
