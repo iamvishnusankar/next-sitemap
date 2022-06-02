@@ -7,8 +7,8 @@
   "types": "./dist/@types/index.d.ts",
   "exports": {
     ".": {
-      "import": "./bin/next-sitemap.mjs",
-      "require": "./bin/next-sitemap.cjs"
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
     }
   },
   "repository": "https://github.com/iamvishnusankar/next-sitemap.git",
@@ -40,8 +40,8 @@
     "access": "public"
   },
   "bin": {
-    "next-sitemap": "./dist/esm/bin.js",
-    "next-sitemap-cjs": "./dist/cjs/bin.js"
+    "next-sitemap": "./bin/next-sitemap.mjs",
+    "next-sitemap-cjs": "./bin/next-sitemap.cjs"
   },
   "scripts": {
     "build": "tsc",
