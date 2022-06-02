@@ -89,7 +89,7 @@ export class ExportableBuilder {
     return this.exportableUrlReducer((x) => x.type == 'sitemap')
   }
 
-  generatedSitemapIndex() {
+  generatedSitemapIndices() {
     return this.exportableUrlReducer((x) => x.type == 'sitemap-index')
   }
 }

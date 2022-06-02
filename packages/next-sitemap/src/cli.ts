@@ -65,13 +65,11 @@ export class CLI {
       )
     )
 
-    // Get generated sitemap list from ExportableBuilder
-    const generatedSitemaps = expoBuilder.generatedSitemaps()
-
     // Create result object
     const result: INextSitemapResult = {
       runtimePaths,
-      generatedSitemaps,
+      sitemaps: expoBuilder.generatedSitemaps(),
+      sitemapIndices: expoBuilder.generatedSitemapIndices(),
     }
 
     return result
