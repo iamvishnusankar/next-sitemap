@@ -10,6 +10,7 @@ import path from 'node:path'
 import { generateUrl } from '../utils/url.js'
 import { combineMerge } from '../utils/merge.js'
 import { RobotsTxtBuilder } from './robots-txt-builder.js'
+import { defaultRobotsTxtTransformer } from '../utils/defaults.js'
 
 export class ExportableBuilder {
   exportableList: IExportable[] = []
@@ -39,7 +40,7 @@ export class ExportableBuilder {
   /**
    * Register sitemap index files
    */
-  registerIndexSitemap() {
+  async registerIndexSitemap() {
     // Get generated sitemap list
     const sitemaps = [
       ...this.generatedSitemaps(),
@@ -88,7 +89,7 @@ export class ExportableBuilder {
    * Register sitemaps with exportable builder
    * @param chunks
    */
-  registerSitemaps(chunks: ISitemapField[][]) {
+  async registerSitemaps(chunks: ISitemapField[][]) {
     // Check whether user config allows sitemap generation
     const hasIndexSitemap = this.config.generateIndexSitemap
 
@@ -150,19 +151,30 @@ export class ExportableBuilder {
   /**
    * Register robots.txt export
    */
-  registerRobotsTxt() {
+  async registerRobotsTxt() {
     // File name of robots.txt
     const baseFilename = 'robots.txt'
 
     // Export config of robots.txt
     const robotsConfig = this.robotsTxtExportConfig()
 
+    // Generate robots content
+    let content = this.robotsTxtBuilder.generateRobotsTxt(robotsConfig)
+
+    // Get robots transformer
+    const robotsTransformer =
+      robotsConfig?.robotsTxtOptions?.transformRobotsTxt ??
+      defaultRobotsTxtTransformer
+
+    // Transform generated robots txt
+    content = await robotsTransformer(robotsConfig, content)
+
     // Generate exportable item
     const item: IExportable = {
       type: 'robots.txt',
       filename: path.resolve(this.exportDir, baseFilename),
       url: generateUrl(robotsConfig?.siteUrl, baseFilename),
-      content: this.robotsTxtBuilder.generateRobotsTxt(robotsConfig),
+      content,
     }
 
     // Add to exportableList
