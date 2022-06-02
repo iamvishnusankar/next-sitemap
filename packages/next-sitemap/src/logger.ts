@@ -49,13 +49,13 @@ export class Logger {
     // Initial stats
     Logger.log(
       `✅`,
-      `Generated index sitemap and ${result?.generatedSitemaps?.length} sitemap(s)`
+      `Generated index sitemap and ${result?.sitemaps?.length} sitemap(s)`
     )
 
     // Temp assign
     let sitemapsList = [
       result?.runtimePaths?.SITEMAP_INDEX_URL,
-      ...(result?.generatedSitemaps ?? []),
+      ...(result?.sitemaps ?? []),
     ]
 
     // Only show 5 entries on console

@@ -246,6 +246,7 @@ export type ISitemapField = {
 }
 
 export interface INextSitemapResult {
-  generatedSitemaps: string[]
+  sitemaps: string[]
+  sitemapIndices: string[]
   runtimePaths: IRuntimePaths
 }
