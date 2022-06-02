@@ -58,6 +58,11 @@ export interface IRobotsTxt {
    * @default false
    */
   includeNonIndexSitemaps?: boolean
+
+  /**
+   * Custom robots.txt transformer
+   */
+  transformRobotsTxt?: (config: IConfig, robotsTxt: string) => Promise<string>
 }
 
 /**
