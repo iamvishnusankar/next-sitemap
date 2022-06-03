@@ -29,37 +29,61 @@ export class SitemapBuilder {
   }
 
   /**
+   * Normalize sitemap field keys to stay consistent with <xsd:sequence> order
+   * @link https://www.w3schools.com/xml/el_sequence.asp
+   * @link https://github.com/iamvishnusankar/next-sitemap/issues/345
+   * @param x
+   * @returns
+   */
+  normalizeSitemapField(x: ISitemapField) {
+    const { loc, lastmod, changefreq, priority, ...restProps } = x
+
+    // Return keys in following order
+    return {
+      loc,
+      lastmod,
+      changefreq,
+      priority,
+      ...restProps,
+    }
+  }
+
+  /**
    * Generates sitemap.xml
    * @param fields
    * @returns
    */
   buildSitemapXml(fields: ISitemapField[]): string {
     const content = fields
-      .map((fieldData) => {
-        const field: Array<string> = []
+      .map((x: ISitemapField) => {
+        // Normalize sitemap field keys to stay consistent with <xsd:sequence> order
+        const filed = this.normalizeSitemapField(x)
+
+        // Field array to keep track of properties
+        const fieldArr: Array<string> = []
 
         // Iterate all object keys and key value pair to field-set
-        for (const key of Object.keys(fieldData)) {
+        for (const key of Object.keys(filed)) {
           // Skip reserved keys
           if (['trailingSlash'].includes(key)) {
             continue
           }
 
-          if (fieldData[key]) {
+          if (filed[key]) {
             if (key !== 'alternateRefs') {
-              field.push(`<${key}>${fieldData[key]}</${key}>`)
+              fieldArr.push(`<${key}>${filed[key]}</${key}>`)
             } else {
               const altRefField = this.buildAlternateRefsXml(
-                fieldData.alternateRefs
+                filed.alternateRefs
               )
 
-              field.push(altRefField)
+              fieldArr.push(altRefField)
             }
           }
         }
 
         // Append previous value and return
-        return `<url>${field.join('')}</url>\n`
+        return `<url>${fieldArr.join('')}</url>\n`
       })
       .join('')
 
