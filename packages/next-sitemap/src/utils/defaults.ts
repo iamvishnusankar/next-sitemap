@@ -7,9 +7,9 @@ export const defaultSitemapTransformer = async (
 ): Promise<ISitemapField> => {
   return {
     loc,
+    lastmod: config?.autoLastmod ? new Date().toISOString() : undefined,
     changefreq: config?.changefreq,
     priority: config?.priority,
-    lastmod: config?.autoLastmod ? new Date().toISOString() : undefined,
     alternateRefs: config.alternateRefs ?? [],
     trailingSlash: config?.trailingSlash,
   }
