@@ -57,24 +57,24 @@ export class SitemapBuilder {
     const content = fields
       .map((x: ISitemapField) => {
         // Normalize sitemap field keys to stay consistent with <xsd:sequence> order
-        const filed = this.normalizeSitemapField(x)
+        const field = this.normalizeSitemapField(x)
 
         // Field array to keep track of properties
         const fieldArr: Array<string> = []
 
         // Iterate all object keys and key value pair to field-set
-        for (const key of Object.keys(filed)) {
+        for (const key of Object.keys(field)) {
           // Skip reserved keys
           if (['trailingSlash'].includes(key)) {
             continue
           }
 
-          if (filed[key]) {
+          if (field[key]) {
             if (key !== 'alternateRefs') {
-              fieldArr.push(`<${key}>${filed[key]}</${key}>`)
+              fieldArr.push(`<${key}>${field[key]}</${key}>`)
             } else {
               const altRefField = this.buildAlternateRefsXml(
-                filed.alternateRefs
+                field.alternateRefs
               )
 
               fieldArr.push(altRefField)
