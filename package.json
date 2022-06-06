@@ -26,6 +26,6 @@
   },
   "devDependencies": {
     "@corex/workspace": "^4.0.14",
-    "turbo": "^1.2.14"
+    "turbo": "^1.2.16"
   }
 }
