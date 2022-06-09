@@ -48,7 +48,7 @@
     "postbuild": "tsc --module commonjs --outDir dist/cjs"
   },
   "dependencies": {
-    "@corex/deepmerge": "^4.0.14",
+    "@corex/deepmerge": "^4.0.16",
     "minimist": "^1.2.6"
   },
   "peerDependencies": {
