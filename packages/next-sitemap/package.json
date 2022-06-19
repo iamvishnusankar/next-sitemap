@@ -11,6 +11,10 @@
       "require": "./dist/cjs/index.js"
     }
   },
+  "files": [
+    "dist",
+    "bin"
+  ],
   "repository": "https://github.com/iamvishnusankar/next-sitemap.git",
   "funding": [
     {
