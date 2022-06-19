@@ -28,7 +28,7 @@ steps:
     inputs:
       targetType: 'inline'
       script: 'npm version --no-git-tag-version $BUILD_BUILDNUMBER --ws'
-      failOnStderr: true
+      # failOnStderr: true
 
   # Install
   - task: Bash@3
