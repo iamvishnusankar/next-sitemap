@@ -17,7 +17,7 @@
   - [Installation](#installation)
   - [Create config file](#create-config-file)
   - [Building sitemaps](#building-sitemaps)
-- [Index sitemaps](#index-sitemaps)
+- [Index sitemaps](#index-sitemaps-optional)
 - [Splitting large sitemap into multiple files](#splitting-large-sitemap-into-multiple-files)
 - [Configuration Options](#configuration-options)
 - [Custom transformation function](#custom-transformation-function)
