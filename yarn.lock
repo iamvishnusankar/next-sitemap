@@ -1112,10 +1112,10 @@
   resolved "https://registry.yarnpkg.com/@corex/tsconfig/-/tsconfig-4.0.14.tgz#a84fa24f66271b853775715a7b3bf482c63abad9"
   integrity sha512-IgUvlJ2enVrdjjgUe+h1JxZb4xMcnsgI9Gr+EJMQq4hnFRNzTr+0EKS+VDdzPluS4dPgt3BtMgE2Dp81n2jomQ==
 
-"@corex/workspace@^4.0.26":
-  version "4.0.26"
-  resolved "https://registry.yarnpkg.com/@corex/workspace/-/workspace-4.0.26.tgz#b082cfa86d3e3b769ce2e77af7f1e045154da29b"
-  integrity sha512-ZAr+Ha+dSb6DH+Lpch1/RaVGULxv2SOgFjVslorg3nk4105QGQxLPFAWJ98TcTq8p29oVA0Ay4lovp55Qi4VhA==
+"@corex/workspace@^4.0.29":
+  version "4.0.29"
+  resolved "https://registry.yarnpkg.com/@corex/workspace/-/workspace-4.0.29.tgz#c4298c303af9876e9e6b4c99c30dfce127985e0f"
+  integrity sha512-+n/O4Q+SIm2DOFAxxSdDvlKKY2hm1yyGoMpL2ON/C8vcAZODaRUHcQer5a0vJKegNnblFyznss1U1M8sfcMXjg==
   dependencies:
     "@corex/eslint-config" "*"
     "@corex/jest" "*"
