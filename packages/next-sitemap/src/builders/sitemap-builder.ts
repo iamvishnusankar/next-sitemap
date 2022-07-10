@@ -1,4 +1,4 @@
-import type { ISitemapField, IAlternateRef } from '../interface.js'
+import type { ISitemapField, IAlternateRef, IGoogleNewsEntry, IImageEntry, IVideoEntry } from '../interface.js'
 
 /**
  * Builder class to generate xml and robots.txt
@@ -48,6 +48,14 @@ export class SitemapBuilder {
     }
   }
 
+  private formatDate(date: Date): string {
+    return date.toISOString()
+  }
+
+  private formatBoolean(value: boolean): string {
+    return value ? 'yes' : 'no'
+  }
+
   /**
    * Generates sitemap.xml
    * @param fields
@@ -70,14 +78,33 @@ export class SitemapBuilder {
           }
 
           if (field[key]) {
-            if (key !== 'alternateRefs') {
-              fieldArr.push(`<${key}>${field[key]}</${key}>`)
-            } else {
+            if (key === 'alternateRefs') {
               const altRefField = this.buildAlternateRefsXml(
                 field.alternateRefs
               )
 
               fieldArr.push(altRefField)
+            } else if (key === 'news') {
+              if (field.news) {
+                const newsField = this.buildNewsXml(field.news);
+                fieldArr.push(newsField)
+              }
+            } else if (key === 'images') {
+              if (field.images) {
+                for (const image of field.images) {
+                  const imageField = this.buildImageXml(image);
+                  fieldArr.push(imageField)
+                }
+              }
+            } else if (key === 'videos') {
+              if (field.videos) {
+                for (const video of field.videos) {
+                  const videoField = this.buildVideoXml(video);
+                  fieldArr.push(videoField)
+                }
+              }
+            } else {
+              fieldArr.push(`<${key}>${field[key]}</${key}>`)
             }
           }
         }
@@ -101,5 +128,80 @@ export class SitemapBuilder {
         return `<xhtml:link rel="alternate" hreflang="${alternateRef.hreflang}" href="${alternateRef.href}"/>`
       })
       .join('')
+  }
+
+  /**
+   * Generate Google News sitemap entry
+   * @param news
+   * @returns string
+   */
+  buildNewsXml(news: IGoogleNewsEntry): string {
+    // using array just because it looks more structured
+    return [
+      `<news:news>`,
+      ...[
+        `<news:publication>`,
+        ...[
+          `<news:name>${news.publicationName}</news:name>`,
+          `<news:language>${news.publicationLanguage}</news:language>`,
+        ],
+        `</news:publication>`,
+        `<news:publication_date>${this.formatDate(news.date)}</news:publication_date>`,
+        `<news:title>${news.title}</news:title>`,
+      ],
+      `</news:news>`,
+    ].filter(Boolean).join('')
+  }
+
+  /**
+   * Generate Image sitemap entry
+   * @param image
+   * @returns string
+   */
+  buildImageXml(image: IImageEntry): string {
+    // using array just because it looks more structured
+    return [
+      `<image:image>`,
+      ...[
+        `<image:loc>${image.loc.href}</image:loc>`,
+        image.caption && `<image:caption>${image.caption}</image:caption>`,
+        image.title && `<image:title>${image.title}</image:title>`,
+        image.geoLocation && `<image:geo_location>${image.geoLocation}</image:geo_location>`,
+        image.license && `<image:license>${image.license.href}</image:license>`,
+      ],
+      `</image:image>`,
+    ].filter(Boolean).join('')
+  }
+
+  /**
+   * Generate Video sitemap entry
+   * @param video
+   * @returns string
+   */
+  buildVideoXml(video: IVideoEntry): string {
+    // using array just because it looks more structured
+    return [
+      `<video:video>`,
+      ...[
+        `<video:title>${video.title}</video:title>`,
+        `<video:thumbnail_loc>${video.thumbnailLoc.href}</video:thumbnail_loc>`,
+        `<video:description>${video.description}</video:description>`,
+        video.contentLoc && `<video:content_loc>${video.contentLoc.href}</video:content_loc>`,
+        video.playerLoc && `<video:player_loc>${video.playerLoc.href}</video:player_loc>`,
+        video.duration && `<video:duration>${video.duration}</video:duration>`,
+        video.viewCount && `<video:view_count>${video.viewCount}</video:view_count>`,
+        video.tag && `<video:tag>${video.tag}</video:tag>`,
+        video.rating && `<video:rating>${video.rating.toFixed(1).replace(',', '.')}</video:rating>`,
+        video.expirationDate && `<video:expiration_date>${this.formatDate(video.expirationDate)}</video:expiration_date>`,
+        video.publicationDate && `<video:publication_date>${this.formatDate(video.publicationDate)}</video:publication_date>`,
+        typeof video.familyFriendly !=='undefined' &&`<video:family_friendly>${this.formatBoolean(video.familyFriendly)}</video:family_friendly>`,
+        typeof video.requiresSubscription !=='undefined' &&`<video:requires_subscription>${this.formatBoolean(video.requiresSubscription)}</video:requires_subscription>`,
+        typeof video.live !=='undefined' &&`<video:live>${this.formatBoolean(video.live)}</video:live>`,
+        video.restriction && `<video:restriction relationship="${video.restriction.relationship}">${video.restriction.content}</video:restriction>`,
+        video.platform && `<video:platform relationship="${video.platform.relationship}">${video.platform.content}</video:platform>`,
+        video.uploader && `<video:uploader${video.uploader.info && ` info="${video.uploader.info}"`}>${video.uploader.name}</video:uploader>`,
+      ],
+      `</video:video>`
+    ].filter(Boolean).join('')
   }
 }
