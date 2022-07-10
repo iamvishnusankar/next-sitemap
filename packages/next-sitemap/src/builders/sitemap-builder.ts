@@ -48,8 +48,8 @@ export class SitemapBuilder {
     }
   }
 
-  private formatDate(date: Date): string {
-    return date.toISOString()
+  private formatDate(date: Date | string): string {
+    return (typeof date === 'string' ? new Date(date) : date).toISOString()
   }
 
   private formatBoolean(value: boolean): string {

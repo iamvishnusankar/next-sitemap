@@ -238,7 +238,7 @@ export type IAlternateRef = {
 
 export type IGoogleNewsEntry = {
   title: string
-  date: Date
+  date: Date | string
   publicationName: string
   publicationLanguage: string
 }
@@ -263,10 +263,10 @@ export type IVideoEntry = {
   contentLoc?: URL
   playerLoc?: URL
   duration?: number
-  expirationDate?: Date
+  expirationDate?: Date | string
   rating?: number
   viewCount?: number
-  publicationDate?: Date
+  publicationDate?: Date | string
   familyFriendly?: boolean
   restriction?: IRestriction
   platform?: IRestriction
