@@ -57,7 +57,7 @@ describe('SitemapBuilder', () => {
     expect(content).toMatchInlineSnapshot(`
       "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
       <urlset xmlns=\\"http://www.sitemaps.org/schemas/sitemap/0.9\\" xmlns:news=\\"http://www.google.com/schemas/sitemap-news/0.9\\" xmlns:xhtml=\\"http://www.w3.org/1999/xhtml\\" xmlns:mobile=\\"http://www.google.com/schemas/sitemap-mobile/1.0\\" xmlns:image=\\"http://www.google.com/schemas/sitemap-image/1.1\\" xmlns:video=\\"http://www.google.com/schemas/sitemap-video/1.1\\">
-      <url><loc>https://example.com</loc><news:news><news:publication><news:name>The Example Times</news:name><news:language>en</news:language></news:publication><news:publication_date>2008-01-01T23:00:00.000Z</news:publication_date><news:title>Companies A, B in Merger Talks</news:title></news:news></url>
+      <url><loc>https://example.com</loc><news:news><news:publication><news:name>The Example Times</news:name><news:language>en</news:language></news:publication><news:publication_date>2008-01-01T23:00:00.000Z</news:publication_date><news:title>Companies A&#44; B in Merger Talks</news:title></news:news></url>
       </urlset>"
     `)
   })
@@ -74,7 +74,7 @@ describe('SitemapBuilder', () => {
             loc: new URL('https://example.com'),
           },
           {
-            caption: 'Image caption',
+            caption: 'Image caption & description',
             geoLocation: 'Prague, Czech Republic',
             license: new URL('https://example.com'),
             loc: new URL('https://example.com'),
@@ -88,7 +88,7 @@ describe('SitemapBuilder', () => {
     expect(content).toMatchInlineSnapshot(`
       "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
       <urlset xmlns=\\"http://www.sitemaps.org/schemas/sitemap/0.9\\" xmlns:news=\\"http://www.google.com/schemas/sitemap-news/0.9\\" xmlns:xhtml=\\"http://www.w3.org/1999/xhtml\\" xmlns:mobile=\\"http://www.google.com/schemas/sitemap-mobile/1.0\\" xmlns:image=\\"http://www.google.com/schemas/sitemap-image/1.1\\" xmlns:video=\\"http://www.google.com/schemas/sitemap-video/1.1\\">
-      <url><loc>https://example.com</loc><image:image><image:loc>https://example.com/</image:loc></image:image><image:image><image:loc>https://example.com/</image:loc><image:caption>Image caption</image:caption><image:title>Image title</image:title><image:geo_location>Prague, Czech Republic</image:geo_location><image:license>https://example.com/</image:license></image:image></url>
+      <url><loc>https://example.com</loc><image:image><image:loc>https://example.com/</image:loc></image:image><image:image><image:loc>https://example.com/</image:loc><image:caption>Image caption &#38; description</image:caption><image:title>Image title</image:title><image:geo_location>Prague&#44; Czech Republic</image:geo_location><image:license>https://example.com/</image:license></image:image></url>
       </urlset>"
     `)
   })

@@ -56,6 +56,13 @@ export class SitemapBuilder {
     return value ? 'yes' : 'no'
   }
 
+  private escapeHtml(s: string) {
+    return s.replace(
+      /[^\dA-Za-z ]/g,
+      c => "&#" + c.charCodeAt(0) + ";"
+    );
+  }
+
   /**
    * Generates sitemap.xml
    * @param fields
@@ -142,12 +149,12 @@ export class SitemapBuilder {
       ...[
         `<news:publication>`,
         ...[
-          `<news:name>${news.publicationName}</news:name>`,
+          `<news:name>${this.escapeHtml(news.publicationName)}</news:name>`,
           `<news:language>${news.publicationLanguage}</news:language>`,
         ],
         `</news:publication>`,
         `<news:publication_date>${this.formatDate(news.date)}</news:publication_date>`,
-        `<news:title>${news.title}</news:title>`,
+        `<news:title>${this.escapeHtml(news.title)}</news:title>`,
       ],
       `</news:news>`,
     ].filter(Boolean).join('')
@@ -164,9 +171,9 @@ export class SitemapBuilder {
       `<image:image>`,
       ...[
         `<image:loc>${image.loc.href}</image:loc>`,
-        image.caption && `<image:caption>${image.caption}</image:caption>`,
-        image.title && `<image:title>${image.title}</image:title>`,
-        image.geoLocation && `<image:geo_location>${image.geoLocation}</image:geo_location>`,
+        image.caption && `<image:caption>${this.escapeHtml(image.caption)}</image:caption>`,
+        image.title && `<image:title>${this.escapeHtml(image.title)}</image:title>`,
+        image.geoLocation && `<image:geo_location>${this.escapeHtml(image.geoLocation)}</image:geo_location>`,
         image.license && `<image:license>${image.license.href}</image:license>`,
       ],
       `</image:image>`,
@@ -183,14 +190,14 @@ export class SitemapBuilder {
     return [
       `<video:video>`,
       ...[
-        `<video:title>${video.title}</video:title>`,
+        `<video:title>${this.escapeHtml(video.title)}</video:title>`,
         `<video:thumbnail_loc>${video.thumbnailLoc.href}</video:thumbnail_loc>`,
-        `<video:description>${video.description}</video:description>`,
+        `<video:description>${this.escapeHtml(video.description)}</video:description>`,
         video.contentLoc && `<video:content_loc>${video.contentLoc.href}</video:content_loc>`,
         video.playerLoc && `<video:player_loc>${video.playerLoc.href}</video:player_loc>`,
         video.duration && `<video:duration>${video.duration}</video:duration>`,
         video.viewCount && `<video:view_count>${video.viewCount}</video:view_count>`,
-        video.tag && `<video:tag>${video.tag}</video:tag>`,
+        video.tag && `<video:tag>${this.escapeHtml(video.tag)}</video:tag>`,
         video.rating && `<video:rating>${video.rating.toFixed(1).replace(',', '.')}</video:rating>`,
         video.expirationDate && `<video:expiration_date>${this.formatDate(video.expirationDate)}</video:expiration_date>`,
         video.publicationDate && `<video:publication_date>${this.formatDate(video.publicationDate)}</video:publication_date>`,
@@ -199,7 +206,7 @@ export class SitemapBuilder {
         typeof video.live !=='undefined' &&`<video:live>${this.formatBoolean(video.live)}</video:live>`,
         video.restriction && `<video:restriction relationship="${video.restriction.relationship}">${video.restriction.content}</video:restriction>`,
         video.platform && `<video:platform relationship="${video.platform.relationship}">${video.platform.content}</video:platform>`,
-        video.uploader && `<video:uploader${video.uploader.info && ` info="${video.uploader.info}"`}>${video.uploader.name}</video:uploader>`,
+        video.uploader && `<video:uploader${video.uploader.info && ` info="${video.uploader.info}"`}>${this.escapeHtml(video.uploader.name)}</video:uploader>`,
       ],
       `</video:video>`
     ].filter(Boolean).join('')
