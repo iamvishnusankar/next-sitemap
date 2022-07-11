@@ -1,4 +1,4 @@
-import type { ISitemapField, IAlternateRef, IGoogleNewsEntry, IImageEntry, IVideoEntry } from '../interface.js'
+import type { IAlternateRef, IGoogleNewsEntry, IImageEntry, ISitemapField, IVideoEntry } from '../interface.js'
 
 /**
  * Builder class to generate xml and robots.txt
@@ -48,8 +48,28 @@ export class SitemapBuilder {
     }
   }
 
+  /**
+   * Composes YYYY-MM-DDThh:mm:ssTZD date format (with TZ offset)
+   * (ref: https://stackoverflow.com/a/49332027)
+   * @param date
+   * @private
+   */
   private formatDate(date: Date | string): string {
-    return (typeof date === 'string' ? new Date(date) : date).toISOString()
+    const d = typeof date === 'string' ? new Date(date) : date;
+    const z  = n =>  ('0' + n).slice(-2)
+    const zz = n => ('00' + n).slice(-3)
+    let off = d.getTimezoneOffset()
+    const sign = off > 0? '-' : '+'
+    off = Math.abs(off)
+
+    return d.getFullYear() + '-'
+      + z(d.getMonth() + 1) + '-' +
+      z(d.getDate()) + 'T' +
+      z(d.getHours()) + ':' +
+      z(d.getMinutes()) + ':' +
+      z(d.getSeconds()) + '.' +
+      zz(d.getMilliseconds()) +
+      sign + z(off / 60 | 0) + ':' + z(off % 60)
   }
 
   private formatBoolean(value: boolean): string {

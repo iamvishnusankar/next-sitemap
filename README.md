@@ -200,6 +200,43 @@ const config = {
 export default config
 ```
 
+## Google News, image and video sitemap
+
+Url set can contain additional sitemaps defined by google. These are 
+[Google News sitemap](https://developers.google.com/search/docs/advanced/sitemaps/news-sitemap),
+[image sitemap](https://developers.google.com/search/docs/advanced/sitemaps/image-sitemaps) or 
+[video sitemap](https://developers.google.com/search/docs/advanced/sitemaps/video-sitemaps).
+You can add the values for these sitemaps by updating entry in `transform` function or adding it with
+`additionalPaths`. You have to return a sitemap entry in both cases, so it's the best place for updating
+the output. This example will add an image and news tag to each entry but IRL you would of course use it with
+some condition or within `additionalPaths` result.
+
+```js
+/** @type {import('next-sitemap').IConfig} */
+const config = {
+  transform: async (config, path) => {
+    return {
+      loc: path, // => this will be exported as http(s)://<config.siteUrl>/<path>
+      changefreq: config.changefreq,
+      priority: config.priority,
+      lastmod: config.autoLastmod ? new Date().toISOString() : undefined,
+      images: [
+        {loc: 'https://example.com/image.jpg'}
+      ],
+      news: {
+        title: 'Article 1',
+        publicationName: 'Google Scholar',
+        publicationLanguage: 'en',
+        date: new Date()
+      }
+    }
+  },
+}
+
+export default config
+```
+
+
 ## Full configuration example
 
 Here's an example `next-sitemap.config.js` configuration with all options
