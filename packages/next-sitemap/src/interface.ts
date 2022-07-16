@@ -272,7 +272,7 @@ export type IVideoEntry = {
   platform?: IRestriction
   requiresSubscription?: boolean
   uploader?: {
-    name: string,
+    name: string
     info?: URL
   }
   live?: boolean
