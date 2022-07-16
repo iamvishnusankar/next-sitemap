@@ -202,9 +202,9 @@ export default config
 
 ## Google News, image and video sitemap
 
-Url set can contain additional sitemaps defined by google. These are 
+Url set can contain additional sitemaps defined by google. These are
 [Google News sitemap](https://developers.google.com/search/docs/advanced/sitemaps/news-sitemap),
-[image sitemap](https://developers.google.com/search/docs/advanced/sitemaps/image-sitemaps) or 
+[image sitemap](https://developers.google.com/search/docs/advanced/sitemaps/image-sitemaps) or
 [video sitemap](https://developers.google.com/search/docs/advanced/sitemaps/video-sitemaps).
 You can add the values for these sitemaps by updating entry in `transform` function or adding it with
 `additionalPaths`. You have to return a sitemap entry in both cases, so it's the best place for updating
@@ -220,22 +220,19 @@ const config = {
       changefreq: config.changefreq,
       priority: config.priority,
       lastmod: config.autoLastmod ? new Date().toISOString() : undefined,
-      images: [
-        {loc: 'https://example.com/image.jpg'}
-      ],
+      images: [{ loc: 'https://example.com/image.jpg' }],
       news: {
         title: 'Article 1',
         publicationName: 'Google Scholar',
         publicationLanguage: 'en',
-        date: new Date()
-      }
+        date: new Date(),
+      },
     }
   },
 }
 
 export default config
 ```
-
 
 ## Full configuration example
 

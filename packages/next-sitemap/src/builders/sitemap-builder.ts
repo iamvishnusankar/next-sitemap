@@ -1,4 +1,10 @@
-import type { IAlternateRef, IGoogleNewsEntry, IImageEntry, ISitemapField, IVideoEntry } from '../interface.js'
+import type {
+  IAlternateRef,
+  IGoogleNewsEntry,
+  IImageEntry,
+  ISitemapField,
+  IVideoEntry,
+} from '../interface.js'
 
 /**
  * Builder class to generate xml and robots.txt
@@ -55,21 +61,32 @@ export class SitemapBuilder {
    * @private
    */
   private formatDate(date: Date | string): string {
-    const d = typeof date === 'string' ? new Date(date) : date;
-    const z  = n =>  ('0' + n).slice(-2)
-    const zz = n => ('00' + n).slice(-3)
+    const d = typeof date === 'string' ? new Date(date) : date
+    const z = (n) => ('0' + n).slice(-2)
+    const zz = (n) => ('00' + n).slice(-3)
     let off = d.getTimezoneOffset()
-    const sign = off > 0? '-' : '+'
+    const sign = off > 0 ? '-' : '+'
     off = Math.abs(off)
 
-    return d.getFullYear() + '-'
-      + z(d.getMonth() + 1) + '-' +
-      z(d.getDate()) + 'T' +
-      z(d.getHours()) + ':' +
-      z(d.getMinutes()) + ':' +
-      z(d.getSeconds()) + '.' +
+    return (
+      d.getFullYear() +
+      '-' +
+      z(d.getMonth() + 1) +
+      '-' +
+      z(d.getDate()) +
+      'T' +
+      z(d.getHours()) +
+      ':' +
+      z(d.getMinutes()) +
+      ':' +
+      z(d.getSeconds()) +
+      '.' +
       zz(d.getMilliseconds()) +
-      sign + z(off / 60 | 0) + ':' + z(off % 60)
+      sign +
+      z((off / 60) | 0) +
+      ':' +
+      z(off % 60)
+    )
   }
 
   private formatBoolean(value: boolean): string {
@@ -77,10 +94,7 @@ export class SitemapBuilder {
   }
 
   private escapeHtml(s: string) {
-    return s.replace(
-      /[^\dA-Za-z ]/g,
-      c => "&#" + c.charCodeAt(0) + ";"
-    );
+    return s.replace(/[^\dA-Za-z ]/g, (c) => '&#' + c.charCodeAt(0) + ';')
   }
 
   /**
@@ -113,20 +127,20 @@ export class SitemapBuilder {
               fieldArr.push(altRefField)
             } else if (key === 'news') {
               if (field.news) {
-                const newsField = this.buildNewsXml(field.news);
+                const newsField = this.buildNewsXml(field.news)
                 fieldArr.push(newsField)
               }
             } else if (key === 'images') {
               if (field.images) {
                 for (const image of field.images) {
-                  const imageField = this.buildImageXml(image);
+                  const imageField = this.buildImageXml(image)
                   fieldArr.push(imageField)
                 }
               }
             } else if (key === 'videos') {
               if (field.videos) {
                 for (const video of field.videos) {
-                  const videoField = this.buildVideoXml(video);
+                  const videoField = this.buildVideoXml(video)
                   fieldArr.push(videoField)
                 }
               }
@@ -173,11 +187,15 @@ export class SitemapBuilder {
           `<news:language>${news.publicationLanguage}</news:language>`,
         ],
         `</news:publication>`,
-        `<news:publication_date>${this.formatDate(news.date)}</news:publication_date>`,
+        `<news:publication_date>${this.formatDate(
+          news.date
+        )}</news:publication_date>`,
         `<news:title>${this.escapeHtml(news.title)}</news:title>`,
       ],
       `</news:news>`,
-    ].filter(Boolean).join('')
+    ]
+      .filter(Boolean)
+      .join('')
   }
 
   /**
@@ -191,13 +209,20 @@ export class SitemapBuilder {
       `<image:image>`,
       ...[
         `<image:loc>${image.loc.href}</image:loc>`,
-        image.caption && `<image:caption>${this.escapeHtml(image.caption)}</image:caption>`,
-        image.title && `<image:title>${this.escapeHtml(image.title)}</image:title>`,
-        image.geoLocation && `<image:geo_location>${this.escapeHtml(image.geoLocation)}</image:geo_location>`,
+        image.caption &&
+          `<image:caption>${this.escapeHtml(image.caption)}</image:caption>`,
+        image.title &&
+          `<image:title>${this.escapeHtml(image.title)}</image:title>`,
+        image.geoLocation &&
+          `<image:geo_location>${this.escapeHtml(
+            image.geoLocation
+          )}</image:geo_location>`,
         image.license && `<image:license>${image.license.href}</image:license>`,
       ],
       `</image:image>`,
-    ].filter(Boolean).join('')
+    ]
+      .filter(Boolean)
+      .join('')
   }
 
   /**
@@ -212,23 +237,51 @@ export class SitemapBuilder {
       ...[
         `<video:title>${this.escapeHtml(video.title)}</video:title>`,
         `<video:thumbnail_loc>${video.thumbnailLoc.href}</video:thumbnail_loc>`,
-        `<video:description>${this.escapeHtml(video.description)}</video:description>`,
-        video.contentLoc && `<video:content_loc>${video.contentLoc.href}</video:content_loc>`,
-        video.playerLoc && `<video:player_loc>${video.playerLoc.href}</video:player_loc>`,
+        `<video:description>${this.escapeHtml(
+          video.description
+        )}</video:description>`,
+        video.contentLoc &&
+          `<video:content_loc>${video.contentLoc.href}</video:content_loc>`,
+        video.playerLoc &&
+          `<video:player_loc>${video.playerLoc.href}</video:player_loc>`,
         video.duration && `<video:duration>${video.duration}</video:duration>`,
-        video.viewCount && `<video:view_count>${video.viewCount}</video:view_count>`,
+        video.viewCount &&
+          `<video:view_count>${video.viewCount}</video:view_count>`,
         video.tag && `<video:tag>${this.escapeHtml(video.tag)}</video:tag>`,
-        video.rating && `<video:rating>${video.rating.toFixed(1).replace(',', '.')}</video:rating>`,
-        video.expirationDate && `<video:expiration_date>${this.formatDate(video.expirationDate)}</video:expiration_date>`,
-        video.publicationDate && `<video:publication_date>${this.formatDate(video.publicationDate)}</video:publication_date>`,
-        typeof video.familyFriendly !=='undefined' &&`<video:family_friendly>${this.formatBoolean(video.familyFriendly)}</video:family_friendly>`,
-        typeof video.requiresSubscription !=='undefined' &&`<video:requires_subscription>${this.formatBoolean(video.requiresSubscription)}</video:requires_subscription>`,
-        typeof video.live !=='undefined' &&`<video:live>${this.formatBoolean(video.live)}</video:live>`,
-        video.restriction && `<video:restriction relationship="${video.restriction.relationship}">${video.restriction.content}</video:restriction>`,
-        video.platform && `<video:platform relationship="${video.platform.relationship}">${video.platform.content}</video:platform>`,
-        video.uploader && `<video:uploader${video.uploader.info && ` info="${video.uploader.info}"`}>${this.escapeHtml(video.uploader.name)}</video:uploader>`,
+        video.rating &&
+          `<video:rating>${video.rating
+            .toFixed(1)
+            .replace(',', '.')}</video:rating>`,
+        video.expirationDate &&
+          `<video:expiration_date>${this.formatDate(
+            video.expirationDate
+          )}</video:expiration_date>`,
+        video.publicationDate &&
+          `<video:publication_date>${this.formatDate(
+            video.publicationDate
+          )}</video:publication_date>`,
+        typeof video.familyFriendly !== 'undefined' &&
+          `<video:family_friendly>${this.formatBoolean(
+            video.familyFriendly
+          )}</video:family_friendly>`,
+        typeof video.requiresSubscription !== 'undefined' &&
+          `<video:requires_subscription>${this.formatBoolean(
+            video.requiresSubscription
+          )}</video:requires_subscription>`,
+        typeof video.live !== 'undefined' &&
+          `<video:live>${this.formatBoolean(video.live)}</video:live>`,
+        video.restriction &&
+          `<video:restriction relationship="${video.restriction.relationship}">${video.restriction.content}</video:restriction>`,
+        video.platform &&
+          `<video:platform relationship="${video.platform.relationship}">${video.platform.content}</video:platform>`,
+        video.uploader &&
+          `<video:uploader${
+            video.uploader.info && ` info="${video.uploader.info}"`
+          }>${this.escapeHtml(video.uploader.name)}</video:uploader>`,
       ],
-      `</video:video>`
-    ].filter(Boolean).join('')
+      `</video:video>`,
+    ]
+      .filter(Boolean)
+      .join('')
   }
 }
