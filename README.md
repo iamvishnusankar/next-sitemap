@@ -61,7 +61,18 @@ Add next-sitemap as your postbuild script
 }
 ```
 
-You can also use a custom config file instead of `next-sitemap.config.js`. Just pass `--config <your-config-file>.js` to build command (Example: [custom-config-file](https://github.com/iamvishnusankar/next-sitemap/tree/master/examples/custom-config-file))
+You can also use a custom config file instead of `next-sitemap.config.js`. Just pass `--config <your-config-file>.js` to build command (Example: [custom-config-file](https://github.com/iamvishnusankar/next-sitemap/tree/master/examples/custom-config-file)). Examples:
+
+To set your own file name:
+
+```json
+{
+  "build": "next build",
+  "postbuild": "next-sitemap --config awesome.config.js"
+}
+```
+
+To set the sitemap-config file as a module (ending in `mjs`) while while keeping the rest of your app [CommonJS](//nodejs.org/api/packages.html#determining-module-system):
 
 ```json
 {
