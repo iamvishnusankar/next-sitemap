@@ -132,7 +132,7 @@ export interface IConfig {
    * Apart from this option next-sitemap also offers a custom transform option which could be used to exclude urls that match specific patterns
    * @example ['/page-0', '/page-*', '/private/*']
    */
-  exclude?: string[]
+  exclude?: string[] | (() => Promise<string[]>)
 
   alternateRefs?: Array<IAlternateRef>
 
