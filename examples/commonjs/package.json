@@ -10,13 +10,13 @@
     "postbuild": "next-sitemap"
   },
   "dependencies": {
-    "@types/react-dom": "^18.0.5",
-    "next": "^12.2.2",
+    "@types/react-dom": "^18.0.6",
+    "next": "^12.2.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@types/react": "^18.0.14",
+    "@types/react": "^18.0.17",
     "next-sitemap": "*"
   }
 }
