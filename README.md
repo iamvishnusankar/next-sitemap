@@ -319,7 +319,6 @@ List the dynamic sitemap page in `robotsTxtOptions.additionalSitemaps` and exclu
 // next-sitemap.config.js
 
 /** @type {import('next-sitemap').IConfig} */
-
 module.exports = {
   siteUrl: 'https://example.com',
   generateRobotsTxt: true,
@@ -378,7 +377,6 @@ List the dynamic sitemap page in `robotsTxtOptions.additionalSitemaps` and exclu
 // next-sitemap.config.js
 
 /** @type {import('next-sitemap').IConfig} */
-
 module.exports = {
   siteUrl: 'https://example.com',
   generateRobotsTxt: true,
