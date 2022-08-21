@@ -46,7 +46,6 @@ module.exports = {
   generateRobotsTxt: true, // (optional)
   // ...other options
 }
-
 ```
 
 ### Building sitemaps
@@ -86,7 +85,6 @@ module.exports = {
   generateRobotsTxt: true,
   sitemapSize: 7000,
 }
-
 ```
 
 Above is the minimal configuration to split a large sitemap. When the number of URLs in a sitemap is more than 7000, `next-sitemap` will create sitemap (e.g. sitemap-0.xml, sitemap-1.xml) and index (e.g. sitemap.xml) files.
@@ -149,7 +147,6 @@ module.exports = {
     }
   },
 }
-
 ```
 
 ## Additional paths function
@@ -193,7 +190,6 @@ module.exports = {
     return result
   },
 }
-
 ```
 
 ## Full configuration example
@@ -255,7 +251,6 @@ module.exports = {
     ],
   },
 }
-
 ```
 
 Above configuration will generate sitemaps based on your project and a `robots.txt` like this.
@@ -394,7 +389,6 @@ module.exports = {
     ],
   },
 }
-
 ```
 
 In this way, `next-sitemap` will manage the sitemaps for all your static pages and your dynamic sitemap will be listed on robots.txt.
@@ -408,7 +402,6 @@ Add the following line of code in your `next-sitemap.config.js` for nice typescr
 module.exports = {
   // YOUR CONFIG
 }
-
 ```
 
 ![TS_JSDOC](./assets/ts-jsdoc.png)
