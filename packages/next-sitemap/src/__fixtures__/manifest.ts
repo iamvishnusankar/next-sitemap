@@ -72,6 +72,7 @@ export const sampleNotFoundRoutesBuildManifest: IBuildManifest = {
   pages: {
     '/': [],
     '/about': [],
+    '/only-nl': [],
     '/[dynamic]': [],
     '/_app': [],
     '/_error': [],
@@ -87,6 +88,10 @@ export const sampleNotFoundRoutesPreRenderManifest: IPreRenderManifest = {
     '/fr/about': {},
     '/nl-NL/about': {},
 
+    '/en-US/only-nl': {},
+    '/fr/only-nl': {},
+    '/nl-NL/only-nl': {},
+
     '/en-US/page-0': {},
     '/fr/page-0': {},
     '/nl-NL/page-0': {},
@@ -98,6 +103,8 @@ export const sampleNotFoundRoutesPreRenderManifest: IPreRenderManifest = {
   notFoundRoutes: [
     '/fr',
     '/nl-NL/about',
+    '/en-US/only-nl',
+    '/fr/only-nl',
     '/nl-NL/page-0',
     '/fr/page-1',
     '/nl-NL/page-1',
