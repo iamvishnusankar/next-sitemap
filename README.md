@@ -41,13 +41,11 @@ yarn add next-sitemap
 
 ```js
 /** @type {import('next-sitemap').IConfig} */
-const config = {
+module.exports = {
   siteUrl: process.env.SITE_URL || 'https://example.com',
   generateRobotsTxt: true, // (optional)
   // ...other options
 }
-
-export default config
 ```
 
 ### Building sitemaps
@@ -82,13 +80,11 @@ Define the `sitemapSize` property in `next-sitemap.config.js` to split large sit
 
 ```js
 /** @type {import('next-sitemap').IConfig} */
-const config = {
+module.exports = {
   siteUrl: 'https://example.com',
   generateRobotsTxt: true,
   sitemapSize: 7000,
 }
-
-export default config
 ```
 
 Above is the minimal configuration to split a large sitemap. When the number of URLs in a sitemap is more than 7000, `next-sitemap` will create sitemap (e.g. sitemap-0.xml, sitemap-1.xml) and index (e.g. sitemap.xml) files.
@@ -124,7 +120,7 @@ Returning `null` value from the transformation function will result in the exclu
 
 ```jsx
 /** @type {import('next-sitemap').IConfig} */
-const config = {
+module.exports = {
   transform: async (config, path) => {
     // custom function to ignore the path
     if (customIgnoreFunction(path)) {
@@ -151,8 +147,6 @@ const config = {
     }
   },
 }
-
-export default config
 ```
 
 ## Additional paths function
@@ -163,7 +157,7 @@ If your function returns a path that already exists, then it will simply be upda
 
 ```js
 /** @type {import('next-sitemap').IConfig} */
-const config = {
+module.exports = {
   additionalPaths: async (config) => {
     const result = []
 
@@ -196,8 +190,6 @@ const config = {
     return result
   },
 }
-
-export default config
 ```
 
 ## Full configuration example
@@ -207,7 +199,7 @@ Here's an example `next-sitemap.config.js` configuration with all options
 ```js
 /** @type {import('next-sitemap').IConfig} */
 
-const config = {
+module.exports = {
   siteUrl: 'https://example.com',
   changefreq: 'daily',
   priority: 0.7,
@@ -259,8 +251,6 @@ const config = {
     ],
   },
 }
-
-export default config
 ```
 
 Above configuration will generate sitemaps based on your project and a `robots.txt` like this.
@@ -329,8 +319,7 @@ List the dynamic sitemap page in `robotsTxtOptions.additionalSitemaps` and exclu
 // next-sitemap.config.js
 
 /** @type {import('next-sitemap').IConfig} */
-
-const config = {
+module.exports = {
   siteUrl: 'https://example.com',
   generateRobotsTxt: true,
   exclude: ['/server-sitemap-index.xml'], // <= exclude here
@@ -388,8 +377,7 @@ List the dynamic sitemap page in `robotsTxtOptions.additionalSitemaps` and exclu
 // next-sitemap.config.js
 
 /** @type {import('next-sitemap').IConfig} */
-
-const config = {
+module.exports = {
   siteUrl: 'https://example.com',
   generateRobotsTxt: true,
   exclude: ['/server-sitemap.xml'], // <= exclude here
@@ -399,8 +387,6 @@ const config = {
     ],
   },
 }
-
-export default config
 ```
 
 In this way, `next-sitemap` will manage the sitemaps for all your static pages and your dynamic sitemap will be listed on robots.txt.
@@ -411,11 +397,9 @@ Add the following line of code in your `next-sitemap.config.js` for nice typescr
 
 ```js
 /** @type {import('next-sitemap').IConfig} */
-const config = {
+module.exports = {
   // YOUR CONFIG
 }
-
-export default config
 ```
 
 ![TS_JSDOC](./assets/ts-jsdoc.png)
