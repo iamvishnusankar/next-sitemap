@@ -1,6 +1,6 @@
 import { Logger } from '../logger.js'
 import { withDefaultConfig } from '../utils/defaults.js'
-import { getConfigFilePath } from '../utils/path.js'
+import { getConfigFilePath, getRuntimePaths } from '../utils/path.js'
 import type { IConfig, IRuntimePaths, IExportMarker } from '../interface.js'
 import { overwriteMerge } from '../utils/merge.js'
 import { loadJSON } from '../utils/file.js'
@@ -11,7 +11,7 @@ export class ConfigParser {
    * @param runtimePaths
    * @returns
    */
-  async getRuntimeConfig(
+  private async getRuntimeConfig(
     runtimePaths: IRuntimePaths
   ): Promise<Partial<IConfig>> {
     const exportMarkerConfig = await loadJSON<IExportMarker>(
@@ -33,7 +33,7 @@ export class ConfigParser {
    * @param runtimePaths
    * @returns
    */
-  async withRuntimeConfig(
+  private async withRuntimeConfig(
     config: IConfig,
     runtimePaths: IRuntimePaths
   ): Promise<IConfig> {
@@ -53,7 +53,7 @@ export class ConfigParser {
    * Load next-sitemap.config.js as module
    * @returns
    */
-  async loadBaseConfig(): Promise<IConfig> {
+  private async loadBaseConfig(): Promise<IConfig> {
     // Get config file path
     const path = await getConfigFilePath()
 
@@ -68,5 +68,26 @@ export class ConfigParser {
     }
 
     return withDefaultConfig(baseConfig.default)
+  }
+
+  /**
+   * Load full config
+   * @returns
+   */
+  async loadConfig() {
+    // Load base config
+    const baseConfig = await this.loadBaseConfig()
+
+    // Find the runtime paths using base config
+    const runtimePaths = getRuntimePaths(baseConfig)
+
+    // Update base config with runtime config
+    const config = await this.withRuntimeConfig(baseConfig, runtimePaths)
+
+    // Return full result
+    return {
+      config,
+      runtimePaths,
+    }
   }
 }
