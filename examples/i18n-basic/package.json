@@ -1,0 +1,23 @@
+{
+  "name": "with-next-sitemap-i18n-basic",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "postbuild": "next-sitemap"
+  },
+  "dependencies": {
+    "@types/react-dom": "^18.0.6",
+    "next": "^12.3.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.17",
+    "next-sitemap": "*"
+  }
+}
