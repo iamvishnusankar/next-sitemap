@@ -53,7 +53,7 @@
   },
   "dependencies": {
     "@corex/deepmerge": "^4.0.29",
-    "minimist": "^1.2.6"
+    "minimist": "^1.2.7"
   },
   "peerDependencies": {
     "next": "*",
