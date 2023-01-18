@@ -2,6 +2,7 @@
 import type {
   IConfig,
   IExportable,
+  INextSitemapResult,
   IRuntimePaths,
   ISitemapField,
 } from '../interface.js'
@@ -11,6 +12,7 @@ import { generateUrl } from '../utils/url.js'
 import { combineMerge } from '../utils/merge.js'
 import { RobotsTxtBuilder } from './robots-txt-builder.js'
 import { defaultRobotsTxtTransformer } from '../utils/defaults.js'
+import { exportFile } from '../utils/file.js'
 
 export class ExportableBuilder {
   exportableList: IExportable[] = []
@@ -206,7 +208,30 @@ export class ExportableBuilder {
     return this.exportableUrlReducer((x) => x.type == 'sitemap')
   }
 
+  /**
+   * Generate sitemap indices
+   * @returns
+   */
   generatedSitemapIndices() {
     return this.exportableUrlReducer((x) => x.type == 'sitemap-index')
+  }
+
+  /**
+   * Export all registered files
+   * @returns
+   */
+  async exportAll(): Promise<INextSitemapResult> {
+    await Promise.all(
+      this.exportableList?.map(async (item) =>
+        exportFile(item.filename, item.content)
+      )
+    )
+
+    // Create result object
+    return {
+      runtimePaths: this.runtimePaths,
+      sitemaps: this.generatedSitemaps(),
+      sitemapIndices: this.generatedSitemapIndices(),
+    }
   }
 }

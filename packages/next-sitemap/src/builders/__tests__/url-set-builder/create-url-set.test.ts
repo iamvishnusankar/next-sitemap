@@ -667,6 +667,15 @@ describe('UrlSetBuilder', () => {
         alternateRefs: [],
         trailingSlash: false,
       },
+      // only localized page
+      {
+        changefreq: 'daily',
+        lastmod: expect.any(String),
+        priority: 0.7,
+        loc: 'https://example.com/nl-NL/only-nl',
+        alternateRefs: [],
+        trailingSlash: false,
+      },
       // page-0
       {
         changefreq: 'daily',
