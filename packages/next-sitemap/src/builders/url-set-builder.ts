@@ -79,8 +79,9 @@ export class UrlSetBuilder {
     let urlSet = allKeys.filter((x) => !isNextInternalUrl(x))
 
     // Remove default locale if i18n is enabled
+    let defaultLocale
     if (i18n) {
-      const { defaultLocale } = i18n
+      defaultLocale = i18n.defaultLocale
       const replaceDefaultLocale = createDefaultLocaleReplace(defaultLocale)
       urlSet = urlSet.map(replaceDefaultLocale)
     }
@@ -100,7 +101,12 @@ export class UrlSetBuilder {
     // Remove routes which don't exist
     const notFoundRoutes = (this.manifest?.preRender?.notFoundRoutes ??
       []) as string[]
-    urlSet = urlSet.filter((url) => !notFoundRoutes.includes(url))
+    urlSet = urlSet.filter((url) => {
+      return (
+        !notFoundRoutes.includes(url) &&
+        !notFoundRoutes.includes(`/${defaultLocale}${url}`)
+      )
+    })
 
     // Create sitemap fields based on transformation
     const sitemapFields: ISitemapField[] = [] // transform using relative urls
