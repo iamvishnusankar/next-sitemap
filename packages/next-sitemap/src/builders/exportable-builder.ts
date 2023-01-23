@@ -13,6 +13,7 @@ import { combineMerge } from '../utils/merge.js'
 import { RobotsTxtBuilder } from './robots-txt-builder.js'
 import { defaultRobotsTxtTransformer } from '../utils/defaults.js'
 import { exportFile } from '../utils/file.js'
+import { removeIfMatchPattern } from '../utils/array.js'
 
 export class ExportableBuilder {
   exportableList: IExportable[] = []
@@ -44,11 +45,15 @@ export class ExportableBuilder {
    */
   async registerIndexSitemap() {
     // Get generated sitemap list
-    const sitemaps = [
+    let sitemaps = [
       ...this.generatedSitemaps(),
       // Include additionalSitemaps provided via robots.txt options
       ...(this.config?.robotsTxtOptions?.additionalSitemaps ?? []),
     ]
+    // Remove the urls based on this.config?.exclude array
+    if (this.config?.exclude && this.config?.exclude.length > 0) {
+      sitemaps = removeIfMatchPattern(sitemaps, this.config?.exclude)
+    }
 
     // Generate sitemap-index content
     const content = this.sitemapBuilder.buildSitemapIndexXml(sitemaps)
