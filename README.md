@@ -59,6 +59,15 @@ Add next-sitemap as your postbuild script
 }
 ```
 
+### Building sitemaps with pnpm
+
+When using pnpm you need to create a `.npmrc` file in the root of your project if you want to use a postbuild step:
+
+```
+//.npmrc
+enable-pre-post-scripts=true
+```
+
 You can also use a custom config file instead of `next-sitemap.config.js`. Just pass `--config <your-config-file>.js` to build command (Example: [custom-config-file](https://github.com/iamvishnusankar/next-sitemap/tree/master/examples/custom-config-file))
 
 ```json
