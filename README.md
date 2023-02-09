@@ -13,7 +13,7 @@
 
 ## Table of contents
 
-- Getting started
+- [Getting started](#getting-started)
   - [Installation](#installation)
   - [Create config file](#create-config-file)
   - [Building sitemaps](#building-sitemaps)
