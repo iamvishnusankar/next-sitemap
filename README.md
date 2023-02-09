@@ -13,10 +13,12 @@
 
 ## Table of contents
 
-- Getting started
+- [Getting started](#getting-started)
   - [Installation](#installation)
   - [Create config file](#create-config-file)
   - [Building sitemaps](#building-sitemaps)
+    - [Custom config file](#custom-config-file)
+    - [Building sitemaps with pnpm](#building-sitemaps-with-pnpm)
 - [Index sitemaps](#index-sitemaps-optional)
 - [Splitting large sitemap into multiple files](#splitting-large-sitemap-into-multiple-files)
 - [Configuration Options](#configuration-options)
@@ -59,14 +61,7 @@ Add next-sitemap as your postbuild script
 }
 ```
 
-### Building sitemaps with pnpm
-
-When using pnpm you need to create a `.npmrc` file in the root of your project if you want to use a postbuild step:
-
-```
-//.npmrc
-enable-pre-post-scripts=true
-```
+#### Custom config file
 
 You can also use a custom config file instead of `next-sitemap.config.js`. Just pass `--config <your-config-file>.js` to build command (Example: [custom-config-file](https://github.com/iamvishnusankar/next-sitemap/tree/master/examples/custom-config-file))
 
@@ -75,6 +70,15 @@ You can also use a custom config file instead of `next-sitemap.config.js`. Just 
   "build": "next build",
   "postbuild": "next-sitemap --config awesome.config.js"
 }
+```
+
+#### Building sitemaps with pnpm
+
+When using pnpm you need to create a `.npmrc` file in the root of your project if you want to use a postbuild step:
+
+```
+//.npmrc
+enable-pre-post-scripts=true
 ```
 
 ## Index sitemaps (Optional)
