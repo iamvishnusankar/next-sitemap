@@ -389,7 +389,7 @@ Here's a sample script to generate sitemaps on server side.
 <details>
 <summary>1. Sitemaps (app directory)</summary>
 
-Create `app/server-sitemap.xml/route.ts`
+Create `app/server-sitemap.xml/route.ts` file.
 
 ```ts
 // app/server-sitemap.xml/route.ts
