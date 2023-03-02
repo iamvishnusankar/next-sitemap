@@ -329,8 +329,6 @@ export default function SitemapIndex() {}
 
 </details>
 
----
-
 <details>
 <summary>2. Index sitemap (pages directory) (legacy)</summary>
 
