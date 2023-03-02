@@ -309,22 +309,18 @@ Here's a sample script to generate index-sitemap on server side.
 <summary>1. Index sitemaps (app directory)</summary>
 
 ```ts
-// pages/server-sitemap-index.xml/index.tsx
+// app/server-sitemap-index.xml/route.ts
 import { getServerSideSitemapIndex } from 'next-sitemap'
-import { GetServerSideProps } from 'next'
 
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
+export async function GET(request: Request) {
   // Method to source urls from cms
   // const urls = await fetch('https//example.com/api')
 
-  return getServerSideSitemapIndex(ctx, [
+  return getServerSideSitemapIndex([
     'https://example.com/path-1.xml',
     'https://example.com/path-2.xml',
   ])
 }
-
-// Default export to prevent next.js errors
-export default function SitemapIndex() {}
 ```
 
 </details>
@@ -334,14 +330,14 @@ export default function SitemapIndex() {}
 
 ```ts
 // pages/server-sitemap-index.xml/index.tsx
-import { getServerSideSitemapIndex } from 'next-sitemap'
+import { getServerSideSitemapIndexLegacy } from 'next-sitemap'
 import { GetServerSideProps } from 'next'
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   // Method to source urls from cms
   // const urls = await fetch('https//example.com/api')
 
-  return getServerSideSitemapIndex(ctx, [
+  return getServerSideSitemapIndexLegacy(ctx, [
     'https://example.com/path-1.xml',
     'https://example.com/path-2.xml',
   ])
