@@ -22,7 +22,7 @@ export const getServerSideSitemapLegacy = async (
 
 /**
  * Generate server side sitemaps, support next13+ route.{ts,js} file.
- * To continue using pages directory, import `getServerSideSitemapLegacy`.
+ * To continue using inside pages directory, import `getServerSideSitemapLegacy` instead.
  * @param fields
  * @param headers Custom request headers
  * @returns

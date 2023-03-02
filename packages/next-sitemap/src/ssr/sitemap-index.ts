@@ -21,7 +21,7 @@ export const getServerSideSitemapIndexLegacy = async (
 
 /**
  * Generate index sitemaps on server side, support next13+ route.{ts,js} file.
- * To continue using pages directory, import `getServerSideSitemapIndexLegacy`.
+ * To continue using inside pages directory, import `getServerSideSitemapIndexLegacy` instead.
  * @param sitemaps
  * @param headers Custom request headers
  * @returns
