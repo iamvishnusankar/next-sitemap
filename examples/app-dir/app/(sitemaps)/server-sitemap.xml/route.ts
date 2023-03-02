@@ -1,13 +1,11 @@
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-/* eslint-disable @typescript-eslint/no-empty-function */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { getServerSideSitemap } from 'next-sitemap'
-import { GetServerSideProps } from 'next'
 
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
+export async function GET(request: Request) {
   // Method to source urls from cms
   // const urls = await fetch('https//example.com/api')
 
-  return getServerSideSitemap(ctx, [
+  return getServerSideSitemap([
     {
       loc: 'https://example.com',
       lastmod: new Date().toISOString(),
@@ -22,6 +20,3 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     },
   ])
 }
-
-// Default export to prevent next.js errors
-export default function Sitemap() {}
