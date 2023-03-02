@@ -21,15 +21,19 @@ export const getServerSideSitemapLegacy = async (
 }
 
 /**
- * Generate server side sitemaps, support next13+ routes
- * @param ctx
+ * Generate server side sitemaps, support next13+ route.{ts,js} file.
+ * To continue using pages directory, import `getServerSideSitemapLegacy`.
  * @param fields
+ * @param headers Custom request headers
  * @returns
  */
-export const getServerSideSitemap = async (fields: ISitemapField[]) => {
+export const getServerSideSitemap = async (
+  fields: ISitemapField[],
+  headers = {}
+) => {
   // Generate sitemap xml
   const contents = new SitemapBuilder().buildSitemapXml(fields)
 
   // Send response
-  return withXMLResponse(contents)
+  return withXMLResponse(contents, headers)
 }

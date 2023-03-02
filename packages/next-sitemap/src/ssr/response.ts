@@ -32,13 +32,15 @@ export const withXMLResponseLegacy = (
 /**
  * Send XML response, as next13+ route response
  * @param content
+ * @param headers Custom request headers
  * @returns
  */
-export const withXMLResponse = (content: string) => {
+export const withXMLResponse = (content: string, headers = {}) => {
   return new Response(content, {
     status: 200,
     headers: {
       'Content-Type': 'text/xml',
+      ...headers,
     },
   })
 }
