@@ -353,7 +353,7 @@ export default function SitemapIndex() {}
 
 </details>
 
-#### Exclude server sitemaps from robots.txt
+#### Exclude server index sitemap from robots.txt
 
 Now, `next.js` is serving the dynamic index-sitemap from `http://localhost:3000/server-sitemap-index.xml`.
 
