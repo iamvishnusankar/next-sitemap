@@ -1,12 +1,12 @@
 import type { GetServerSidePropsContext } from 'next'
 
 /**
- * Send XML response
+ * Send XML response, supports legacy pages directory
  * @param ctx
  * @param content
  * @returns
  */
-export const withXMLResponse = (
+export const withXMLResponseLegacy = (
   ctx: GetServerSidePropsContext,
   content: string
 ) => {
@@ -27,4 +27,18 @@ export const withXMLResponse = (
   return {
     props: {},
   }
+}
+
+/**
+ * Send XML response, as next13+ route response
+ * @param content
+ * @returns
+ */
+export const withXMLResponse = (content: string) => {
+  return new Response(content, {
+    status: 200,
+    headers: {
+      'Content-Type': 'text/xml',
+    },
+  })
 }
