@@ -299,10 +299,10 @@ Sitemap: https://example.com/my-custom-sitemap-3.xml
 
 - `getServerSideSitemapIndex`: Generates index sitemaps based on urls provided and returns `application/xml` response. Supports next13+ route.{ts,js} file.
 
-  - To continue using pages directory, import `getServerSideSitemapIndexLegacy`.
+  - To continue using inside pages directory, import `getServerSideSitemapIndexLegacy` instead.
 
 - `getServerSideSitemap`: Generates sitemap based on field entires and returns `application/xml` response. Supports next13+ route.{ts,js} file.
-  - To continue using pages directory, import `getServerSideSitemapLegacy`.
+  - To continue using inside pages directory, import `getServerSideSitemapLegacy` instead.
 
 ### Server side index-sitemaps (getServerSideSitemapIndex)
 
