@@ -305,6 +305,9 @@ Sitemap: https://example.com/my-custom-sitemap-3.xml
 
 Here's a sample script to generate index-sitemap on server side. Create `pages/server-sitemap-index.xml/index.tsx` page and add the following content.
 
+<details>
+<summary>1. Index sitemaps (app directory)</summary>
+
 ```ts
 // pages/server-sitemap-index.xml/index.tsx
 import { getServerSideSitemapIndex } from 'next-sitemap'
@@ -323,6 +326,36 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 // Default export to prevent next.js errors
 export default function SitemapIndex() {}
 ```
+
+</details>
+
+---
+
+<details>
+<summary>2. Index sitemap (pages directory) (legacy)</summary>
+
+```ts
+// pages/server-sitemap-index.xml/index.tsx
+import { getServerSideSitemapIndex } from 'next-sitemap'
+import { GetServerSideProps } from 'next'
+
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  // Method to source urls from cms
+  // const urls = await fetch('https//example.com/api')
+
+  return getServerSideSitemapIndex(ctx, [
+    'https://example.com/path-1.xml',
+    'https://example.com/path-2.xml',
+  ])
+}
+
+// Default export to prevent next.js errors
+export default function SitemapIndex() {}
+```
+
+</details>
+
+#### Exclude server sitemaps from robots.txt
 
 Now, `next.js` is serving the dynamic index-sitemap from `http://localhost:3000/server-sitemap-index.xml`.
 
