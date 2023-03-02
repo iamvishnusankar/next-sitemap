@@ -297,24 +297,54 @@ Sitemap: https://example.com/my-custom-sitemap-3.xml
 
 `next-sitemap` now provides two APIs to generate server side sitemaps. This will help to dynamically generate `index-sitemap`(s) and `sitemap`(s) by sourcing data from CMS or custom source.
 
-- `getServerSideSitemapIndex`: Generates index sitemaps based on urls provided and returns `application/xml` response.
+- `getServerSideSitemapIndex`: Generates index sitemaps based on urls provided and returns `application/xml` response. Supports next13+ route.{ts,js} file.
 
-- `getServerSideSitemap`: Generates sitemap based on field entires and returns `application/xml` response.
+  - To continue using inside pages directory, import `getServerSideSitemapIndexLegacy` instead.
+
+- `getServerSideSitemap`: Generates sitemap based on field entires and returns `application/xml` response. Supports next13+ route.{ts,js} file.
+  - To continue using inside pages directory, import `getServerSideSitemapLegacy` instead.
 
 ### Server side index-sitemaps (getServerSideSitemapIndex)
 
-Here's a sample script to generate index-sitemap on server side. Create `pages/server-sitemap-index.xml/index.tsx` page and add the following content.
+Here's a sample script to generate index-sitemap on server side.
+
+<details>
+<summary>1. Index sitemap (app directory)</summary>
+
+Create `app/server-sitemap-index.xml/route.ts` file.
+
+```ts
+// app/server-sitemap-index.xml/route.ts
+import { getServerSideSitemapIndex } from 'next-sitemap'
+
+export async function GET(request: Request) {
+  // Method to source urls from cms
+  // const urls = await fetch('https//example.com/api')
+
+  return getServerSideSitemapIndex([
+    'https://example.com/path-1.xml',
+    'https://example.com/path-2.xml',
+  ])
+}
+```
+
+</details>
+
+<details>
+<summary>2. Index sitemap (pages directory) (legacy)</summary>
+
+Create `pages/server-sitemap-index.xml/index.tsx` file.
 
 ```ts
 // pages/server-sitemap-index.xml/index.tsx
-import { getServerSideSitemapIndex } from 'next-sitemap'
+import { getServerSideSitemapIndexLegacy } from 'next-sitemap'
 import { GetServerSideProps } from 'next'
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   // Method to source urls from cms
   // const urls = await fetch('https//example.com/api')
 
-  return getServerSideSitemapIndex(ctx, [
+  return getServerSideSitemapIndexLegacy(ctx, [
     'https://example.com/path-1.xml',
     'https://example.com/path-2.xml',
   ])
@@ -323,6 +353,10 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 // Default export to prevent next.js errors
 export default function SitemapIndex() {}
 ```
+
+</details>
+
+#### Exclude server index sitemap from robots.txt
 
 Now, `next.js` is serving the dynamic index-sitemap from `http://localhost:3000/server-sitemap-index.xml`.
 
@@ -346,14 +380,52 @@ module.exports = {
 
 In this way, `next-sitemap` will manage the sitemaps for all your static pages and your dynamic `index-sitemap` will be listed on robots.txt.
 
+---
+
 ### server side sitemap (getServerSideSitemap)
 
-Here's a sample script to generate sitemaps on server side. Create `pages/server-sitemap.xml/index.tsx` page and add the following content.
+Here's a sample script to generate sitemaps on server side.
+
+<details>
+<summary>1. Sitemaps (app directory)</summary>
+
+Create `app/server-sitemap.xml/route.ts` file.
+
+```ts
+// app/server-sitemap.xml/route.ts
+import { getServerSideSitemap } from 'next-sitemap'
+
+export async function GET(request: Request) {
+  // Method to source urls from cms
+  // const urls = await fetch('https//example.com/api')
+
+  return getServerSideSitemap([
+    {
+      loc: 'https://example.com',
+      lastmod: new Date().toISOString(),
+      // changefreq
+      // priority
+    },
+    {
+      loc: 'https://example.com/dynamic-path-2',
+      lastmod: new Date().toISOString(),
+      // changefreq
+      // priority
+    },
+  ])
+}
+```
+
+</details>
+
+<details>
+<summary>2. Sitemaps (pages directory) (legacy)</summary>
+
+Create `pages/server-sitemap.xml/index.tsx` file.
 
 ```ts
 // pages/server-sitemap.xml/index.tsx
-
-import { getServerSideSitemap } from 'next-sitemap'
+import { getServerSideSitemapLegacy } from 'next-sitemap'
 import { GetServerSideProps } from 'next'
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
@@ -375,12 +447,14 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     },
   ]
 
-  return getServerSideSitemap(ctx, fields)
+  return getServerSideSitemapLegacy(ctx, fields)
 }
 
 // Default export to prevent next.js errors
 export default function Sitemap() {}
 ```
+
+</details>
 
 Now, `next.js` is serving the dynamic sitemap from `http://localhost:3000/server-sitemap.xml`.
 
