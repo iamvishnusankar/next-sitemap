@@ -303,7 +303,7 @@ Sitemap: https://example.com/my-custom-sitemap-3.xml
 
 ### Server side index-sitemaps (getServerSideSitemapIndex)
 
-Here's a sample script to generate index-sitemap on server side. Create `pages/server-sitemap-index.xml/index.tsx` page and add the following content.
+Here's a sample script to generate index-sitemap on server side.
 
 <details>
 <summary>1. Index sitemaps (app directory)</summary>
@@ -376,6 +376,8 @@ module.exports = {
 ```
 
 In this way, `next-sitemap` will manage the sitemaps for all your static pages and your dynamic `index-sitemap` will be listed on robots.txt.
+
+---
 
 ### server side sitemap (getServerSideSitemap)
 
