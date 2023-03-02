@@ -311,6 +311,8 @@ Here's a sample script to generate index-sitemap on server side.
 <details>
 <summary>1. Index sitemaps (app directory)</summary>
 
+Create `app/server-sitemap-index.xml/route.ts` file.
+
 ```ts
 // app/server-sitemap-index.xml/route.ts
 import { getServerSideSitemapIndex } from 'next-sitemap'
@@ -330,6 +332,8 @@ export async function GET(request: Request) {
 
 <details>
 <summary>2. Index sitemap (pages directory) (legacy)</summary>
+
+Create `pages/server-sitemap-index.xml/index.tsx` file.
 
 ```ts
 // pages/server-sitemap-index.xml/index.tsx
