@@ -1,13 +1,10 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { INextSitemapResult } from './interface.js'
 import { Logger } from './logger.js'
-import { getRuntimePaths } from './utils/path.js'
 import { toChunks } from './utils/array.js'
 import { ConfigParser } from './parsers/config-parser.js'
 import { ManifestParser } from './parsers/manifest-parser.js'
 import { UrlSetBuilder } from './builders/url-set-builder.js'
 import { ExportableBuilder } from './builders/exportable-builder.js'
-import { exportFile } from './utils/file.js'
 
 export class CLI {
   /**
@@ -15,29 +12,14 @@ export class CLI {
    * @returns
    */
   async main() {
-    // Create config parser instance
-    const configParser = new ConfigParser()
-
-    // Load base config from `next-sitemap.config.js`
-    let config = await configParser.loadBaseConfig()
-
-    // Find the runtime paths using base config
-    const runtimePaths = getRuntimePaths(config)
-
-    // Update base config with runtime config
-    config = await configParser.withRuntimeConfig(config, runtimePaths)
-
-    // Create next.js manifest parser instance
-    const manifestParser = new ManifestParser()
+    // Load config from `next-sitemap.config.js` along with runtimePaths info
+    const { config, runtimePaths } = await new ConfigParser().loadConfig()
 
     // Load next.js manifest
-    const manifest = await manifestParser.loadManifest(runtimePaths)
-
-    // Create UrlSetBuilder instance
-    const urlSetBuilder = new UrlSetBuilder(config, manifest)
+    const manifest = await new ManifestParser().loadManifest(runtimePaths)
 
     // Generate url set
-    const urlSet = await urlSetBuilder.createUrlSet()
+    const urlSet = await new UrlSetBuilder(config, manifest).createUrlSet()
 
     // Split sitemap into multiple files
     const chunks = toChunks(urlSet, config.sitemapSize!)
@@ -59,27 +41,14 @@ export class CLI {
     }
 
     // Export all files
-    await Promise.all(
-      expoBuilder.exportableList?.map(async (item) =>
-        exportFile(item.filename, item.content)
-      )
-    )
-
-    // Create result object
-    const result: INextSitemapResult = {
-      runtimePaths,
-      sitemaps: expoBuilder.generatedSitemaps(),
-      sitemapIndices: expoBuilder.generatedSitemapIndices(),
-    }
-
-    return result
+    return expoBuilder.exportAll()
   }
 
+  /**
+   * Execute and log result
+   * @returns
+   */
   async execute() {
-    // Run main method
-    const result = await this.main()
-
-    // Log result
-    Logger.generationCompleted(result)
+    return this.main().then(Logger.generationCompleted)
   }
 }
