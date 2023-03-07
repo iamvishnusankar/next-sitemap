@@ -10,6 +10,16 @@ const config = {
       'https://example.com/my-custom-sitemap-3.xml',
     ],
   },
+  alternateRefs: [
+    {
+      href: 'https://es.example.com',
+      hreflang: 'es',
+    },
+    {
+      href: 'https://fr.example.com',
+      hreflang: 'fr',
+    },
+  ],
 }
 
 export default config

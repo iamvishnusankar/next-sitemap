@@ -1,5 +1,5 @@
 {
-  "name": "with-next-sitemap-i18n",
+  "name": "with-next-app-dir",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
@@ -11,13 +11,15 @@
     "postbuild": "next-sitemap"
   },
   "dependencies": {
-    "@types/react-dom": "^18.0.6",
-    "next": "^12.2.3",
+    "@types/react-dom": "^18.0.11",
+    "next": "^13.2.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@types/react": "^18.0.15",
-    "next-sitemap": "*"
+    "@corex/workspace": "^4.0.37",
+    "@types/react": "^18.0.27",
+    "next-sitemap": "*",
+    "turbo": "^1.8.3"
   }
 }
