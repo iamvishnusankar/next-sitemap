@@ -68,3 +68,4 @@ junit.xml
 tsconfig.tsbuildinfo
 **/public
 **/public
+.idea
