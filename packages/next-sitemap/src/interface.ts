@@ -236,6 +236,49 @@ export type IAlternateRef = {
   hrefIsAbsolute?: boolean
 }
 
+export type IGoogleNewsEntry = {
+  title: string
+  date: Date | string
+  publicationName: string
+  publicationLanguage: string
+}
+
+export type IImageEntry = {
+  loc: URL
+  caption?: string
+  geoLocation?: string
+  title?: string
+  license?: URL
+}
+
+export type IRestriction = {
+  relationship: 'allow' | 'deny'
+  content: string
+}
+
+export type IVideoEntry = {
+  title: string
+  thumbnailLoc: URL
+  description: string
+  contentLoc?: URL
+  playerLoc?: URL
+  duration?: number
+  expirationDate?: Date | string
+  rating?: number
+  viewCount?: number
+  publicationDate?: Date | string
+  familyFriendly?: boolean
+  restriction?: IRestriction
+  platform?: IRestriction
+  requiresSubscription?: boolean
+  uploader?: {
+    name: string
+    info?: URL
+  }
+  live?: boolean
+  tag?: string
+}
+
 export type ISitemapField = {
   loc: string
   lastmod?: string
@@ -243,6 +286,10 @@ export type ISitemapField = {
   priority?: number
   alternateRefs?: Array<IAlternateRef>
   trailingSlash?: boolean
+
+  news?: IGoogleNewsEntry
+  images?: Array<IImageEntry>
+  videos?: Array<IVideoEntry>
 }
 
 export interface INextSitemapResult {

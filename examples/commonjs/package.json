@@ -1,5 +1,5 @@
 {
-  "name": "with-commonjs",
+  "name": "commonjs",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
@@ -10,13 +10,13 @@
     "postbuild": "next-sitemap"
   },
   "dependencies": {
-    "@types/react-dom": "^18.0.10",
-    "next": "^13.1.1",
+    "@types/react-dom": "^18.0.11",
+    "next": "^13.2.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@types/react": "^18.0.25",
+    "@types/react": "^18.0.27",
     "next-sitemap": "*"
   }
 }

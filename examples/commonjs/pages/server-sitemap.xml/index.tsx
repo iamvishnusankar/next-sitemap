@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* eslint-disable @typescript-eslint/no-empty-function */
-import { getServerSideSitemap } from 'next-sitemap'
+import { getServerSideSitemapLegacy } from 'next-sitemap'
 import { GetServerSideProps } from 'next'
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   // Method to source urls from cms
   // const urls = await fetch('https//example.com/api')
 
-  return getServerSideSitemap(ctx, [
+  return getServerSideSitemapLegacy(ctx, [
     {
       loc: 'https://example.com',
       lastmod: new Date().toISOString(),
