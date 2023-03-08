@@ -135,6 +135,40 @@ describe('UrlSetBuilder', () => {
     ])
   })
 
+  test('createUrlSet: With async exclusion', async () => {
+    const sleep = (ms: number) =>
+      new Promise((resolve) => setTimeout(resolve, ms))
+    const builder = new UrlSetBuilder(
+      {
+        ...sampleConfig,
+        exclude: async () => {
+          await sleep(10)
+          return ['/', '/page-0', '/page-2']
+        },
+      },
+      sampleManifest
+    )
+
+    await expect(builder.createUrlSet()).resolves.toStrictEqual([
+      {
+        changefreq: 'daily',
+        lastmod: expect.any(String),
+        priority: 0.7,
+        loc: 'https://example.com/page-1',
+        alternateRefs: [],
+        trailingSlash: false,
+      },
+      {
+        changefreq: 'daily',
+        lastmod: expect.any(String),
+        priority: 0.7,
+        loc: 'https://example.com/page-3',
+        alternateRefs: [],
+        trailingSlash: false,
+      },
+    ])
+  })
+
   test('createUrlSet: Without trailing slash', async () => {
     const builder = new UrlSetBuilder(
       {
