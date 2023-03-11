@@ -29,7 +29,7 @@ export const defaultConfig: Partial<IConfig> = {
   exclude: [],
   transform: defaultSitemapTransformer,
   generateIndexSitemap: true,
-  sitemapIndexLastmod: true,
+  sitemapIndexLastmod: false,
   robotsTxtOptions: {
     transformRobotsTxt: defaultRobotsTxtTransformer,
     policies: [
