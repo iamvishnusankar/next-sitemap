@@ -208,7 +208,7 @@ export class SitemapBuilder {
     return [
       `<image:image>`,
       ...[
-        `<image:loc>${image.loc.href}</image:loc>`,
+        `<image:loc>${this.escapeHtml(image.loc.href)}</image:loc>`,
         image.caption &&
           `<image:caption>${this.escapeHtml(image.caption)}</image:caption>`,
         image.title &&
@@ -217,7 +217,10 @@ export class SitemapBuilder {
           `<image:geo_location>${this.escapeHtml(
             image.geoLocation
           )}</image:geo_location>`,
-        image.license && `<image:license>${image.license.href}</image:license>`,
+        image.license &&
+          `<image:license>${this.escapeHtml(
+            image.license.href
+          )}</image:license>`,
       ],
       `</image:image>`,
     ]
@@ -236,14 +239,20 @@ export class SitemapBuilder {
       `<video:video>`,
       ...[
         `<video:title>${this.escapeHtml(video.title)}</video:title>`,
-        `<video:thumbnail_loc>${video.thumbnailLoc.href}</video:thumbnail_loc>`,
+        `<video:thumbnail_loc>${this.escapeHtml(
+          video.thumbnailLoc.href
+        )}</video:thumbnail_loc>`,
         `<video:description>${this.escapeHtml(
           video.description
         )}</video:description>`,
         video.contentLoc &&
-          `<video:content_loc>${video.contentLoc.href}</video:content_loc>`,
+          `<video:content_loc>${this.escapeHtml(
+            video.contentLoc.href
+          )}</video:content_loc>`,
         video.playerLoc &&
-          `<video:player_loc>${video.playerLoc.href}</video:player_loc>`,
+          `<video:player_loc>${this.escapeHtml(
+            video.playerLoc.href
+          )}</video:player_loc>`,
         video.duration && `<video:duration>${video.duration}</video:duration>`,
         video.viewCount &&
           `<video:view_count>${video.viewCount}</video:view_count>`,
@@ -276,7 +285,8 @@ export class SitemapBuilder {
           `<video:platform relationship="${video.platform.relationship}">${video.platform.content}</video:platform>`,
         video.uploader &&
           `<video:uploader${
-            video.uploader.info && ` info="${video.uploader.info}"`
+            video.uploader.info &&
+            ` info="${this.escapeHtml(video.uploader.info.href)}"`
           }>${this.escapeHtml(video.uploader.name)}</video:uploader>`,
       ],
       `</video:video>`,
