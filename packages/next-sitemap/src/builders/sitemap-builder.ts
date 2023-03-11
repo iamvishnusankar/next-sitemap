@@ -5,6 +5,7 @@ import type {
   ISitemapField,
   IVideoEntry,
 } from '../interface.js'
+import { entityEscapedUrl } from '../utils/url.js'
 
 /**
  * Builder class to generate xml and robots.txt
@@ -208,7 +209,7 @@ export class SitemapBuilder {
     return [
       `<image:image>`,
       ...[
-        `<image:loc>${this.escapeHtml(image.loc.href)}</image:loc>`,
+        `<image:loc>${entityEscapedUrl(image.loc.href)}</image:loc>`,
         image.caption &&
           `<image:caption>${this.escapeHtml(image.caption)}</image:caption>`,
         image.title &&
@@ -218,7 +219,7 @@ export class SitemapBuilder {
             image.geoLocation
           )}</image:geo_location>`,
         image.license &&
-          `<image:license>${this.escapeHtml(
+          `<image:license>${entityEscapedUrl(
             image.license.href
           )}</image:license>`,
       ],
@@ -239,18 +240,18 @@ export class SitemapBuilder {
       `<video:video>`,
       ...[
         `<video:title>${this.escapeHtml(video.title)}</video:title>`,
-        `<video:thumbnail_loc>${this.escapeHtml(
+        `<video:thumbnail_loc>${entityEscapedUrl(
           video.thumbnailLoc.href
         )}</video:thumbnail_loc>`,
         `<video:description>${this.escapeHtml(
           video.description
         )}</video:description>`,
         video.contentLoc &&
-          `<video:content_loc>${this.escapeHtml(
+          `<video:content_loc>${entityEscapedUrl(
             video.contentLoc.href
           )}</video:content_loc>`,
         video.playerLoc &&
-          `<video:player_loc>${this.escapeHtml(
+          `<video:player_loc>${entityEscapedUrl(
             video.playerLoc.href
           )}</video:player_loc>`,
         video.duration && `<video:duration>${video.duration}</video:duration>`,
@@ -286,7 +287,7 @@ export class SitemapBuilder {
         video.uploader &&
           `<video:uploader${
             video.uploader.info &&
-            ` info="${this.escapeHtml(video.uploader.info.href)}"`
+            ` info="${entityEscapedUrl(video.uploader.info.href)}"`
           }>${this.escapeHtml(video.uploader.name)}</video:uploader>`,
       ],
       `</video:video>`,
