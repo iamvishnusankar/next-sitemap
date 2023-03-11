@@ -15,7 +15,7 @@ describe('next-sitemap/defaults', () => {
       outDir: 'public',
       sitemapBaseFileName: 'sitemap',
       generateIndexSitemap: true,
-      sitemapIndexLastmod: true,
+      sitemapIndexLastmod: false,
       priority: 0.7,
       changefreq: 'daily',
       sitemapSize: 5000,
@@ -40,6 +40,47 @@ describe('next-sitemap/defaults', () => {
       sourceDir: 'custom-source',
       generateRobotsTxt: true,
       generateIndexSitemap: true,
+      sitemapIndexLastmod: false,
+      sitemapSize: 50000,
+      exclude: ['1', '2'],
+      robotsTxtOptions: {
+        policies: [],
+        additionalSitemaps: [
+          'https://example.com/awesome-sitemap.xml',
+          'https://example.com/awesome-sitemap-2.xml',
+        ],
+      },
+    })
+
+    expect(myConfig).toStrictEqual<Partial<IConfig>>({
+      sourceDir: 'custom-source',
+      outDir: 'public',
+      sitemapBaseFileName: 'sitemap',
+      generateIndexSitemap: true,
+      sitemapIndexLastmod: false,
+      priority: 0.7,
+      changefreq: 'daily',
+      sitemapSize: 50000,
+      autoLastmod: true,
+      generateRobotsTxt: true,
+      exclude: ['1', '2'],
+      transform: defaultSitemapTransformer,
+      robotsTxtOptions: {
+        transformRobotsTxt: defaultRobotsTxtTransformer,
+        policies: [],
+        additionalSitemaps: [
+          'https://example.com/awesome-sitemap.xml',
+          'https://example.com/awesome-sitemap-2.xml',
+        ],
+      },
+    })
+  })
+
+  test('sitemapIndexLastmod: true', () => {
+    const myConfig = withDefaultConfig({
+      sourceDir: 'custom-source',
+      generateRobotsTxt: true,
+      generateIndexSitemap: true,
       sitemapIndexLastmod: true,
       sitemapSize: 50000,
       exclude: ['1', '2'],
@@ -58,6 +99,48 @@ describe('next-sitemap/defaults', () => {
       sitemapBaseFileName: 'sitemap',
       generateIndexSitemap: true,
       sitemapIndexLastmod: true,
+      priority: 0.7,
+      changefreq: 'daily',
+      sitemapSize: 50000,
+      autoLastmod: true,
+      generateRobotsTxt: true,
+      exclude: ['1', '2'],
+      transform: defaultSitemapTransformer,
+      robotsTxtOptions: {
+        transformRobotsTxt: defaultRobotsTxtTransformer,
+        policies: [],
+        additionalSitemaps: [
+          'https://example.com/awesome-sitemap.xml',
+          'https://example.com/awesome-sitemap-2.xml',
+        ],
+      },
+    })
+  })
+
+  test('sitemapIndexLastmod for specific time', () => {
+    const date = "Sun Jan 01 2023 00:00:00 GMT+0300 (GMT+03:00)"
+    const myConfig = withDefaultConfig({
+      sourceDir: 'custom-source',
+      generateRobotsTxt: true,
+      generateIndexSitemap: true,
+      sitemapIndexLastmod: date,
+      sitemapSize: 50000,
+      exclude: ['1', '2'],
+      robotsTxtOptions: {
+        policies: [],
+        additionalSitemaps: [
+          'https://example.com/awesome-sitemap.xml',
+          'https://example.com/awesome-sitemap-2.xml',
+        ],
+      },
+    })
+
+    expect(myConfig).toStrictEqual<Partial<IConfig>>({
+      sourceDir: 'custom-source',
+      outDir: 'public',
+      sitemapBaseFileName: 'sitemap',
+      generateIndexSitemap: true,
+      sitemapIndexLastmod: date,
       priority: 0.7,
       changefreq: 'daily',
       sitemapSize: 50000,
