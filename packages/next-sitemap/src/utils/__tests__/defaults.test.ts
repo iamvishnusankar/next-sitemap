@@ -15,6 +15,7 @@ describe('next-sitemap/defaults', () => {
       outDir: 'public',
       sitemapBaseFileName: 'sitemap',
       generateIndexSitemap: true,
+      sitemapIndexLastmod: true,
       priority: 0.7,
       changefreq: 'daily',
       sitemapSize: 5000,
@@ -39,6 +40,7 @@ describe('next-sitemap/defaults', () => {
       sourceDir: 'custom-source',
       generateRobotsTxt: true,
       generateIndexSitemap: true,
+      sitemapIndexLastmod: true,
       sitemapSize: 50000,
       exclude: ['1', '2'],
       robotsTxtOptions: {
@@ -55,6 +57,7 @@ describe('next-sitemap/defaults', () => {
       outDir: 'public',
       sitemapBaseFileName: 'sitemap',
       generateIndexSitemap: true,
+      sitemapIndexLastmod: true,
       priority: 0.7,
       changefreq: 'daily',
       sitemapSize: 50000,

@@ -164,6 +164,12 @@ export interface IConfig {
    * @default true
    */
   generateIndexSitemap?: boolean
+
+  /**
+   * Lastmod tag for sitemap index
+   * @default false
+   */
+  sitemapIndexLastmod?: boolean | undefined
 }
 
 export type AdditionalPathsConfig = Readonly<
