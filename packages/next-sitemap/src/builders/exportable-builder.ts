@@ -50,8 +50,10 @@ export class ExportableBuilder {
       ...(this.config?.robotsTxtOptions?.additionalSitemaps ?? []),
     ]
 
+    const sitemapIndexLastmod = this.config?.sitemapIndexLastmod || false
+
     // Generate sitemap-index content
-    const content = this.sitemapBuilder.buildSitemapIndexXml(sitemaps)
+    const content = this.sitemapBuilder.buildSitemapIndexXml(sitemaps, sitemapIndexLastmod)
 
     // Create exportable
     const item: IExportable = {

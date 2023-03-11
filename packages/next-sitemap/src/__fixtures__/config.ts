@@ -8,6 +8,7 @@ export const sampleConfig: IConfig = withDefaultConfig({
   priority: 0.7,
   sitemapSize: 5000,
   generateRobotsTxt: true,
+  sitemapIndexLastmod: true,
   trailingSlash: false,
   robotsTxtOptions: {
     policies: [
