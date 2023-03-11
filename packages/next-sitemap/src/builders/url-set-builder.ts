@@ -87,8 +87,13 @@ export class UrlSetBuilder {
     }
 
     // Remove the urls based on this.config?.exclude array
-    if (this.config?.exclude && this.config?.exclude.length > 0) {
-      urlSet = removeIfMatchPattern(urlSet, this.config?.exclude)
+    if (this.config?.exclude) {
+      if (typeof this.config.exclude === 'function') {
+        const asyncExcludes = await this.config.exclude()
+        urlSet = removeIfMatchPattern(urlSet, asyncExcludes)
+      } else {
+        urlSet = removeIfMatchPattern(urlSet, this.config?.exclude)
+      }
     }
 
     urlSet = [...new Set(urlSet)]
