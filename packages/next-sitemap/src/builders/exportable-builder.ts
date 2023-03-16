@@ -50,9 +50,15 @@ export class ExportableBuilder {
       // Include additionalSitemaps provided via robots.txt options
       ...(this.config?.robotsTxtOptions?.additionalSitemaps ?? []),
     ]
+
     // Remove the urls based on this.config?.exclude array
     if (this.config?.exclude && this.config?.exclude.length > 0) {
-      sitemaps = removeIfMatchPattern(sitemaps, this.config?.exclude)
+      // Exclude array can be array or async function
+      const excludeArr = Array.isArray(this.config?.exclude)
+        ? this.config?.exclude
+        : await this.config.exclude()
+
+      sitemaps = removeIfMatchPattern(sitemaps, excludeArr)
     }
 
     // Generate sitemap-index content
