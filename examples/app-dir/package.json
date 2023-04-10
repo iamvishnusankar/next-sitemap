@@ -18,7 +18,7 @@
   },
   "devDependencies": {
     "@corex/workspace": "^4.0.37",
-    "@types/react": "^18.0.27",
+    "@types/react": "^18.0.33",
     "next-sitemap": "*",
     "turbo": "^1.8.3"
   }
