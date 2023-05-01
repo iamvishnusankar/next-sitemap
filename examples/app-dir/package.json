@@ -17,7 +17,7 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@corex/workspace": "^4.0.37",
+    "@corex/workspace": "^4.0.43",
     "@types/react": "^18.2.0",
     "next-sitemap": "*",
     "turbo": "^1.8.3"
