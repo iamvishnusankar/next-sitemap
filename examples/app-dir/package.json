@@ -20,6 +20,6 @@
     "@corex/workspace": "^4.0.37",
     "@types/react": "^18.2.0",
     "next-sitemap": "*",
-    "turbo": "^1.8.3"
+    "turbo": "^1.9.4"
   }
 }
