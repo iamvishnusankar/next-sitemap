@@ -68,10 +68,10 @@ export class UrlSetBuilder {
 
     // Init all page keys
     const allKeys = [
-      ...Object.keys(this.manifest?.build.pages),
+      ...Object.keys(this.manifest?.build?.pages ?? {}),
       ...(this.manifest?.build?.ampFirstPages ?? []),
       ...(this.manifest?.preRender
-        ? Object.keys(this.manifest?.preRender.routes)
+        ? Object.keys(this.manifest?.preRender?.routes ?? {})
         : []),
     ]
 

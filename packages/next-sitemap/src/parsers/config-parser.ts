@@ -12,8 +12,15 @@ export class ConfigParser {
    * @returns
    */
   private async getRuntimeConfig(
+    config: IConfig,
     runtimePaths: IRuntimePaths
   ): Promise<Partial<IConfig>> {
+    // Skip export marker loading if output is set to "export"
+    if (config?.output === 'export') {
+      return {}
+    }
+
+    // Load export marker
     const exportMarkerConfig = await loadJSON<IExportMarker>(
       runtimePaths.EXPORT_MARKER,
       false
@@ -38,7 +45,7 @@ export class ConfigParser {
     runtimePaths: IRuntimePaths
   ): Promise<IConfig> {
     // Runtime configs
-    const runtimeConfig = await this.getRuntimeConfig(runtimePaths)
+    const runtimeConfig = await this.getRuntimeConfig(config, runtimePaths)
 
     // Prioritize `trailingSlash` value from `next-sitemap.js`
     const trailingSlashConfig: Partial<IConfig> = {}

@@ -81,6 +81,12 @@ export interface IConfig {
   changefreq?: Changefreq
 
   /**
+   * The type of build output.
+   * @see https://nextjs.org/docs/pages/api-reference/next-config-js/output
+   */
+  output: 'standalone' | 'export' | undefined
+
+  /**
    * Priority
    * @default 0.7
    */
