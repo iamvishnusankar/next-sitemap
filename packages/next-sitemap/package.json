@@ -53,6 +53,7 @@
   },
   "dependencies": {
     "@corex/deepmerge": "^4.0.43",
+    "fast-glob": "^3.2.12",
     "minimist": "^1.2.8"
   },
   "peerDependencies": {

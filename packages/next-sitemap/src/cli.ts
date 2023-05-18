@@ -52,6 +52,6 @@ export class CLI {
    * @returns
    */
   async execute() {
-    return this.main().then(Logger.generationCompleted)
+    return this.main().then(Logger.generationCompleted).catch(Logger.error)
   }
 }

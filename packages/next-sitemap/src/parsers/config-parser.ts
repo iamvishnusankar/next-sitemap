@@ -22,8 +22,7 @@ export class ConfigParser {
 
     // Load export marker
     const exportMarkerConfig = await loadJSON<IExportMarker>(
-      runtimePaths.EXPORT_MARKER,
-      false
+      runtimePaths.EXPORT_MARKER
     ).catch((err) => {
       Logger.noExportMarker()
       throw err
