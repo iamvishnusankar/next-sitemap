@@ -84,7 +84,7 @@ export interface IConfig {
    * The type of build output.
    * @see https://nextjs.org/docs/pages/api-reference/next-config-js/output
    */
-  output: 'standalone' | 'export' | undefined
+  output?: 'standalone' | 'export' | undefined
 
   /**
    * Priority
