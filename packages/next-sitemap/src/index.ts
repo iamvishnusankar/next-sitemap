@@ -8,3 +8,6 @@ export * from './ssr/sitemap.js'
 
 // Export sitemap builder
 export * from './builders/sitemap-builder.js'
+
+// Export cli
+export * from './cli.js'
