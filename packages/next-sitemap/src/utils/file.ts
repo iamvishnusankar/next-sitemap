@@ -7,10 +7,7 @@ import path from 'node:path'
  * @param throwError
  * @returns
  */
-export const loadJSON = async <T>(
-  path: string,
-  throwError = true
-): Promise<T | undefined> => {
+export const loadJSON = async <T>(path: string): Promise<T | undefined> => {
   // Get path stat
   const stat = await fs.stat(path).catch(() => {
     return {
@@ -20,12 +17,7 @@ export const loadJSON = async <T>(
 
   // Return undefined or throw error
   if (!stat.isFile()) {
-    // Handle error
-    if (throwError) {
-      throw new Error(`${path} does not exist.`)
-    }
-
-    return
+    return // Handle errors gracefully
   }
 
   const jsonString = await fs.readFile(path, { encoding: 'utf-8' })

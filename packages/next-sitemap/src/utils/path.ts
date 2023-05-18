@@ -42,6 +42,7 @@ export const getRuntimePaths = (config: IConfig): IRuntimePaths => {
     ROUTES_MANIFEST: getPath(config.sourceDir!, 'routes-manifest.json'),
     EXPORT_MARKER: getPath(config.sourceDir!, 'export-marker.json'),
     ROBOTS_TXT_FILE: getPath(config.outDir!, 'robots.txt'),
+    STATIC_EXPORT_ROOT: getPath(config.outDir!),
     SITEMAP_INDEX_URL,
     SITEMAP_INDEX_FILE,
   }
