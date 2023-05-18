@@ -11,15 +11,15 @@
     "postbuild": "next-sitemap"
   },
   "dependencies": {
-    "@types/react-dom": "^18.0.11",
-    "next": "^13.2.4",
+    "@types/react-dom": "^18.2.4",
+    "next": "^13.4.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@corex/workspace": "^4.0.37",
-    "@types/react": "^18.2.0",
+    "@corex/workspace": "^4.0.43",
+    "@types/react": "^18.2.6",
     "next-sitemap": "*",
-    "turbo": "^1.8.3"
+    "turbo": "^1.9.8"
   }
 }
