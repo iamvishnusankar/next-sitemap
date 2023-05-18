@@ -73,6 +73,46 @@ describe('next-sitemap/defaults', () => {
     })
   })
 
+  test('withDefaultConfig: Static export', () => {
+    const myConfig = withDefaultConfig({
+      output: 'export', // Static output mode
+      generateRobotsTxt: true,
+      generateIndexSitemap: true,
+      sitemapSize: 50000,
+      exclude: ['1', '2'],
+      robotsTxtOptions: {
+        policies: [],
+        additionalSitemaps: [
+          'https://example.com/awesome-sitemap.xml',
+          'https://example.com/awesome-sitemap-2.xml',
+        ],
+      },
+    })
+
+    expect(myConfig).toStrictEqual<Partial<IConfig>>({
+      output: 'export',
+      sourceDir: 'out',
+      outDir: 'out',
+      sitemapBaseFileName: 'sitemap',
+      generateIndexSitemap: true,
+      priority: 0.7,
+      changefreq: 'daily',
+      sitemapSize: 50000,
+      autoLastmod: true,
+      generateRobotsTxt: true,
+      exclude: ['1', '2'],
+      transform: defaultSitemapTransformer,
+      robotsTxtOptions: {
+        transformRobotsTxt: defaultRobotsTxtTransformer,
+        policies: [],
+        additionalSitemaps: [
+          'https://example.com/awesome-sitemap.xml',
+          'https://example.com/awesome-sitemap-2.xml',
+        ],
+      },
+    })
+  })
+
   test('withDefaultConfig: Default transformation', async () => {
     const myConfig = withDefaultConfig({
       trailingSlash: false,

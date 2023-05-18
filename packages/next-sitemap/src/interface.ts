@@ -81,6 +81,12 @@ export interface IConfig {
   changefreq?: Changefreq
 
   /**
+   * The type of build output.
+   * @see https://nextjs.org/docs/pages/api-reference/next-config-js/output
+   */
+  output?: 'standalone' | 'export' | undefined
+
+  /**
    * Priority
    * @default 0.7
    */
@@ -198,9 +204,10 @@ export interface IExportMarker {
 }
 
 export interface INextManifest {
-  build: IBuildManifest
+  build?: IBuildManifest
   preRender?: IPreRenderManifest
   routes?: IRoutesManifest
+  staticExportPages?: string[]
 }
 
 /**
@@ -228,6 +235,7 @@ export interface IRuntimePaths {
   EXPORT_MARKER: string
   SITEMAP_INDEX_FILE?: string
   SITEMAP_INDEX_URL?: string
+  STATIC_EXPORT_ROOT: string
 }
 
 export type IAlternateRef = {
