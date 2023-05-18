@@ -7,6 +7,15 @@ export class Logger {
   /**
    * Missing build
    */
+  static noBuildManifest() {
+    Logger.error(
+      'Unable to find build-manifest.\nMake sure to build the project using `next build` command\n'
+    )
+  }
+
+  /**
+   * Missing build
+   */
   static noExportMarker() {
     Logger.error(
       'Unable to find export-maker.\nMake sure to build the project using `next build` command\n'
