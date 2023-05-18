@@ -16,7 +16,10 @@ export class CLI {
     const { config, runtimePaths } = await new ConfigParser().loadConfig()
 
     // Load next.js manifest
-    const manifest = await new ManifestParser().loadManifest(runtimePaths)
+    const manifest = await new ManifestParser().loadManifest(
+      config,
+      runtimePaths
+    )
 
     // Generate url set
     const urlSet = await new UrlSetBuilder(config, manifest).createUrlSet()

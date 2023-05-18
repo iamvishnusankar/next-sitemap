@@ -12,7 +12,11 @@ export const loadJSON = async <T>(
   throwError = true
 ): Promise<T | undefined> => {
   // Get path stat
-  const stat = await fs.stat(path)
+  const stat = await fs.stat(path).catch(() => {
+    return {
+      isFile: () => false, // Handle errors gracefully
+    }
+  })
 
   // Return undefined or throw error
   if (!stat.isFile()) {
