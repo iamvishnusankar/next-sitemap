@@ -25,15 +25,17 @@ export const getPath = (...pathSegment: string[]): string => {
 export const getRuntimePaths = (config: IConfig): IRuntimePaths => {
   // Check whether user enabled index sitemap or not
   const sitemapIndexEnabled = config?.generateIndexSitemap
+  const baseFilename = `${config.sitemapBaseFileName}.xml`;
 
   // Set sitemap index file
   const SITEMAP_INDEX_FILE = sitemapIndexEnabled
-    ? getPath(config.outDir!, `${config.sitemapBaseFileName}.xml`)
+    ? getPath(config.outDir!, baseFilename)
     : undefined
+  const sitemapPath = config?.customPath ? `${config.customPath}/${baseFilename}`: baseFilename;
 
   // Set sitemap index url
   const SITEMAP_INDEX_URL = sitemapIndexEnabled
-    ? generateUrl(config?.siteUrl, `${config.sitemapBaseFileName}.xml`)
+    ? generateUrl(config?.siteUrl, sitemapPath)
     : undefined
 
   return {

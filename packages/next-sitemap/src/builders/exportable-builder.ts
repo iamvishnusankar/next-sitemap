@@ -101,10 +101,11 @@ export class ExportableBuilder {
       const baseFilename = hasIndexSitemap
         ? this.resolveFilenameWithIndexSitemap(index)
         : this.resolveFilenameWithoutIndexSitemap(index)
+      const sitemapPath = this.config.customPath ? `${this.config.customPath}/${baseFilename}` : baseFilename;
 
       return {
         type: 'sitemap',
-        url: generateUrl(this.config.siteUrl, baseFilename),
+        url: generateUrl(this.config.siteUrl, sitemapPath),
         filename: path.resolve(this.exportDir, baseFilename),
         content: this.sitemapBuilder.buildSitemapXml(chunk),
       } as IExportable
@@ -170,12 +171,13 @@ export class ExportableBuilder {
 
     // Transform generated robots txt
     content = await robotsTransformer(robotsConfig, content)
+    const sitemapPath = this.config?.customPath ? `${this.config.customPath}/${baseFilename}` : baseFilename;
 
     // Generate exportable item
     const item: IExportable = {
       type: 'robots.txt',
       filename: path.resolve(this.exportDir, baseFilename),
-      url: generateUrl(robotsConfig?.siteUrl, baseFilename),
+      url: generateUrl(robotsConfig?.siteUrl, sitemapPath),
       content,
     }
 

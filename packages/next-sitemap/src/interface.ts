@@ -103,12 +103,14 @@ export interface IConfig {
    * @default public
    */
   outDir?: string
-  
-   /**
-   * All the generated xml files will be exported to this path.
-   * @default /
-   */
-  xmlPath?: string
+
+    /**
+     * All the generated xml files will be exposed to this path.
+     * @description url of every xml in the index file would be like:
+     * `${siteUrl}/${customPath}/${baseFilename}`
+     * @default undefined
+     */
+  customPath?: string
 
   /**
    * Split large sitemap into multiple files by specifying sitemap size.
