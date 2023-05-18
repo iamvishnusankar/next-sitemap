@@ -46,7 +46,7 @@ export class ManifestParser {
     )!
 
     // Throw error if no build manifest exist
-    if (!buildManifest) {
+    if (config?.output !== 'export' && !buildManifest) {
       throw Logger.noBuildManifest()
     }
 
