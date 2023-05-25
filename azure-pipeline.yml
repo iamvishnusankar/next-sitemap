@@ -17,7 +17,7 @@ steps:
 
   # Set yarn version
   - task: Bash@3
-    displayName: 'Install'
+    displayName: 'Set yarn version'
     inputs:
       targetType: 'inline'
       script: 'yarn set version stable'
