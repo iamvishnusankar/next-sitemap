@@ -6248,7 +6248,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"next@npm:^13.4.2":
+"next@npm:^13.4.2, next@npm:^13.4.3":
   version: 13.4.3
   resolution: "next@npm:13.4.3"
   dependencies:
@@ -7344,7 +7344,10 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "static-export@workspace:examples/static-export"
   dependencies:
+    next: ^13.4.3
     next-sitemap: "workspace:*"
+    react: ^18.2.0
+    react-dom: ^18.2.0
   languageName: unknown
   linkType: soft
 
