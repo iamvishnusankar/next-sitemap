@@ -15,6 +15,13 @@ steps:
     inputs:
       version: '16.x'
 
+  # Set yarn version
+  - task: Bash@3
+    displayName: 'Install'
+    inputs:
+      targetType: 'inline'
+      script: 'yarn set version stable'
+
   # Authenticate
   - task: npmAuthenticate@0
     displayName: NPM Auth
@@ -29,13 +36,6 @@ steps:
       targetType: 'inline'
       script: 'npm version --no-git-tag-version $BUILD_BUILDNUMBER --ws'
       # failOnStderr: true
-
-  # Set yarn version
-  - task: Bash@3
-    displayName: 'Install'
-    inputs:
-      targetType: 'inline'
-      script: 'yarn set version stable'
 
   # Install
   - task: Bash@3
