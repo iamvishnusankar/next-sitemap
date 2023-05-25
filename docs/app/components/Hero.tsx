@@ -27,7 +27,7 @@ const Hero: FC<HeroProps> = ({}) => {
             <Button className="max-md:mb-10">
               Explore Documentation <Icons.ArrowRight className="h-4" />
             </Button>
-            <CodeCopyButton> npm i next-sitemap </CodeCopyButton>
+            <CodeCopyButton>yarn add next-sitemap</CodeCopyButton>
           </div>
         </div>
       </main>
