@@ -7,7 +7,6 @@
   "license": "MIT",
   "private": true,
   "type": "module",
-  "packageManager": "yarn@1.22.19",
   "workspaces": {
     "packages": [
       "packages/*",
@@ -26,6 +25,11 @@
   },
   "devDependencies": {
     "@corex/workspace": "^4.0.43",
+    "eslint": "^8.41.0",
+    "jest": "^29.5.0",
+    "prettier": "^2.8.8",
+    "ts-jest": "^29.1.0",
     "turbo": "^1.9.8"
-  }
+  },
+  "packageManager": "yarn@3.5.1"
 }
