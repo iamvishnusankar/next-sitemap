@@ -28,7 +28,7 @@ jobs:
       - name: Install
         run: |
           yarn set version stable
-          yarn install --immutable-cache
+          yarn install --immutable --immutable-cache
 
       - name: Lint
         run: yarn lint

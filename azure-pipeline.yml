@@ -42,7 +42,7 @@ steps:
     displayName: 'Install'
     inputs:
       targetType: 'inline'
-      script: 'yarn install --immutable-cache'
+      script: 'yarn install --immutable --immutable-cache'
 
   # Build
   - task: Bash@3
