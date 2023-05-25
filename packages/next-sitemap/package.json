@@ -53,11 +53,11 @@
   },
   "dependencies": {
     "@corex/deepmerge": "^4.0.43",
+    "@next/env": "^13.4.3",
     "fast-glob": "^3.2.12",
     "minimist": "^1.2.8"
   },
   "peerDependencies": {
-    "@next/env": "*",
     "next": "*"
   }
 }
