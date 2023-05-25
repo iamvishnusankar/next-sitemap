@@ -30,12 +30,19 @@ steps:
       script: 'npm version --no-git-tag-version $BUILD_BUILDNUMBER --ws'
       # failOnStderr: true
 
+  # Set yarn version
+  - task: Bash@3
+    displayName: 'Install'
+    inputs:
+      targetType: 'inline'
+      script: 'yarn set version stable'
+
   # Install
   - task: Bash@3
     displayName: 'Install'
     inputs:
       targetType: 'inline'
-      script: 'yarn install'
+      script: 'yarn install --immutable --immutable-cache'
 
   # Build
   - task: Bash@3
