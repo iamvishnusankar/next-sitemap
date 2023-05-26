@@ -1,8 +1,8 @@
-"use client";
-import { FC } from "react";
-import CodeCopyButton from "./CodeCopyButton";
-import { Button } from "./blocks/Button";
-import Icons from "./Icons";
+'use client'
+import { FC } from 'react'
+import CodeCopyButton from './CodeCopyButton'
+import { Button } from './blocks/Button'
+import Icons from './Icons'
 
 interface HeroProps {}
 
@@ -32,7 +32,7 @@ const Hero: FC<HeroProps> = ({}) => {
         </div>
       </main>
     </>
-  );
-};
+  )
+}
 
-export default Hero;
+export default Hero
