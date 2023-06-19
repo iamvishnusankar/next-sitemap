@@ -2589,7 +2589,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:*, @types/react@npm:^18.2.6":
+"@types/react@npm:*":
   version: 18.2.7
   resolution: "@types/react@npm:18.2.7"
   dependencies:
@@ -2597,6 +2597,17 @@ __metadata:
     "@types/scheduler": "*"
     csstype: ^3.0.2
   checksum: caa5da4cf929766738ec789301dc6fb6624bd48dd317d851c4c9b84b1f47cd8ebe17fe01398cadaa0bc938cd4d502d67f4b9de9ff771dc132096bdc86228efba
+  languageName: node
+  linkType: hard
+
+"@types/react@npm:^18.2.12":
+  version: 18.2.12
+  resolution: "@types/react@npm:18.2.12"
+  dependencies:
+    "@types/prop-types": "*"
+    "@types/scheduler": "*"
+    csstype: ^3.0.2
+  checksum: ad85a7eadaf1b35cfeee9f715b39311420ff46d46e0650377d918b3f888c2e47416037da4a765e1dccd3d1916abd54c105a3bee803c971ba56c955a7768ce976
   languageName: node
   linkType: hard
 
@@ -3274,7 +3285,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "basic@workspace:examples/basic"
   dependencies:
-    "@types/react": ^18.2.6
+    "@types/react": ^18.2.12
     "@types/react-dom": ^18.2.4
     next: ^13.4.2
     next-sitemap: "workspace:*"
@@ -3584,7 +3595,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "commonjs@workspace:examples/commonjs"
   dependencies:
-    "@types/react": ^18.2.6
+    "@types/react": ^18.2.12
     "@types/react-dom": ^18.2.4
     next: ^13.4.2
     next-sitemap: "workspace:*"
@@ -3695,7 +3706,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "custom-config-file@workspace:examples/custom-config-file"
   dependencies:
-    "@types/react": ^18.2.6
+    "@types/react": ^18.2.12
     "@types/react-dom": ^18.2.4
     next: ^13.4.2
     next-sitemap: "workspace:*"
@@ -8854,7 +8865,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "with-custom-overrides@workspace:examples/custom-overrides"
   dependencies:
-    "@types/react": ^18.2.6
+    "@types/react": ^18.2.12
     "@types/react-dom": ^18.2.4
     next: ^13.4.2
     next-sitemap: "workspace:*"
@@ -8867,7 +8878,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "with-custom-robots-txt-transformer@workspace:examples/custom-robots-txt-transformer"
   dependencies:
-    "@types/react": ^18.2.6
+    "@types/react": ^18.2.12
     "@types/react-dom": ^18.2.4
     next: ^13.4.2
     next-sitemap: "workspace:*"
@@ -8881,7 +8892,7 @@ __metadata:
   resolution: "with-next-app-dir@workspace:examples/app-dir"
   dependencies:
     "@corex/workspace": ^4.0.43
-    "@types/react": ^18.2.6
+    "@types/react": ^18.2.12
     "@types/react-dom": ^18.2.4
     next: ^13.4.2
     next-sitemap: "workspace:*"
@@ -8895,7 +8906,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "with-next-sitemap-amp@workspace:examples/amp"
   dependencies:
-    "@types/react": ^18.2.6
+    "@types/react": ^18.2.12
     "@types/react-dom": ^18.2.4
     next: ^13.4.2
     next-sitemap: "workspace:*"
@@ -8908,7 +8919,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "with-next-sitemap-i18n@workspace:examples/with-next-sitemap-i18n"
   dependencies:
-    "@types/react": ^18.2.6
+    "@types/react": ^18.2.12
     "@types/react-dom": ^18.2.4
     next: ^13.4.2
     next-sitemap: "workspace:*"
@@ -8921,7 +8932,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "with-no-index-sitemaps@workspace:examples/no-index-sitemaps"
   dependencies:
-    "@types/react": ^18.2.6
+    "@types/react": ^18.2.12
     "@types/react-dom": ^18.2.4
     next: ^13.4.2
     next-sitemap: "workspace:*"
