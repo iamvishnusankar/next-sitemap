@@ -1,0 +1,43 @@
+---
+title: Custom transformation function
+description: Extension method to add, remove or exclude path or properties from a url-set.
+---
+
+Custom transformation provides an extension method to add, remove or exclude `path` or `properties` from a url-set. 
+
+Transform function runs **for each** `relative path` in the sitemap. And use the `key`: `value` object to add properties in the XML.
+
+Returning `null` value from the transformation function will result in the exclusion of that specific `relative-path` from the generated sitemap list.
+
+```jsx
+/** @type {import('next-sitemap').IConfig} */
+module.exports = {
+  transform: async (config, path) => {
+    // custom function to ignore the path
+    if (customIgnoreFunction(path)) {
+      return null
+    }
+
+    // only create changefreq along with path
+    // returning partial properties will result in generation of XML field with only returned values.
+    if (customLimitedField(path)) {
+      // This returns `path` & `changefreq`. Hence it will result in the generation of XML field with `path`
+      // and  `changefreq` properties only.
+      return {
+        loc: path, // => this will be exported as http(s)://<config.siteUrl>/<path>
+        changefreq: 'weekly',
+      }
+    }
+
+    // Use default transformation for all other cases
+    return {
+      loc: path, // => this will be exported as http(s)://<config.siteUrl>/<path>
+      changefreq: config.changefreq,
+      priority: config.priority,
+      lastmod: config.autoLastmod ? new Date().toISOString() : undefined,
+      alternateRefs: config.alternateRefs ?? [],
+    }
+  },
+}
+```
+

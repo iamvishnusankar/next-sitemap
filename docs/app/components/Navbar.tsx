@@ -1,9 +1,12 @@
+'use client'
 import Link from "next/link";
 import { ThemeToggle } from "./ThemeToggle";
 import { buttonVariants } from "./blocks/Button";
 import SocialIcons from "./blocks/SocialIcons";
+import { useState } from "react";
 
 const Navbar = async () => {
+ 
   return (
     <div className="fixed backdrop-blur-sm bg-neutral-200 dark:bg-slate-900 z-50 top-0 left-0 right-0 h-20 border-b border-slate-300 dark:border-slate-700 shadow-sm flex items-center justify-between">
       <div className="container max-w-7xl mx-auto w-full flex justify-between items-center font-satoshiBold">

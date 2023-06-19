@@ -1,14 +1,30 @@
 import Footer from "./components/Footer";
-import Navbar from "./components/Navbar";
 import Providers from "./components/Providers";
-import "./globals.css";
-import { Inter } from "next/font/google";
+import "../styles/globals.css";
+import { siteConfig } from "@/config/site";
+import Navbar from "./components/Navbar/Navbar";
+import { Toaster } from "@/app/components/ui/Toaster";
 
-const inter = Inter({ subsets: ["latin"] });
+
 
 export const metadata = {
-  title: "Next-Sitemap",
-  description: "Sitemap generator for Next.js application",
+  title: "next-sitemap",
+  description: "Sitemap generator for Next.js application.",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: siteConfig.url,
+    title: siteConfig.name,
+    description: siteConfig.description,
+    siteName: siteConfig.name,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteConfig.name,
+    description: siteConfig.description,
+    images: [`${siteConfig.url}/og.jpg`],
+    creator: "@iamvishnusankar",
+  },
 };
 
 export default function RootLayout({
@@ -18,12 +34,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body>
         <Providers>
-          {/* @ts-expect-error Server Component */}
-          <Navbar />
+        <Toaster />
+         <Navbar/>
           {children}
-          <Footer/>
+          <Footer />
         </Providers>
       </body>
     </html>

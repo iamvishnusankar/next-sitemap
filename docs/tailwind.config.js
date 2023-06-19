@@ -1,33 +1,40 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: ['class'],
+  darkMode: ["class"],
   content: [
-    './pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './components/**/*.{js,ts,jsx,tsx,mdx}',
-    './app/**/*.{js,ts,jsx,tsx,mdx}',
+    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./content/**/*.{md,mdx}",
   ],
   theme: {
     extend: {
       animation: {
-        blob: "blob 7s infinite",
+        text: "text 5s ease infinite",
       },
       keyframes: {
-        blob: {
-          "0%": {
-            transform: "translate(0px, 0px) scale(1)",
+        text: {
+          "0%, 100%": {
+            "background-size": "200% 200%",
+            "background-position": "left center",
           },
-          "33%": {
-            transform: "translate(30px, -50px) scale(1.1)",
-          },
-          "66%": {
-            transform: "translate(-20px, 20px) scale(0.9)",
-          },
-          "100%": {
-            transform: "tranlate(0px, 0px) scale(1)",
+          "50%": {
+            "background-size": "200% 200%",
+            "background-position": "right center",
           },
         },
       },
+      fontFamily: {
+        satoshiMedium: "Satoshi-Medium",
+        satoshiBold: "Satoshi-Bold",
+        satoshiBlack: "Satoshi-Black",
+        ranadeLight: "Ranade-Light",
+        ranadeLightItalic: "Ranade-LightItalic",
+        ranadeRegular: "Ranade-Regular",
+        ranadeItalic: "Ranade-Italic",
+        ranadeMedium: "Ranade-Medium",
+      },
     },
   },
-  plugins: [],
-}
+  plugins: [require("@tailwindcss/typography")],
+};

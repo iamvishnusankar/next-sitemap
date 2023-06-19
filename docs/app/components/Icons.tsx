@@ -6,7 +6,7 @@ export const Icons = {
   Sun,
   Moon,
   Laptop,
-  ArrowRight
+  ArrowRight,
 }
 
 export default Icons

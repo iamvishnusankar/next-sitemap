@@ -1,0 +1,56 @@
+---
+title: Installation
+description: How to setup next-sitemap for your application.
+---
+
+### Step 1: Installing the package
+
+Install next-sitemap via yarn with the following command
+
+```bash
+yarn add next-sitemap
+```
+
+### Step 2: Creating `next-sitemap.config.js`
+
+Create your `next-sitemap.config.js` file under your project root.
+
+> ✅ `next-sitemap` will load environment variables from `.env` files by default.
+
+```javascript
+/** @type {import('next-sitemap').IConfig} */
+module.exports = {
+  siteUrl: process.env.SITE_URL || "https://example.com",
+  generateRobotsTxt: true, // (optional)
+  // ...other options
+};
+```
+### Step 3: Building sitemaps
+
+Add next-sitemap as your postbuild script
+
+```json
+{
+  "build": "next build",
+  "postbuild": "next-sitemap"
+}
+```
+### Custom config file
+
+You can also use a custom config file instead of `next-sitemap.config.js`. Just pass `--config <your-config-file>.js` to build command (Example: [custom-config-file](https://github.com/iamvishnusankar/next-sitemap/tree/master/examples/custom-config-file))
+
+```json
+{
+  "build": "next build",
+  "postbuild": "next-sitemap --config awesome.config.js"
+}
+```
+
+### Building sitemaps with pnpm
+
+When using pnpm you need to create a `.npmrc` file in the root of your project if you want to use a postbuild step:
+
+```bash
+//.npmrc
+enable-pre-post-scripts=true
+```
