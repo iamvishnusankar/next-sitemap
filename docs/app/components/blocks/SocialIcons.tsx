@@ -8,6 +8,7 @@ const SocialIcons: FC<SocialIconsProps> = ({}) => {
       <div className="flex ">
         {" "}
         <a
+          aria-label="Github Repo link"
           href="https://github.com/iamvishnusankar/next-sitemap"
           target="_blank"
           className="px-3 pt-[6px] transition-all text-slate-950 hover:text-slate-900 dark:rotate-0 dark:scale-100 dark:text-slate-400 dark:hover:text-slate-100"
@@ -29,9 +30,10 @@ const SocialIcons: FC<SocialIconsProps> = ({}) => {
           </svg>
         </a>
         <a
+          aria-label="npm package page link"
           href="https://www.npmjs.com/package/next-sitemap"
           target="_blank"
-          className="px-3 pt-[6px] transition-all text-slate-950 hover:text-slate-900 dark:rotate-0 dark:scale-100 dark:text-slate-400 dark:hover:text-slate-100"
+          className="px-3 pt-[4px] transition-all text-slate-950 hover:text-slate-900 dark:rotate-0 dark:scale-100 dark:text-slate-400 dark:hover:text-slate-100"
         >
           npm
         </a>

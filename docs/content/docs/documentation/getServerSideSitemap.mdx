@@ -1,0 +1,92 @@
+---
+title: Server side sitemap 
+description: Using getServerSideSitemap API to generate sitemap.
+---
+
+#### Sample script to generate index-sitemap on server side with /app directory.
+
+Create `app/server-sitemap.xml/route.ts` file.
+
+```ts
+// app/server-sitemap.xml/route.ts
+import { getServerSideSitemap } from "next-sitemap";
+
+export async function GET(request: Request) {
+  // Method to source urls from cms
+  // const urls = await fetch('https//example.com/api')
+
+  return getServerSideSitemap([
+    {
+      loc: "https://example.com",
+      lastmod: new Date().toISOString(),
+      // changefreq
+      // priority
+    },
+    {
+      loc: "https://example.com/dynamic-path-2",
+      lastmod: new Date().toISOString(),
+      // changefreq
+      // priority
+    },
+  ]);
+}
+```
+
+#### Sample script to generate index-sitemap on server side with /pages directory (legacy).
+
+Create `pages/server-sitemap.xml/index.tsx` file.
+
+```ts
+// pages/server-sitemap.xml/index.tsx
+import { getServerSideSitemapLegacy } from "next-sitemap";
+import { GetServerSideProps } from "next";
+
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  // Method to source urls from cms
+  // const urls = await fetch('https//example.com/api')
+
+  const fields = [
+    {
+      loc: "https://example.com", // Absolute url
+      lastmod: new Date().toISOString(),
+      // changefreq
+      // priority
+    },
+    {
+      loc: "https://example.com/dynamic-path-2", // Absolute url
+      lastmod: new Date().toISOString(),
+      // changefreq
+      // priority
+    },
+  ];
+
+  return getServerSideSitemapLegacy(ctx, fields);
+};
+
+// Default export to prevent next.js errors
+export default function Sitemap() {}
+```
+
+
+
+Now, `next.js` is serving the dynamic sitemap from `http://localhost:3000/server-sitemap.xml`.
+
+List the dynamic sitemap page in `robotsTxtOptions.additionalSitemaps` and exclude this path from static sitemap list.
+
+```js
+// next-sitemap.config.js
+
+/** @type {import('next-sitemap').IConfig} */
+module.exports = {
+  siteUrl: "https://example.com",
+  generateRobotsTxt: true,
+  exclude: ["/server-sitemap.xml"], // <= exclude here
+  robotsTxtOptions: {
+    additionalSitemaps: [
+      "https://example.com/server-sitemap.xml", // <==== Add here
+    ],
+  },
+};
+```
+
+In this way, `next-sitemap` will manage the sitemaps for all your static pages and your dynamic sitemap will be listed on robots.txt.
