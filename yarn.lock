@@ -2186,10 +2186,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@next/env@npm:13.4.3, @next/env@npm:^13.4.3":
+"@next/env@npm:13.4.3":
   version: 13.4.3
   resolution: "@next/env@npm:13.4.3"
   checksum: e45f7b7a469e59a8b9b5e8b9969643907b8f6bf54037eee42eb10cb21d6d9455d10f92721eb65cc102e281fdebcb5b93e6e534dc0bacb65b368f85e9d3de49a8
+  languageName: node
+  linkType: hard
+
+"@next/env@npm:^13.4.7":
+  version: 13.4.7
+  resolution: "@next/env@npm:13.4.7"
+  checksum: 5a2bba68fb8c80c87324025f10af7fe7319efdb15777247bfa8ff58e61bcc19b150bce4068396351e6c6df3344294cc06c03a2fb1bb0330659d230830a202c53
   languageName: node
   linkType: hard
 
@@ -6879,7 +6886,7 @@ __metadata:
   resolution: "next-sitemap@workspace:packages/next-sitemap"
   dependencies:
     "@corex/deepmerge": ^4.0.43
-    "@next/env": ^13.4.3
+    "@next/env": ^13.4.7
     fast-glob: ^3.2.12
     minimist: ^1.2.8
     typescript: ^5.0.4
