@@ -1,7 +1,6 @@
 import { siteExampleConfig } from '@/config/site'
 import Card from '../components/cards/card'
 
-
 export const metadata = {
   title: 'next-sitemap - Examples',
   description: 'Examples where next-sitemap has been utilized.',

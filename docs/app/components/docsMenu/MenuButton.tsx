@@ -8,7 +8,6 @@ interface MenuButtonProps {
 }
 
 const MenuButton: React.FC<MenuButtonProps> = ({ visible }) => {
-
   if (!visible) {
     return null
   }
