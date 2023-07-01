@@ -12,6 +12,13 @@ import { loadJSON } from '../utils/file.js'
 import fg from 'fast-glob'
 
 export class ManifestParser {
+  config: IConfig
+  runtimePaths: IRuntimePaths
+
+  constructor(config: IConfig, runtimePaths: IRuntimePaths) {
+    this.config = config
+    this.runtimePaths = runtimePaths
+  }
   /**
    * Return paths of html files if config.output = "export"
    * @param exportFolder
@@ -36,34 +43,31 @@ export class ManifestParser {
     )
   }
 
-  async loadManifest(
-    config: IConfig,
-    runtimePaths: IRuntimePaths
-  ): Promise<INextManifest> {
+  async loadManifest(): Promise<INextManifest> {
     // Load build manifest
     const buildManifest = await loadJSON<IBuildManifest>(
-      runtimePaths.BUILD_MANIFEST
+      this.runtimePaths.BUILD_MANIFEST
     )!
 
     // Throw error if no build manifest exist
-    if (config?.output !== 'export' && !buildManifest) {
+    if (this.config?.output !== 'export' && !buildManifest) {
       throw Logger.noBuildManifest()
     }
 
     // Load pre-render manifest
     const preRenderManifest = await loadJSON<IPreRenderManifest>(
-      runtimePaths.PRERENDER_MANIFEST
+      this.runtimePaths.PRERENDER_MANIFEST
     )
 
     // Load routes manifest
     const routesManifest = await loadJSON<IRoutesManifest>(
-      runtimePaths.ROUTES_MANIFEST
+      this.runtimePaths.ROUTES_MANIFEST
     )
 
     // Get static export path when output is set as "export"
     const staticExportPages = await this.getStaticExportPages(
-      config,
-      runtimePaths.STATIC_EXPORT_ROOT
+      this.config,
+      this.runtimePaths.STATIC_EXPORT_ROOT
     )
 
     return {
