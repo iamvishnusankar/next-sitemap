@@ -14,7 +14,7 @@ const CardItem: React.FC<CardItemProps> = ({
   description,
 }) => {
   return (
-    <a href={href} target="_blank">
+    <a href={href} target="_blank" rel="noopener noreferrer">
       <h1 className="dark:text-neutral-300 dark:hover:text-white font-satoshiBold text-xl">
        {title}
       </h1>

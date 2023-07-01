@@ -1,8 +1,8 @@
+import { siteConfig } from "@/config/site";
 import Link from "next/link";
-import { Button } from "./components/blocks/Button";
 import CodeCopyButton from "./components/CodeCopyButton";
 import Icons from "./components/Icons";
-import { siteConfig } from "@/config/site";
+import { Button } from "./components/blocks/Button";
 
 async function getGitHubStars(): Promise<string | null> {
   try {
