@@ -1,8 +1,4 @@
-import { FC } from 'react'
-
-interface SocialIconsProps {}
-
-const SocialIcons: FC<SocialIconsProps> = ({}) => {
+const SocialIcons = () => {
   return (
     <>
       <div className="flex ">
@@ -11,6 +7,7 @@ const SocialIcons: FC<SocialIconsProps> = ({}) => {
           aria-label="Github Repo link"
           href="https://github.com/iamvishnusankar/next-sitemap"
           target="_blank"
+          rel="noopener noreferrer"
           className="px-3 pt-[6px] transition-all text-slate-950 hover:text-slate-900 dark:rotate-0 dark:scale-100 dark:text-slate-400 dark:hover:text-slate-100"
         >
           <svg
@@ -33,6 +30,7 @@ const SocialIcons: FC<SocialIconsProps> = ({}) => {
           aria-label="npm package page link"
           href="https://www.npmjs.com/package/next-sitemap"
           target="_blank"
+          rel="noopener noreferrer"
           className="px-3 pt-[4px] transition-all text-slate-950 hover:text-slate-900 dark:rotate-0 dark:scale-100 dark:text-slate-400 dark:hover:text-slate-100"
         >
           npm

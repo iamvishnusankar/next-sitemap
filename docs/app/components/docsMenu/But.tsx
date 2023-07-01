@@ -1,8 +1,7 @@
 'use client'
-import React, { useState, useCallback } from 'react'
-import { useRouter } from 'next/navigation'
-import MenuButton from './MenuButton'
+import { useCallback, useState } from 'react'
 import Icons from '../Icons'
+import MenuButton from './MenuButton'
 
 const But = () => {
   const [showMobileMenu, setShowMobileMenu] = useState(false)
@@ -10,7 +9,6 @@ const But = () => {
     setShowMobileMenu((current) => !current)
   }, [])
 
-  const router = useRouter()
   return (
     <nav className="w-full fixed z-10">
       <div className="flex flex-row items-center md:justify-between transition duration-500 bg-neutral-200 dark:bg-slate-900/50 backdrop-blur-sm shadow-sm pr-[2vw] lg:px-[4vw] 2xl:px-[10vw]">

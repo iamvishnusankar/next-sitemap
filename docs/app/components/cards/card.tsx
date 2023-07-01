@@ -1,10 +1,7 @@
-import { FC } from 'react'
 import CardItem from './cardItem'
 import { exampleData } from './data'
 
-interface cardProps {}
-
-const Card: FC<cardProps> = ({}) => {
+const Card = () => {
   return (
     <>
       {exampleData.map((data) => {

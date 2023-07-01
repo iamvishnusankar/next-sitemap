@@ -1,15 +1,14 @@
 'use client'
-import React from 'react'
-import { useRouter } from 'next/navigation'
-import { DocsSidebarNav } from '../sidebar-nav'
 import { docsConfig } from '@/config/docs'
+import React from 'react'
+import { DocsSidebarNav } from '../sidebar-nav'
 
 interface MenuButtonProps {
   visible?: boolean
 }
 
 const MenuButton: React.FC<MenuButtonProps> = ({ visible }) => {
-  const router = useRouter()
+
   if (!visible) {
     return null
   }
