@@ -1,0 +1,12 @@
+undecided:
+  - next-sitemap-workspace
+  - with-next-sitemap-amp
+  - with-next-app-dir
+  - basic
+  - commonjs
+  - custom-config-file
+  - with-custom-overrides
+  - with-custom-robots-txt-transformer
+  - with-no-index-sitemaps
+  - static-export
+  - with-next-sitemap-i18n
