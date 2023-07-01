@@ -1,13 +1,12 @@
 'use client'
-import React, { useState, useCallback, useEffect } from 'react'
+import { useRouter } from 'next/navigation'
+import { useCallback, useState } from 'react'
 import MobileMenu from './MobileMenu'
 import MenuItem from './NavbarItem'
-import { useRouter } from 'next/navigation'
 
-import { Menu } from 'lucide-react'
-import SocialIcons from '../blocks/SocialIcons'
-import { ThemeToggle } from '../ThemeToggle'
 import Icons from '../Icons'
+import { ThemeToggle } from '../ThemeToggle'
+import SocialIcons from '../blocks/SocialIcons'
 
 const Navbar = () => {
   const [showMobileMenu, setShowMobileMenu] = useState(false)

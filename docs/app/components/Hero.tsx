@@ -1,12 +1,9 @@
 'use client'
-import { FC } from 'react'
 import CodeCopyButton from './CodeCopyButton'
-import { Button } from './blocks/Button'
 import Icons from './Icons'
+import { Button } from './blocks/Button'
 
-interface HeroProps {}
-
-const Hero: FC<HeroProps> = ({}) => {
+const Hero = () => {
   return (
     <>
       <main className="flex bg-neutral-200 dark:bg-slate-900 relative min-h-[94.5vh] max-w-screen overflow-hidden flex-col items-center justify-center p-8 xl:p-24 max-md:mt-16">

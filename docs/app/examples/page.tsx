@@ -1,8 +1,7 @@
-import { FC } from 'react'
-import Card from '../components/cards/card'
 import { siteExampleConfig } from '@/config/site'
+import Card from '../components/cards/card'
 
-interface pageProps {}
+
 export const metadata = {
   title: 'next-sitemap - Examples',
   description: 'Examples where next-sitemap has been utilized.',
@@ -23,7 +22,7 @@ export const metadata = {
   },
 }
 
-const page: FC<pageProps> = ({}) => {
+const page = () => {
   return (
     <>
       <main className="flex bg-neutral-200 dark:bg-slate-900 relative min-h-[94.5vh] max-w-screen overflow-hidden flex-col items-center justify-center py-12 px-5 xl:p-24 2xl:px-56">

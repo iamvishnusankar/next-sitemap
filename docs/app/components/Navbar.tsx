@@ -3,7 +3,6 @@ import Link from 'next/link'
 import { ThemeToggle } from './ThemeToggle'
 import { buttonVariants } from './blocks/Button'
 import SocialIcons from './blocks/SocialIcons'
-import { useState } from 'react'
 
 const Navbar = async () => {
   return (
