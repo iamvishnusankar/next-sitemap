@@ -47,6 +47,7 @@ describe('next-sitemap/url', () => {
     expect(isNextInternalUrl('/about/_middleware')).toBeTruthy()
     expect(isNextInternalUrl('/some_url/about/_middleware')).toBeTruthy()
     expect(isNextInternalUrl('/projects/[id]/_middleware')).toBeTruthy()
+    expect(isNextInternalUrl('/favicon.ico')).toBeTruthy()
   })
 
   test('isNextInternalUrl: url params', () => {
