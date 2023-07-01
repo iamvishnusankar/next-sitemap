@@ -34,9 +34,7 @@ steps:
     displayName: 'Set Version'
     inputs:
       targetType: 'inline'
-      script: |
-        yarn set version stable
-        npm version --no-git-tag-version $BUILD_BUILDNUMBER --ws
+      script: npm version --no-git-tag-version $BUILD_BUILDNUMBER --ws
       # failOnStderr: true
 
   # Install
