@@ -13,16 +13,16 @@ export class CLI {
    */
   async main() {
     // Load config from `next-sitemap.config.js` along with runtimePaths info
-    const { config, runtimePaths } = await new ConfigParser().loadConfig()
+    const configParser = new ConfigParser()
+    const { config, runtimePaths } = await configParser.loadConfig()
 
     // Load next.js manifest
-    const manifest = await new ManifestParser().loadManifest(
-      config,
-      runtimePaths
-    )
+    const manifestParser = new ManifestParser(config, runtimePaths)
+    const manifest = await manifestParser.loadManifest()
 
     // Generate url set
-    const urlSet = await new UrlSetBuilder(config, manifest).createUrlSet()
+    const urlSetBuilder = new UrlSetBuilder(config, manifest)
+    const urlSet = await urlSetBuilder.createUrlSet()
 
     // Split sitemap into multiple files
     const chunks = toChunks(urlSet, config.sitemapSize!)
