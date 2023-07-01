@@ -11,7 +11,7 @@
     "packages": [
       "packages/*",
       "examples/*",
-       "docs"
+      "docs"
     ]
   },
   "scripts": {
@@ -32,5 +32,5 @@
     "ts-jest": "^29.1.0",
     "turbo": "^1.9.8"
   },
-  "packageManager": "yarn@3.5.1"
+  "packageManager": "yarn@3.6.1"
 }
