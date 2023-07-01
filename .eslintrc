@@ -1,5 +1,5 @@
 {
-  "extends": "@corex",
+  "extends": ["@corex","next", "next/core-web-vitals"],
   "rules": {
     "react/react-in-jsx-scope": "off"
   }
