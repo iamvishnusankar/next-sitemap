@@ -34,7 +34,7 @@ steps:
     displayName: 'Set Version'
     inputs:
       targetType: 'inline'
-      script: 'npm version --no-git-tag-version $BUILD_BUILDNUMBER --ws'
+      script: yarn workspaces foreach version $BUILD_BUILDNUMBER
       # failOnStderr: true
 
   # Install
