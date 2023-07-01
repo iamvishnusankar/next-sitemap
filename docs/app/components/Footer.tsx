@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC } from 'react'
 
 interface FooterProps {}
 
@@ -39,7 +39,7 @@ const Footer: FC<FooterProps> = ({}) => {
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer

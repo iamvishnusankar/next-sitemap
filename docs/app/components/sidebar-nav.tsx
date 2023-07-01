@@ -1,21 +1,21 @@
-"use client";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+'use client'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
-import { cn } from "@/lib/utils";
-import { SidebarNavItem } from "@/types";
+import { cn } from '@/lib/utils'
+import { SidebarNavItem } from '@/types'
 
 export interface DocsSidebarNavProps {
-  items: SidebarNavItem[];
+  items: SidebarNavItem[]
 }
 
 export function DocsSidebarNav({ items }: DocsSidebarNavProps) {
-  const pathname = usePathname();
+  const pathname = usePathname()
 
   return items.length ? (
     <div className="w-full">
       {items.map((item, index) => (
-        <div key={index} className={cn("pb-8")}>
+        <div key={index} className={cn('pb-8')}>
           <h4 className="mb-1 rounded-md px-2 py-1 text-sm font-satoshiBold">
             {item.title}
           </h4>
@@ -29,12 +29,12 @@ export function DocsSidebarNav({ items }: DocsSidebarNavProps) {
         </div>
       ))}
     </div>
-  ) : null;
+  ) : null
 }
 
 interface DocsSidebarNavItemsProps {
-  items: SidebarNavItem[];
-  pathname: string | null;
+  items: SidebarNavItem[]
+  pathname: string | null
 }
 
 export function DocsSidebarNavItems({
@@ -49,14 +49,14 @@ export function DocsSidebarNavItems({
             key={index}
             href={item.href}
             className={cn(
-              "flex w-full items-center rounded-md p-2 hover:underline text-slate-700 dark:text-slate-400 font-ranadeRegular",
+              'flex w-full items-center rounded-md p-2 hover:underline text-slate-700 dark:text-slate-400 font-ranadeRegular',
               {
-                "bg-neutral-300 text-blue-600 dark:bg-slate-800 dark:text-indigo-300":
+                'bg-neutral-300 text-blue-600 dark:bg-slate-800 dark:text-indigo-300':
                   pathname === item.href,
               }
             )}
-            target={item.external ? "_blank" : ""}
-            rel={item.external ? "noreferrer" : ""}
+            target={item.external ? '_blank' : ''}
+            rel={item.external ? 'noreferrer' : ''}
           >
             {item.title}
           </Link>
@@ -70,5 +70,5 @@ export function DocsSidebarNavItems({
         )
       )}
     </div>
-  ) : null;
+  ) : null
 }

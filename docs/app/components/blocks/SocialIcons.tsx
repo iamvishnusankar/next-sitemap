@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC } from 'react'
 
 interface SocialIconsProps {}
 
@@ -6,7 +6,7 @@ const SocialIcons: FC<SocialIconsProps> = ({}) => {
   return (
     <>
       <div className="flex ">
-        {" "}
+        {' '}
         <a
           aria-label="Github Repo link"
           href="https://github.com/iamvishnusankar/next-sitemap"
@@ -39,7 +39,7 @@ const SocialIcons: FC<SocialIconsProps> = ({}) => {
         </a>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default SocialIcons;
+export default SocialIcons

@@ -1,27 +1,27 @@
-import { FC } from "react";
-import Card from "../components/cards/card";
-import { siteExampleConfig } from "@/config/site";
+import { FC } from 'react'
+import Card from '../components/cards/card'
+import { siteExampleConfig } from '@/config/site'
 
 interface pageProps {}
 export const metadata = {
-  title: "next-sitemap - Examples",
-  description: "Examples where next-sitemap has been utilized.",
+  title: 'next-sitemap - Examples',
+  description: 'Examples where next-sitemap has been utilized.',
   openGraph: {
-    type: "website",
-    locale: "en_US",
+    type: 'website',
+    locale: 'en_US',
     url: siteExampleConfig.url,
     title: siteExampleConfig.name,
     description: siteExampleConfig.description,
     siteName: siteExampleConfig.name,
   },
   twitter: {
-    card: "summary_large_image",
+    card: 'summary_large_image',
     title: siteExampleConfig.name,
     description: siteExampleConfig.description,
     images: [`${siteExampleConfig.url}/examples.jpg`],
-    creator: "@iamvishnusankar",
+    creator: '@iamvishnusankar',
   },
-};
+}
 
 const page: FC<pageProps> = ({}) => {
   return (
@@ -43,7 +43,7 @@ const page: FC<pageProps> = ({}) => {
         </div>
       </main>
     </>
-  );
-};
+  )
+}
 
-export default page;
+export default page

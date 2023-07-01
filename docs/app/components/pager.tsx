@@ -1,12 +1,11 @@
-import Link from "next/link"
-import { Doc } from "contentlayer/generated"
+import Link from 'next/link'
+import { Doc } from 'contentlayer/generated'
 
-import { docsConfig } from "@/config/docs"
-import { cn } from "@/lib/utils"
+import { docsConfig } from '@/config/docs'
+import { cn } from '@/lib/utils'
 
-
-import { buttonVariants } from "./blocks/Button"
-import Icons from "./Icons"
+import { buttonVariants } from './blocks/Button'
+import Icons from './Icons'
 
 interface DocsPagerProps {
   doc: Doc
@@ -24,7 +23,7 @@ export function DocsPager({ doc }: DocsPagerProps) {
       {pager?.prev && (
         <Link
           href={pager.prev.href}
-          className={cn(buttonVariants({ variant: "ghost" }))}
+          className={cn(buttonVariants({ variant: 'ghost' }))}
         >
           <Icons.ChevronLeft className="mr-2 h-4 w-4" />
           {pager.prev.title}
@@ -33,7 +32,7 @@ export function DocsPager({ doc }: DocsPagerProps) {
       {pager?.next && (
         <Link
           href={pager.next.href}
-          className={cn(buttonVariants({ variant: "ghost" }), "ml-auto")}
+          className={cn(buttonVariants({ variant: 'ghost' }), 'ml-auto')}
         >
           {pager.next.title}
           <Icons.ChevronRight className="ml-2 h-4 w-4" />
@@ -61,6 +60,6 @@ export function getPagerForDoc(doc: Doc) {
 
 export function flatten(links: ({ items?: any[] } | any)[]): any[] {
   return links.reduce((flat, link) => {
-    return flat.concat(link.items ? flatten(link.items) : link);
-  }, []);
+    return flat.concat(link.items ? flatten(link.items) : link)
+  }, [])
 }

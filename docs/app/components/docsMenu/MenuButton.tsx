@@ -1,17 +1,17 @@
-"use client";
-import React from "react";
-import { useRouter } from "next/navigation";
-import { DocsSidebarNav } from "../sidebar-nav";
-import { docsConfig } from "@/config/docs";
+'use client'
+import React from 'react'
+import { useRouter } from 'next/navigation'
+import { DocsSidebarNav } from '../sidebar-nav'
+import { docsConfig } from '@/config/docs'
 
 interface MenuButtonProps {
-  visible?: boolean;
+  visible?: boolean
 }
 
 const MenuButton: React.FC<MenuButtonProps> = ({ visible }) => {
-  const router = useRouter();
+  const router = useRouter()
   if (!visible) {
-    return null;
+    return null
   }
 
   return (
@@ -21,7 +21,7 @@ const MenuButton: React.FC<MenuButtonProps> = ({ visible }) => {
         <hr />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default MenuButton;
+export default MenuButton
