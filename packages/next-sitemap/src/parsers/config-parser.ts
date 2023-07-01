@@ -77,6 +77,18 @@ export class ConfigParser {
   }
 
   /**
+   * Basic validation
+   * @param config
+   */
+  async validateConfig(config: IConfig) {
+    if (!config?.siteUrl) {
+      throw new Error('Validation error: Missing siteUrl')
+    }
+
+    return config
+  }
+
+  /**
    * Load full config
    * @returns
    */
@@ -89,6 +101,9 @@ export class ConfigParser {
 
     // Update base config with runtime config
     const config = await this.withRuntimeConfig(baseConfig, runtimePaths)
+
+    // Validate config
+    await this.validateConfig(config)
 
     // Return full result
     return {
