@@ -1,8 +1,8 @@
-import { siteConfig } from "@/config/site";
-import Link from "next/link";
+import { siteConfig } from '@/config/site'
+import Link from 'next/link'
 
 interface GithubStarsProps {
-  stars: string;
+  stars: string
 }
 
 const GithubStars: React.FC<GithubStarsProps> = ({ stars }) => {
@@ -37,7 +37,7 @@ const GithubStars: React.FC<GithubStarsProps> = ({ stars }) => {
         Proudly Open source. MIT license.
       </h1>
     </div>
-  );
-};
+  )
+}
 
-export default GithubStars;
+export default GithubStars

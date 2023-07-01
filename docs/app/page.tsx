@@ -1,38 +1,38 @@
-import { siteConfig } from "@/config/site";
-import Link from "next/link";
-import CodeCopyButton from "./components/CodeCopyButton";
-import Icons from "./components/Icons";
-import { Button } from "./components/blocks/Button";
+import { siteConfig } from '@/config/site'
+import Link from 'next/link'
+import CodeCopyButton from './components/CodeCopyButton'
+import Icons from './components/Icons'
+import { Button } from './components/blocks/Button'
 
 async function getGitHubStars(): Promise<string | null> {
   try {
     const response = await fetch(
-      "https://api.github.com/repos/iamvishnusankar/next-sitemap",
+      'https://api.github.com/repos/iamvishnusankar/next-sitemap',
       {
         headers: {
-          Accept: "application/vnd.github+json",
+          Accept: 'application/vnd.github+json',
           Authorization: `Bearer ${process.env.GITHUB_ACCESS_TOKEN}`,
         },
         next: {
           revalidate: 60,
         },
       }
-    );
+    )
 
     if (!response?.ok) {
-      return null;
+      return null
     }
 
-    const json = await response.json();
+    const json = await response.json()
 
-    return parseInt(json["stargazers_count"]).toLocaleString();
+    return parseInt(json['stargazers_count']).toLocaleString()
   } catch (error) {
-    return null;
+    return null
   }
 }
 
 export default async function Home() {
-  const stars = await getGitHubStars();
+  const stars = await getGitHubStars()
   return (
     <>
       <main className="flex bg-neutral-200 dark:bg-slate-900 relative min-h-[94.5vh] max-w-screen overflow-hidden flex-col items-center justify-center py-8 px-5 xl:p-24 ">
@@ -41,14 +41,14 @@ export default async function Home() {
             Sitemap generator for Next.js application
           </div>
           <h1 className="mt-5 pb-3 lg:mt-10 font-satoshiBlack text-4xl md:text-5xl lg:text-6xl dark:bg-gradient-to-tl dark:from-indigo-900 dark:to-purple-500 bg-clip-text text-transparent bg-gradient-to-bl from-slate-900 to-gray-500">
-            Effortlessly generate{" "}
+            Effortlessly generate{' '}
             <span className="bg-gradient-to-r bg-clip-text text-transparent from-yellow-500 via-pink-500 to-orange-500 dark:from-yellow-500 dark:via-purple-500 dark:to-red-500 animate-text">
               sitemaps
-            </span>{" "}
-            and{" "}
+            </span>{' '}
+            and{' '}
             <span className="bg-gradient-to-r bg-clip-text text-transparent from-yellow-500 via-pink-500 to-orange-500 dark:from-yellow-500 dark:via-purple-500 dark:to-red-500 animate-text">
               robots.txt
-            </span>{" "}
+            </span>{' '}
             for your Next.js application
           </h1>
           <div className="mx-auto flex max-w-[58rem] flex-col items-center justify-center gap-4 text-center mt-10">
@@ -92,5 +92,5 @@ export default async function Home() {
         </div>
       </main>
     </>
-  );
+  )
 }

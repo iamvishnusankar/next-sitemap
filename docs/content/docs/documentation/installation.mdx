@@ -20,11 +20,12 @@ Create your `next-sitemap.config.js` file under your project root.
 ```javascript
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: process.env.SITE_URL || "https://example.com",
+  siteUrl: process.env.SITE_URL || 'https://example.com',
   generateRobotsTxt: true, // (optional)
   // ...other options
-};
+}
 ```
+
 ### Step 3: Building sitemaps
 
 Add next-sitemap as your postbuild script
@@ -35,6 +36,7 @@ Add next-sitemap as your postbuild script
   "postbuild": "next-sitemap"
 }
 ```
+
 ### Custom config file
 
 You can also use a custom config file instead of `next-sitemap.config.js`. Just pass `--config <your-config-file>.js` to build command (Example: [custom-config-file](https://github.com/iamvishnusankar/next-sitemap/tree/master/examples/custom-config-file))

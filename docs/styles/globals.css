@@ -3,80 +3,80 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: "Satoshi-Medium";
-  src: url("../assets/fonts/Satoshi-Medium.woff2") format("woff2"),
-    url("../assets/fonts/Satoshi-Medium.woff") format("woff"),
-    url("../assets/fonts/Satoshi-Medium.ttf") format("truetype");
+  font-family: 'Satoshi-Medium';
+  src: url('../assets/fonts/Satoshi-Medium.woff2') format('woff2'),
+    url('../assets/fonts/Satoshi-Medium.woff') format('woff'),
+    url('../assets/fonts/Satoshi-Medium.ttf') format('truetype');
   font-weight: 500;
   font-display: swap;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Satoshi-Bold";
-  src: url("../assets/fonts/Satoshi-Bold.woff2") format("woff2"),
-    url("../assets/fonts/Satoshi-Bold.woff") format("woff"),
-    url("../assets/fonts/Satoshi-Bold.ttf") format("truetype");
+  font-family: 'Satoshi-Bold';
+  src: url('../assets/fonts/Satoshi-Bold.woff2') format('woff2'),
+    url('../assets/fonts/Satoshi-Bold.woff') format('woff'),
+    url('../assets/fonts/Satoshi-Bold.ttf') format('truetype');
   font-weight: 700;
   font-display: swap;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Satoshi-Black";
-  src: url("../assets/fonts/Satoshi-Black.woff2") format("woff2"),
-    url("../assets/fonts/Satoshi-Black.woff") format("woff"),
-    url("../assets/fonts/Satoshi-Black.ttf") format("truetype");
+  font-family: 'Satoshi-Black';
+  src: url('../assets/fonts/Satoshi-Black.woff2') format('woff2'),
+    url('../assets/fonts/Satoshi-Black.woff') format('woff'),
+    url('../assets/fonts/Satoshi-Black.ttf') format('truetype');
   font-weight: 900;
   font-display: swap;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Ranade-Light";
-  src: url("../assets/fonts/Ranade-Light.woff2") format("woff2"),
-    url("../assets/fonts/Ranade-Light.woff") format("woff"),
-    url("../assets/fonts/Ranade-Light.ttf") format("truetype");
+  font-family: 'Ranade-Light';
+  src: url('../assets/fonts/Ranade-Light.woff2') format('woff2'),
+    url('../assets/fonts/Ranade-Light.woff') format('woff'),
+    url('../assets/fonts/Ranade-Light.ttf') format('truetype');
   font-weight: 300;
   font-display: swap;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Ranade-LightItalic";
-  src: url("../assets/fonts/Ranade-LightItalic.woff2") format("woff2"),
-    url("../assets/fonts/Ranade-LightItalic.woff") format("woff"),
-    url("../assets/fonts/Ranade-LightItalic.ttf") format("truetype");
+  font-family: 'Ranade-LightItalic';
+  src: url('../assets/fonts/Ranade-LightItalic.woff2') format('woff2'),
+    url('../assets/fonts/Ranade-LightItalic.woff') format('woff'),
+    url('../assets/fonts/Ranade-LightItalic.ttf') format('truetype');
   font-weight: 300;
   font-display: swap;
   font-style: italic;
 }
 
 @font-face {
-  font-family: "Ranade-Regular";
-  src: url("../assets/fonts/Ranade-Regular.woff2") format("woff2"),
-    url("../assets/fonts/Ranade-Regular.woff") format("woff"),
-    url("../assets/fonts/Ranade-Regular.ttf") format("truetype");
+  font-family: 'Ranade-Regular';
+  src: url('../assets/fonts/Ranade-Regular.woff2') format('woff2'),
+    url('../assets/fonts/Ranade-Regular.woff') format('woff'),
+    url('../assets/fonts/Ranade-Regular.ttf') format('truetype');
   font-weight: 400;
   font-display: swap;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Ranade-Italic";
-  src: url("../assets/fonts/Ranade-Italic.woff2") format("woff2"),
-    url("../assets/fonts/Ranade-Italic.woff") format("woff"),
-    url("../assets/fonts/Ranade-Italic.ttf") format("truetype");
+  font-family: 'Ranade-Italic';
+  src: url('../assets/fonts/Ranade-Italic.woff2') format('woff2'),
+    url('../assets/fonts/Ranade-Italic.woff') format('woff'),
+    url('../assets/fonts/Ranade-Italic.ttf') format('truetype');
   font-weight: 400;
   font-display: swap;
   font-style: italic;
 }
 
 @font-face {
-  font-family: "Ranade-Medium";
-  src: url("../assets/fonts/Ranade-Medium.woff2") format("woff2"),
-    url("../assets/fonts/Ranade-Medium.woff") format("woff"),
-    url("../assets/fonts/Ranade-Medium.ttf") format("truetype");
+  font-family: 'Ranade-Medium';
+  src: url('../assets/fonts/Ranade-Medium.woff2') format('woff2'),
+    url('../assets/fonts/Ranade-Medium.woff') format('woff'),
+    url('../assets/fonts/Ranade-Medium.ttf') format('truetype');
   font-weight: 500;
   font-display: swap;
   font-style: normal;
