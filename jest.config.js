@@ -1,6 +1,8 @@
 import reporter from '@corex/jest/reporter.js'
+
 process.env.TZ = 'UTC'
-export default {
+
+const config = {
   ...reporter,
   verbose: true,
   preset: 'ts-jest',
@@ -12,3 +14,5 @@ export default {
     '!**/vendor/**',
   ],
 }
+
+export default config
