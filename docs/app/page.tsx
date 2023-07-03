@@ -4,7 +4,7 @@ import CodeCopyButton from './components/CodeCopyButton'
 import Icons from './components/Icons'
 import { Button } from './components/blocks/Button'
 
-// const runtime = 'edge'
+// export const runtime = 'edge'
 
 async function getGitHubStars(): Promise<string | null> {
   try {
@@ -14,9 +14,6 @@ async function getGitHubStars(): Promise<string | null> {
         headers: {
           Accept: 'application/vnd.github+json',
           Authorization: `Bearer ${process.env.GITHUB_ACCESS_TOKEN}`,
-        },
-        next: {
-          revalidate: 60,
         },
       }
     )

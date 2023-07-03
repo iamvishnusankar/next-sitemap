@@ -4,10 +4,12 @@ import '../styles/globals.css'
 import { siteConfig } from '@/config/site'
 import Navbar from './components/Navbar/Navbar'
 import { Toaster } from '@/app/components/ui/Toaster'
+import type { Metadata } from 'next'
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'next-sitemap',
   description: 'Sitemap generator for Next.js application.',
+  metadataBase: new URL(siteConfig.url),
   openGraph: {
     type: 'website',
     locale: 'en_US',
@@ -20,7 +22,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: siteConfig.name,
     description: siteConfig.description,
-    images: [`${siteConfig.url}/og.jpg`],
+    images: [`/og.jpg`],
     creator: '@iamvishnusankar',
   },
 }

@@ -12,7 +12,7 @@ import { Metadata } from 'next'
 
 import { Mdx } from '@/app/components/mdx-components'
 import { absoluteUrl } from '@/lib/utils'
-import { env } from 'process'
+import { siteConfig } from '@/config/site'
 
 interface DocPageProps {
   params: {
@@ -40,9 +40,7 @@ export async function generateMetadata({
     return {}
   }
 
-  const url = env.NEXT_PUBLIC_APP_URL
-
-  const ogUrl = new URL(`${url}/api/og`)
+  const ogUrl = new URL('/api/og', siteConfig.url)
   ogUrl.searchParams.set('heading', doc.title)
   ogUrl.searchParams.set('type', 'Documentation')
   ogUrl.searchParams.set('mode', 'dark')
@@ -57,7 +55,7 @@ export async function generateMetadata({
       url: absoluteUrl(doc.slug),
       images: [
         {
-          url: ogUrl.toString(),
+          url: ogUrl.href,
           width: 1200,
           height: 630,
           alt: doc.title,

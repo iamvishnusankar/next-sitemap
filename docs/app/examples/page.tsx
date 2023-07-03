@@ -1,13 +1,14 @@
 import { siteExampleConfig } from '@/config/site'
 import Card from '../components/cards/card'
+import type { Metadata } from 'next'
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'next-sitemap - Examples',
   description: 'Examples where next-sitemap has been utilized.',
+  alternates: { canonical: '/examples' },
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: siteExampleConfig.url,
     title: siteExampleConfig.name,
     description: siteExampleConfig.description,
     siteName: siteExampleConfig.name,
@@ -16,11 +17,13 @@ export const metadata = {
     card: 'summary_large_image',
     title: siteExampleConfig.name,
     description: siteExampleConfig.description,
-    images: [`${siteExampleConfig.url}/examples.jpg`],
+    images: [`/examples.jpg`],
     creator: '@iamvishnusankar',
   },
 }
+
 // export const runtime = 'edge'
+
 const page = () => {
   return (
     <>
