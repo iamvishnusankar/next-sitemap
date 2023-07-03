@@ -20,7 +20,7 @@ export const metadata = {
     creator: '@iamvishnusankar',
   },
 }
-
+// export const runtime = 'edge'
 const page = () => {
   return (
     <>
