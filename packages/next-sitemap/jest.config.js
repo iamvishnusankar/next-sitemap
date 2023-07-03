@@ -1,5 +1,7 @@
 import preset from '@corex/jest'
 
-export default {
+const config = {
   ...preset,
 }
+
+export default config
