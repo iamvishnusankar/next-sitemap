@@ -4,6 +4,8 @@ import CodeCopyButton from './components/CodeCopyButton'
 import Icons from './components/Icons'
 import { Button } from './components/blocks/Button'
 
+// const runtime = 'edge'
+
 async function getGitHubStars(): Promise<string | null> {
   try {
     const response = await fetch(
