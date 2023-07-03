@@ -1,0 +1,21 @@
+---
+title: Index sitemaps (Optional)
+description: How to setup index sitemap with next-sitemap.
+---
+
+📣 From `next-sitemap` v2.x onwards, `sitemap.xml` will be [Index Sitemap](https://developers.google.com/search/docs/advanced/sitemaps/large-sitemaps). It will contain urls of all other generated sitemap endpoints.
+
+Index sitemap generation can be turned off by setting `generateIndexSitemap: false` in next-sitemap config file. (This is useful for small/hobby sites which does not require an index sitemap) (Example: [no-index-sitemaps](https://github.com/iamvishnusankar/next-sitemap/tree/master/examples/no-index-sitemaps))
+
+## Splitting large sitemap into multiple files
+
+Define the `sitemapSize` property in `next-sitemap.config.js` to split large sitemap into multiple files.
+
+```js
+/** @type {import('next-sitemap').IConfig} */
+module.exports = {
+  siteUrl: 'https://example.com',
+  generateRobotsTxt: true,
+  sitemapSize: 7000,
+}
+```

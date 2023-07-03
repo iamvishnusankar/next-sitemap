@@ -1,0 +1,90 @@
+---
+title: Full configuration example
+description: An example with all the options.
+---
+
+Here's an example `next-sitemap.config.js` configuration with all options
+
+```js
+/** @type {import('next-sitemap').IConfig} */
+
+module.exports = {
+  siteUrl: 'https://example.com',
+  changefreq: 'daily',
+  priority: 0.7,
+  sitemapSize: 5000,
+  generateRobotsTxt: true,
+  exclude: ['/protected-page', '/awesome/secret-page'],
+  alternateRefs: [
+    {
+      href: 'https://es.example.com',
+      hreflang: 'es',
+    },
+    {
+      href: 'https://fr.example.com',
+      hreflang: 'fr',
+    },
+  ],
+  // Default transformation function
+  transform: async (config, path) => {
+    return {
+      loc: path, // => this will be exported as http(s)://<config.siteUrl>/<path>
+      changefreq: config.changefreq,
+      priority: config.priority,
+      lastmod: config.autoLastmod ? new Date().toISOString() : undefined,
+      alternateRefs: config.alternateRefs ?? [],
+    }
+  },
+  additionalPaths: async (config) => [
+    await config.transform(config, '/additional-page'),
+  ],
+  robotsTxtOptions: {
+    policies: [
+      {
+        userAgent: '*',
+        allow: '/',
+      },
+      {
+        userAgent: 'test-bot',
+        allow: ['/path', '/path-2'],
+      },
+      {
+        userAgent: 'black-listed-bot',
+        disallow: ['/sub-path-1', '/path-2'],
+      },
+    ],
+    additionalSitemaps: [
+      'https://example.com/my-custom-sitemap-1.xml',
+      'https://example.com/my-custom-sitemap-2.xml',
+      'https://example.com/my-custom-sitemap-3.xml',
+    ],
+  },
+}
+```
+
+Above configuration will generate sitemaps based on your project and a `robots.txt` like this.
+
+```txt
+# *
+User-agent: *
+Allow: /
+
+# test-bot
+User-agent: test-bot
+Allow: /path
+Allow: /path-2
+
+# black-listed-bot
+User-agent: black-listed-bot
+Disallow: /sub-path-1
+Disallow: /path-2
+
+# Host
+Host: https://example.com
+
+# Sitemaps
+Sitemap: https://example.com/sitemap.xml # Index sitemap
+Sitemap: https://example.com/my-custom-sitemap-1.xml
+Sitemap: https://example.com/my-custom-sitemap-2.xml
+Sitemap: https://example.com/my-custom-sitemap-3.xml
+```
