@@ -10,7 +10,8 @@
   "workspaces": {
     "packages": [
       "packages/*",
-      "examples/*"
+      "examples/*",
+      "docs"
     ]
   },
   "scripts": {
@@ -26,10 +27,11 @@
   "devDependencies": {
     "@corex/workspace": "^4.0.43",
     "eslint": "^8.41.0",
+    "eslint-config-next": "^13.4.7",
     "jest": "^29.5.0",
     "prettier": "^2.8.8",
     "ts-jest": "^29.1.0",
     "turbo": "^1.9.8"
   },
-  "packageManager": "yarn@3.5.1"
+  "packageManager": "yarn@3.6.1"
 }
