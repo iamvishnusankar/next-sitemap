@@ -17,7 +17,7 @@ export class SitemapBuilder {
    * @returns
    */
   withXMLTemplate(content: string): string {
-    return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">\n${content}</urlset>`
+    return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="https://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="https://www.w3.org/1999/xhtml" xmlns:mobile="https://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="https://www.google.com/schemas/sitemap-image/1.1" xmlns:video="https://www.google.com/schemas/sitemap-video/1.1">\n${content}</urlset>`
   }
 
   /**
@@ -28,7 +28,7 @@ export class SitemapBuilder {
   buildSitemapIndexXml(allSitemaps: string[]) {
     return [
       '<?xml version="1.0" encoding="UTF-8"?>',
-      '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+      '<sitemapindex xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">',
       ...(allSitemaps?.map((x) => `<sitemap><loc>${x}</loc></sitemap>`) ?? []),
       '</sitemapindex>',
     ].join('\n')
