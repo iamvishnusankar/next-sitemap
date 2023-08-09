@@ -18,7 +18,7 @@ steps:
 
   # Set yarn version
   - task: Bash@3
-    displayName: 'Install'
+    displayName: 'Set yarn version'
     inputs:
       targetType: 'inline'
       script: 'yarn set version stable'
@@ -45,19 +45,19 @@ steps:
       targetType: 'inline'
       script: 'yarn install --immutable --immutable-cache'
 
-  # Build
-  - task: Bash@3
-    displayName: 'Build'
-    inputs:
-      targetType: 'inline'
-      script: 'yarn workspace next-sitemap build && yarn workspace next-sitemap postbuild'
-
   # Test
   - task: Bash@3
     displayName: 'Test'
     inputs:
       targetType: 'inline'
       script: 'yarn test --ci'
+
+  # Build
+  - task: Bash@3
+    displayName: 'Build'
+    inputs:
+      targetType: 'inline'
+      script: 'yarn workspace next-sitemap build && yarn workspace next-sitemap postbuild'
 
   # Copy README
   - task: Bash@3
