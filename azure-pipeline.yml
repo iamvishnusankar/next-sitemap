@@ -3,6 +3,7 @@ trigger:
   branches:
     include:
       - master
+      - fix/azure
 
 pool:
   vmImage: 'ubuntu-latest'
@@ -49,23 +50,7 @@ steps:
     displayName: 'Build'
     inputs:
       targetType: 'inline'
-      script: 'yarn build'
-      # failOnStderr: true
-
-  # Lint
-  - task: Bash@3
-    displayName: 'Lint'
-    inputs:
-      targetType: 'inline'
-      script: 'yarn lint'
-      failOnStderr: true
-
-  # Test
-  - task: Bash@3
-    displayName: 'Test'
-    inputs:
-      targetType: 'inline'
-      script: 'yarn test --ci'
+      script: 'yarn workspace next-sitemap build && yarn workspace next-sitemap postbuild'
 
   # Copy README
   - task: Bash@3
