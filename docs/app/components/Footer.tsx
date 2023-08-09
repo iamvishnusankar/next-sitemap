@@ -1,9 +1,9 @@
 const Footer = () => {
   return (
     <>
-      <div className="bg-neutral-200 dark:bg-slate-900  flex flex-col md:flex-row md:justify-evenly items-center p-3 border-t border-slate-300 dark:border-slate-700 text-sm font-ranadeLight">
-        <div className="flex flex-row max-md:flex-col items-center">
-          <p className=" px-2">
+      <div className="flex flex-col items-center p-3 text-sm border-t bg-neutral-200 dark:bg-slate-900 md:flex-row md:justify-evenly border-slate-300 dark:border-slate-700 font-ranadeLight">
+        <div className="flex flex-row items-center max-md:flex-col">
+          <p className="px-2 ">
             Created by:&nbsp;
             <a
               href="https://github.com/iamvishnusankar/next-sitemap/graphs/contributors"
@@ -14,7 +14,7 @@ const Footer = () => {
               Vishnu Sankar & Contributors.&nbsp;
             </a>
           </p>
-          <p className=" max-md:my-2 px-2">
+          <p className="px-2  max-md:my-2">
             Font From:&nbsp;
             <a
               href="https://www.fontshare.com/"
@@ -26,9 +26,9 @@ const Footer = () => {
             </a>
           </p>
         </div>
-        <div className=" flex flex-col md:flex-row items-center mb:4">
+        <div className="flex flex-col items-center  md:flex-row mb:4">
           <a
-            href="https://github.com/iamvishnusankar/next-sitemap/docs"
+            href="https://github.com/iamvishnusankar/next-sitemap/tree/master/docs"
             target="_blank"
             className="text-slate-400 hover:underline hover:cursor-pointer hover:text-neutral-200"
             rel="noopener noreferrer"
