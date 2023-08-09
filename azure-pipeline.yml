@@ -52,6 +52,13 @@ steps:
       targetType: 'inline'
       script: 'yarn workspace next-sitemap build && yarn workspace next-sitemap postbuild'
 
+  # Test
+  - task: Bash@3
+    displayName: 'Test'
+    inputs:
+      targetType: 'inline'
+      script: 'yarn test --ci'
+
   # Copy README
   - task: Bash@3
     displayName: 'Copy README'
