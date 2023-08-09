@@ -4,6 +4,19 @@
       "dependsOn": ["^build"],
       "outputs": ["dist/**", ".next/**"]
     },
+    "postbuild": {
+      "dependsOn": ["^postbuild"],
+      "outputs": [
+        "dist/**",
+        ".next/**",
+        "public/robots.txt",
+        "public/sitemap*.xml"
+      ]
+    },
+    "deploy": {
+      "dependsOn": ["build", "postbuild"],
+      "outputs": ["dist/**", ".next/**"]
+    },
     "lint": {
       "outputs": []
     },
