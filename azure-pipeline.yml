@@ -1,10 +1,8 @@
-name: 4.1$(rev:.r)
+name: 4.2$(rev:.r)
 trigger:
   branches:
     include:
       - master
-      - fix/azure
-
 pool:
   vmImage: 'ubuntu-latest'
   demands: npm
