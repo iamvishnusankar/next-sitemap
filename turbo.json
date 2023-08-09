@@ -15,7 +15,7 @@
     },
     "deploy": {
       "dependsOn": ["build", "postbuild"],
-      "outputs": ["dist/**", ".next/**"]
+      "outputs": []
     },
     "lint": {
       "outputs": []
