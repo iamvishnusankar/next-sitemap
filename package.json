@@ -18,7 +18,7 @@
     "clean": "tsc --build --clean",
     "dev:test": "jest --watchAll",
     "dev:tsc": "tsc --build --watch",
-    "build": "turbo run build --force",
+    "build": "turbo run deploy --force",
     "test": "jest --ci --coverage --verbose",
     "lint": "eslint . && yarn prettier:check",
     "prettier:check": "prettier --check \"**/*.{js,mjs,cjs,jsx,json,ts,tsx,md,mdx,css,html,yml,yaml,scss,less,graphql,graphqls,gql}\"",
