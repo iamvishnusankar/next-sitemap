@@ -37,7 +37,7 @@ export class ManifestParser {
     return htmlFiles?.map((file) =>
       file
         .replace(exportFolder, '')
-        .replace('index', '')
+        .replace(/(^|\/)index($|\.)/, '$1$2')
         .replace('.html', '')
         .trim()
     )
