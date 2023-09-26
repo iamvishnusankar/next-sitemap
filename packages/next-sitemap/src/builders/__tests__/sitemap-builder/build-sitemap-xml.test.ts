@@ -1,4 +1,5 @@
 import { SitemapBuilder } from '../../sitemap-builder.js'
+import { XMLValidator } from 'fast-xml-parser'
 
 describe('SitemapBuilder', () => {
   test('snapshot test to exclude undefined values from final sitemap', () => {
@@ -26,7 +27,8 @@ describe('SitemapBuilder', () => {
         ],
       },
     ])
-
+    const isValid = XMLValidator.validate(content)
+    expect(isValid).toBe(true)
     // Expect the generated sitemap to match snapshot.
     expect(content).toMatchInlineSnapshot(`
       "<?xml version="1.0" encoding="UTF-8"?>
@@ -52,7 +54,8 @@ describe('SitemapBuilder', () => {
         },
       },
     ])
-
+    const isValid = XMLValidator.validate(content)
+    expect(isValid).toBe(true)
     // Expect the generated sitemap to match snapshot.
     expect(content).toMatchInlineSnapshot(`
       "<?xml version="1.0" encoding="UTF-8"?>
@@ -83,12 +86,40 @@ describe('SitemapBuilder', () => {
         ],
       },
     ])
-
+    const isValid = XMLValidator.validate(content)
+    expect(isValid).toBe(true)
     // Expect the generated sitemap to match snapshot.
     expect(content).toMatchInlineSnapshot(`
       "<?xml version="1.0" encoding="UTF-8"?>
       <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
       <url><loc>https://example.com</loc><image:image><image:loc>https://example.com/</image:loc></image:image><image:image><image:loc>https://example.com/</image:loc><image:caption>Image caption &#38; description</image:caption><image:title>Image title</image:title><image:geo_location>Prague&#44; Czech Republic</image:geo_location><image:license>https://example.com/</image:license></image:image></url>
+      </urlset>"
+    `)
+  })
+
+  test('image sitemap generates correctly encoded results', () => {
+    // Builder instance
+    const builder = new SitemapBuilder()
+
+    // Build content
+    const content = builder.buildSitemapXml([
+      {
+        loc: 'https://example.com',
+        images: [
+          {
+            loc: new URL('https://example.com?ref=test&test=1'),
+          },
+        ],
+      },
+    ])
+
+    // Expect the generated sitemap to match snapshot.
+    const isValid = XMLValidator.validate(content)
+    expect(isValid).toBe(true)
+    expect(content).toMatchInlineSnapshot(`
+      "<?xml version="1.0" encoding="UTF-8"?>
+      <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+      <url><loc>https://example.com</loc><image:image><image:loc>https://example.com/?ref=test&amp;test=1</image:loc></image:image></url>
       </urlset>"
     `)
   })
@@ -139,7 +170,8 @@ describe('SitemapBuilder', () => {
         ],
       },
     ])
-
+    const isValid = XMLValidator.validate(content)
+    expect(isValid).toBe(true)
     // Expect the generated sitemap to match snapshot.
     expect(content).toMatchInlineSnapshot(`
       "<?xml version="1.0" encoding="UTF-8"?>
