@@ -252,7 +252,7 @@ export type IGoogleNewsEntry = {
 }
 
 export type IImageEntry = {
-  loc: URL
+  loc: URL | string
   caption?: string
   geoLocation?: string
   title?: string
