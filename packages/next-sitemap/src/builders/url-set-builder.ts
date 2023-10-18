@@ -74,6 +74,8 @@ export class UrlSetBuilder {
         ? Object.keys(this.manifest?.preRender?.routes ?? {})
         : []),
       ...(this.manifest?.staticExportPages ?? []),
+      ...(this.manifest?.routes?.staticRoutes.map((x) => x.page) ?? []),
+      ...(this.manifest?.routes?.dynamicRoutes.map((x) => x.page) ?? []),
     ]
 
     // Filter out next.js internal urls and generate urls based on sitemap
