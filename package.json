@@ -26,11 +26,10 @@
   },
   "devDependencies": {
     "@corex/workspace": "^4.0.43",
-    "eslint": "^8.41.0",
-    "eslint-config-next": "^13.4.7",
-    "fast-xml-parser": "^4.3.1",
-    "prettier": "^2.8.8",
-    "turbo": "^1.9.8"
-  },
-  "packageManager": "yarn@4.0.1"
+    "eslint": "^8.52.0",
+    "eslint-config-next": "^14.0.0",
+    "fast-xml-parser": "^4.3.2",
+    "prettier": "^3.0.3",
+    "turbo": "^1.10.16"
+  }
 }
