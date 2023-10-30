@@ -49,13 +49,13 @@
     "next-sitemap-cjs": "./bin/next-sitemap.cjs"
   },
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && tsc --module commonjs --outDir dist/cjs",
     "postbuild": "tsc --module commonjs --outDir dist/cjs"
   },
   "dependencies": {
     "@corex/deepmerge": "^4.0.43",
-    "@next/env": "^13.4.3",
-    "fast-glob": "^3.2.12",
+    "@next/env": "^13.5.6",
+    "fast-glob": "^3.3.1",
     "minimist": "^1.2.8"
   },
   "peerDependencies": {
