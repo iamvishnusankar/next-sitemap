@@ -69,3 +69,4 @@ tsconfig.tsbuildinfo
 **/public/*.xml
 **/public/*.txt
 .idea
+.turbo/cookies
