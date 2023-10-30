@@ -25,21 +25,22 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
 
+      - name: Setup bun
+        uses: oven-sh/setup-bun@v1
+
       - name: Install
-        run: |
-          yarn set version stable
-          yarn install --immutable
+        run: bun install --immutable
 
       - name: Lint
-        run: yarn lint
+        run: bun run lint
 
       - name: Test
-        run: yarn test
+        run: bun run test
         env:
           CI: true
           NEXT_TELEMETRY_DISABLED: 1
 
       - name: Build
-        run: yarn build
+        run: bun run build
         env:
           NEXT_TELEMETRY_DISABLED: 1
