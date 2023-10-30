@@ -16,16 +16,16 @@ describe('UrlSetBuilder', () => {
     // Normalize field
     const normalizedField = builder.normalizeSitemapField({
       changefreq: 'daily',
-      lastmod: expect.any(String),
+      lastmod: '2021-08-01T00:00:00.000Z',
       priority: 0.7,
       loc: '/page-2',
       alternateRefs: [],
     })
 
     expect(normalizedField).toStrictEqual({
-      alternateRefs: expect.any(Array),
+      alternateRefs: [],
       changefreq: 'daily',
-      lastmod: expect.any(String),
+      lastmod: '2021-08-01T00:00:00.000Z',
       loc: 'https://example.com/page-2',
       priority: 0.7,
       trailingSlash: false,
@@ -45,7 +45,7 @@ describe('UrlSetBuilder', () => {
     // Normalize field
     const normalizedField = builder.normalizeSitemapField({
       changefreq: 'daily',
-      lastmod: expect.any(String),
+      lastmod: '2021-08-01T00:00:00.000Z',
       priority: 0.7,
       loc: '/page-2',
       alternateRefs: [],
@@ -53,9 +53,9 @@ describe('UrlSetBuilder', () => {
     })
 
     expect(normalizedField).toStrictEqual({
-      alternateRefs: expect.any(Array),
+      alternateRefs: [],
       changefreq: 'daily',
-      lastmod: expect.any(String),
+      lastmod: '2021-08-01T00:00:00.000Z',
       loc: 'https://example.com/page-2/',
       priority: 0.7,
       trailingSlash: true,

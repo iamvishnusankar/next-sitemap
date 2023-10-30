@@ -594,34 +594,80 @@ describe('UrlSetBuilder', () => {
   test('createUrlSet: With next i18n enabled', async () => {
     const builder = new UrlSetBuilder(sampleConfig, sampleI18nManifest)
 
-    await expect(builder.createUrlSet()).resolves.toStrictEqual([
-      expect.objectContaining({
+    const actual = await builder.createUrlSet()
+    expect(actual).toStrictEqual([
+      {
         loc: 'https://example.com',
-      }),
-      expect.objectContaining({
+        lastmod: expect.any(String),
+        changefreq: 'daily',
+        priority: 0.7,
+        alternateRefs: [],
+        trailingSlash: false,
+      },
+      {
         loc: 'https://example.com/about',
-      }),
-      expect.objectContaining({
+        lastmod: expect.any(String),
+        changefreq: 'daily',
+        priority: 0.7,
+        alternateRefs: [],
+        trailingSlash: false,
+      },
+      {
         loc: 'https://example.com/fr',
-      }),
-      expect.objectContaining({
+        lastmod: expect.any(String),
+        changefreq: 'daily',
+        priority: 0.7,
+        alternateRefs: [],
+        trailingSlash: false,
+      },
+      {
         loc: 'https://example.com/fr/about',
-      }),
-      expect.objectContaining({
+        lastmod: expect.any(String),
+        changefreq: 'daily',
+        priority: 0.7,
+        alternateRefs: [],
+        trailingSlash: false,
+      },
+      {
         loc: 'https://example.com/page-0',
-      }),
-      expect.objectContaining({
+        lastmod: expect.any(String),
+        changefreq: 'daily',
+        priority: 0.7,
+        alternateRefs: [],
+        trailingSlash: false,
+      },
+      {
         loc: 'https://example.com/page-1',
-      }),
-      expect.objectContaining({
+        lastmod: expect.any(String),
+        changefreq: 'daily',
+        priority: 0.7,
+        alternateRefs: [],
+        trailingSlash: false,
+      },
+      {
         loc: 'https://example.com/page-2',
-      }),
-      expect.objectContaining({
+        lastmod: expect.any(String),
+        changefreq: 'daily',
+        priority: 0.7,
+        alternateRefs: [],
+        trailingSlash: false,
+      },
+      {
         loc: 'https://example.com/fr/page-2',
-      }),
-      expect.objectContaining({
+        lastmod: expect.any(String),
+        changefreq: 'daily',
+        priority: 0.7,
+        alternateRefs: [],
+        trailingSlash: false,
+      },
+      {
         loc: 'https://example.com/page-3',
-      }),
+        lastmod: expect.any(String),
+        changefreq: 'daily',
+        priority: 0.7,
+        alternateRefs: [],
+        trailingSlash: false,
+      },
     ])
   })
 
