@@ -122,7 +122,7 @@ export class SitemapBuilder {
           if (field[key]) {
             if (key === 'alternateRefs') {
               const altRefField = this.buildAlternateRefsXml(
-                field.alternateRefs
+                field.alternateRefs,
               )
 
               fieldArr.push(altRefField)
@@ -189,7 +189,7 @@ export class SitemapBuilder {
         ],
         `</news:publication>`,
         `<news:publication_date>${this.formatDate(
-          news.date
+          news.date,
         )}</news:publication_date>`,
         `<news:title>${this.escapeHtml(news.title)}</news:title>`,
       ],
@@ -213,7 +213,7 @@ export class SitemapBuilder {
       `<image:image>`,
       ...[
         `<image:loc>${entityEscapedUrl(
-          typeof image.loc === 'string' ? image.loc : image.loc.href
+          typeof image.loc === 'string' ? image.loc : image.loc.href,
         )}</image:loc>`,
         image.caption &&
           `<image:caption>${this.escapeHtml(image.caption)}</image:caption>`,
@@ -221,11 +221,11 @@ export class SitemapBuilder {
           `<image:title>${this.escapeHtml(image.title)}</image:title>`,
         image.geoLocation &&
           `<image:geo_location>${this.escapeHtml(
-            image.geoLocation
+            image.geoLocation,
           )}</image:geo_location>`,
         image.license &&
           `<image:license>${entityEscapedUrl(
-            image.license.href
+            image.license.href,
           )}</image:license>`,
       ],
       `</image:image>`,
@@ -246,18 +246,18 @@ export class SitemapBuilder {
       ...[
         `<video:title>${this.escapeHtml(video.title)}</video:title>`,
         `<video:thumbnail_loc>${entityEscapedUrl(
-          video.thumbnailLoc.href
+          video.thumbnailLoc.href,
         )}</video:thumbnail_loc>`,
         `<video:description>${this.escapeHtml(
-          video.description
+          video.description,
         )}</video:description>`,
         video.contentLoc &&
           `<video:content_loc>${entityEscapedUrl(
-            video.contentLoc.href
+            video.contentLoc.href,
           )}</video:content_loc>`,
         video.playerLoc &&
           `<video:player_loc>${entityEscapedUrl(
-            video.playerLoc.href
+            video.playerLoc.href,
           )}</video:player_loc>`,
         video.duration && `<video:duration>${video.duration}</video:duration>`,
         video.viewCount &&
@@ -269,19 +269,19 @@ export class SitemapBuilder {
             .replace(',', '.')}</video:rating>`,
         video.expirationDate &&
           `<video:expiration_date>${this.formatDate(
-            video.expirationDate
+            video.expirationDate,
           )}</video:expiration_date>`,
         video.publicationDate &&
           `<video:publication_date>${this.formatDate(
-            video.publicationDate
+            video.publicationDate,
           )}</video:publication_date>`,
         typeof video.familyFriendly !== 'undefined' &&
           `<video:family_friendly>${this.formatBoolean(
-            video.familyFriendly
+            video.familyFriendly,
           )}</video:family_friendly>`,
         typeof video.requiresSubscription !== 'undefined' &&
           `<video:requires_subscription>${this.formatBoolean(
-            video.requiresSubscription
+            video.requiresSubscription,
           )}</video:requires_subscription>`,
         typeof video.live !== 'undefined' &&
           `<video:live>${this.formatBoolean(video.live)}</video:live>`,

@@ -13,7 +13,7 @@ export class ConfigParser {
    */
   private async getRuntimeConfig(
     config: IConfig,
-    runtimePaths: IRuntimePaths
+    runtimePaths: IRuntimePaths,
   ): Promise<Partial<IConfig>> {
     // Skip export marker loading if output is set to "export"
     if (config?.output === 'export') {
@@ -22,7 +22,7 @@ export class ConfigParser {
 
     // Load export marker
     const exportMarkerConfig = await loadJSON<IExportMarker>(
-      runtimePaths.EXPORT_MARKER
+      runtimePaths.EXPORT_MARKER,
     ).catch((err) => {
       Logger.noExportMarker()
       throw err
@@ -41,7 +41,7 @@ export class ConfigParser {
    */
   private async withRuntimeConfig(
     config: IConfig,
-    runtimePaths: IRuntimePaths
+    runtimePaths: IRuntimePaths,
   ): Promise<IConfig> {
     // Runtime configs
     const runtimeConfig = await this.getRuntimeConfig(config, runtimePaths)

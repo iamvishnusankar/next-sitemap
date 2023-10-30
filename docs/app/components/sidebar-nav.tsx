@@ -53,7 +53,7 @@ export function DocsSidebarNavItems({
               {
                 'bg-neutral-300 text-blue-600 dark:bg-slate-800 dark:text-indigo-300':
                   pathname === item.href,
-              }
+              },
             )}
             target={item.external ? '_blank' : ''}
             rel={item.external ? 'noreferrer' : ''}
@@ -67,7 +67,7 @@ export function DocsSidebarNavItems({
           >
             {item.title}
           </span>
-        )
+        ),
       )}
     </div>
   ) : null

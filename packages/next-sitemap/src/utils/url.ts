@@ -17,7 +17,7 @@ export const generateUrl = (baseUrl: string, slug: string): string => {
  */
 export const isNextInternalUrl = (path: string): boolean => {
   return new RegExp(
-    /[^/]*^.[_]|^\/(404|500)$|\/_middleware$|favicon.ico|(?:\[)/g
+    /[^/]*^.[_]|^\/(404|500)$|\/_middleware$|favicon.ico|(?:\[)/g,
   ).test(path)
 }
 

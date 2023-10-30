@@ -8,7 +8,7 @@ import type { GetServerSidePropsContext } from 'next'
  */
 export const withXMLResponseLegacy = (
   ctx: GetServerSidePropsContext,
-  content: string
+  content: string,
 ) => {
   if (ctx?.res) {
     const { res } = ctx

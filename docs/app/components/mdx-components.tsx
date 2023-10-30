@@ -12,7 +12,7 @@ const components = {
     <h1
       className={cn(
         'mt-2 scroll-m-20 text-4xl font-satoshiBold tracking-tight',
-        className
+        className,
       )}
       {...props}
     />
@@ -21,7 +21,7 @@ const components = {
     <h2
       className={cn(
         'mt-10 scroll-m-20 border-b border-slate-800 dark:border-neutral-300 pb-1 text-3xl font-satoshiMedium tracking-tight first:mt-0',
-        className
+        className,
       )}
       {...props}
     />
@@ -30,7 +30,7 @@ const components = {
     <h3
       className={cn(
         'mt-8 scroll-m-20 text-2xl font-satoshiMedium tracking-tight',
-        className
+        className,
       )}
       {...props}
     />
@@ -39,7 +39,7 @@ const components = {
     <h4
       className={cn(
         'mt-8 scroll-m-20 text-xl font-satoshiMedium tracking-tight',
-        className
+        className,
       )}
       {...props}
     />
@@ -48,7 +48,7 @@ const components = {
     <h5
       className={cn(
         'mt-8 scroll-m-20 text-lg font-satoshiMedium tracking-tight',
-        className
+        className,
       )}
       {...props}
     />
@@ -57,7 +57,7 @@ const components = {
     <h6
       className={cn(
         'mt-8 scroll-m-20 text-base font-satoshiMedium tracking-tight',
-        className
+        className,
       )}
       {...props}
     />
@@ -72,7 +72,7 @@ const components = {
     <p
       className={cn(
         'leading-7 [&:not(:first-child)]:mt-6 font-ranadeRegular',
-        className
+        className,
       )}
       {...props}
     />
@@ -96,7 +96,7 @@ const components = {
     <blockquote
       className={cn(
         'mt-6 border-l-2 pl-6 [&>*]:text-muted-foreground',
-        className
+        className,
       )}
       {...props}
     />
@@ -119,7 +119,7 @@ const components = {
     <tr
       className={cn(
         'm-0 border-t p-0 even:bg-neutral-300 dark:even:bg-slate-950',
-        className
+        className,
       )}
       {...props}
     />
@@ -128,7 +128,7 @@ const components = {
     <th
       className={cn(
         'border border-slate-800 dark:border-neutral-300 px-4 py-2 text-left font-satoshiBold [&[align=center]]:text-center [&[align=right]]:text-right',
-        className
+        className,
       )}
       {...props}
     />
@@ -137,7 +137,7 @@ const components = {
     <td
       className={cn(
         'border border-slate-800 dark:border-neutral-300 px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right',
-        className
+        className,
       )}
       {...props}
     />
@@ -146,7 +146,7 @@ const components = {
     <pre
       className={cn(
         'mb-4 mt-6 overflow-x-auto rounded-lg border  bg-black py-4',
-        className
+        className,
       )}
       {...props}
     />
@@ -161,7 +161,7 @@ const components = {
     <code
       className={cn(
         'relative rounded border px-[0.3rem] py-[0.2rem] font-mono text-sm bg-gray-950 text-neutral-300 border-blue-500',
-        className
+        className,
       )}
       {...props}
     />

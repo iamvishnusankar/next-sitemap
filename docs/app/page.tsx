@@ -15,7 +15,7 @@ async function getGitHubStars(): Promise<string | null> {
           Accept: 'application/vnd.github+json',
           Authorization: `Bearer ${process.env.GITHUB_ACCESS_TOKEN}`,
         },
-      }
+      },
     )
 
     if (!response?.ok) {

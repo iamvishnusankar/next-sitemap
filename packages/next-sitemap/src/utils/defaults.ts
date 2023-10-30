@@ -3,7 +3,7 @@ import { overwriteMerge } from './merge.js'
 
 export const defaultSitemapTransformer = async (
   config: IConfig,
-  loc: string
+  loc: string,
 ): Promise<ISitemapField> => {
   return {
     loc,
@@ -47,7 +47,7 @@ export const defaultConfig: Partial<IConfig> = {
  * @returns
  */
 export const getStaticExportConfigPreset = (
-  config: Partial<IConfig>
+  config: Partial<IConfig>,
 ): Partial<IConfig> => {
   // Return empty preset for non static export
   if (config?.output !== 'export') {
