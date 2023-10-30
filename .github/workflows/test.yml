@@ -35,7 +35,7 @@ jobs:
         run: bun run lint
 
       - name: Test
-        run: bun run test
+        run: bun --node run test
         env:
           CI: true
           NEXT_TELEMETRY_DISABLED: 1

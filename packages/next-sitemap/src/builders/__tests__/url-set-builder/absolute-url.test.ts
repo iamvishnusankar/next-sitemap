@@ -32,8 +32,6 @@ describe('UrlSetBuilder', () => {
   test('absoluteUrl: With uri encoding', () => {
     expect(
       urlSetBuilder.absoluteUrl(`https://example.com/&/'/"/>/<`, '/', true)
-    ).toMatchInlineSnapshot(
-      `"https://example.com/&amp;/&apos;/&quot;/&gt;/&lt;/"`
-    )
+    ).toMatchSnapshot()
   })
 })
