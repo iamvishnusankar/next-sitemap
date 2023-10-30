@@ -20,7 +20,7 @@
     "dev:tsc": "tsc --build --watch",
     "build": "turbo run deploy --force",
     "test": "jest --ci --coverage --verbose",
-    "lint": "eslint . && yarn prettier:check",
+    "lint": "eslint . && bun run prettier:check",
     "prettier:check": "prettier --check \"**/*.{js,mjs,cjs,jsx,json,ts,tsx,md,mdx,css,html,yml,yaml,scss,less,graphql,graphqls,gql}\"",
     "format": "prettier --write \"**/*.{js,mjs,cjs,jsx,json,ts,tsx,md,mdx,css,html,yml,yaml,scss,less,graphql,graphqls,gql}\""
   },
@@ -34,5 +34,5 @@
     "ts-jest": "^29.1.0",
     "turbo": "^1.9.8"
   },
-  "packageManager": "yarn@4.0.0"
+  "packageManager": "yarn@4.0.1"
 }
