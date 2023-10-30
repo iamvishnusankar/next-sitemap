@@ -33,7 +33,7 @@ export const loadJSON = async <T>(path: string): Promise<T | undefined> => {
  */
 export const exportFile = async (
   filePath: string,
-  content: string
+  content: string,
 ): Promise<any> => {
   // Target folder
   const folder = path.dirname(filePath)

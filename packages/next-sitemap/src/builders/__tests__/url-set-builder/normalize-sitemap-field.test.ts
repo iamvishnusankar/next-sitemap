@@ -10,7 +10,7 @@ describe('UrlSetBuilder', () => {
         ...sampleConfig,
         trailingSlash: false,
       },
-      sampleManifest
+      sampleManifest,
     )
 
     // Normalize field
@@ -39,7 +39,7 @@ describe('UrlSetBuilder', () => {
         ...sampleConfig,
         trailingSlash: false,
       },
-      sampleManifest
+      sampleManifest,
     )
 
     // Normalize field

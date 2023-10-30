@@ -62,7 +62,7 @@ describe('UrlSetBuilder', () => {
         ...sampleConfig,
         exclude: ['/', '/page-0', '/page-2'],
       },
-      sampleManifest
+      sampleManifest,
     )
 
     await expect(builder.createUrlSet()).resolves.toStrictEqual([
@@ -91,7 +91,7 @@ describe('UrlSetBuilder', () => {
         ...sampleConfig,
         exclude: ['/', '/page-0', '/page-2', '/about', '/fr*'],
       },
-      sampleI18nManifest
+      sampleI18nManifest,
     )
 
     await expect(builder.createUrlSet()).resolves.toStrictEqual([
@@ -120,7 +120,7 @@ describe('UrlSetBuilder', () => {
         ...sampleConfig,
         exclude: ['/page*'],
       },
-      sampleManifest
+      sampleManifest,
     )
 
     await expect(builder.createUrlSet()).resolves.toStrictEqual([
@@ -146,7 +146,7 @@ describe('UrlSetBuilder', () => {
           return ['/', '/page-0', '/page-2']
         },
       },
-      sampleManifest
+      sampleManifest,
     )
 
     await expect(builder.createUrlSet()).resolves.toStrictEqual([
@@ -175,7 +175,7 @@ describe('UrlSetBuilder', () => {
         ...sampleConfig,
         trailingSlash: false,
       },
-      sampleManifest
+      sampleManifest,
     )
 
     await expect(builder.createUrlSet()).resolves.toStrictEqual([
@@ -228,7 +228,7 @@ describe('UrlSetBuilder', () => {
         ...sampleConfig,
         trailingSlash: true,
       },
-      sampleManifest
+      sampleManifest,
     )
 
     await expect(builder.createUrlSet()).resolves.toStrictEqual([
@@ -291,7 +291,7 @@ describe('UrlSetBuilder', () => {
           } as any
         },
       },
-      sampleManifest
+      sampleManifest,
     )
 
     await expect(builder.createUrlSet()).resolves.toStrictEqual([
@@ -320,7 +320,7 @@ describe('UrlSetBuilder', () => {
           { href: 'https://fr.example.com/', hreflang: 'fr' },
         ],
       },
-      sampleManifest
+      sampleManifest,
     )
 
     await expect(builder.createUrlSet()).resolves.toStrictEqual([
@@ -414,7 +414,7 @@ describe('UrlSetBuilder', () => {
               {
                 href: `https://example.com/it${url.replace(
                   '/page',
-                  '/pagina'
+                  '/pagina',
                 )}`,
                 hreflang: 'it',
                 hrefIsAbsolute: true,
@@ -429,7 +429,7 @@ describe('UrlSetBuilder', () => {
           return sitemapField
         },
       },
-      sampleManifest
+      sampleManifest,
     )
 
     await expect(builder.createUrlSet()).resolves.toStrictEqual([
@@ -676,7 +676,7 @@ describe('UrlSetBuilder', () => {
       {
         ...sampleConfig,
       },
-      sampleNotFoundRoutesManifest
+      sampleNotFoundRoutesManifest,
     )
 
     await expect(builder.createUrlSet()).resolves.toStrictEqual([

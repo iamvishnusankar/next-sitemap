@@ -9,7 +9,7 @@ export class Logger {
    */
   static noBuildManifest() {
     Logger.error(
-      'Unable to find build-manifest.\nMake sure to build the project using `next build` command\n'
+      'Unable to find build-manifest.\nMake sure to build the project using `next build` command\n',
     )
   }
 
@@ -18,7 +18,7 @@ export class Logger {
    */
   static noExportMarker() {
     Logger.error(
-      'Unable to find export-maker.\nMake sure to build the project using `next build` command\n'
+      'Unable to find export-maker.\nMake sure to build the project using `next build` command\n',
     )
   }
 
@@ -27,7 +27,7 @@ export class Logger {
    */
   static noConfigFile() {
     Logger.error(
-      'Unable to find next-sitemap.config.js or custom config file.\n\nIMPORTANT: Default config file has been renamed to `next-sitemap.config.js`\n\nIf you are using custom config file, make sure to invoke `next-sitemap --config <custom-config-file>.js`\n'
+      'Unable to find next-sitemap.config.js or custom config file.\n\nIMPORTANT: Default config file has been renamed to `next-sitemap.config.js`\n\nIf you are using custom config file, make sure to invoke `next-sitemap --config <custom-config-file>.js`\n',
     )
   }
 
@@ -53,7 +53,7 @@ export class Logger {
     console.log(
       `-----------------------------------------------------\n`,
       title,
-      `\n-----------------------------------------------------\n`
+      `\n-----------------------------------------------------\n`,
     )
 
     // Only show 5 entries on console
@@ -63,7 +63,7 @@ export class Logger {
 
     // log all sitemap list
     list?.forEach((x) =>
-      x === '...' ? console.log(`     ${x}`) : console.log(`   ○ ${x}`)
+      x === '...' ? console.log(`     ${x}`) : console.log(`   ○ ${x}`),
     )
 
     console.log(`\n`)

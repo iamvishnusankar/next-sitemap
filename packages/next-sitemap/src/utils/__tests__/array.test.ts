@@ -33,8 +33,8 @@ describe('next-sitemap/array', () => {
     expect(
       removeIfMatchPattern(
         ['/hello', '/world', '/something'],
-        ['/hello*', '/som*']
-      )
+        ['/hello*', '/som*'],
+      ),
     ).toStrictEqual(['/world'])
   })
 })
