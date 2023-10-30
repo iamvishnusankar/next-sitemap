@@ -16,7 +16,7 @@
   },
   "scripts": {
     "clean": "tsc --build --clean",
-    "dev:test": "jest --watchAll",
+    "dev:test": "bun test --watch",
     "dev:tsc": "tsc --build --watch",
     "build": "turbo run deploy --force",
     "test": "bun test --ci --coverage --verbose",
