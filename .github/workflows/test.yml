@@ -42,7 +42,7 @@ jobs:
             ${{ runner.os }}-nextjs-${{ hashFiles('**/bun.lockb') }}-
 
       - name: Install
-        run: bun install --immutable
+        run: bun install --immutable --force
 
       - name: Lint
         run: bun run lint
