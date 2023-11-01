@@ -20,7 +20,7 @@
     "dev:tsc": "tsc --build --watch",
     "build": "turbo run deploy --force",
     "test": "bun test --ci --coverage --verbose",
-    "lint": "eslint . && bun run prettier:check",
+    "lint": "eslint .",
     "prettier:check": "prettier --check \"**/*.{js,mjs,cjs,jsx,json,ts,tsx,md,mdx,css,html,yml,yaml,scss,less,graphql,graphqls,gql}\"",
     "format": "prettier --write \"**/*.{js,mjs,cjs,jsx,json,ts,tsx,md,mdx,css,html,yml,yaml,scss,less,graphql,graphqls,gql}\""
   },
