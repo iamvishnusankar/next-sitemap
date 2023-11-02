@@ -22,7 +22,7 @@ const sanitizeArray = <T>(input: T[], inputName: any) => {
         break
       default:
         throw new TypeError(
-          `Expected '${inputName}' to be a string or an array, but got a type of '${typeof input}'`
+          `Expected '${inputName}' to be a string or an array, but got a type of '${typeof input}'`,
         )
     }
   }
@@ -34,7 +34,7 @@ const sanitizeArray = <T>(input: T[], inputName: any) => {
       }
 
       throw new TypeError(
-        `Expected '${inputName}' to be an array of strings, but found a type of '${typeof string}' in the array`
+        `Expected '${inputName}' to be an array of strings, but found a type of '${typeof string}' in the array`,
       )
     }
 
@@ -62,12 +62,12 @@ const makeRegexp = <T>(pattern: T, options = {}) => {
 
   pattern = escapeStringRegexp(pattern as any).replace(
     /\\\*/g,
-    '[\\s\\S]*'
+    '[\\s\\S]*',
   ) as any
 
   const regexp = new RegExp(
     `^${pattern}$`,
-    (options as any).caseSensitive ? '' : 'i'
+    (options as any).caseSensitive ? '' : 'i',
   )
   ;(regexp as any).negated = negated
   regexpCache.set(cacheKey, regexp)
@@ -79,7 +79,7 @@ const baseMatcher = <T>(
   inputs: T[],
   patterns: T[],
   options: any = {},
-  firstMatchOnly = false
+  firstMatchOnly = false,
 ) => {
   inputs = sanitizeArray(inputs, 'inputs')
   patterns = sanitizeArray(patterns, 'patterns')
@@ -118,7 +118,7 @@ const baseMatcher = <T>(
           patterns.some((pattern) => !(pattern as any).negated)) ||
         (allPatterns &&
           didFit.some(
-            (yes, index) => !yes && !(patterns[index] as any).negated
+            (yes, index) => !yes && !(patterns[index] as any).negated,
           ))
       )
     ) {

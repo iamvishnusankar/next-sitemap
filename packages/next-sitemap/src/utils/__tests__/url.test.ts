@@ -21,7 +21,7 @@ describe('next-sitemap/url', () => {
 
   test('cleanPath: Public Url', () => {
     expect(cleanPath('https://www.example.com//epic///awesome///path')).toBe(
-      'https://www.example.com/epic/awesome/path'
+      'https://www.example.com/epic/awesome/path',
     )
   })
 
@@ -33,7 +33,7 @@ describe('next-sitemap/url', () => {
   test('generateUrl: with external slug', () => {
     const url = generateUrl(
       'https://base.example.com',
-      'https://cdn.another.site/new//path'
+      'https://cdn.another.site/new//path',
     )
     expect(url).toBe('https://cdn.another.site/new/path')
   })

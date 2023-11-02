@@ -144,7 +144,7 @@ export class UrlSetBuilder {
         if (collision) {
           // Mutate common entry between sitemapFields and mapFieldsByLoc (spread operator don't work)
           Object.entries(field).forEach(
-            ([key, value]) => (collision[key] = value)
+            ([key, value]) => (collision[key] = value),
           )
           continue
         }

@@ -10,7 +10,7 @@ export const toChunks = <T>(arr: T[], chunkSize: number): T[][] => {
   return arr.reduce<Array<T[]>>(
     (prev, _, i) =>
       i % chunkSize ? prev : [...prev, arr.slice(i, i + chunkSize)],
-    []
+    [],
   )
 }
 
@@ -38,7 +38,7 @@ export const removeFromArray = <T>(inputArr: T[], toRemoveArr: T[]): T[] => {
  */
 export const removeIfMatchPattern = (
   inputArr: string[],
-  toRemoveArr: string[]
+  toRemoveArr: string[],
 ): string[] => {
   const matchedArr = matcher(inputArr, toRemoveArr)
 

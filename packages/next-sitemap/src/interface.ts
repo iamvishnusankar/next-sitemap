@@ -148,7 +148,7 @@ export interface IConfig {
    */
   transform?: (
     config: IConfig,
-    url: string
+    url: string,
   ) => MaybePromise<MaybeUndefined<ISitemapField>>
 
   /**
@@ -156,7 +156,7 @@ export interface IConfig {
    * @link https://github.com/iamvishnusankar/next-sitemap#additional-paths-function
    */
   additionalPaths?: (
-    config: AdditionalPathsConfig
+    config: AdditionalPathsConfig,
   ) => MaybePromise<MaybeUndefined<ISitemapField>[]>
 
   /**
@@ -252,7 +252,7 @@ export type IGoogleNewsEntry = {
 }
 
 export type IImageEntry = {
-  loc: URL
+  loc: URL | string
   caption?: string
   geoLocation?: string
   title?: string

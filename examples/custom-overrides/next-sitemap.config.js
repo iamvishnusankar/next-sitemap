@@ -9,13 +9,13 @@ const config = {
         ...config,
         trailingSlash: false, // Override for custom path
       },
-      '/additional-page.html'
+      '/additional-page.html',
     ),
     await config.transform(
       {
         ...config,
       },
-      '/page-with-trailing-slash'
+      '/page-with-trailing-slash',
     ),
   ],
 }
