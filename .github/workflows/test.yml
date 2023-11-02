@@ -14,7 +14,7 @@ jobs:
     strategy:
       matrix:
         platform: [ubuntu-latest, macos-latest] # windows-latest]
-        node: ['16', '18']
+        node: ['18', '20']
     runs-on: ${{ matrix.platform }}
     steps:
       - name: Github Checkout
@@ -25,21 +25,35 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
 
+      - name: Setup bun
+        uses: oven-sh/setup-bun@v1
+
+      - name: Setup nextjs cache
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.npm
+            ${{ github.workspace }}/.next/cache
+            ${{ github.workspace }}/**/.next/cache
+          # Generate a new cache whenever packages or source files change.
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/bun.lockb') }}-${{ hashFiles('**/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx') }}
+          # If source files changed but packages didn't, rebuild from a prior cache.
+          restore-keys: |
+            ${{ runner.os }}-nextjs-${{ hashFiles('**/bun.lockb') }}-
+
       - name: Install
-        run: |
-          yarn set version stable
-          yarn install --immutable --immutable-cache
+        run: bun install --immutable --force
 
       - name: Lint
-        run: yarn lint
+        run: bun run lint
 
       - name: Test
-        run: yarn test
+        run: bun run test
         env:
           CI: true
           NEXT_TELEMETRY_DISABLED: 1
 
       - name: Build
-        run: yarn build
+        run: bun run build
         env:
           NEXT_TELEMETRY_DISABLED: 1

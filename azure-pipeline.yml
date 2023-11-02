@@ -1,4 +1,4 @@
-name: 4.2$(rev:.r)
+name: 4.3$(rev:.r)
 trigger:
   branches:
     include:
@@ -12,14 +12,14 @@ steps:
   - task: UseNode@1
     displayName: Setup Node
     inputs:
-      version: '16.x'
+      version: '20.x'
 
   # Set yarn version
-  - task: Bash@3
-    displayName: 'Set yarn version'
-    inputs:
-      targetType: 'inline'
-      script: 'yarn set version stable'
+  # - task: Bash@3
+  #   displayName: 'Set yarn version'
+  #   inputs:
+  #     targetType: 'inline'
+  #     script: 'yarn set version stable'
 
   # Authenticate
   - task: npmAuthenticate@0
@@ -41,7 +41,7 @@ steps:
     displayName: 'Install'
     inputs:
       targetType: 'inline'
-      script: 'yarn install --immutable --immutable-cache'
+      script: 'yarn install'
 
   # Test
   - task: Bash@3

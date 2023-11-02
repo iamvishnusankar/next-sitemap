@@ -134,7 +134,7 @@ describe('next-sitemap/defaults', () => {
 
     // Default transform
     await expect(
-      myConfig.transform!(myConfig, 'https://example.com')
+      myConfig.transform!(myConfig, 'https://example.com'),
     ).resolves.toStrictEqual({
       loc: 'https://example.com',
       lastmod: expect.any(String),
@@ -151,8 +151,8 @@ describe('next-sitemap/defaults', () => {
           ...myConfig,
           trailingSlash: true,
         },
-        'https://example.com'
-      )
+        'https://example.com',
+      ),
     ).resolves.toStrictEqual({
       loc: 'https://example.com',
       lastmod: expect.any(String),

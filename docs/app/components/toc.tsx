@@ -20,7 +20,7 @@ export function DashboardTableOfContents({ toc }: TocProps) {
             .filter(Boolean)
             .map((id) => id?.split('#')[1])
         : [],
-    [toc]
+    [toc],
   )
   const activeHeading = useActiveItem(itemIds)
   const mounted = useMounted()
@@ -49,7 +49,7 @@ function useActiveItem(itemIds: (string | undefined)[]) {
           }
         })
       },
-      { rootMargin: `0% 0% -80% 0%` }
+      { rootMargin: `0% 0% -80% 0%` },
     )
 
     itemIds?.forEach((id) => {
@@ -98,7 +98,7 @@ function Tree({ tree, level = 1, activeItem }: TreeProps) {
                 'inline-block no-underline font-ranadeRegular',
                 item.url === `#${activeItem}`
                   ? 'font-medium text-blue-500'
-                  : 'text-sm text-slate-400'
+                  : 'text-sm text-slate-400',
               )}
             >
               {item.title}

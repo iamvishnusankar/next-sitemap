@@ -19,7 +19,7 @@ export function Callout({
         {
           'border-red-900 bg-red-50': type === 'danger',
           'border-yellow-900 bg-yellow-50': type === 'warning',
-        }
+        },
       )}
       {...props}
     >

@@ -17,7 +17,7 @@ export const generateUrl = (baseUrl: string, slug: string): string => {
  */
 export const isNextInternalUrl = (path: string): boolean => {
   return new RegExp(
-    /[^/]*^.[_]|^\/(404|500)$|\/_middleware$|favicon.ico|(?:\[)/g
+    /[^/]*^.[_]|^\/(404|500)$|\/_middleware$|favicon.ico|(?:\[)/g,
   ).test(path)
 }
 
@@ -52,6 +52,7 @@ export const createDefaultLocaleReplace = (defaultLocale: string): any => {
  */
 export const entityEscapedUrl = (path: string): string => {
   return path
+    .replace(/&amp;/g, '&') // decode &amp; to & first, so that we don't replace &amp; again to &amp;amp;
     .replace(/&/g, '&amp;')
     .replace(/'/g, '&apos;')
     .replace(/"/g, '&quot;')

@@ -6,15 +6,15 @@ import { ogImageSchema } from '@/lib/validations/og'
 export const runtime = 'edge'
 
 const photo = fetch(new URL(`../../../public/logo.jpg`, import.meta.url)).then(
-  (res) => res.arrayBuffer()
+  (res) => res.arrayBuffer(),
 )
 
 const ranadeRegular = fetch(
-  new URL('../../../assets/fonts/Ranade-Regular.ttf', import.meta.url)
+  new URL('../../../assets/fonts/Ranade-Regular.ttf', import.meta.url),
 ).then((res) => res.arrayBuffer())
 
 const satoshiBold = fetch(
-  new URL('../../../assets/fonts/Satoshi-Bold.ttf', import.meta.url)
+  new URL('../../../assets/fonts/Satoshi-Bold.ttf', import.meta.url),
 ).then((res) => res.arrayBuffer())
 
 export async function GET(req: Request) {
@@ -121,7 +121,7 @@ export async function GET(req: Request) {
             style: 'normal',
           },
         ],
-      }
+      },
     )
   } catch (error) {
     return new Response(`Failed to generate image`, {

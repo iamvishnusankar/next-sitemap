@@ -35,7 +35,7 @@ const CodeCopyButton: FC<CodeCopyButtonProps> = ({ children }) => {
               copied,
             'border border-gray-950 dark:border-neutral-300 hover:dark:bg-black bg-inherit rounded-lg p-2 hover:cursor-pointer':
               !copied,
-          }
+          },
         )}
       >
         <code lang="en">{children}</code>

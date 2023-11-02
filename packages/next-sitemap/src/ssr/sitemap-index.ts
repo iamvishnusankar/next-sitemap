@@ -10,7 +10,7 @@ import { withXMLResponseLegacy, withXMLResponse } from './response.js'
  */
 export const getServerSideSitemapIndexLegacy = async (
   ctx: GetServerSidePropsContext,
-  sitemaps: string[]
+  sitemaps: string[],
 ) => {
   // Generate index sitemap xml content
   const indexContents = new SitemapBuilder().buildSitemapIndexXml(sitemaps)
@@ -28,7 +28,7 @@ export const getServerSideSitemapIndexLegacy = async (
  */
 export const getServerSideSitemapIndex = async (
   sitemaps: string[],
-  headers = {}
+  headers = {},
 ) => {
   // Generate index sitemap xml content
   const indexContents = new SitemapBuilder().buildSitemapIndexXml(sitemaps)
