@@ -14,7 +14,7 @@
       ]
     },
     "deploy": {
-      "dependsOn": ["build", "postbuild"],
+      "dependsOn": ["^build", "postbuild"],
       "outputs": []
     },
     "lint": {

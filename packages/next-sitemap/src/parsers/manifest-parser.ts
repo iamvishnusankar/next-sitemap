@@ -39,14 +39,14 @@ export class ManifestParser {
         .replace(exportFolder, '')
         .replace('index', '')
         .replace('.html', '')
-        .trim()
+        .trim(),
     )
   }
 
   async loadManifest(): Promise<INextManifest> {
     // Load build manifest
     const buildManifest = await loadJSON<IBuildManifest>(
-      this.runtimePaths.BUILD_MANIFEST
+      this.runtimePaths.BUILD_MANIFEST,
     )!
 
     // Throw error if no build manifest exist
@@ -56,18 +56,18 @@ export class ManifestParser {
 
     // Load pre-render manifest
     const preRenderManifest = await loadJSON<IPreRenderManifest>(
-      this.runtimePaths.PRERENDER_MANIFEST
+      this.runtimePaths.PRERENDER_MANIFEST,
     )
 
     // Load routes manifest
     const routesManifest = await loadJSON<IRoutesManifest>(
-      this.runtimePaths.ROUTES_MANIFEST
+      this.runtimePaths.ROUTES_MANIFEST,
     )
 
     // Get static export path when output is set as "export"
     const staticExportPages = await this.getStaticExportPages(
       this.config,
-      this.runtimePaths.STATIC_EXPORT_ROOT
+      this.runtimePaths.STATIC_EXPORT_ROOT,
     )
 
     return {

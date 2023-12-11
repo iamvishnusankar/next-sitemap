@@ -146,7 +146,7 @@ export class ExportableBuilder {
           additionalSitemaps: endpoints,
         },
       } as IConfig,
-      this.config
+      this.config,
     )
   }
 
@@ -223,8 +223,8 @@ export class ExportableBuilder {
   async exportAll(): Promise<INextSitemapResult> {
     await Promise.all(
       this.exportableList?.map(async (item) =>
-        exportFile(item.filename, item.content)
-      )
+        exportFile(item.filename, item.content),
+      ),
     )
 
     // Create result object

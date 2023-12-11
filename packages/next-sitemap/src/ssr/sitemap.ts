@@ -11,7 +11,7 @@ import type { ISitemapField } from '../interface.js'
  */
 export const getServerSideSitemapLegacy = async (
   ctx: GetServerSidePropsContext,
-  fields: ISitemapField[]
+  fields: ISitemapField[],
 ) => {
   // Generate sitemap xml
   const contents = new SitemapBuilder().buildSitemapXml(fields)
@@ -29,7 +29,7 @@ export const getServerSideSitemapLegacy = async (
  */
 export const getServerSideSitemap = async (
   fields: ISitemapField[],
-  headers = {}
+  headers = {},
 ) => {
   // Generate sitemap xml
   const contents = new SitemapBuilder().buildSitemapXml(fields)
