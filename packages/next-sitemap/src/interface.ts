@@ -197,12 +197,12 @@ export interface IRoutesManifest {
     locales: string[]
     defaultLocale: string
   },
-  dynamicRoutes: [{
-    [key: string]: string[]
-  }],
-  staticRoutes: [{
-    [key: string]: string[]
-  }]
+  dynamicRoutes?: {
+    page: string
+  }[]
+  staticRoutes?: {
+    page: string
+  }[]
 }
 
 export interface IExportMarker {
