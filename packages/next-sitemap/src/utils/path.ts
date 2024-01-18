@@ -45,6 +45,7 @@ export const getRuntimePaths = (config: IConfig): IRuntimePaths => {
     STATIC_EXPORT_ROOT: getPath(config.outDir!),
     SITEMAP_INDEX_URL,
     SITEMAP_INDEX_FILE,
+    TRACE: getPath(config.sourceDir!, 'trace'),
   }
 }
 

@@ -6,6 +6,7 @@ import type {
   IRuntimePaths,
   IRoutesManifest,
   IConfig,
+  INextTrace,
 } from '../interface.js'
 import { Logger } from '../logger.js'
 import { loadJSON } from '../utils/file.js'
@@ -70,11 +71,15 @@ export class ManifestParser {
       this.runtimePaths.STATIC_EXPORT_ROOT,
     )
 
+    // Load trace
+    const trace = await loadJSON<INextTrace[]>(this.runtimePaths.TRACE, true)
+
     return {
       build: buildManifest ?? ({} as any),
       preRender: preRenderManifest,
       routes: routesManifest,
       staticExportPages,
+      trace,
     }
   }
 }

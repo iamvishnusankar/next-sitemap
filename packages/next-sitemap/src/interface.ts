@@ -208,6 +208,11 @@ export interface INextManifest {
   preRender?: IPreRenderManifest
   routes?: IRoutesManifest
   staticExportPages?: string[]
+  trace?: INextTrace[]
+}
+
+export interface INextTrace {
+  tags: { path?: string }
 }
 
 /**
@@ -236,6 +241,7 @@ export interface IRuntimePaths {
   SITEMAP_INDEX_FILE?: string
   SITEMAP_INDEX_URL?: string
   STATIC_EXPORT_ROOT: string
+  TRACE: string
 }
 
 export type IAlternateRef = {

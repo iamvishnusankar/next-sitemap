@@ -7,7 +7,10 @@ import path from 'node:path'
  * @param throwError
  * @returns
  */
-export const loadJSON = async <T>(path: string): Promise<T | undefined> => {
+export const loadJSON = async <T>(
+  path: string,
+  lineDelimited: boolean = false,
+): Promise<T | undefined> => {
   // Get path stat
   const stat = await fs.stat(path).catch(() => {
     return {
@@ -21,6 +24,18 @@ export const loadJSON = async <T>(path: string): Promise<T | undefined> => {
   }
 
   const jsonString = await fs.readFile(path, { encoding: 'utf-8' })
+
+  if (lineDelimited) {
+    const jsonLines = jsonString.split('\n')
+    return jsonLines
+      .map((line) => {
+        if (line.trim().length === 0) {
+          return []
+        }
+        return JSON.parse(line)
+      })
+      .reduce((accumulator, value) => accumulator.concat(value), [])
+  }
 
   return JSON.parse(jsonString)
 }
