@@ -30,7 +30,7 @@ export class SitemapBuilder {
     return [
       '<?xml version="1.0" encoding="UTF-8"?>',
       '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
-      ...(allSitemaps?.map((x) => `<sitemap><loc>${x}</loc></sitemap>`) ?? []),
+      ...(allSitemaps?.sort.map((x) => `<sitemap><loc>${x}</loc></sitemap>`) ?? []),
       '</sitemapindex>',
     ].join('\n')
   }
@@ -154,6 +154,7 @@ export class SitemapBuilder {
         // Append previous value and return
         return `<url>${fieldArr.join('')}</url>\n`
       })
+      .sort()
       .join('')
 
     return this.withXMLTemplate(content)
