@@ -32,7 +32,7 @@ export class RobotsTxtBuilder {
    * @returns
    */
   generateRobotsTxt(config: IConfig): string {
-    const { additionalSitemaps, policies } = config.robotsTxtOptions!
+    const { additionalSitemaps, additionalSitemapsIndex, policies } = config.robotsTxtOptions!
     const normalizedPolices = this.normalizePolicy(policies!)
 
     let content = ''
@@ -58,10 +58,14 @@ export class RobotsTxtBuilder {
     // Append host
     content += `# Host\nHost: ${config.siteUrl}\n`
 
-    if (additionalSitemaps && additionalSitemaps.length > 0) {
+    if ((additionalSitemaps && additionalSitemaps.length > 0) || (additionalSitemapsIndex && additionalSitemapsIndex.length > 0)) {
       content += `\n# Sitemaps\n`
 
-      additionalSitemaps.forEach((x) => {
+      additionalSitemaps?.forEach((x) => {
+        content += `Sitemap: ${x}\n`
+      })
+
+      additionalSitemapsIndex?.forEach((x) => {
         content += `Sitemap: ${x}\n`
       })
     }

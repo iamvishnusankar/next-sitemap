@@ -50,6 +50,11 @@ export interface IRobotsTxt {
   additionalSitemaps?: string[]
 
   /**
+   * Additional sitemap index wich need to be added to robots, these do not get added to the main sitemap index
+   */
+  additionalSitemapsIndex?: string[]
+
+  /**
    * From v2.4x onwards, generated `robots.txt` will only contain url of `index sitemap` and custom provided endpoints from `robotsTxtOptions.additionalSitemaps`
    *
    * This is to prevent duplicate url submission (once through index-sitemap -> sitemap-url and once through robots.txt -> HOST)

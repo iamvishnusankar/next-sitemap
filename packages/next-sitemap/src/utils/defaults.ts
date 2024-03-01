@@ -38,6 +38,7 @@ export const defaultConfig: Partial<IConfig> = {
       },
     ],
     additionalSitemaps: [],
+    additionalSitemapsIndex: [],
   },
 }
 
