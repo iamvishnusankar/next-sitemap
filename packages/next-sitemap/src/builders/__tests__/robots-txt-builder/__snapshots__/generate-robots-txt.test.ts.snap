@@ -22,5 +22,8 @@ Host: https://example.com
 Sitemap: https://example.com/my-custom-sitemap-1.xml
 Sitemap: https://example.com/my-custom-sitemap-2.xml
 Sitemap: https://example.com/my-custom-sitemap-3.xml
+Sitemap: https://example.com/my-custom-sitemap-index-1.xml
+Sitemap: https://example.com/my-custom-sitemap-index-2.xml
+Sitemap: https://example.com/my-custom-sitemap-index-3.xml
 "
 `;

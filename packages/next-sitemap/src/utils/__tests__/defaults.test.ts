@@ -30,6 +30,7 @@ describe('next-sitemap/defaults', () => {
           },
         ],
         additionalSitemaps: [],
+        additionalSitemapsIndex: [],
       },
     })
   })
@@ -46,6 +47,10 @@ describe('next-sitemap/defaults', () => {
         additionalSitemaps: [
           'https://example.com/awesome-sitemap.xml',
           'https://example.com/awesome-sitemap-2.xml',
+        ],
+        additionalSitemapsIndex: [
+          'https://example.com/awesome-sitemap-index.xml',
+          'https://example.com/awesome-sitemap-index-2.xml'
         ],
       },
     })
@@ -69,6 +74,10 @@ describe('next-sitemap/defaults', () => {
           'https://example.com/awesome-sitemap.xml',
           'https://example.com/awesome-sitemap-2.xml',
         ],
+        additionalSitemapsIndex: [
+          'https://example.com/awesome-sitemap-index.xml',
+          'https://example.com/awesome-sitemap-index-2.xml'
+        ],
       },
     })
   })
@@ -85,6 +94,10 @@ describe('next-sitemap/defaults', () => {
         additionalSitemaps: [
           'https://example.com/awesome-sitemap.xml',
           'https://example.com/awesome-sitemap-2.xml',
+        ],
+        additionalSitemapsIndex: [
+          'https://example.com/awesome-sitemap-index.xml',
+          'https://example.com/awesome-sitemap-index-2.xml'
         ],
       },
     })
@@ -109,6 +122,10 @@ describe('next-sitemap/defaults', () => {
           'https://example.com/awesome-sitemap.xml',
           'https://example.com/awesome-sitemap-2.xml',
         ],
+        additionalSitemapsIndex: [
+          'https://example.com/awesome-sitemap-index.xml',
+          'https://example.com/awesome-sitemap-index-2.xml'
+        ],
       },
     })
   })
@@ -128,6 +145,10 @@ describe('next-sitemap/defaults', () => {
         additionalSitemaps: [
           'https://example.com/awesome-sitemap.xml',
           'https://example.com/awesome-sitemap-2.xml',
+        ],
+        additionalSitemapsIndex: [
+          'https://example.com/awesome-sitemap-index.xml',
+          'https://example.com/awesome-sitemap-index-2.xml'
         ],
       },
     })
@@ -183,6 +204,10 @@ describe('next-sitemap/defaults', () => {
         additionalSitemaps: [
           'https://example.com/awesome-sitemap.xml',
           'https://example.com/awesome-sitemap-2.xml',
+        ],
+        additionalSitemapsIndex: [
+          'https://example.com/awesome-sitemap-index.xml',
+          'https://example.com/awesome-sitemap-index-2.xml'
         ],
       },
     })

@@ -30,5 +30,10 @@ export const sampleConfig: IConfig = withDefaultConfig({
       'https://example.com/my-custom-sitemap-2.xml',
       'https://example.com/my-custom-sitemap-3.xml',
     ],
+    additionalSitemapsIndex: [
+        'https://example.com/my-custom-sitemap-index-1.xml',
+        'https://example.com/my-custom-sitemap-index-2.xml',
+        'https://example.com/my-custom-sitemap-index-3.xml',
+    ]
   },
 })

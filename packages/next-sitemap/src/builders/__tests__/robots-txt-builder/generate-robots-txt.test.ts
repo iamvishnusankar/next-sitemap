@@ -8,7 +8,7 @@ beforeEach(() => {
 })
 
 describe('RobotsTxtBuilder', () => {
-  test('generateRobotsTxt: additionalSitemap', () => {
+  test('generateRobotsTxt: additionalSitemap and additionalSitemapsIndex', () => {
     expect(builder.generateRobotsTxt(sampleConfig as any)).toMatchSnapshot()
   })
 })
