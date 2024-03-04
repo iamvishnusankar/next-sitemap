@@ -21,7 +21,7 @@
     "class-variance-authority": "^0.6.0",
     "contentlayer": "^0.3.2",
     "eslint": "8.41.0",
-    "eslint-config-next": "13.5.6",
+    "eslint-config-next": "14.1.1",
     "lucide-react": "^0.221.0",
     "mdast-util-toc": "^6.1.1",
     "next": "13.5.6",
