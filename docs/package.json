@@ -22,7 +22,7 @@
     "contentlayer": "^0.3.2",
     "eslint": "8.41.0",
     "eslint-config-next": "13.5.6",
-    "lucide-react": "^0.221.0",
+    "lucide-react": "^0.446.0",
     "mdast-util-toc": "^6.1.1",
     "next": "13.5.6",
     "next-contentlayer": "^0.3.2",
