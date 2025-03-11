@@ -11,6 +11,7 @@ import path from 'node:path'
 import { generateUrl } from '../utils/url.js'
 import { combineMerge } from '../utils/merge.js'
 import { RobotsTxtBuilder } from './robots-txt-builder.js'
+import { LLMsTxtBuilder } from './llms-txt-builder.js'
 import { defaultRobotsTxtTransformer } from '../utils/defaults.js'
 import { exportFile } from '../utils/file.js'
 
@@ -25,6 +26,8 @@ export class ExportableBuilder {
 
   robotsTxtBuilder: RobotsTxtBuilder
 
+  llmsTxtBuilder: LLMsTxtBuilder
+
   exportDir: string
 
   constructor(config: IConfig, runtimePaths: IRuntimePaths) {
@@ -35,6 +38,8 @@ export class ExportableBuilder {
     this.sitemapBuilder = new SitemapBuilder()
 
     this.robotsTxtBuilder = new RobotsTxtBuilder()
+
+    this.llmsTxtBuilder = new LLMsTxtBuilder()
 
     this.exportDir = path.resolve(process.cwd(), this.config.outDir!)
   }
@@ -184,6 +189,45 @@ export class ExportableBuilder {
   }
 
   /**
+   * Register LLMs.txt
+   */
+  async registerLLMsTxt() {
+    // Return without generating anything when generateLLMsTxt is not enabled
+    if (!this.config.generateLLMsTxt) {
+      return
+    }
+
+    try {
+      // File name of llms.txt
+      const baseFilename = 'llms.txt'
+
+      // Generate llms.txt content as markdown
+      let content = this.llmsTxtBuilder.generateLLMsTxt(this.config)
+
+      // Apply transformation if provided
+      if (this.config?.llmsTxtOptions?.transformLLMsTxt) {
+        content = await this.config.llmsTxtOptions.transformLLMsTxt(
+          this.config,
+          content,
+        )
+      }
+
+      // Generate exportable item
+      const item: IExportable = {
+        type: 'llms.txt',
+        filename: path.resolve(this.exportDir, baseFilename),
+        url: generateUrl(this.config.siteUrl, baseFilename),
+        content,
+      }
+
+      // Add to exportableList
+      this.exportableList.push(item)
+    } catch (e) {
+      console.log('Error while generating llms.txt', e)
+    }
+  }
+
+  /**
    * Generic reducer to extract by type
    * @param condition
    * @returns
@@ -226,6 +270,16 @@ export class ExportableBuilder {
         exportFile(item.filename, item.content),
       ),
     )
+
+    // Register robots.txt if enabled
+    if (this.config.generateRobotsTxt) {
+      await this.registerRobotsTxt()
+    }
+
+    // Register llms.txt if enabled
+    if (this.config.generateLLMsTxt) {
+      await this.registerLLMsTxt()
+    }
 
     // Create result object
     return {

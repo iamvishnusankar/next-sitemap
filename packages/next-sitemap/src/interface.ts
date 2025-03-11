@@ -36,6 +36,42 @@ export interface IRobotPolicy {
 }
 
 /**
+ * LLMs.txt section with links
+ */
+export interface ILLMsSection {
+  /**
+   * Section title (H2)
+   */
+  title: string
+
+  /**
+   * List of links in this section
+   */
+  links: Array<{
+    /**
+     * Link title
+     */
+    title: string
+
+    /**
+     * Link URL
+     */
+    url: string
+
+    /**
+     * Optional details about the link
+     */
+    details?: string
+  }>
+
+  /**
+   * Whether this section is optional
+   * (can be skipped if a shorter context is needed)
+   */
+  isOptional?: boolean
+}
+
+/**
  * robots.txt Options
  */
 export interface IRobotsTxt {
@@ -63,6 +99,83 @@ export interface IRobotsTxt {
    * Custom robots.txt transformer
    */
   transformRobotsTxt?: (config: IConfig, robotsTxt: string) => Promise<string>
+}
+
+/**
+ * llms.txt Options based on the specification at https://llmstxt.org/
+ */
+export interface ILLMsTxt {
+  /**
+   * Title of the project/website (H1 - Required)
+   * Example: "# My Website"
+   */
+  title: string
+
+  /**
+   * Short summary description of the project (blockquote - Recommended)
+   * Example: "> This is a website about web technologies and best practices"
+   */
+  description?: string
+
+  /**
+   * Additional details (optional paragraphs, lists, etc.)
+   * Example:
+   * ```
+   * Important notes:
+   * - This site uses Next.js for server-side rendering
+   * - Documentation is organized by topic
+   * ```
+   */
+  details?: string
+
+  /**
+   * File lists with H2 headers containing links to resources
+   * Example:
+   * ```
+   * ## Documentation
+   * - [API Reference](https://example.com/api): Full API documentation
+   * - [Getting Started](https://example.com/start): Guide for beginners
+   * 
+   * ## Examples
+   * - [Basic Usage](https://example.com/examples/basic): Simple examples
+   * ```
+   */
+  sections?: Array<{
+    /**
+     * Section title (H2)
+     */
+    title: string
+
+    /**
+     * List of links in this section
+     */
+    links: Array<{
+      /**
+       * Link title
+       */
+      title: string
+
+      /**
+       * Link URL
+       */
+      url: string
+
+      /**
+       * Optional details about the link (will be shown after the link with a colon)
+       */
+      details?: string
+    }>
+
+    /**
+     * Mark section as optional (will add '(optional)' to the section title)
+     */
+    isOptional?: boolean
+  }>
+
+  /**
+   * Custom llms.txt transformer for advanced customization
+   */
+  transformLLMsTxt?: (config: IConfig, llmsTxt: string) => Promise<string>
 }
 
 /**
@@ -126,6 +239,17 @@ export interface IConfig {
    * robots.txt options
    */
   robotsTxtOptions?: IRobotsTxt
+
+  /**
+   * Generate a llms.txt file for large language model policies
+   * @default false
+   */
+  generateLLMsTxt?: boolean
+
+  /**
+   * llms.txt options
+   */
+  llmsTxtOptions?: ILLMsTxt
 
   /**
    * Add <lastmod/> property.
@@ -224,7 +348,7 @@ export interface IExportable {
   url: string
   filename: string
   content: string
-  type: 'robots.txt' | 'sitemap' | 'sitemap-index'
+  type: 'robots.txt' | 'llms.txt' | 'sitemap' | 'sitemap-index'
 }
 
 export interface IRuntimePaths {
@@ -232,6 +356,7 @@ export interface IRuntimePaths {
   PRERENDER_MANIFEST: string
   ROUTES_MANIFEST: string
   ROBOTS_TXT_FILE: string
+  LLMS_TXT_FILE: string
   EXPORT_MARKER: string
   SITEMAP_INDEX_FILE?: string
   SITEMAP_INDEX_URL?: string
