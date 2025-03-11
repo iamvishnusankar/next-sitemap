@@ -7,7 +7,7 @@ import type {
   ISitemapField,
 } from '../interface.js'
 import { SitemapBuilder } from './sitemap-builder.js'
-import path from 'node:path'
+import * as path from 'node:path'
 import { generateUrl } from '../utils/url.js'
 import { combineMerge } from '../utils/merge.js'
 import { RobotsTxtBuilder } from './robots-txt-builder.js'
@@ -204,12 +204,12 @@ export class ExportableBuilder {
       // Generate llms.txt content as markdown
       let content = this.llmsTxtBuilder.generateLLMsTxt(this.config)
 
+      // Get llms.txt transformer
+      const llmsTransformer = this.config?.llmsTxtOptions?.transformLLMsTxt
+
       // Apply transformation if provided
-      if (this.config?.llmsTxtOptions?.transformLLMsTxt) {
-        content = await this.config.llmsTxtOptions.transformLLMsTxt(
-          this.config,
-          content,
-        )
+      if (llmsTransformer) {
+        content = await llmsTransformer(this.config, content)
       }
 
       // Generate exportable item
@@ -222,8 +222,10 @@ export class ExportableBuilder {
 
       // Add to exportableList
       this.exportableList.push(item)
-    } catch (e) {
+    } catch (e: unknown) {
       console.log('Error while generating llms.txt', e)
+      const errorMessage = e instanceof Error ? e.message : String(e)
+      throw new Error(`Failed to generate llms.txt: ${errorMessage}`)
     }
   }
 

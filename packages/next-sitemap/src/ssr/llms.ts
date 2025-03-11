@@ -5,12 +5,12 @@
 import type { GetServerSidePropsContext } from 'next'
 import { withXMLResponseLegacy } from './response.js'
 import { LLMsTxtBuilder } from '../builders/llms-txt-builder.js'
-import type { IConfig, ILLMsTxt } from '../interface.js'
+import type { IConfig } from '../interface.js'
 
 /**
  * Generate server-side llms.txt content, supports legacy pages directory
  * @param ctx GetServerSidePropsContext
- * @param llmsTxtOptions LLMS.txt options
+ * @param config Configuration options
  * @returns 
  */
 export const getServerSideLLMsTxtLegacy = async (
@@ -30,17 +30,16 @@ export const getServerSideLLMsTxtLegacy = async (
     ctx.res.setHeader('Content-Type', 'text/plain')
   }
 
-  // Send response - note that withXMLResponseLegacy actually just returns the content
-  // and we've already set the correct Content-Type header above
+  // Send response
   return withXMLResponseLegacy(ctx, finalContent)
 }
 
 /**
  * Generate server-side llms.txt, supports next13+ route.{ts,js} file
  * To continue using inside pages directory, import `getServerSideLLMsTxtLegacy` instead.
- * @param config 
+ * @param config Configuration options
  * @param headers Custom request headers
- * @returns 
+ * @returns Response object
  */
 export const getServerSideLLMsTxt = async (
   config: IConfig,
