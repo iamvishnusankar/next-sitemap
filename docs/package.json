@@ -34,7 +34,7 @@
     "rehype-autolink-headings": "^6.1.1",
     "rehype-pretty-code": "^0.9.6",
     "rehype-slug": "^5.1.0",
-    "remark": "^14.0.3",
+    "remark": "^15.0.1",
     "remark-gfm": "^3.0.1",
     "shiki": "^0.14.2",
     "tailwind-merge": "^1.12.0",
