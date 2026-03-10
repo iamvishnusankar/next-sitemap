@@ -19,11 +19,9 @@
     "clean": "tsc --build --clean",
     "dev:test": "bun test --watch",
     "dev:tsc": "tsc --build --watch",
-    "build": "turbo run deploy --force",
+    "build": "turbo run build postbuild --force",
     "test": "bun test",
     "test:coverage": "bun test --coverage --coverage-reporter=lcov",
-    "test:ci": "bun test --coverage --coverage-reporter=lcov --reporter=junit --reporter-outfile=junit.xml",
-    "version:workspace": "bun ./scripts/set-workspace-version.ts",
     "lint": "eslint .",
     "prettier:check": "prettier --check \"**/*.{js,mjs,cjs,jsx,json,ts,tsx,md,mdx,css,html,yml,yaml,scss,less,graphql,graphqls,gql}\"",
     "format": "prettier --write \"**/*.{js,mjs,cjs,jsx,json,ts,tsx,md,mdx,css,html,yml,yaml,scss,less,graphql,graphqls,gql}\""
