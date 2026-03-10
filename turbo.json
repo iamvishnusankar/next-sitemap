@@ -13,10 +13,6 @@
         "public/sitemap*.xml"
       ]
     },
-    "deploy": {
-      "dependsOn": ["build", "postbuild"],
-      "outputs": []
-    },
     "lint": {
       "outputs": []
     },
