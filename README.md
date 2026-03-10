@@ -326,7 +326,6 @@ Sitemap: https://example.com/my-custom-sitemap-3.xml
 `next-sitemap` now provides two APIs to generate server side sitemaps. This will help to dynamically generate `index-sitemap`(s) and `sitemap`(s) by sourcing data from CMS or custom source.
 
 - `getServerSideSitemapIndex`: Generates index sitemaps based on urls provided and returns `application/xml` response. Supports next13+ route.{ts,js} file.
-
   - To continue using inside pages directory, import `getServerSideSitemapIndexLegacy` instead.
 
 - `getServerSideSitemap`: Generates sitemap based on field entires and returns `application/xml` response. Supports next13+ route.{ts,js} file.
