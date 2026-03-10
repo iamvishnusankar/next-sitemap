@@ -28,12 +28,12 @@
   },
   "devDependencies": {
     "@corex/workspace": "^4.0.43",
-    "@typescript-eslint/eslint-plugin": "^6.9.1",
-    "@typescript-eslint/parser": "^6.9.1",
-    "eslint": "^8.52.0",
-    "eslint-config-next": "^14.0.0",
-    "fast-xml-parser": "^4.3.2",
-    "prettier": "^3.0.3",
-    "turbo": "^1.10.16"
+    "@typescript-eslint/eslint-plugin": "^8.57.0",
+    "@typescript-eslint/parser": "^8.57.0",
+    "eslint": "^9.39.4",
+    "eslint-config-next": "^16.1.6",
+    "fast-xml-parser": "^5.5.1",
+    "prettier": "^3.8.1",
+    "turbo": "^2.8.15"
   }
 }
