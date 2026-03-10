@@ -5,25 +5,19 @@ trigger:
       - master
 pool:
   vmImage: 'ubuntu-latest'
-  demands: npm
 
 steps:
-  # Setup Node
-  - task: UseNode@1
-    displayName: Setup Node
+  - task: Bash@3
+    displayName: Install Bun
     inputs:
-      version: '20.x'
-
-  # Set yarn version
-  # - task: Bash@3
-  #   displayName: 'Set yarn version'
-  #   inputs:
-  #     targetType: 'inline'
-  #     script: 'yarn set version stable'
+      targetType: 'inline'
+      script: |
+        curl -fsSL https://bun.sh/install | bash
+        echo "##vso[task.prependpath]$HOME/.bun/bin"
 
   # Authenticate
   - task: npmAuthenticate@0
-    displayName: NPM Auth
+    displayName: Registry Auth
     inputs:
       workingFile: .npmrc
       customEndpoint: 'NPM(Vishnu Sankar)'
@@ -33,7 +27,7 @@ steps:
     displayName: 'Set Version'
     inputs:
       targetType: 'inline'
-      script: yarn workspaces foreach version $BUILD_BUILDNUMBER
+      script: 'bun ./scripts/set-workspace-version.ts "$BUILD_BUILDNUMBER"'
       # failOnStderr: true
 
   # Install
@@ -41,21 +35,23 @@ steps:
     displayName: 'Install'
     inputs:
       targetType: 'inline'
-      script: 'yarn install'
+      script: 'bun install --frozen-lockfile'
 
   # Test
   - task: Bash@3
     displayName: 'Test'
     inputs:
       targetType: 'inline'
-      script: 'yarn test --ci'
+      script: 'bun run test:ci'
 
   # Build
   - task: Bash@3
     displayName: 'Build'
     inputs:
       targetType: 'inline'
-      script: 'yarn workspace next-sitemap build && yarn workspace next-sitemap postbuild'
+      script: |
+        bun --cwd packages/next-sitemap run build
+        bun --cwd packages/next-sitemap run postbuild
 
   # Copy README
   - task: Bash@3
@@ -73,21 +69,13 @@ steps:
       testResultsFiles: 'junit.xml'
       failTaskOnFailedTests: true
 
-  # Coverage Result
-  - task: PublishCodeCoverageResults@1
-    displayName: Publish Coverage Result
-    inputs:
-      codeCoverageTool: 'Cobertura'
-      summaryFileLocation: 'coverage/cobertura-coverage.xml'
-      failIfCoverageEmpty: true
-
   # Publish Packages
   - task: Bash@3
     displayName: 'Publish Packages'
     condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
     inputs:
       targetType: 'inline'
-      script: 'npm publish --w=next-sitemap'
+      script: 'bun publish --cwd packages/next-sitemap --access public'
       # failOnStderr: true
 
   # Github Release

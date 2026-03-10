@@ -3,7 +3,6 @@
 <div align="center">
 
 [![Build Status](https://dev.azure.com/iamvishnusankar/Public/_apis/build/status/iamvishnusankar.next-sitemap?branchName=master)](https://dev.azure.com/iamvishnusankar/Public/_build/latest?definitionId=126&branchName=master)
-[![npm version](https://badge.fury.io/js/next-sitemap.svg)](https://badge.fury.io/js/next-sitemap)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/iamvishnusankar/next-sitemap/pulls)
 <a href="https://twitter.com/intent/follow?screen_name=iamvishnusankar">
 <img src="https://img.shields.io/twitter/follow/iamvishnusankar?style=social&logo=twitter" alt="follow on Twitter">
@@ -18,7 +17,7 @@
   - [Create config file](#create-config-file)
   - [Building sitemaps](#building-sitemaps)
     - [Custom config file](#custom-config-file)
-    - [Building sitemaps with pnpm](#building-sitemaps-with-pnpm)
+    - [Building sitemaps with Bun](#building-sitemaps-with-bun)
 - [Index sitemaps](#index-sitemaps-optional)
 - [Splitting large sitemap into multiple files](#splitting-large-sitemap-into-multiple-files)
 - [Configuration Options](#configuration-options)
@@ -32,7 +31,7 @@
 ### Installation
 
 ```shell
-yarn add next-sitemap
+bun add next-sitemap
 ```
 
 ### Create config file
@@ -72,14 +71,9 @@ You can also use a custom config file instead of `next-sitemap.config.js`. Just 
 }
 ```
 
-#### Building sitemaps with pnpm
+#### Building sitemaps with Bun
 
-When using pnpm you need to create a `.npmrc` file in the root of your project if you want to use a postbuild step:
-
-```
-//.npmrc
-enable-pre-post-scripts=true
-```
+No extra configuration is required. `bun run build` will execute `postbuild` automatically.
 
 ## Index sitemaps (Optional)
 
