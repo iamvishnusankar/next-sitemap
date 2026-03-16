@@ -16,7 +16,7 @@
     "@types/node": "20.2.3",
     "@types/react": "18.2.33",
     "@types/react-dom": "18.2.14",
-    "@vercel/og": "^0.5.20",
+    "@vercel/og": "^0.11.1",
     "autoprefixer": "10.4.14",
     "class-variance-authority": "^0.6.0",
     "contentlayer": "^0.3.2",
