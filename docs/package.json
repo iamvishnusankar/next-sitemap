@@ -33,7 +33,7 @@
     "react-dom": "18.2.0",
     "rehype-autolink-headings": "^6.1.1",
     "rehype-pretty-code": "^0.9.6",
-    "rehype-slug": "^5.1.0",
+    "rehype-slug": "^6.0.0",
     "remark": "^14.0.3",
     "remark-gfm": "^3.0.1",
     "shiki": "^0.14.2",
